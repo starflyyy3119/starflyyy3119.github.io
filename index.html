@@ -152,30 +152,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-子类的实例化过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java核心技术之———覆盖（重写）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/28/%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">子类的实例化过程</a>
+      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/">Java核心技术之———覆盖(重写)</a>
     </h1>
   
 
         
-        <a href="/2020/01/28/%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-01-28T09:05:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-01-28T13:04:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id=""><a href="#" class="headerlink" title=""></a></h4><p>子类中的所有构造函数，默认都会访问父类中空参数的构造函数。因为子类每一个构造函数内的第一行都会有一句隐式的 <strong>super()</strong>。</p>
-<p>当父类中没有空参数的构造函数时，子类必须通过手动 <strong>super</strong> 或者 <strong>this</strong> 语句来指定要访问的构造函数。（如果父类没有不带参数的构造器，在子类的构造器中又没有显式地调用父类的其他构造器，则Java编译器将报告错误）</p>
-<p>当然，子类的构造函数第一行也可以指定 <strong>this</strong> 语句访问本类中的构造函数。子类中至少会有一个构造函数会访问父类中的构造函数。</p>
-
+        <h4 id="方法的签名"><a href="#方法的签名" class="headerlink" title="方法的签名"></a>方法的签名</h4><p>方法的 <strong>名字</strong> 和 <strong>参数列表</strong> 称为 <strong>方法的签名</strong>。</p>
+<h4 id="方法的覆盖"><a href="#方法的覆盖" class="headerlink" title="方法的覆盖"></a>方法的覆盖</h4>
       
 
       
@@ -187,7 +185,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/28/%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -217,28 +215,35 @@
 
 
   
-    <article id="post-Java核心技术之面向对象练习题目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java核心技术之——对象方法的执行过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/">Java核心技术之面向对象练习题目</a>
+      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">对象方法的执行过程 + 动态绑定</a>
     </h1>
   
 
         
-        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2020-01-28T08:19:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-01-28T09:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-异常处理"><a href="#1-异常处理" class="headerlink" title="1. 异常处理"></a>1. 异常处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> <span class="comment">// throws Exception</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"B"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            func();</span><br><span class="line">            System.out.println(<span class="string">"A"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"C"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"D"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：编译失败<br>分析：在 <strong>func()</strong> 中，抛出了异常但是没有 <strong>catch</strong> 也没有继续向外抛。<br>改编：如果 <strong>func()</strong> 上声明了该异常，结果是 <strong>B C D</strong> ，注意<strong>try</strong>内代码从出现异常的那开始中断执行。</p>
+        <p>变量x声明为C类的对象，实际类型为D。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C x = <span class="keyword">new</span> D();</span><br><span class="line">x.f(param);</span><br></pre></td></tr></table></figure>
+<h4 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h4><p>编译器查看对象的声明类型和方法名( <strong>声明类型为C，方法名为f</strong> )<br>编译器列举所有 <strong>C</strong> 类中名为 <strong>f</strong> 和其超类中访问属性为 <strong>public</strong> 的方法（超类的私有方法不可访问）<br>至此，编译器已获得所以可能被调用的候选方法</p>
+<h4 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h4><p><strong>重载解析：</strong><br>编译器查看调用方法时提供的参数类型，如果在所有名为 <strong>f</strong> 的方法中存在一个与之提供的参数类型完全匹配，就选择这个方法。</p>
+<p>如果编译器没有找到与参数类型匹配的方法，或者发现经过类型转换后有多个方法与之匹配，就会报告一个错误。</p>
+<p>至此，编译器已获得需要调用的方法名字和参数类型。<br><a href="">覆盖(重写)</a></p>
+<h4 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h4><p>如果是 <strong>private</strong> 方法、<strong>static</strong> 方法、 <strong>final</strong> 方法或者<strong>构造器</strong> ，那么编译器将可以准确地知道应该调用哪个方法，将这种调用方式成为<a href="">静态绑定</a>。</p>
+<p>对应的，调用的方法依赖于 <a href="">隐式参数</a> 的实际类型,并且在运行时实现动态绑定。</p>
+<h3 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h3><p>采用动态绑定时，虚拟机一定调用与 <strong>x</strong> 所引用对象的 <strong>实际类型（D）</strong> 最适合的那个类的方法。（<strong>D</strong> 有这个方法就直接用，没有在超类找）</p>
 
       
 
@@ -251,7 +256,146 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java核心技术之——子类的实例化过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">子类的实例化过程</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-01-28T09:05:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id=""><a href="#" class="headerlink" title=""></a></h4><p>子类中的所有构造函数，默认都会访问父类中空参数的构造函数。因为子类每一个构造函数内的第一行都会有一句隐式的 <strong>super()</strong>。</p>
+<p>当父类中没有空参数的构造函数时，子类必须通过手动 <strong>super</strong> 或者 <strong>this</strong> 语句来指定要访问的构造函数。（如果父类没有不带参数的构造器，在子类的构造器中又没有显式地调用父类的其他构造器，则Java编译器将报告错误）</p>
+<p>当然，子类的构造函数第一行也可以指定 <strong>this</strong> 语句访问本类中的构造函数。子类中至少会有一个构造函数会访问父类中的构造函数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java核心技术之——面向对象练习题目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/">Java核心技术之面向对象练习题目</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/" class="archive-article-date">
+  	<time datetime="2020-01-28T08:19:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-异常处理"><a href="#1-异常处理" class="headerlink" title="1. 异常处理"></a>1. 异常处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> <span class="comment">// throws Exception</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"B"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            func();</span><br><span class="line">            System.out.println(<span class="string">"A"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"C"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"D"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：编译失败。<br>分析：在 <strong>func()</strong> 中，抛出了异常但是没有 <strong>catch</strong> 也没有继续向外抛。<br>改编：如果 <strong>func()</strong> 上声明了该异常，结果是 <strong>B C D</strong> ，注意 <strong>try</strong> 内代码从出现异常的那开始中断执行。</p>
+<p><a href="">异常处理</a></p>
+<h3 id="2-子类的实例化过程"><a href="#2-子类的实例化过程" class="headerlink" title="2. 子类的实例化过程"></a>2. 子类的实例化过程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Test()</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Test"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Demo()</span><br><span class="line">    &#123;   </span><br><span class="line">        <span class="comment">// super</span></span><br><span class="line">        System.out.println(<span class="string">"Demo"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Demo();</span><br><span class="line">        <span class="keyword">new</span> Test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>Test Demo Test</strong><br>分析：在实例化子类对象时，如果子类的构造器没有显式地调用超类的构造器，则将自动地调用超类默认（没有参数的构造器）。</p>
+<p><a href="https://starflyyy3119.github.io/2020/01/28/子类的实例化过程/" target="_blank" rel="noopener">子类的实例化过程</a></p>
+<h3 id="3-对象方法的执行过程"><a href="#3-对象方法的执行过程" class="headerlink" title="3. 对象方法的执行过程"></a>3. 对象方法的执行过程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">implements</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"func"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> B();</span><br><span class="line">        System.out.println(a.func());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：编译失败。<br>分析：因为 <strong>A</strong> 接口中并未定义 <strong>func()</strong> 方法。</p>
+<p><a href="">对象方法的执行过程</a></p>
+<h3 id="4-动态绑定"><a href="#4-动态绑定" class="headerlink" title="4. 动态绑定"></a>4. 动态绑定</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">show</span><span class="params">(<span class="keyword">char</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Demo();</span><br><span class="line">        Demo d = <span class="keyword">new</span> Demo();</span><br><span class="line">        <span class="keyword">for</span> (f.show(<span class="string">'A'</span>); f.show(<span class="string">'B'</span>) &amp;&amp; (i &lt; <span class="number">2</span>); f.show(<span class="string">'C'</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            d.show(<span class="string">'D'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">show</span><span class="params">(<span class="keyword">char</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：A B<br>分析：动态绑定，对象是谁的就运行谁。对象是 <strong>Demo</strong> 类的，且 <strong>show()</strong> 重写,故运行 <strong>Demo</strong> 的方法。</p>
+<p><a href="">动态绑定</a><br><a href="">覆盖（重写）</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/">展开全文 >></a>
         </p>
       
 
