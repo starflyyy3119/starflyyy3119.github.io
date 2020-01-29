@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java核心技术之——面向对象练习题目 | Hexo</title>
+  <title>Java核心技术之——面向对象练习题目 | Starfly&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. 异常处理123456789101112131415161718192021222324252627class Demo&amp;#123;    public static void func() &#x2F;&#x2F; throws Exception    &amp;#123;        try        &amp;#123;            throw new Exception();        &amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java核心技术之——面向对象练习题目">
 <meta property="og:url" content="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Starfly&#39;s blog">
 <meta property="og:description" content="1. 异常处理123456789101112131415161718192021222324252627class Demo&amp;#123;    public static void func() &#x2F;&#x2F; throws Exception    &amp;#123;        try        &amp;#123;            throw new Exception();        &amp;#125;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-28T08:19:34.000Z">
-<meta property="article:modified_time" content="2020-01-28T14:38:48.619Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2020-01-29T10:02:41.230Z">
+<meta property="article:author" content="Starfly">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Starfly&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,7 +50,7 @@
 			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Starfly</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +108,7 @@
 				<img src="" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Starfly</h1>
 			</hgroup>
 			
 			
@@ -176,7 +176,7 @@
       
         <h3 id="1-异常处理"><a href="#1-异常处理" class="headerlink" title="1. 异常处理"></a>1. 异常处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> <span class="comment">// throws Exception</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"B"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            func();</span><br><span class="line">            System.out.println(<span class="string">"A"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"C"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"D"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：编译失败。<br>分析：在 <strong>func()</strong> 中，抛出了异常但是没有 <strong>catch</strong> 也没有继续向外抛。<br>改编：如果 <strong>func()</strong> 上声明了该异常，结果是 <strong>B C D</strong> ，注意 <strong>try</strong> 内代码从出现异常的那开始中断执行。</p>
-<p><a href="">异常处理</a></p>
+<p><a href>异常处理</a></p>
 <h3 id="2-子类对象的实例化过程"><a href="#2-子类对象的实例化过程" class="headerlink" title="2. 子类对象的实例化过程"></a>2. 子类对象的实例化过程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Test()</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Test"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Demo()</span><br><span class="line">    &#123;   </span><br><span class="line">        <span class="comment">// super</span></span><br><span class="line">        System.out.println(<span class="string">"Demo"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Demo();</span><br><span class="line">        <span class="keyword">new</span> Test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：<strong>Test Demo Test</strong><br>分析：在实例化子类对象时，如果子类的构造器没有显式地调用超类的构造器，则将自动地调用超类默认（没有参数的构造器）。</p>
 <p><a href="https://starflyyy3119.github.io/2020/01/28/Java核心技术之——子类的实例化过程/" target="_blank" rel="noopener">子类的实例化过程</a></p>
@@ -188,7 +188,7 @@
 <p><a href="https://starflyyy3119.github.io/2020/01/28/Java核心技术之——对象方法的执行过程/" target="_blank" rel="noopener">动态绑定</a><br><a href="https://starflyyy3119.github.io/2020/01/28/Java核心技术之———覆盖%EF%BC%88重写%EF%BC%89/" target="_blank" rel="noopener">覆盖（重写）</a></p>
 <h3 id="5-子类对象的实例化过程"><a href="#5-子类对象的实例化过程" class="headerlink" title="5. 子类对象的实例化过程"></a>5. 子类对象的实例化过程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">(String a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A"</span>);</span><br><span class="line">        i = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.prinln(<span class="string">"B"</span>);</span><br><span class="line">        i += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Super</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Demo</span><span class="params">(String a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// super();</span></span><br><span class="line">        System.out.println(<span class="string">"C"</span>);</span><br><span class="line">        i = <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">4</span>;</span><br><span class="line">        Super d = <span class="keyword">new</span> Demo(<span class="string">"A"</span>);</span><br><span class="line">        System.out.println(d.i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：<strong>B C 5</strong><br>分析：子类的构造函数默认访问父类的空参数的构造函数，输出 <strong>B</strong>，<strong>i = 2</strong>，输出 <strong>C</strong>，<strong>i = 5</strong>，输出 <strong>5</strong>。</p>
-<p><a href="https://starflyyy3119.github.io/2020/01/28/Java核心技术之——子类的实例化过程/" target="_blank" rel="noopener">子类的实例化过程</a><br><a href="">类、超类与子类</a></p>
+<p><a href="https://starflyyy3119.github.io/2020/01/28/Java核心技术之——子类的实例化过程/" target="_blank" rel="noopener">子类的实例化过程</a><br><a href>类、超类与子类</a></p>
 
       
 
@@ -292,11 +292,6 @@
     </a>
   
   
-    <a href="/2020/01/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
 </nav>
 
 
@@ -336,7 +331,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2020 Starfly
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
