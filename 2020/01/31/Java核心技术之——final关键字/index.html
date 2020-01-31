@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java核心技术之——对象方法的执行过程 + 动态绑定 | Starfly&#39;s blog</title>
+  <title>Java核心技术之——final关键字 | Starfly&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="动态绑定一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(dynamic binding) 实例变量x声明为C类的对象，实际类型为D。 12C x &#x3D; new D();x.f(param); 步骤1：编译器查看对象的声明类型和方法名( 声明类型为C，方法名为f )编译器列举所有 C 类中名为 f 和其超类中访问属性为 public 的方法（超类的私有方法不可访问）至此，编译器">
+  <meta name="description" content="修饰类，变量（成员变量、静态变量、局部变量），函数。 修饰的类不可以被继承。 修饰的函数不可以被覆盖。 修饰的变量是一个常量，只能赋值一次。 内部类定义在局部时，只能访问被 final 修饰的局部变量。（当然，因为还持有 Outer.this 引用，还可以访问外部类中的成员）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java核心技术之——对象方法的执行过程 + 动态绑定">
-<meta property="og:url" content="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:title" content="Java核心技术之——final关键字">
+<meta property="og:url" content="http://yoursite.com/2020/01/31/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94final%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="动态绑定一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(dynamic binding) 实例变量x声明为C类的对象，实际类型为D。 12C x &#x3D; new D();x.f(param); 步骤1：编译器查看对象的声明类型和方法名( 声明类型为C，方法名为f )编译器列举所有 C 类中名为 f 和其超类中访问属性为 public 的方法（超类的私有方法不可访问）至此，编译器">
+<meta property="og:description" content="修饰类，变量（成员变量、静态变量、局部变量），函数。 修饰的类不可以被继承。 修饰的函数不可以被覆盖。 修饰的变量是一个常量，只能赋值一次。 内部类定义在局部时，只能访问被 final 修饰的局部变量。（当然，因为还持有 Outer.this 引用，还可以访问外部类中的成员）">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-28T09:32:11.000Z">
-<meta property="article:modified_time" content="2020-01-31T07:19:25.609Z">
+<meta property="article:published_time" content="2020-01-31T02:31:28.000Z">
+<meta property="article:modified_time" content="2020-01-31T02:36:40.284Z">
 <meta property="article:author" content="Starfly">
 <meta name="twitter:card" content="summary">
   
@@ -154,37 +154,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java核心技术之——对象方法的执行过程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java核心技术之——final关键字" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java核心技术之——对象方法的执行过程 + 动态绑定
+      Java核心技术之——final关键字
     </h1>
   
 
         
-        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-01-28T09:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+        <a href="/2020/01/31/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94final%E5%85%B3%E9%94%AE%E5%AD%97/" class="archive-article-date">
+  	<time datetime="2020-01-31T02:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="动态绑定"><a href="#动态绑定" class="headerlink" title="动态绑定"></a>动态绑定</h3><p>一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(<em>dynamic binding</em>)</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>变量x声明为C类的对象，实际类型为D。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C x = <span class="keyword">new</span> D();</span><br><span class="line">x.f(param);</span><br></pre></td></tr></table></figure>
-<h4 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h4><p>编译器查看对象的声明类型和方法名( <strong>声明类型为C，方法名为f</strong> )<br>编译器列举所有 <strong>C</strong> 类中名为 <strong>f</strong> 和其超类中访问属性为 <strong>public</strong> 的方法（超类的私有方法不可访问）<br>至此，编译器已获得所以可能被调用的候选方法</p>
-<h4 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h4><p><strong>重载解析：</strong><br>编译器查看调用方法时提供的参数类型，如果在所有名为 <strong>f</strong> 的方法中存在一个与之提供的参数类型完全匹配，就选择这个方法。</p>
-<p>如果编译器没有找到与参数类型匹配的方法，或者发现经过类型转换后有多个方法与之匹配，就会报告一个错误。</p>
-<p>至此，编译器已获得需要调用的方法名字和参数类型。<br><a href>覆盖(重写)</a></p>
-<h4 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h4><p>如果是 <strong>private</strong> 方法、<strong>static</strong> 方法、 <strong>final</strong> 方法或者<strong>构造器</strong> ，那么编译器将可以准确地知道应该调用哪个方法，将这种调用方式称为<a href>静态绑定</a>。</p>
-<p>对应的，调用的方法依赖于 <a href>隐式参数</a> 的实际类型,并且在运行时实现 <strong>动态绑定</strong>。</p>
-<h4 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h4><p>采用 <strong>动态绑定</strong> 时，虚拟机一定调用与 <strong>x</strong> 所引用对象的 <strong>实际类型（D）</strong> 最适合的那个类的方法。（<strong>D</strong> 有这个方法就直接用，没有在超类找）</p>
-<h4 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h4><p>成员函数在多态调用时，编译看左边，运行看右边。</p>
+        <ul>
+<li>修饰类，变量（成员变量、静态变量、局部变量），函数。</li>
+<li>修饰的类不可以被继承。</li>
+<li>修饰的函数不可以被覆盖。</li>
+<li>修饰的变量是一个常量，只能赋值一次。</li>
+<li>内部类定义在局部时，只能访问被 <strong>final</strong> 修饰的局部变量。（当然，因为还持有 <strong>Outer.this</strong> 引用，还可以访问外部类中的成员）</li>
+</ul>
 
       
 
@@ -264,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/31/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94final%E5%85%B3%E9%94%AE%E5%AD%97/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +274,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java核心技术之——覆盖(重写)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java核心技术之——子类的实例化过程</div>
+    <a href="/2020/01/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E8%AE%B2%EF%BC%9AThe-learning-Problem/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习基石上——第一讲：The learning Problem</div>
       <i class="icon-circle-right"></i>
     </a>
   
