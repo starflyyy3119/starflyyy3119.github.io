@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-机器学习基石上——第二讲：Learning-to-Answer-Yes-No" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/">机器学习基石上——第二讲：Learning to Answer Yes/No</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/" class="archive-article-date">
+  	<time datetime="2020-02-08T08:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+<!-- toc -->
+<ul>
+<li><a href="#perceptron-hypothesis-set">Perceptron Hypothesis Set</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+<h3><span id="perceptron-hypothesis-set"> Perceptron Hypothesis Set</span><a href="#perceptron-hypothesis-set" class="header-anchor"> </a></h3>
+<h4><span id="a-simple-hypothesis-set-the-perceptron"> A Simple Hypothesis Set: the ‘Perceptron’</span><a href="#a-simple-hypothesis-set-the-perceptron" class="header-anchor"> </a></h4>
+<ul>
+<li>For $ \small{x = (x_1,x_2,…,x_d)} $ ‘feature of customer’, compute a weighted ‘score’ and:<br>
+approve credit if $ \small{\sum\limits_{i = 1}^dw_ix_i} &gt; $ threshold<br>
+deny credit if $ \small{\sum\limits_{i = 1}^dw_ix_i} &lt; $ threshold</li>
+<li>{+1(good), -1(bad)}, 0 ignored - linear formula $ \small{h \in H} $ are $ \small{\red{h}(x) = sign((\sum\limits_{i=1}^{d}\red{w_i}x_i) - \red{threshold})} $</li>
+</ul>
+<p>called ‘perceptron’ hypothesis historically</p>
+<h4><span id="vector-form-of-perceptron-hypothesis"> Vector Form of Perceptron Hypothesis</span><a href="#vector-form-of-perceptron-hypothesis" class="header-anchor"> </a></h4>
+<p>$ \small{\red{h}(x) = sign((\sum\limits_{i=1}^{d}\red{w_i}x_i) - \blue{threshold})} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad= sign((\sum\limits_{i=1}^{d}\red{w_i}x_i) + \blue{(-threshold) * (+1)} )} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = sign(\sum\limits_\blue{i=0}^{d}\red{w_i}x_i)} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = sign(\red{w^T}x)} $</p>
+<ul>
+<li>each ‘tall’ w represents a hypothesis h &amp; is multiplied with ‘tall’ x(will use tall versions to simplify notation)</li>
+</ul>
+<h4><span id="perceptrons-in-small-r-2"> Perceptrons in $ \small{R^2} $</span><a href="#perceptrons-in-small-r-2" class="header-anchor"> </a></h4>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Algorithms-Part-1-Priority-Queues" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1071,18 +1158,28 @@ Because if the programmer using reference types, space may not be an important p
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3><span id="from-learning-to-machine-learning"> From Learning to Machine Learning</span><a href="#from-learning-to-machine-learning" class="header-anchor"> </a></h3>
+        <div class="toc">
+<!-- toc -->
 <ul>
-<li>
-<p>learning:acquiring <strong>skill</strong><br>
-with experience accumulated from observations<br>
-observations — learning — skill</p>
-</li>
-<li>
-<p>machine learning: acquiring <strong>skill</strong><br>
+<li><a href="#from-learning-to-machine-learning">From Learning to Machine Learning</a></li>
+<li><a href="#what-is-skill">What is skill?</a></li>
+<li><a href="#why-use-machine-learning">Why use machine learning?</a></li>
+<li><a href="#the-machine-learning-route">The Machine Learning Route</a></li>
+<li><a href="#key-essence-of-machine-learning">Key Essence of Machine Learning</a></li>
+<li><a href="#applications-of-machine-learning">Applications of Machine Learning</a></li>
+<li><a href="#components-of-learning-metaphor-using-credict-approval">Components of Learning: Metaphor Using Credict Approval</a></li>
+<li><a href="#machine-learning-and-other-fields">Machine Learning and Other Fields</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+### From Learning to Machine Learning
+- learning:acquiring **skill**
+with experience accumulated from observations
+observations --- learning --- skill
+<ul>
+<li>machine learning: acquiring <strong>skill</strong><br>
 with experience accumulated/ <strong>computed</strong> from data<br>
-data — ML — skill</p>
-</li>
+data — ML — skill</li>
 </ul>
 <h3><span id="what-is-skill"> What is skill?</span><a href="#what-is-skill" class="header-anchor"> </a></h3>
 <p>skill: improve some <strong>performance measure</strong>(e.g. prediction accuracy)</p>
@@ -1174,8 +1271,72 @@ data — ML — improved performace measure</li>
 <h3><span id="components-of-learning-metaphor-using-credict-approval"> Components of Learning: Metaphor Using Credict Approval</span><a href="#components-of-learning-metaphor-using-credict-approval" class="header-anchor"> </a></h3>
 <h4><span id="basic-notations"> Basic Notations</span><a href="#basic-notations" class="header-anchor"> </a></h4>
 <ul>
-<li>input x <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>χ</mi></mrow><annotation encoding="application/x-tex">\chi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">χ</span></span></span></span> (customer application)</li>
+<li>input: $ \small{x \in \chi} $ (customer application)</li>
+<li>output: $ \small{y \in Y} $ (good/bad after approving credit card)</li>
+<li>unknown pattern to be learned $ \Leftrightarrow $ target function:<br>
+$ \small{f: \chi \rightarrow Y} $ (ideal credit approval formula)</li>
+<li>data $ \Leftrightarrow $ training examples:<br>
+$ \small{D = {(x_1, y_1),(x_2, y_2),…,(x_N, y_N)}} $ (historical records in bank)</li>
+<li>hypothesis $ \Leftrightarrow $ skill with hopefully good performance:<br>
+$ \small{g: \chi \rightarrow Y} $ (‘learned’ formula to be used)</li>
 </ul>
+<p>$ \small $ from $ \small{f} \rightarrow ML \rightarrow g $</p>
+<p><img src="/2020/01/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E8%AE%B2%EF%BC%9AThe-learning-Problem/workflow.jpg" alt></p>
+<p>Remark:</p>
+<ul>
+<li>target $ f $ unknown (i.e. no programmable definition)</li>
+<li>hypothesis $ g $ hopefully $ \small{\approx f} $<br>
+but possibly different from <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="0.9em"><mi>f</mi></mstyle></mrow><annotation encoding="application/x-tex">\small{f}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.799992em;vertical-align:-0.174996em;"></span><span class="mord sizing reset-size6 size5"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span>(perfection ‘impossible’ when $ \small{f} $ unknown)</li>
+</ul>
+<p><img src="/2020/01/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E8%AE%B2%EF%BC%9AThe-learning-Problem/hyset.jpg" alt></p>
+<ul>
+<li>hypothesis set $ \small{H} $:<br>
+– can contain good or bad hypotheses<br>
+– up to $ A $ to pick the ‘best’ one as $ g $</li>
+</ul>
+<p><strong>learning model = A and H</strong></p>
+<p><img src="/2020/01/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E8%AE%B2%EF%BC%9AThe-learning-Problem/ml.jpg" alt></p>
+<p><strong>machine learning:</strong><br>
+use <strong>data</strong> to compute <strong>hypothesis g</strong> that approximates <strong>target f</strong>.</p>
+<h3><span id="machine-learning-and-other-fields"> Machine Learning and Other Fields</span><a href="#machine-learning-and-other-fields" class="header-anchor"> </a></h3>
+<h4><span id="data-mining"> Data Mining</span><a href="#data-mining" class="header-anchor"> </a></h4>
+<p>use <strong>(huge)</strong> data to <strong>find property</strong> that is interesting.</p>
+<ul>
+<li>if ‘interesting property’ <strong>same as</strong> ‘hypothesis that approximate target’<br>
+ML = DM</li>
+<li>if ‘interesting property’ <strong>related to</strong> ‘hypothesis that approximate target’<br>
+DM can help ML, and vice versa (often, but not always)</li>
+<li>traditional DM also focuses on <strong>efficient computation in large database</strong></li>
+</ul>
+<p>difficult to distinguish ML and DM in reality.</p>
+<h4><span id="artificial-intelligence"> Artificial Intelligence</span><a href="#artificial-intelligence" class="header-anchor"> </a></h4>
+<p>compute <strong>something that shows intelligent behavior</strong>.</p>
+<ul>
+<li>$ \small{g \approx f} $ is something that shows intelligent behavior<br>
+ML an realize AI, among other routes</li>
+<li>e.g. chess playing<br>
+– traditional AI: game tree<br>
+– ML for AI: ‘learning from board data’</li>
+</ul>
+<p>ML is one possible route to realize AI</p>
+<h4><span id="statistics"> Statistics</span><a href="#statistics" class="header-anchor"> </a></h4>
+<p>use data to <strong>make inference about an unknown process</strong></p>
+<ul>
+<li>$ g $ is an inference outcome; $ \small{f} $ is something unknown, Statistics <strong>can be used to achieve ML</strong></li>
+<li>traditional statistics also focus on <strong>provable results with math assumptions</strong> , and care less about computation</li>
+</ul>
+<p>statistics: many useful tools for ML</p>
+<p>$ \small{E(w) = \frac{1}{2}w^TAw + b^Tw} $</p>
+<p>$ \small{dE = \frac{1}{2}dw^TAw + \frac{1}{2}w^TAdw + b^Tdw} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = tr(\frac{1}{2}dw^TAw + \frac{1}{2}w^TAdw + b^Tdw)} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = tr(\frac{1}{2}w<sup>TA</sup>Tdw + \frac{1}{2}w^TAdw + b^Tdw)} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = tr(w^TAdw + b^Tdw)} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \small{\qquad = tr((w^TA + b^T)dw)} $</p>
+<p>$ \therefore \frac{\partial E}{\partial w}^T = \small{w^TA + b^T} <span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \therefore \small{\nabla E(w)} = \frac{\partial E}{\partial w} = \small{A^Tw + b = Aw + b} $</p>
+<p>similarly:<br>
+$ \small{d} \small{\nabla E(w)} = \small{A dw}<span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex">
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span> \therefore \small{\nabla}^2 E(w) = A $</p>
 
       
 
@@ -1746,90 +1907,6 @@ data — ML — improved performace measure</li>
 
 
   
-    <article id="post-Java核心技术之——对象方法的执行过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">Java核心技术之——对象方法的执行过程 + 动态绑定</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-01-28T09:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3><span id="dong-tai-bang-ding"> 动态绑定</span><a href="#dong-tai-bang-ding" class="header-anchor"> </a></h3>
-<p>一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(<em>dynamic binding</em>)</p>
-<h3><span id="shi-li"> 实例</span><a href="#shi-li" class="header-anchor"> </a></h3>
-<p>变量x声明为C类的对象，实际类型为D。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C x = <span class="keyword">new</span> D();</span><br><span class="line">x.f(param);</span><br></pre></td></tr></table></figure>
-<h4><span id="bu-zou-1"> 步骤1：</span><a href="#bu-zou-1" class="header-anchor"> </a></h4>
-<p>编译器查看对象的声明类型和方法名( <strong>声明类型为C，方法名为f</strong> )<br>
-编译器列举所有 <strong>C</strong> 类中名为 <strong>f</strong> 和其超类中访问属性为 <strong>public</strong> 的方法（超类的私有方法不可访问）<br>
-至此，编译器已获得所以可能被调用的候选方法</p>
-<h4><span id="bu-zou-2"> 步骤2：</span><a href="#bu-zou-2" class="header-anchor"> </a></h4>
-<p><strong>重载解析：</strong><br>
-编译器查看调用方法时提供的参数类型，如果在所有名为 <strong>f</strong> 的方法中存在一个与之提供的参数类型完全匹配，就选择这个方法。</p>
-<p>如果编译器没有找到与参数类型匹配的方法，或者发现经过类型转换后有多个方法与之匹配，就会报告一个错误。</p>
-<p>至此，编译器已获得需要调用的方法名字和参数类型。<br>
-<a href>覆盖(重写)</a></p>
-<h4><span id="bu-zou-3"> 步骤3：</span><a href="#bu-zou-3" class="header-anchor"> </a></h4>
-<p>如果是 <strong>private</strong> 方法、<strong>static</strong> 方法、 <strong>final</strong> 方法或者<strong>构造器</strong> ，那么编译器将可以准确地知道应该调用哪个方法，将这种调用方式称为<a href>静态绑定</a>。</p>
-<p>对应的，调用的方法依赖于 <a href>隐式参数</a> 的实际类型,并且在运行时实现 <strong>动态绑定</strong>。</p>
-<h4><span id="bu-zou-4"> 步骤4：</span><a href="#bu-zou-4" class="header-anchor"> </a></h4>
-<p>采用 <strong>动态绑定</strong> 时，虚拟机一定调用与 <strong>x</strong> 所引用对象的 <strong>实际类型（D）</strong> 最适合的那个类的方法。（<strong>D</strong> 有这个方法就直接用，没有在超类找）</p>
-<h4><span id="jian-dan-zong-jie"> 简单总结</span><a href="#jian-dan-zong-jie" class="header-anchor"> </a></h4>
-<p>成员函数在多态调用时，编译看左边，运行看右边。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2101,5 +2178,21 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
