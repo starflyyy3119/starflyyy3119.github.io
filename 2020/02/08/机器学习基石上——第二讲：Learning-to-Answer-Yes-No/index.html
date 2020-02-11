@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/nonlinear.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/pocket.jpg">
 <meta property="article:published_time" content="2020-02-08T08:02:46.000Z">
-<meta property="article:modified_time" content="2020-02-08T12:54:58.804Z">
+<meta property="article:modified_time" content="2020-02-11T07:36:52.553Z">
 <meta property="article:author" content="Starfly">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -286,9 +286,9 @@ simple to implement, fast, works in any dimension d</p>
 $ \small{y_n = f(x_n)} $ usually</li>
 <li>if so,<br>
 $ \small{g \approx f }$ on D $ \small{\Leftrightarrow y_n = g(x_n)} $ usually</li>
-<li>how about<br>
-$ \small{w_g \leftarrow \argmin\limits_w\sum\limits_{n=1}^N[y_n \neq sign(w^Tx_n)]} $<br>
-– <strong>NP-hard</strong> to solve, unfortunately</li>
+<li>how about:<br>
+– <strong>NP-hard</strong> to solve, unfortunately<br>
+$ \small{w_g \leftarrow argmin_w\sum\limits_{n=1}^N [y_n \neq sign(w^Tx_n)]} $</li>
 </ul>
 <h4><span id="pocket-algorithm"> Pocket Algorithm</span><a href="#pocket-algorithm" class="header-anchor"> </a></h4>
 <p>modify PLA algorithm (black lines) by <strong>keeping best weights in pocket</strong></p>
@@ -397,6 +397,15 @@ $ \small{w_g \leftarrow \argmin\limits_w\sum\limits_{n=1}^N[y_n \neq sign(w^Tx_n
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/02/11/Matrix-derivative/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Matrix_derivative
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/03/Algorithms-Part-1-Priority-Queues/" id="article-nav-older" class="article-nav-link-wrap">

@@ -152,6 +152,68 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Matrix-derivative" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/11/Matrix-derivative/">Matrix_derivative</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/11/Matrix-derivative/" class="archive-article-date">
+  	<time datetime="2020-02-11T08:24:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <object data="./Matrix-derivative/matrix_derivative.pdf" type="application/pdf" width="100%" height="877px"></object>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/11/Matrix-derivative/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-机器学习基石上——第二讲：Learning-to-Answer-Yes-No" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -277,9 +339,9 @@ simple to implement, fast, works in any dimension d</p>
 $ \small{y_n = f(x_n)} $ usually</li>
 <li>if so,<br>
 $ \small{g \approx f }$ on D $ \small{\Leftrightarrow y_n = g(x_n)} $ usually</li>
-<li>how about<br>
-$ \small{w_g \leftarrow \argmin\limits_w\sum\limits_{n=1}^N[y_n \neq sign(w^Tx_n)]} $<br>
-– <strong>NP-hard</strong> to solve, unfortunately</li>
+<li>how about:<br>
+– <strong>NP-hard</strong> to solve, unfortunately<br>
+$ \small{w_g \leftarrow argmin_w\sum\limits_{n=1}^N [y_n \neq sign(w^Tx_n)]} $</li>
 </ul>
 <h4><span id="pocket-algorithm"> Pocket Algorithm</span><a href="#pocket-algorithm" class="header-anchor"> </a></h4>
 <p>modify PLA algorithm (black lines) by <strong>keeping best weights in pocket</strong></p>
@@ -1914,84 +1976,6 @@ $ \small{d} \small{\nabla E(w)} = \small{A dw}<span class="katex"><span class="k
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E7%B1%BB%E3%80%81%E8%B6%85%E7%B1%BB%E4%B8%8E%E5%AD%90%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java核心技术之——覆盖（重写）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/">Java核心技术之——覆盖(重写)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-01-28T13:04:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3><span id="fang-fa-de-qian-ming"> 方法的签名</span><a href="#fang-fa-de-qian-ming" class="header-anchor"> </a></h3>
-<p>方法的 <strong>名字</strong> 和 <strong>参数列表</strong> 称为 <strong>方法的签名</strong>。</p>
-<h3><span id="fang-fa-de-fu-gai-chong-xie"> 方法的覆盖（重写）</span><a href="#fang-fa-de-fu-gai-chong-xie" class="header-anchor"> </a></h3>
-<p>如果在子类中定义了一个与父类 <strong>签名</strong> 相同的方法，那么子类中的这个方法就覆盖了父类中的这个相同签名的方法。</p>
-<p><strong>返回类型</strong> 不是签名的一部分，在覆盖方法时，要保证返回类型的兼容性。（允许子类将覆盖方法的返回类型定义为原返回类型的子类型）</p>
-<p>例子：假设 <strong>Employee</strong> 类有</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Employee <span class="title">getBuddy</span><span class="params">()</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p>在子类中，可以覆盖为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Manager <span class="title">getBuddy</span><span class="params">()</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong><br>
-1.子类覆盖父类，必须保证子类的权限大于等于父类的权限，才可以覆盖。否则编译失败。（如果父类是 <strong>private</strong> 方法，不叫做覆盖，因为子类不知道父类有这个方法）</p>
-<p><a href>类的权限</a></p>
-<p>2.静态只能覆盖静态</p>
-<h3><span id="yu-chong-zai-de-qu-bie"> 与重载的区别</span><a href="#yu-chong-zai-de-qu-bie" class="header-anchor"> </a></h3>
-<p><strong>重载</strong>：只看同名函数的参数列表。<br>
-<strong>重写</strong>：字符类的签名要一模一样。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/">展开全文 >></a>
         </p>
       
 
