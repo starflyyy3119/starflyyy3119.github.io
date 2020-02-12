@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Starfly" />
+  <meta name="keywords" content="Algorithms, Part 1," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Basic plan Process Java Code Implementation details Performace analysis Quicksort properties Practical improvements Selection Duplicate keys Java System sorts Sumary     Basic plan  Shuffle the ar">
+<meta name="description" content="Basic plan Process Java Code Implementation details Performace analysis Quicksort properties Practical improvements Selection Duplicate keys Java System sorts Sumary     Basic plan   Shuffle the ar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithms, Part1, Quicksort">
 <meta property="og:url" content="http://yoursite.com/2020/02/02/Algorithms-Part1-Quicksort/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Basic plan Process Java Code Implementation details Performace analysis Quicksort properties Practical improvements Selection Duplicate keys Java System sorts Sumary     Basic plan  Shuffle the ar">
+<meta property="og:description" content="Basic plan Process Java Code Implementation details Performace analysis Quicksort properties Practical improvements Selection Duplicate keys Java System sorts Sumary     Basic plan   Shuffle the ar">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/02/02/Algorithms-Part1-Quicksort/quicksort.jpg">
 <meta property="article:published_time" content="2020-02-02T02:37:17.000Z">
-<meta property="article:modified_time" content="2020-02-02T10:21:59.416Z">
+<meta property="article:modified_time" content="2020-02-11T13:13:52.067Z">
 <meta property="article:author" content="Starfly">
+<meta property="article:tag" content="Algorithms, Part 1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/02/02/Algorithms-Part1-Quicksort/quicksort.jpg">
 
@@ -183,19 +184,39 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Home
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Archives
           </a>
@@ -274,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -302,7 +345,6 @@
 
       
         <div class="toc">
-
 <!-- toc -->
 <ul>
 <li><a href="#basic-plan">Basic plan</a></li>
@@ -319,85 +361,157 @@
 </ul>
 <!-- tocstop -->
 </div>
-
-<h3><span id="basic-plan">Basic plan</span><a href="#basic-plan" class="header-anchor"> </a></h3><ul>
+<h3><span id="basic-plan"> Basic plan</span><a href="#basic-plan" class="header-anchor"> </a></h3>
+<ul>
 <li><strong>Shuffle</strong> the array.</li>
-<li><strong>Partition</strong> so that, for some j<br>— entry a[j] is in place<br>— no larger entry to the left of j<br>— no smaller entry to the right of j</li>
+<li><strong>Partition</strong> so that, for some j<br>
+– entry a[j] is in place<br>
+– no larger entry to the left of j<br>
+– no smaller entry to the right of j</li>
 <li><strong>Sort</strong> each piece recursively</li>
 </ul>
-<h3><span id="process">Process</span><a href="#process" class="header-anchor"> </a></h3><h4><span id="phase-1-repeat-until-i-and-j-pointers-cross">Phase 1. Repeat until i and j pointers cross.</span><a href="#phase-1-repeat-until-i-and-j-pointers-cross" class="header-anchor"> </a></h4><ul>
+<h3><span id="process"> Process</span><a href="#process" class="header-anchor"> </a></h3>
+<h4><span id="phase-1-repeat-until-i-and-j-pointers-cross"> Phase 1. Repeat until i and j pointers cross.</span><a href="#phase-1-repeat-until-i-and-j-pointers-cross" class="header-anchor"> </a></h4>
+<ul>
 <li>Scan i from left to right so long as (a[i] &lt; a[lo]).</li>
 <li>Scan j from right to left so long as (a[j] &gt; a[lo]).</li>
 <li>Exchange a[i] with a[j].</li>
 </ul>
-<h4><span id="phase-2-when-pointers-cross">Phase 2. When pointers cross.</span><a href="#phase-2-when-pointers-cross" class="header-anchor"> </a></h4><ul>
+<h4><span id="phase-2-when-pointers-cross"> Phase 2. When pointers cross.</span><a href="#phase-2-when-pointers-cross" class="header-anchor"> </a></h4>
+<ul>
 <li>Exchange a[lo] with a[j].</li>
 </ul>
-<h3><span id="java-code">Java Code</span><a href="#java-code" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Quick</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lo, <span class="keyword">int</span> j = hi + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (less(a[++i], a[lo]))</span><br><span class="line">                <span class="keyword">if</span> (i == hi) <span class="keyword">break</span>;      <span class="comment">// find item on left to swap</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> (less(a[lo], a[--j]))</span><br><span class="line">                <span class="keyword">if</span> (j == lo) <span class="keyword">break</span>;      <span class="comment">// find item on right to swap</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &gt;= j) <span class="keyword">break</span>;           <span class="comment">// check if pointers cross</span></span><br><span class="line">            exch(a, i, j);               <span class="comment">// swap</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        exch(a, lo, j);                  <span class="comment">// swap with partitioning item</span></span><br><span class="line">        <span class="keyword">return</span> j;                        <span class="comment">// return index of item now known to be in place</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        StdRandom.shuffle(a);</span><br><span class="line">        sort(a, <span class="number">0</span>, a.length - <span class="number">1</span>);        <span class="comment">// shuffle needed for performance guarantee(stay tuned)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">        sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">        sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="implementation-details">Implementation details</span><a href="#implementation-details" class="header-anchor"> </a></h3><ul>
-<li><p>Partitioning inplace. Using an extra array makes partitioning easier(and stable), but is not worth the cost.</p>
+<h3><span id="java-code"> Java Code</span><a href="#java-code" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Quick</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lo, <span class="keyword">int</span> j = hi + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (less(a[++i], a[lo]))</span><br><span class="line">                <span class="keyword">if</span> (i == hi) <span class="keyword">break</span>;      <span class="comment">// find item on left to swap</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> (less(a[lo], a[--j]))</span><br><span class="line">                <span class="keyword">if</span> (j == lo) <span class="keyword">break</span>;      <span class="comment">// find item on right to swap</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &gt;= j) <span class="keyword">break</span>;           <span class="comment">// check if pointers cross</span></span><br><span class="line">            exch(a, i, j);               <span class="comment">// swap</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        exch(a, lo, j);                  <span class="comment">// swap with partitioning item</span></span><br><span class="line">        <span class="keyword">return</span> j;                        <span class="comment">// return index of item now known to be in place</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        StdRandom.shuffle(a);</span><br><span class="line">        sort(a, <span class="number">0</span>, a.length - <span class="number">1</span>);        <span class="comment">// shuffle needed for performance guarantee(stay tuned)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">        sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">        sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="implementation-details"> Implementation details</span><a href="#implementation-details" class="header-anchor"> </a></h3>
+<ul>
+<li>
+<p>Partitioning inplace. Using an extra array makes partitioning easier(and stable), but is not worth the cost.</p>
 </li>
-<li><p>Terminating the loop. Testing whether the pointers cross is a bit trickier than it might seem.</p>
+<li>
+<p>Terminating the loop. Testing whether the pointers cross is a bit trickier than it might seem.</p>
 </li>
-<li><p>Staying in bounds. The (j == lo) test is redundant, but the (i == hi) test is not.<br>Because the definition of <strong>less</strong>:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Preserving randomness. <strong>Shuffling is needed for performance guarantee.</strong></p>
-</li>
-<li><p>Equal keys. When duplicates are present, it is (counter-intuitively) better to stop on keys equal to the partitioning item’s key.</p>
+<li>
+<p>Staying in bounds. The (j == lo) test is redundant, but the (i == hi) test is not.<br>
+Because the definition of <strong>less</strong>:</p>
 </li>
 </ul>
-<h3><span id="performace-analysis">Performace analysis</span><a href="#performace-analysis" class="header-anchor"> </a></h3><ul>
-<li>Best case: Number of compares is ~$ \small{NlgN} $</li>
-<li>Worst case: Number of compares is ~$ \small{\frac{1}{2}N^2}$<ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>Preserving randomness. <strong>Shuffling is needed for performance guarantee.</strong></p>
+</li>
+<li>
+<p>Equal keys. When duplicates are present, it is (counter-intuitively) better to stop on keys equal to the partitioning item’s key.</p>
+</li>
+</ul>
+<h3><span id="performace-analysis"> Performace analysis</span><a href="#performace-analysis" class="header-anchor"> </a></h3>
+<ul>
+<li>
+<p>Best case: Number of compares is ~$ \small{NlgN} $</p>
+</li>
+<li>
+<p>Worst case: Number of compares is ~$ \small{\frac{1}{2}N^2}$</p>
+<ul>
 <li>$ \small{N + (N-1) + (N-2) + … + 1} $ ~$ \small{\frac{1}{2}N^2}$</li>
 <li>More likely that your computer is struck by lightning bolt.</li>
 </ul>
 </li>
-<li><p>Average case: The average number of compares $ \small{C_N}$ to quicksort an array of $ \small{N} $ distinct keys is ~$ \small{2NlnN}$ (and the number of exchanges is ~$ \small{\frac{1}{3}NlnN }$).</p>
+<li>
+<p>Average case: The average number of compares $ \small{C_N}$ to quicksort an array of $ \small{N} $ distinct keys is ~$ \small{2NlnN}$ (and the number of exchanges is ~$ \small{\frac{1}{3}NlnN }$).</p>
 <ul>
 <li>39% more compares than mergesort.</li>
-<li><p>But faster than mergesort in practice because of less data movement.</p>
-<p>Pf: $ \small{C_N} $ satisfies the recurrence $ \small{C_0 = C_1 = 0} $ and for $ \small{N \geq 2} $:<br>$ \small{C_N = (N+1) + (\frac{C_0 +C_{N-1}}{N}) + (\frac{C_1 +C_{N-2}}{N}) + … + (\frac{C_{N-1} +C_{0}}{N})} $<br>Multiply both sides by $ \small{N} $ and collect terms:<br>$ \small{NC_N = N(N+1)+2(C_0 + C_1 + … + C_{N-1})} $<br>Subtract this from the same equation for $ N-1 $:<br>$ \small{NC_N - (N-1)C_{N-1} = 2N + 2C_{N-1}} $<br>Rearrange terms and divide by $ \small{N(N+1)} $:<br>$ \frac{C_N}{N+1} = \frac{C_{N-1}}{N} + \frac{2}{N+1} $<br>Repeatedly apply above equation:<br>$ \frac{C_N}{N+1} = \frac{C_{N-1}}{N} + \frac{2}{N+1} $<br>$ \qquad= \frac{C_{N-2}}{N-1} + \frac{2}{N} + \frac{2}{N+1}$<br>$ \qquad= \frac{2}{3} + \frac{2}{4} + \frac{2}{5} + … + \frac{2}{N+1}$<br>Approximate sum by an integral:<br>$ \small{C_N = 2(N+1)(\frac{1}{3} + \frac{1}{4} + \frac{1}{5} + … + \frac{1}{N+1})} $<br>$ \small\quad $ ~ $ \small{2(N+1)\int_3^{N+1}\frac{1}{x}dx} $<br>Finally, the desired result:<br>$ \small{C_N} $ ~ $ \small{2(N+1)lnN \approx 1.39NlgN} $</p>
+<li>But faster than mergesort in practice because of less data movement.</li>
+</ul>
+<p>Pf: $ \small{C_N} $ satisfies the recurrence $ \small{C_0 = C_1 = 0} $ and for $ \small{N \geq 2} $:<br>
+$ \small{C_N = (N+1) + (\frac{C_0 +C_{N-1}}{N}) + (\frac{C_1 +C_{N-2}}{N}) + … + (\frac{C_{N-1} +C_{0}}{N})} $<br>
+Multiply both sides by $ \small{N} $ and collect terms:<br>
+$ \small{NC_N = N(N+1)+2(C_0 + C_1 + … + C_{N-1})} $<br>
+Subtract this from the same equation for $ N-1 $:<br>
+$ \small{NC_N - (N-1)C_{N-1} = 2N + 2C_{N-1}} $<br>
+Rearrange terms and divide by $ \small{N(N+1)} $:<br>
+$ \frac{C_N}{N+1} = \frac{C_{N-1}}{N} + \frac{2}{N+1} $<br>
+Repeatedly apply above equation:<br>
+$ \frac{C_N}{N+1} = \frac{C_{N-1}}{N} + \frac{2}{N+1} $<br>
+$ \qquad= \frac{C_{N-2}}{N-1} + \frac{2}{N} + \frac{2}{N+1}$<br>
+$ \qquad= \frac{2}{3} + \frac{2}{4} + \frac{2}{5} + … + \frac{2}{N+1}$<br>
+Approximate sum by an integral:<br>
+$ \small{C_N = 2(N+1)(\frac{1}{3} + \frac{1}{4} + \frac{1}{5} + … + \frac{1}{N+1})} $<br>
+$ \small\quad $ ~ $ \small{2(N+1)\int_3^{N+1}\frac{1}{x}dx} $<br>
+Finally, the desired result:<br>
+$ \small{C_N} $ ~ $ \small{2(N+1)lnN \approx 1.39NlgN} $</p>
 </li>
 </ul>
-</li>
-</ul>
-<h3><span id="quicksort-properties">Quicksort properties</span><a href="#quicksort-properties" class="header-anchor"> </a></h3><p><strong>Proposition:</strong> Quicksort is an inplace sorting algorithm.<br>Pf. </p>
+<h3><span id="quicksort-properties"> Quicksort properties</span><a href="#quicksort-properties" class="header-anchor"> </a></h3>
+<p><strong>Proposition:</strong> Quicksort is an inplace sorting algorithm.<br>
+Pf.</p>
 <ul>
 <li>Partitioning: constant extra space.</li>
 <li>Depth of recursion: logarithmic extra space (with high probability)</li>
 </ul>
 <p><strong>Proposition：</strong> Quicksort is <strong>not stable</strong></p>
-<h3><span id="practical-improvements">Practical improvements</span><a href="#practical-improvements" class="header-anchor"> </a></h3><p><strong>Insertion sort small subarrays.</strong></p>
+<h3><span id="practical-improvements"> Practical improvements</span><a href="#practical-improvements" class="header-anchor"> </a></h3>
+<p><strong>Insertion sort small subarrays.</strong></p>
 <ul>
 <li>Even quicksort has too much overhead for tiny subarrays.</li>
 <li>Cutoff to insetion sort for $ \approx $ 10 items.</li>
-<li>Note: could delay insertion sort until one pass at end.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo + CUTOFF - <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Insertion.sort(a, lo, hi);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">    sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">    sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<strong>Median of sample.</strong></li>
+<li>Note: could delay insertion sort until one pass at end.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo + CUTOFF - <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Insertion.sort(a, lo, hi);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">    sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">    sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Median of sample.</strong></p>
+<ul>
 <li>Best choice of pivot item = median.</li>
 <li>Estimate true median by taking median of sample.</li>
-<li>Median-of-three(random) items.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = medianOf3(a, lo, lo + (hi - lo) / <span class="number">2</span>, hi);</span><br><span class="line">    swap(a, lo, m);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">    sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">    sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="selection">Selection</span><a href="#selection" class="header-anchor"> </a></h3><strong>Goal:</strong> Given an array of N items, find the $ k^{th} $ largest.<br><strong>Ex:</strong> Min(k = 0), Max (k = N - 1), Median(k = N / 2).<br><strong>Applications</strong></li>
-<li>Order statistics.</li>
-<li>Find the “top k”.<br><strong>Use theory as a guide</strong></li>
-<li>Easy $ \small{NlogN} $ upper bound. How?<br>Just sort the array.</li>
-<li>Easy N upper bound for $ k = 1,2,3. $ How?<br>Go through the array.</li>
-<li>Easy N lower bound. Why?<br>Have to look at everything.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Comparable <span class="title">select</span><span class="params">(Comparable[] a, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    StdRandom.shuffle(a);</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>; hi = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (hi &gt; lo)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">        <span class="keyword">if</span>      (j &lt; k) lo = j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; k) hi = j - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span>    <span class="keyword">return</span> a[k] </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<strong>Proposition:</strong> Quick-select takes linear time on average.<br>Pf sketch.</li>
-<li>Intuitively, each partitioning step splits array approximately in half:<br>$ \small{N + \frac{N}{2} + \frac{N}{4} + … + 1} $ ~ 2$ \small{N} $ compares.</li>
-<li>Formal analysis similar to quicksort analysis yields:<br>$ \small{C_N = 2N + 2kln(N/k) + 2(N-k)ln(N/(N-k))} $</li>
+<li>Median-of-three(random) items.</li>
 </ul>
-<h3><span id="duplicate-keys">Duplicate keys</span><a href="#duplicate-keys" class="header-anchor"> </a></h3><p><strong>Mergesort with duplicate keys.</strong><br>Always between $ \small{\frac{1}{2}NlgN} $ and $ \small{NlgN} $ compares.</p>
-<p><strong>Quicksort with duplicate keys.</strong><br>Algorithms goes <strong>quadratic</strong> unless partitioning stops on equal keys.</p>
-<p><strong>Mistake.</strong><br>Put all items equal to the partitioning item on one side.</p>
-<p><strong>Consequence.</strong><br>~$ \small{\frac{1}{2} N^2}$ compares when all keys equal.</p>
-<p>B A A B A B B <strong>B</strong> C C C<br>A A A A A A A A A A <strong>A</strong></p>
-<p><strong>Recommended.</strong><br>Stops scans on items equal to the partitioning item.</p>
-<p><strong>Consequence.</strong><br>~$ \small{NlgN} $ compares when all keys equal.</p>
-<p>B A A B A <strong>B</strong> C C B C B<br>A A A A A <strong>A</strong> A A A A A</p>
-<p><strong>Desirable.</strong><br>Put all items equal to the partitioning item in place.</p>
-<p>A A A <strong>B</strong> <strong>B</strong> <strong>B</strong> <strong>B</strong> <strong>B</strong> C C C<br><strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong></p>
-<p><strong>3-way partitioning</strong><br>Partition array into 3 parts so that:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = medianOf3(a, lo, lo + (hi - lo) / <span class="number">2</span>, hi);</span><br><span class="line">    swap(a, lo, m);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">    sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">    sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="selection"> Selection</span><a href="#selection" class="header-anchor"> </a></h3>
+<p><strong>Goal:</strong> Given an array of N items, find the $ k^{th} $ largest.<br>
+<strong>Ex:</strong> Min(k = 0), Max (k = N - 1), Median(k = N / 2).<br>
+<strong>Applications</strong></p>
+<ul>
+<li>Order statistics.</li>
+<li>Find the “top k”.<br>
+<strong>Use theory as a guide</strong></li>
+<li>Easy $ \small{NlogN} $ upper bound. How?<br>
+Just sort the array.</li>
+<li>Easy N upper bound for $ k = 1,2,3. $ How?<br>
+Go through the array.</li>
+<li>Easy N lower bound. Why?<br>
+Have to look at everything.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Comparable <span class="title">select</span><span class="params">(Comparable[] a, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    StdRandom.shuffle(a);</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>; hi = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (hi &gt; lo)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">        <span class="keyword">if</span>      (j &lt; k) lo = j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; k) hi = j - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span>    <span class="keyword">return</span> a[k] </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Proposition:</strong> Quick-select takes linear time on average.<br>
+Pf sketch.</p>
+<ul>
+<li>Intuitively, each partitioning step splits array approximately in half:<br>
+$ \small{N + \frac{N}{2} + \frac{N}{4} + … + 1} $ ~ 2$ \small{N} $ compares.</li>
+<li>Formal analysis similar to quicksort analysis yields:<br>
+$ \small{C_N = 2N + 2kln(N/k) + 2(N-k)ln(N/(N-k))} $</li>
+</ul>
+<h3><span id="duplicate-keys"> Duplicate keys</span><a href="#duplicate-keys" class="header-anchor"> </a></h3>
+<p><strong>Mergesort with duplicate keys.</strong><br>
+Always between $ \small{\frac{1}{2}NlgN} $ and $ \small{NlgN} $ compares.</p>
+<p><strong>Quicksort with duplicate keys.</strong><br>
+Algorithms goes <strong>quadratic</strong> unless partitioning stops on equal keys.</p>
+<p><strong>Mistake.</strong><br>
+Put all items equal to the partitioning item on one side.</p>
+<p><strong>Consequence.</strong><br>
+~$ \small{\frac{1}{2} N^2}$ compares when all keys equal.</p>
+<p>B A A B A B B <strong>B</strong> C C C<br>
+A A A A A A A A A A <strong>A</strong></p>
+<p><strong>Recommended.</strong><br>
+Stops scans on items equal to the partitioning item.</p>
+<p><strong>Consequence.</strong><br>
+~$ \small{NlgN} $ compares when all keys equal.</p>
+<p>B A A B A <strong>B</strong> C C B C B<br>
+A A A A A <strong>A</strong> A A A A A</p>
+<p><strong>Desirable.</strong><br>
+Put all items equal to the partitioning item in place.</p>
+<p>A A A <strong>B</strong> <strong>B</strong> <strong>B</strong> <strong>B</strong> <strong>B</strong> C C C<br>
+<strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong> <strong>A</strong></p>
+<p><strong>3-way partitioning</strong><br>
+Partition array into 3 parts so that:</p>
 <ul>
 <li>Entries between lt and gt equal to partition item v.</li>
 <li>No larger entries to left of lt.</li>
@@ -405,14 +519,20 @@
 </ul>
 <p><img src="/2020/02/02/Algorithms-Part1-Quicksort/quicksort.jpg" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> lt = lo, gt = hi;</span><br><span class="line">    Comparable v = a[lo];</span><br><span class="line">    <span class="keyword">int</span> i = lo;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= gt)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> cmp = a[i].compareTo(v);</span><br><span class="line">        <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) exch(a, lt++, i++);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) exch(a, i, gt--);</span><br><span class="line">        <span class="keyword">else</span>              i++;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(a, lo, lt-<span class="number">1</span>);</span><br><span class="line">    sort(a, gt+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Sorting lower bound</strong><br>If there are n distinct keys and the $i^{th}$ one occurs $x_i$ times, any compare-based sorting algorithm must use at least<br>$ \small{lg(\frac{N!}{x_1!x_2!…x_n!})} $ ~ $ \small{-\sum\limits_{i=1}^{n}x_ilg\frac{x_i}{N}} $<br>compares in the worst case.</p>
+<p><strong>Sorting lower bound</strong><br>
+If there are n distinct keys and the <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span> one occurs <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> times, any compare-based sorting algorithm must use at least<br>
+$ \small{lg(\frac{N!}{x_1!x_2!..x_n!})} $ ~ $ \small{-\sum\limits_{i=1}^{n}x_ilg\frac{x_i}{N}} $<br>
+compares in the worst case.</p>
 <ul>
 <li>$ \small{NlgN} $ when all distinct;</li>
 <li>linear when only a constant number of distinct keys.</li>
 </ul>
-<p><strong>Proposition.</strong><br>Quicksort with 3-way partitioning is <strong>entropy-optimal.</strong></p>
-<p><strong>Bottom line.</strong><br>Ramdomized quicksort with 3-way partitioning reduces running time from linearithmic to linear in broad class of applications.</p>
-<h3><span id="java-system-sorts">Java System sorts</span><a href="#java-system-sorts" class="header-anchor"> </a></h3><p><strong>Arrays.sort()</strong></p>
+<p><strong>Proposition.</strong><br>
+Quicksort with 3-way partitioning is <strong>entropy-optimal.</strong></p>
+<p><strong>Bottom line.</strong><br>
+Ramdomized quicksort with 3-way partitioning reduces running time from linearithmic to linear in broad class of applications.</p>
+<h3><span id="java-system-sorts"> Java System sorts</span><a href="#java-system-sorts" class="header-anchor"> </a></h3>
+<p><strong>Arrays.sort()</strong></p>
 <ul>
 <li>Has different method for each primitive type.</li>
 <li>Has a method for data types that implement Comparable.</li>
@@ -420,8 +540,9 @@
 <li>Uses tuned quicksort for primitive types; tuned mergesort for objects.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSort</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String[] a = StdIn.readStrings();</span><br><span class="line">        Arrays.sort(a);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            StdOut.println(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Why use different algorithms for primitive and reference types?<br>Because if the programmer using reference types, space may not be an important problem.</p>
-<h3><span id="sumary">Sumary</span><a href="#sumary" class="header-anchor"> </a></h3><div class="table-container">
+<p>Why use different algorithms for primitive and reference types?<br>
+Because if the programmer using reference types, space may not be an important problem.</p>
+<h3><span id="sumary"> Sumary</span><a href="#sumary" class="header-anchor"> </a></h3>
 <table>
 <thead>
 <tr>
@@ -500,7 +621,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 
       
     </div>
@@ -515,6 +635,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithms-Part-1/" rel="tag"># Algorithms, Part 1</a>
+          
+        </div>
       
 
       
@@ -612,24 +738,33 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -660,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Basic plan </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Process </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">Phase 1. Repeat until i and j pointers cross. </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">Phase 2. When pointers cross. </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Java Code </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">Implementation details </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">Performace analysis </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">Quicksort properties </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">Practical improvements </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.</span> <span class="nav-text">Selection </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">9.</span> <span class="nav-text">Duplicate keys </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">10.</span> <span class="nav-text">Java System sorts </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">11.</span> <span class="nav-text">Sumary </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Basic plan </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Process </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"> Phase 1. Repeat until i and j pointers cross. </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text"> Phase 2. When pointers cross. </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text"> Java Code </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text"> Implementation details </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text"> Performace analysis </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text"> Quicksort properties </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text"> Practical improvements </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.</span> <span class="nav-text"> Selection </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">9.</span> <span class="nav-text"> Duplicate keys </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">10.</span> <span class="nav-text"> Java System sorts </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">11.</span> <span class="nav-text"> Sumary </span></a></li></ol></div>
             
 
           </div>

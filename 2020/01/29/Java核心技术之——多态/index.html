@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Starfly" />
+  <meta name="keywords" content="Java Basic," />
 
 
 
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="多态的概念  一个对象变量可以指示多种实际类型的现象被称为多态(polymorphism)。  多态的体现  父类的引用指向了自己的子类对象。 父类的应用也可以接收自己的子类对象。  12345678910111213141516171819202122232425262728293031323334abstract class Animal&amp;#123;    abstract void eat(">
+<meta name="description" content="多态的概念   一个对象变量可以指示多种实际类型的现象被称为多态(polymorphism)。   多态的体现   父类的引用指向了自己的子类对象。 父类的应用也可以接收自己的子类对象。  12345678910111213141516171819202122232425262728293031323334abstract class Animal&amp;#123;    abstract void">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java核心技术之——多态">
 <meta property="og:url" content="http://yoursite.com/2020/01/29/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="多态的概念  一个对象变量可以指示多种实际类型的现象被称为多态(polymorphism)。  多态的体现  父类的引用指向了自己的子类对象。 父类的应用也可以接收自己的子类对象。  12345678910111213141516171819202122232425262728293031323334abstract class Animal&amp;#123;    abstract void eat(">
+<meta property="og:description" content="多态的概念   一个对象变量可以指示多种实际类型的现象被称为多态(polymorphism)。   多态的体现   父类的引用指向了自己的子类对象。 父类的应用也可以接收自己的子类对象。  12345678910111213141516171819202122232425262728293031323334abstract class Animal&amp;#123;    abstract void">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-29T07:19:46.000Z">
-<meta property="article:modified_time" content="2020-01-29T10:06:13.367Z">
+<meta property="article:modified_time" content="2020-02-11T13:13:48.207Z">
 <meta property="article:author" content="Starfly">
+<meta property="article:tag" content="Java Basic">
 <meta name="twitter:card" content="summary">
 
 
@@ -181,19 +182,39 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Home
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Archives
           </a>
@@ -272,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -299,38 +342,54 @@
       
 
       
-        <h3><span id="duo-tai-de-gai-nian">多态的概念</span><a href="#duo-tai-de-gai-nian" class="header-anchor"> </a></h3><ul>
+        <h3><span id="duo-tai-de-gai-nian"> 多态的概念</span><a href="#duo-tai-de-gai-nian" class="header-anchor"> </a></h3>
+<ul>
 <li>一个对象变量可以指示多种实际类型的现象被称为多态(<em>polymorphism</em>)。</li>
 </ul>
-<h3><span id="duo-tai-de-ti-xian">多态的体现</span><a href="#duo-tai-de-ti-xian" class="header-anchor"> </a></h3><ul>
+<h3><span id="duo-tai-de-ti-xian"> 多态的体现</span><a href="#duo-tai-de-ti-xian" class="header-anchor"> </a></h3>
+<ul>
 <li>父类的引用指向了自己的子类对象。</li>
 <li>父类的应用也可以接收自己的子类对象。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"eat fish"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catchMouse</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"catch mouse"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"eat bone"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        function(<span class="keyword">new</span> Cat());</span><br><span class="line">        function(<span class="keyword">new</span> Dog());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">(Animal a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        a.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>eat fish eat dog</strong><br>分析：<a href>对象方法的执行过程</a></p>
-<h3><span id="duo-tai-de-qian-ti">多态的前提</span><a href="#duo-tai-de-qian-ti" class="header-anchor"> </a></h3><ul>
+<p>结果：<strong>eat fish eat dog</strong><br>
+分析：<a href>对象方法的执行过程</a></p>
+<h3><span id="duo-tai-de-qian-ti"> 多态的前提</span><a href="#duo-tai-de-qian-ti" class="header-anchor"> </a></h3>
+<ul>
 <li>必须是类与类之间有关系，继承或者实现。</li>
 <li>通常还有一个前提，存在覆盖。</li>
 </ul>
-<h3><span id="duo-tai-de-hao-chu">多态的好处</span><a href="#duo-tai-de-hao-chu" class="header-anchor"> </a></h3><ul>
+<h3><span id="duo-tai-de-hao-chu"> 多态的好处</span><a href="#duo-tai-de-hao-chu" class="header-anchor"> </a></h3>
+<ul>
 <li>提高了程序的扩展性。</li>
 </ul>
-<h3><span id="duo-tai-de-bi-duan">多态的弊端</span><a href="#duo-tai-de-bi-duan" class="header-anchor"> </a></h3><ul>
+<h3><span id="duo-tai-de-bi-duan"> 多态的弊端</span><a href="#duo-tai-de-bi-duan" class="header-anchor"> </a></h3>
+<ul>
 <li>只能使用父类的引用访问父类中有的成员。</li>
 </ul>
-<h3><span id="xiang-shang-zhuan-xing-xiang-xia-zhuan-xing">向上转型、向下转型</span><a href="#xiang-shang-zhuan-xing-xiang-xia-zhuan-xing" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Animal a = <span class="keyword">new</span> Cat(); <span class="comment">// 向上转型（类型提升）</span></span><br><span class="line">        a.eat();</span><br><span class="line">        <span class="comment">// 强制将父类的引用，转成子类类型</span></span><br><span class="line">        Cat c = (Cat)a;</span><br><span class="line">        c.catchMouse();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>eat fish catch mouse</strong><br>注意：如果实际类型是 <strong>Animal</strong>， 不可以强制转型成 <strong>Cat</strong>，不可以将父类对象转换成子类类型。</p>
-<h3><span id="duo-tai-de-chu-xian-dai-ma-zhong-de-te-dian">多态的出现代码中的特点</span><a href="#duo-tai-de-chu-xian-dai-ma-zhong-de-te-dian" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method3</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.method1();  </span><br><span class="line">        z.method2();</span><br><span class="line">        z.method3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>zi method1 fu method2 zi method3</strong><br>分析：<a href>覆盖</a>、<a href>继承</a>、子类特有</p>
+<h3><span id="xiang-shang-zhuan-xing-xiang-xia-zhuan-xing"> 向上转型、向下转型</span><a href="#xiang-shang-zhuan-xing-xiang-xia-zhuan-xing" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Animal a = <span class="keyword">new</span> Cat(); <span class="comment">// 向上转型（类型提升）</span></span><br><span class="line">        a.eat();</span><br><span class="line">        <span class="comment">// 强制将父类的引用，转成子类类型</span></span><br><span class="line">        Cat c = (Cat)a;</span><br><span class="line">        c.catchMouse();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>eat fish catch mouse</strong><br>
+注意：如果实际类型是 <strong>Animal</strong>， 不可以强制转型成 <strong>Cat</strong>，不可以将父类对象转换成子类类型。</p>
+<h3><span id="duo-tai-de-chu-xian-dai-ma-zhong-de-te-dian"> 多态的出现代码中的特点</span><a href="#duo-tai-de-chu-xian-dai-ma-zhong-de-te-dian" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method3</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.method1();  </span><br><span class="line">        z.method2();</span><br><span class="line">        z.method3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>zi method1 fu method2 zi method3</strong><br>
+分析：<a href>覆盖</a>、<a href>继承</a>、子类特有</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Zi();</span><br><span class="line">        f.method1();</span><br><span class="line">        f.method2();</span><br><span class="line">        f.method3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：编译失败<br>分析：因为父类中没有 <strong>method3()</strong> 方法。</p>
+<p>结果：编译失败<br>
+分析：因为父类中没有 <strong>method3()</strong> 方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo3</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Zi();</span><br><span class="line">        f.method1();</span><br><span class="line">        f.method2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>zi method1 fu method2</strong><br>分析：在多态中，<strong>非静态成员函数的特点:</strong><br>在编译时：参考引用型变量所属的类，如果没有，编译失败；运行时，虚拟机会调用与 <strong>f</strong> 所引用对象的 <strong>实际类型</strong> 最合适的那个类的方法。</p>
+<p>结果：<strong>zi method1 fu method2</strong><br>
+分析：在多态中，<strong>非静态成员函数的特点:</strong><br>
+在编译时：参考引用型变量所属的类，如果没有，编译失败；运行时，虚拟机会调用与 <strong>f</strong> 所引用对象的 <strong>实际类型</strong> 最合适的那个类的方法。</p>
 <p><a href>对象方法的执行过程 + 动态绑定</a></p>
-<h4><span id="kuo-zhan-cheng-yuan-bian-liang-yu-jing-tai-cheng-yuan-han-shu-de-te-dian">（扩展）成员变量与静态成员函数的特点</span><a href="#kuo-zhan-cheng-yuan-bian-liang-yu-jing-tai-cheng-yuan-han-shu-de-te-dian" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method4</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">8</span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method4</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(f.num);</span><br><span class="line"></span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(z.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>5 8</strong><br>分析：在多态中，<strong>成员变量的特点：</strong> 都参考左边（引用型变量所属的类）</p>
+<h4><span id="kuo-zhan-cheng-yuan-bian-liang-yu-jing-tai-cheng-yuan-han-shu-de-te-dian"> （扩展）成员变量与静态成员函数的特点</span><a href="#kuo-zhan-cheng-yuan-bian-liang-yu-jing-tai-cheng-yuan-han-shu-de-te-dian" class="header-anchor"> </a></h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method4</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu method4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">8</span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method4</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi method4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(f.num);</span><br><span class="line"></span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(z.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>5 8</strong><br>
+分析：在多态中，<strong>成员变量的特点：</strong> 都参考左边（引用型变量所属的类）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Fu f = <span class="keyword">new</span> Zi();</span><br><span class="line">        f.method4();</span><br><span class="line"></span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.method4();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：<strong>fu method4 zi method4</strong><br>分析：在多态中，<strong>静态成员函数的特点：</strong> 无论编译或运行都参考左边（引用型变量所属的类）</p>
+<p>结果：<strong>fu method4 zi method4</strong><br>
+分析：在多态中，<strong>静态成员函数的特点：</strong> 无论编译或运行都参考左边（引用型变量所属的类）</p>
 <p><a href>静态绑定</a></p>
 
       
@@ -346,6 +405,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-Basic/" rel="tag"># Java Basic</a>
+          
+        </div>
       
 
       
@@ -443,24 +508,33 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -491,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">多态的概念 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">多态的体现 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">多态的前提 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">多态的好处 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">多态的弊端 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">向上转型、向下转型 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">多态的出现代码中的特点 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">7.1.</span> <span class="nav-text">（扩展）成员变量与静态成员函数的特点 </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> 多态的概念 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> 多态的体现 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text"> 多态的前提 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text"> 多态的好处 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text"> 多态的弊端 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text"> 向上转型、向下转型 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text"> 多态的出现代码中的特点 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">7.1.</span> <span class="nav-text"> （扩展）成员变量与静态成员函数的特点 </span></a></li></ol></li></ol></div>
             
 
           </div>
