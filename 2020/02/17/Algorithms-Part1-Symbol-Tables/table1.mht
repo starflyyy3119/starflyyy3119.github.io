@@ -1,0 +1,164 @@
+MIME-Version: 1.0
+X-Document-Type: Worksheet
+Content-Location: file:///C:/2E42BCD1/table1.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="gb2312"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dgb2312">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 15">
+<link rel=3DFile-List href=3D"table1.files/filelist.xml">
+<style id=3D"¹¤×÷²¾1_5691_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.font55691
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:µÈÏß;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.xl155691
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:µÈÏß;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl635691
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:µÈÏß;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:µÈÏß;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+
+<body>
+<!--[if !excel]>¡¡¡¡<![endif]-->
+<!--ÏÂÁÐÐÅÏ¢ÓÉ Microsoft Excel µÄ·¢²¼ÎªÍøÒ³Ïòµ¼Éú³É¡£-->
+<!--Èç¹ûÍ¬Ò»ÌõÄ¿´Ó Excel ÖÐÖØÐÂ·¢²¼£¬ÔòËùÓÐÎ»ÓÚ DIV ±ê¼ÇÖ®¼äµÄÐÅÏ¢¾ù½«±»Ìæ»=
+»¡£-->
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼¿ªÊ¼-->
+<!----------------------------->
+
+<div id=3D"¹¤×÷²¾1_5691" align=3Dcenter x:publishsource=3D"Excel">
+
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 width=3D1087 style=3D'bor=
+der-collapse:
+ collapse;table-layout:fixed;width:816pt'>
+ <col width=3D247 style=3D'mso-width-source:userset;mso-width-alt:7904;widt=
+h:185pt'>
+ <col width=3D146 style=3D'mso-width-source:userset;mso-width-alt:4672;widt=
+h:110pt'>
+ <col width=3D139 style=3D'mso-width-source:userset;mso-width-alt:4448;widt=
+h:104pt'>
+ <col width=3D149 style=3D'mso-width-source:userset;mso-width-alt:4768;widt=
+h:112pt'>
+ <col width=3D152 style=3D'mso-width-source:userset;mso-width-alt:4864;widt=
+h:114pt'>
+ <col width=3D140 style=3D'mso-width-source:userset;mso-width-alt:4480;widt=
+h:105pt'>
+ <col width=3D114 style=3D'mso-width-source:userset;mso-width-alt:3648;widt=
+h:86pt'>
+ <tr height=3D44 style=3D'mso-height-source:userset;height:33.0pt'>
+  <td rowspan=3D2 height=3D63 class=3Dxl635691 width=3D247 style=3D'height:=
+47.25pt;
+  width:185pt'>ST implementation</td>
+  <td colspan=3D2 class=3Dxl635691 width=3D285 style=3D'width:214pt'>worst-=
+case cost
+  (after N inserts)</td>
+  <td colspan=3D2 class=3Dxl635691 width=3D301 style=3D'width:226pt'>averag=
+e case(after
+  N random inserts</td>
+  <td rowspan=3D2 class=3Dxl635691 width=3D140 style=3D'width:105pt'>ordere=
+d iteration?</td>
+  <td rowspan=3D2 class=3Dxl635691 width=3D114 style=3D'width:86pt'>key int=
+erface</td>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td height=3D19 class=3Dxl635691 style=3D'height:14.25pt'>search<span
+  style=3D'mso-spacerun:yes'>&nbsp;</span></td>
+  <td class=3Dxl635691>insert</td>
+  <td class=3Dxl635691>search hit</td>
+  <td class=3Dxl635691>insert</td>
+ </tr>
+ <tr height=3D44 style=3D'mso-height-source:userset;height:33.0pt'>
+  <td height=3D44 class=3Dxl635691 style=3D'height:33.0pt'>sequential
+  search(unordered list)</td>
+  <td class=3Dxl635691>N</td>
+  <td class=3Dxl635691>N</td>
+  <td class=3Dxl635691>N / 2</td>
+  <td class=3Dxl635691>N</td>
+  <td class=3Dxl635691>no</td>
+  <td class=3Dxl635691>equals()</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=3D0 style=3D'display:none'>
+  <td width=3D247 style=3D'width:185pt'></td>
+  <td width=3D146 style=3D'width:110pt'></td>
+  <td width=3D139 style=3D'width:104pt'></td>
+  <td width=3D149 style=3D'width:112pt'></td>
+  <td width=3D152 style=3D'width:114pt'></td>
+  <td width=3D140 style=3D'width:105pt'></td>
+  <td width=3D114 style=3D'width:86pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</div>
+
+
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼½áÊø-->
+<!----------------------------->
+</body>
+
+</html>
