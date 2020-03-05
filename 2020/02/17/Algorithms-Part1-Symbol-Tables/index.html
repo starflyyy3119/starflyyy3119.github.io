@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="What is Symbol tables   Symbol Tables  Key-value pair abstraction  $ \color{red}{Insert} $ a value with specified key. Given a key, $ \color{red}{search} $ for the corresponding value.  Basic symbol">
+<meta name="description" content="What is Symbol tables  Symbol Tables Keys and values Equality test ST test client for traces   Ordered Operations  Ordered symbol table API Binary search: ordered symbol table operations summary">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithms-Part1-Symbol-Tables">
 <meta property="og:url" content="http://yoursite.com/2020/02/17/Algorithms-Part1-Symbol-Tables/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="What is Symbol tables   Symbol Tables  Key-value pair abstraction  $ \color{red}{Insert} $ a value with specified key. Given a key, $ \color{red}{search} $ for the corresponding value.  Basic symbol">
+<meta property="og:description" content="What is Symbol tables  Symbol Tables Keys and values Equality test ST test client for traces   Ordered Operations  Ordered symbol table API Binary search: ordered symbol table operations summary">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/02/17/Algorithms-Part1-Symbol-Tables/insert.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/17/Algorithms-Part1-Symbol-Tables/summary1.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/17/Algorithms-Part1-Symbol-Tables/summary2.jpg">
 <meta property="article:published_time" content="2020-02-17T01:49:51.000Z">
-<meta property="article:modified_time" content="2020-02-17T04:10:16.540Z">
+<meta property="article:modified_time" content="2020-02-18T07:07:16.294Z">
 <meta property="article:author" content="Starfly">
 <meta property="article:tag" content="Algorithms, Part 1">
 <meta name="twitter:card" content="summary">
@@ -346,13 +346,31 @@
       
 
       
-        <h2><span id="what-is-symbol-tables"> What is Symbol tables</span><a href="#what-is-symbol-tables" class="header-anchor"> </a></h2>
-<h3><span id="symbol-tables"> Symbol Tables</span><a href="#symbol-tables" class="header-anchor"> </a></h3>
-<p><strong>Key-value pair abstraction</strong></p>
+        <div class="toc">
+<!-- toc -->
 <ul>
-<li>$ \color{red}{Insert} $ a value with specified key.</li>
-<li>Given a key, $ \color{red}{search} $ for the corresponding value.</li>
+<li><a href="#what-is-symbol-tables">What is Symbol tables</a>
+<ul>
+<li><a href="#symbol-tables">Symbol Tables</a></li>
+<li><a href="#keys-and-values">Keys and values</a></li>
+<li><a href="#equality-test">Equality test</a></li>
+<li><a href="#st-test-client-for-traces">ST test client for traces</a></li>
 </ul>
+</li>
+<li><a href="#ordered-operations">Ordered Operations</a>
+<ul>
+<li><a href="#ordered-symbol-table-api">Ordered symbol table API</a></li>
+<li><a href="#binary-search-ordered-symbol-table-operations-summary">Binary search: ordered symbol table operations summary</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+## What is Symbol tables
+### Symbol Tables
+**Key-value pair abstraction**
+- $ \color{red}{Insert} $ a value with specified key.
+- Given a key, $ \color{red}{search} $ for the corresponding value.
 <p><strong>Basic symbol table API</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ST</span>&lt;<span class="title">Key</span>, <span class="title">Value</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">ST</span>()                         // <span class="title">create</span> <span class="title">a</span> <span class="title">symbol</span> <span class="title">table</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">void</span> <span class="title">put</span>(<span class="title">Key</span> <span class="title">key</span>, <span class="title">Value</span> <span class="title">val</span>) // <span class="title">put</span> <span class="title">key</span>-<span class="title">value</span> <span class="title">pair</span> <span class="title">into</span> <span class="title">the</span> <span class="title">table</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">Value</span> <span class="title">get</span>(<span class="title">Key</span> <span class="title">key</span>)           // <span class="title">value</span> <span class="title">paired</span> <span class="title">with</span> <span class="title">key</span> (<span class="title">null</span> <span class="title">if</span> <span class="title">key</span> <span class="title">is</span> <span class="title">absent</span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">void</span> <span class="title">delete</span>(<span class="title">Key</span> <span class="title">key</span>)         // <span class="title">remove</span> <span class="title">key</span> (<span class="title">and</span> <span class="title">its</span> <span class="title">value</span>) <span class="title">from</span> <span class="title">table</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">boolean</span> <span class="title">contains</span>(<span class="title">Key</span> <span class="title">key</span>)    // <span class="title">is</span> <span class="title">there</span> <span class="title">a</span> <span class="title">value</span> <span class="title">paired</span> <span class="title">with</span> <span class="title">key</span>?</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">boolean</span> <span class="title">isEmpty</span>()            // <span class="title">is</span> <span class="title">the</span> <span class="title">table</span> <span class="title">empty</span>?</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">int</span> <span class="title">size</span>()                   // <span class="title">number</span> <span class="title">of</span> <span class="title">key</span>-<span class="title">value</span> <span class="title">pairs</span> <span class="title">in</span> <span class="title">the</span> <span class="title">table</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">Iterable</span>&lt;<span class="title">Key</span>&gt; <span class="title">keys</span>()         // <span class="title">all</span> <span class="title">the</span> <span class="title">keys</span> <span class="title">in</span> <span class="title">the</span> <span class="title">table</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>Conventions</strong></p>
@@ -480,6 +498,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/17/Algorithms-Part1-Binary-Search-Trees/" rel="prev" title="Algorithms-Part1-Binary-Search-Trees">
+                Algorithms-Part1-Binary-Search-Trees <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -555,7 +577,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +588,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -577,7 +599,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -610,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> What is Symbol tables </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> Symbol Tables </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Keys and values </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Equality test </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text"> ST test client for traces </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.1.</span> <span class="nav-text"> Example 1 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.2.</span> <span class="nav-text"> Example 2 </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Ordered Operations </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"> Ordered symbol table API </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text"> Binary search: ordered symbol table operations summary </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Keys and values </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Equality test </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text"> ST test client for traces </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">3.1.</span> <span class="nav-text"> Example 1 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">3.2.</span> <span class="nav-text"> Example 2 </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"> Ordered Operations </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Ordered symbol table API </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Binary search: ordered symbol table operations summary </span></a></li></ol></div>
             
 
           </div>

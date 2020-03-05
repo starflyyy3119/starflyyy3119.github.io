@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CS61b," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="The Mystery of the Walrus Two examples 123456Walrus a &#x3D; new Walrus(1000, 8.3);Walrus b;b &#x3D; a;b.weight &#x3D; 5;System.out.println(a); &#x2F;&#x2F; 5System.out.println(b); &#x2F;&#x2F; 5 123456int x &#x3D; 5;int y;y &#x3D; x;x &#x3D; 2;Syste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61b-Lists">
+<meta property="og:url" content="http://yoursite.com/2020/02/22/CS61b-Lists/index.html">
+<meta property="og:site_name" content="Starfly&#39;s blog">
+<meta property="og:description" content="The Mystery of the Walrus Two examples 123456Walrus a &#x3D; new Walrus(1000, 8.3);Walrus b;b &#x3D; a;b.weight &#x3D; 5;System.out.println(a); &#x2F;&#x2F; 5System.out.println(b); &#x2F;&#x2F; 5 123456int x &#x3D; 5;int y;y &#x3D; x;x &#x3D; 2;Syste">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/02/22/CS61b-Lists/Walrus.jpg">
+<meta property="article:published_time" content="2020-02-22T01:04:19.000Z">
+<meta property="article:modified_time" content="2020-02-25T00:00:14.554Z">
+<meta property="article:author" content="Starfly">
+<meta property="article:tag" content="CS61b">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/22/CS61b-Lists/Walrus.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/22/CS61b-Lists/"/>
+
+
+
+
+
+  <title>CS61b-Lists | Starfly's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Starfly's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/CS61b-Lists/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CS61b-Lists</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-22T09:04:19+08:00">
+                2020-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2><span id="the-mystery-of-the-walrus">The Mystery of the Walrus</span><a href="#the-mystery-of-the-walrus" class="header-anchor"> </a></h2><h3><span id="two-examples">Two examples</span><a href="#two-examples" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Walrus a = <span class="keyword">new</span> Walrus(<span class="number">1000</span>, <span class="number">8.3</span>);</span><br><span class="line">Walrus b;</span><br><span class="line">b = a;</span><br><span class="line">b.weight = <span class="number">5</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// 5</span></span><br><span class="line">System.out.println(b); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> y;</span><br><span class="line">y = x;</span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">System.out.println(x); <span class="comment">// 2</span></span><br><span class="line">System.out.println(y); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<h4><span id="bits">Bits</span><a href="#bits" class="header-anchor"> </a></h4><p>Your computer stores information in “memory”.</p>
+<ul>
+<li>Information is stored in memory as a sequence of ones and zeros.<br>— Example: 72 stored as 01001000<br>— Example: The letter H stored as 01001000 (same as the number 72)<br>— Example: True stored as 00000001</li>
+</ul>
+<p>Each Java type has a different way to interpret the bits:</p>
+<ul>
+<li>8 primitive types in Java: byte, short, <strong>int</strong>, long, float, <strong>double</strong>, boolean, char</li>
+</ul>
+<h4><span id="declaring-a-variable">Declaring a Variable</span><a href="#declaring-a-variable" class="header-anchor"> </a></h4><p>When you declare a variable of a certain type in Java:</p>
+<ul>
+<li>Your computer set aside exactly enough bits to hold a thing of that type.</li>
+<li>Java creates an internal table that maps each variable name to the location of the first bit in box.</li>
+<li>Java does NOT write anything into the reserved boxes.<br>— For safety, Java will not let access a variable that is uninitialized.</li>
+</ul>
+<p><strong>Remark.</strong></p>
+<ul>
+<li>Java language provides no way for you to know the location of the box. In other words, the exact memory address is below the level of abstraction accessible to us in Java.</li>
+</ul>
+<p><strong>Pros and Cons.</strong><br>It gives programmer less control which prevents programmer from doing certain types of optimizations. However, it also provides a large class of very tricky programming errors.</p>
+<h4><span id="simplified-box-notation">Simplified Box Notation</span><a href="#simplified-box-notation" class="header-anchor"> </a></h4><p>We’ll use simplified box notation from here on out:</p>
+<ul>
+<li>Instead of writing memory box contents in binary, we’ll write them in human readable symbols.</li>
+</ul>
+<h4><span id="the-golden-rule-of-equals-groe">The Golden Rule of Equals (GRoE)</span><a href="#the-golden-rule-of-equals-groe" class="header-anchor"> </a></h4><p>Given variables y = x:</p>
+<ul>
+<li>y = x copies all the bits from x into y.</li>
+</ul>
+<h3><span id="reference-types">Reference Types</span><a href="#reference-types" class="header-anchor"> </a></h3><p>Above, we have 8 primitive types. Everything else, including arrays, is not a primitive type but rather a <em>reference type</em>.</p>
+<h4><span id="class-instantiations">Class Instantiations</span><a href="#class-instantiations" class="header-anchor"> </a></h4><p>When we instantiate an Object (e.g. Dog, Walrus, Planet):</p>
+<ul>
+<li>Java first allocates a box of bits for each instance of the class and fills them with a default value.(e.g. 0, null)</li>
+<li>The constructor then usually fills every such box with some other value.</li>
+</ul>
+<p>Can think of new as returning the address of the newly created object.</p>
+<ul>
+<li>Addresses in Java are 64 bits.</li>
+<li>Example (rough picture): If object is created in memory location 2384723423, then new returns 2384723423.</li>
+</ul>
+<h4><span id="reference-type-variable-declarations">Reference Type variable Declarations</span><a href="#reference-type-variable-declarations" class="header-anchor"> </a></h4><p>When we declare a variable of any reference type:</p>
+<ul>
+<li>Java allocates exactly a box of size 64 bits, no matter what type of object.</li>
+<li>These bits can be either set to:<br>— Null(all zeros)<br>— The 64 bit “address” of a specific instance of that class (returned by new)</li>
+</ul>
+<p><img src="/2020/02/22/CS61b-Lists/Walrus.jpg" alt></p>
+<p>The 64-bit addresses are meaningless to us as humans, so we’ll represent:</p>
+<ul>
+<li>All zeros addresses with “null”.</li>
+<li>Non-zero addresses as arrows.</li>
+</ul>
+<p>This is sometimes called “box and pointer” notation.</p>
+<h4><span id="reference-types-obey-the-golden-rule-of-equals">Reference Types Obey the Golden Rule of Equals</span><a href="#reference-types-obey-the-golden-rule-of-equals" class="header-anchor"> </a></h4><p>Just as with primitive types, the equals sign copies the bits.</p>
+<ul>
+<li>In terms of our visual metaphor, we “copy” the arrow by making the arrow in the b box point as the same instance as a.</li>
+</ul>
+<h3><span id="parameter-passing">Parameter Passing</span><a href="#parameter-passing" class="header-anchor"> </a></h3><h4><span id="the-golden-rule-of-equals-and-parameter-passing">The Golden Rule of Equals (and Parameter Passing)</span><a href="#the-golden-rule-of-equals-and-parameter-passing" class="header-anchor"> </a></h4><p>Given variables b and a:</p>
+<ul>
+<li>b = a copies all the bits from a into b.</li>
+</ul>
+<p>Passing parameters obeys the same rule: Simply copy the bits to the new scope.</p>
+<h4><span id="the-golden-rule-summary">The Golden Rule: Summary</span><a href="#the-golden-rule-summary" class="header-anchor"> </a></h4><p>There are 9 types of variables in Java:</p>
+<ul>
+<li>8 primitive types (byte, short, int, long, float, double, boolean, char).</li>
+<li>The 9th type is references to Objects (an arrow). References may be null.</li>
+</ul>
+<p>In box-and-pointer notation, each variable is drawn as a labeled box and values are shown in the box.</p>
+<ul>
+<li>Addresses are represented by arrows to object instances.</li>
+</ul>
+<p>The golden rule:</p>
+<ul>
+<li>b = a copies the bits from a into b.</li>
+<li>Passing parameters copies the bits.</li>
+</ul>
+<h3><span id="instantiation-of-arrays">Instantiation of Arrays</span><a href="#instantiation-of-arrays" class="header-anchor"> </a></h3><h4><span id="declaration-and-instantiation-of-arrays">Declaration and instantiation of Arrays</span><a href="#declaration-and-instantiation-of-arrays" class="header-anchor"> </a></h4><p>Arrays are also Objects. As we’ve seen, objects are (usually) instantiated using the <em>new</em> keyword.</p>
+<p>int[] a;</p>
+<ul>
+<li>Declaration creates a 64 bit box intended only for storing a reference to an int array. <strong>No object is instantiated.</strong></li>
+</ul>
+<p>new int[]{0, 1, 2, 95, 4};</p>
+<ul>
+<li>instantiates a new Object, in this case an int array.</li>
+<li>Object is anonymous!(匿名的)</li>
+</ul>
+<h4><span id="assignment-of-arrays">Assignment of Arrays</span><a href="#assignment-of-arrays" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">95</span>, <span class="number">4</span>&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Creates a 64 bit box for storing an int array address. (declaration)</li>
+<li>Creates a new Object, in this case an int array. (instantiation)</li>
+<li>Puts the address of this new Object into the 64 bit box named a. (assignment)</li>
+</ul>
+<p>Note: Instantiated objects can be lost!</p>
+<ul>
+<li>If we were to reassign a to something else, we’d never be able to get the original Object back!</li>
+</ul>
+<h3><span id="intlists">IntLists</span><a href="#intlists" class="header-anchor"> </a></h3><p>Let’s define an IntList as an object containing two memeber variables:</p>
+<ul>
+<li>int first;</li>
+<li>IntList rest;</li>
+</ul>
+<p>And define two versions of the same method:</p>
+<ul>
+<li>size()</li>
+<li>iterativeSize()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> IntList rest;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(IntList l, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        l = <span class="keyword">new</span> IntList(x, l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntList</span><span class="params">(<span class="keyword">int</span> f, IntList r)</span> </span>&#123;</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Return the size of the list using recursion!</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rest == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="keyword">this</span>.rest.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Return the size of the list using no recursion!</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">iterativeSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        IntList p = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">            totalSize += <span class="number">1</span>;</span><br><span class="line">            p = p.rest;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Returns the ith item of this IntList.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rest.get(i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Question:</strong></p>
+<ul>
+<li>Why we don’t do something like <em>if (this == null) return 0;</em></li>
+</ul>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>If L were null, then you would get a NullPointer error!</li>
+</ul>
+<p>The <em>iterativeSize</em> method is recommanded to use the name <em>p</em> to remind that the variable is holding a pointer. Need this pointer <em>p</em> because we cannot reassign “this” in Java.</p>
+<p><strong>Remark.</strong></p>
+<ul>
+<li>Note that the method we’ve written takes linear time! That is, if you have a list that is 1,000,000 items long, then getting the last item is going to take much longer than it would if we had a small list. We’ll see an alternate way to implement a list that will avoid this problem in a future lecture.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS61b/" rel="tag"># CS61b</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/20/CS61b-Defining-and-Using-Classes/" rel="next" title="CS61b: Defining and Using Classes">
+                <i class="fa fa-chevron-left"></i> CS61b: Defining and Using Classes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/24/CS61b-SLLists/" rel="prev" title="CS61b-SLLists">
+                CS61b-SLLists <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Starfly</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">The Mystery of the Walrus </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Two examples </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text">Bits </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.2.</span> <span class="nav-text">Declaring a Variable </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.3.</span> <span class="nav-text">Simplified Box Notation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.4.</span> <span class="nav-text">The Golden Rule of Equals (GRoE) </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Reference Types </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.</span> <span class="nav-text">Class Instantiations </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.2.</span> <span class="nav-text">Reference Type variable Declarations </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.3.</span> <span class="nav-text">Reference Types Obey the Golden Rule of Equals </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Parameter Passing </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text">The Golden Rule of Equals (and Parameter Passing) </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text">The Golden Rule: Summary </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">Instantiation of Arrays </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.1.</span> <span class="nav-text">Declaration and instantiation of Arrays </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.2.</span> <span class="nav-text">Assignment of Arrays </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">IntLists </span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Starfly</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
