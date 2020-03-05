@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="DLLists(Doubly Linked Lists) The Downside of SListsInserting at the back of an SLList is much slower than the front. Improvement 7: Looking Back How could we modify our list data structure so that add">
+<meta name="description" content="DLLists(Doubly Linked Lists)  The Downside of SLists Inserting at the back of an SLList is much slower than the front.  Improvement 7: Looking Back  How could we modify our list data structure so tha">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B-DLLists">
 <meta property="og:url" content="http://yoursite.com/2020/02/25/CS61B-DLLists/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="DLLists(Doubly Linked Lists) The Downside of SListsInserting at the back of an SLList is much slower than the front. Improvement 7: Looking Back How could we modify our list data structure so that add">
+<meta property="og:description" content="DLLists(Doubly Linked Lists)  The Downside of SLists Inserting at the back of an SLList is much slower than the front.  Improvement 7: Looking Back  How could we modify our list data structure so tha">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/02/25/CS61B-DLLists/dl.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/25/CS61B-DLLists/circular.jpg">
@@ -345,24 +345,39 @@
       
 
       
-        <h2><span id="dllists-doubly-linked-lists">DLLists(Doubly Linked Lists)</span><a href="#dllists-doubly-linked-lists" class="header-anchor"> </a></h2><p>The Downside of SLists<br>Inserting at the back of an SLList is much slower than the front.</p>
-<h3><span id="improvement-7-looking-back">Improvement 7: Looking Back</span><a href="#improvement-7-looking-back" class="header-anchor"> </a></h3><p>How could we modify our list data structure so that <em>addLast</em> is also fast?<br>If we add a pointer that points at the last node of the list, we have quick <em>addLast</em> and <em>getlast</em>, but not <em>removelast</em>. </p>
-<h3><span id="improvement-8-sentinel-upgrade">Improvement 8: Sentinel Upgrade</span><a href="#improvement-8-sentinel-upgrade" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> IntNode prev;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">    <span class="keyword">public</span> IntNode next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2><span id="dllists-doubly-linked-lists"> DLLists(Doubly Linked Lists)</span><a href="#dllists-doubly-linked-lists" class="header-anchor"> </a></h2>
+<p>The Downside of SLists<br>
+Inserting at the back of an SLList is much slower than the front.</p>
+<h3><span id="improvement-7-looking-back"> Improvement 7: Looking Back</span><a href="#improvement-7-looking-back" class="header-anchor"> </a></h3>
+<p>How could we modify our list data structure so that <em>addLast</em> is also fast?<br>
+If we add a pointer that points at the last node of the list, we have quick <em>addLast</em> and <em>getlast</em>, but not <em>removelast</em>.</p>
+<h3><span id="improvement-8-sentinel-upgrade"> Improvement 8: Sentinel Upgrade</span><a href="#improvement-8-sentinel-upgrade" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> IntNode prev;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">    <span class="keyword">public</span> IntNode next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>This approach has an annoying special case: last sometimes points at the sentinel, and sometimes points at a ‘real’ node.</p>
-<p>One possible solution: Have two sentinels.<br><img src="/2020/02/25/CS61B-DLLists/dl.jpg" alt></p>
-<p>Even better topology: Circular Sentinel<br><img src="/2020/02/25/CS61B-DLLists/circular.jpg" alt></p>
+<p>One possible solution: Have two sentinels.<br>
+<img src="/2020/02/25/CS61B-DLLists/dl.jpg" alt></p>
+<p>Even better topology: Circular Sentinel<br>
+<img src="/2020/02/25/CS61B-DLLists/circular.jpg" alt></p>
 <p>While fast, adding <em>.last</em> and <em>.prev</em> introduces lots of special cases.</p>
 <p>To avoid these, either:</p>
 <ul>
 <li>Add an additional sentBack sentinel at the end of the list.</li>
 <li>Make your linked list circular, with a single sentinel in the middle.</li>
 </ul>
-<h3><span id="generic-dllists">Generic DLLists</span><a href="#generic-dllists" class="header-anchor"> </a></h3><p>Our DLLists suffer from a major limitation: they can only hold integer values.</p>
+<h3><span id="generic-dllists"> Generic DLLists</span><a href="#generic-dllists" class="header-anchor"> </a></h3>
+<p>Our DLLists suffer from a major limitation: they can only hold integer values.</p>
 <p><strong>Generics</strong></p>
 <ul>
 <li>In the .java file <strong>implementing</strong> your data structure, specify your “generic type” <strong>only once</strong> at the very top of the file.</li>
-<li>In .java file that <strong>use</strong> your data structure, specify desired type <strong>once</strong>:<br>— Write out desired type during <strong>declaration.</strong><br>— Use the empty diamond operator &lt;&gt; during <strong>instantiation</strong>.</li>
-<li>When declaring or instantiating your data structure, use the reference type.<br>— int: Integer<br>— double: Double<br>— char: Character<br>— boolean: Boolean<br>— long: Long</li>
+<li>In .java file that <strong>use</strong> your data structure, specify desired type <strong>once</strong>:<br>
+– Write out desired type during <strong>declaration.</strong><br>
+– Use the empty diamond operator &lt;&gt; during <strong>instantiation</strong>.</li>
+<li>When declaring or instantiating your data structure, use the reference type.<br>
+– int: Integer<br>
+– double: Double<br>
+– char: Character<br>
+– boolean: Boolean<br>
+– long: Long</li>
 </ul>
 
       
@@ -538,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">DLLists(Doubly Linked Lists) </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Improvement 7: Looking Back </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Improvement 8: Sentinel Upgrade </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Generic DLLists </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> DLLists(Doubly Linked Lists) </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> Improvement 7: Looking Back </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Improvement 8: Sentinel Upgrade </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Generic DLLists </span></a></li></ol></li></ol></div>
             
 
           </div>
