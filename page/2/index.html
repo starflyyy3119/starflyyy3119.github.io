@@ -249,6 +249,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/CS61B-Midterm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/05/CS61B-Midterm/" itemprop="url">CS61B-Midterm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-05T01:15:29+08:00">
+                2020-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="1-static"> 1. Static</span><a href="#1-static" class="header-anchor"> </a></h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="keyword">void</span> <span class="title">fillMany</span><span class="params">(String[] d)</span> </span>&#123;</span><br><span class="line">    System.arraycopy(Data.rs, <span class="number">0</span>, d, <span class="number">0</span>, d.length);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillOne</span><span class="params">(String d)</span> </span>&#123; d = Data.rs[<span class="number">0</span>]; &#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String a = <span class="string">"alice"</span>;</span><br><span class="line">    String b = <span class="string">"bob"</span>;</span><br><span class="line">    String c = <span class="string">"carol"</span>;</span><br><span class="line">    String d = <span class="string">"dan"</span>;</span><br><span class="line">    String[][] twod = &#123;&#123;a, b&#125;, &#123;c, d&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    Data.rs = <span class="keyword">new</span> String[]&#123;<span class="string">"fritz"</span>, <span class="string">"gritz"</span>&#125;;</span><br><span class="line">    String[] X = twod[<span class="number">0</span>];</span><br><span class="line">    printStringArray(X);       <span class="comment">// alice bob</span></span><br><span class="line">    fillOne(X[<span class="number">0</span>]);</span><br><span class="line">    printStringArray(X);       <span class="comment">// alice bob</span></span><br><span class="line">    fillMany(X);</span><br><span class="line">    printStringArray(X);       <span class="comment">// fritz gritz</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/05/CS61B-Midterm/p1.jpg" alt><br>
+Notice that in function fillOne, we just assign the address of <em>fritz</em> to variable d, we don’t change anything in X and twod.</p>
+<h2><span id="3-keygate"> 3. KeyGate</span><a href="#3-keygate" class="header-anchor"> </a></h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fingerprint</span> </span>&#123;...&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Key</span> </span>&#123;...&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> class SkeletonKey <span class="title">extends</span><span class="params">(Key)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StandardBox</span> </span>&#123; <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">(Key k)</span> </span>&#123;...&#125; &#125; <span class="comment">// UK</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BioBox</span> <span class="keyword">extends</span> <span class="title">StandardBox</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">(SteletonKey sk)</span> </span>&#123;...&#125;    <span class="comment">// USK</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">(Fingerprint f)</span> </span>&#123;...&#125;     <span class="comment">// UF</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doStuff</span><span class="params">(Key k, SkeletonKey sk, Fingerprint f)</span> </span>&#123;</span><br><span class="line">    StandardBox sb = <span class="keyword">new</span> StandardBox();</span><br><span class="line">    StandardBox sbbb = <span class="keyword">new</span> BioBox();</span><br><span class="line">    BioBox bb = <span class="keyword">new</span> BioBox();</span><br><span class="line"></span><br><span class="line">    sb.unlock(k);               <span class="comment">// UK      </span></span><br><span class="line">    sbbb.unlock(k);             <span class="comment">// UK </span></span><br><span class="line">    bb.unlock(k);               <span class="comment">// UK</span></span><br><span class="line"></span><br><span class="line">    sb.unlock(sk);              <span class="comment">// UK</span></span><br><span class="line">    sbbb.unlock(sk);            <span class="comment">// UK</span></span><br><span class="line">    bb.unlock(sk);              <span class="comment">// USK</span></span><br><span class="line"></span><br><span class="line">    sb.unlock(f);               <span class="comment">// Compile Error</span></span><br><span class="line">    sbbb.unlock(f);             <span class="comment">// Compile Error</span></span><br><span class="line">    bb.unlock(f);               <span class="comment">// UF</span></span><br><span class="line"></span><br><span class="line">    bb = (BioBox) sbbb;         </span><br><span class="line">    ((StandardBox) bb).unlock(sk);    <span class="comment">// UK</span></span><br><span class="line">    ((StandardBox) sbbb).unlock(sk);  <span class="comment">// UK</span></span><br><span class="line">    ((BioBox) sb).unlock(sk);         <span class="comment">// Runtime Error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Actually, no overriding in this problem. They are all overloading.</li>
+<li>When compiling, compiler will look at the type of the arguments given. And choose the methods that suitable(or compatible) for the arguments. Here, in the fifth question, sbbb has the type <em>StandardBox</em>, and <em>SkeletonKey</em> is-a <em>Key</em>, so we choose the <em>UK</em> methond.</li>
+<li>In the last question, <em>sb</em>’s dynamic type is <em>StandardBox</em>, so we get a runtime error.</li>
+</ul>
+<h2><span id="4-sans"> 4. Sans</span><a href="#4-sans" class="header-anchor"> </a></h2>
+<p>(b)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/** Non-destructively creates a copy of x that contains no y. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IntList <span class="title">ilsans</span><span class="params">(IntList x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.first == y) &#123;</span><br><span class="line">        <span class="keyword">return</span> ilsans(x.rest, y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> IntList(x.first, ilsans(x.rest, y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>©</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Destructively mutates first and/or rest of x that contains no y. You may not use new. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IntList <span class="title">dilsans</span><span class="params">(IntList x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    x.rest = dilsans(x.rest, y);</span><br><span class="line">    <span class="keyword">if</span> (x.first == y) &#123;</span><br><span class="line">        <span class="keyword">return</span> x.rest; <span class="comment">// We don't really care about x, just need recursive result.</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;         <span class="comment">// We do care about x because we need to return x. But also need to recurse.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="5-a-needle-in-arraystack-purge"> 5. A Needle in ArrayStack: purge</span><a href="#5-a-needle-in-arraystack-purge" class="header-anchor"> </a></h2>
+<p>(b)<br>
+Suppose we want to add a <strong>default method</strong> purge(Item x) <strong>to the Stack interface</strong> that eliminates all instances of x from the Stack, but leaves the stack otherwise unchanged.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Stack</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span></span>;</span><br><span class="line">    <span class="function">Item <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">purge</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (size() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Item top = pop();</span><br><span class="line">        purge(x);</span><br><span class="line">        <span class="keyword">if</span> (!x.equals(top)) &#123;</span><br><span class="line">            push(top);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/CS61B-Abstract-Data-Types/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2426,180 +2586,6 @@ It gives programmer less control which prevents programmer from doing certain ty
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/CS61b-Defining-and-Using-Classes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/20/CS61b-Defining-and-Using-Classes/" itemprop="url">CS61b: Defining and Using Classes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-20T15:19:17+08:00">
-                2020-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="reading"> Reading</span><a href="#reading" class="header-anchor"> </a></h2>
-<h3><span id="static-methods-vs-non-static-methods"> Static methods vs. Non-static methods</span><a href="#static-methods-vs-non-static-methods" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="comment">// instance variable. Can have as many of these as you want.</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weightInPounds; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constructor (similar to a method, but not a method). Determines how to instantiate the class</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        weightInPounds = w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Non-static method(Instance method), Idea: If the method is going to be invoked by an instance of the class, then it should be non-static</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeNoise</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (weightInPounds &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"yip"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (weightInPounds &lt; <span class="number">30</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"bark"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"woof"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DogLauncher</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog d;</span><br><span class="line">        d = <span class="keyword">new</span> Dog();</span><br><span class="line">        d.weightInPounds = <span class="number">20</span>;</span><br><span class="line">        d.makeNoise();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Some key observations and terminology:</p>
-<ul>
-<li>An <em>Object</em> in Java is an instance of any class.</li>
-<li>The <em>Dog</em> class has its own variables, also known as <em>instance variables</em> or <em>non-static</em> variables. These must be declared inside the class, unlike languages like Python or Matlab, where new variables can be added at runtime.</li>
-<li>The method that we created in the <em>Dog</em> class did not hava the <em>static</em> keyword. We call such methods <em>instance</em> methods or <em>non-static</em> methods.</li>
-<li>To call the <em>makeNoise</em> method, we had to first <em>instantiate</em> a <em>Dog</em> using the <em>new</em> keyword, and then make a specific <em>Dog</em> bark. In other words, we called <em>d.makeNoise()</em> instead of <em>Dog.makeNoise()</em>.</li>
-<li>Once an object has been instantiated, it can be <em>assigned</em> to a <em>declared</em> variable of the appropriate type, e.g. <em>d = new Dog();</em></li>
-<li>Variables and methods of a class are also called members of a class.</li>
-<li>Members of a class are accessed using <em>dot</em> notation.</li>
-</ul>
-<h3><span id="class-methods-vs-instance-methods"> Class Methods vs. Instance Methods</span><a href="#class-methods-vs-instance-methods" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weightInPounds; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        weightInPounds = w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeNoise</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (weightInPounds &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"yip"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (weightInPounds &lt; <span class="number">30</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"bark"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"woof"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Dog <span class="title">maxDog</span><span class="params">(Dog d1, Dog d2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d1.weightInPounds &gt; d2.weightInPounds) &#123;</span><br><span class="line">            <span class="keyword">return</span> d1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> d2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dog <span class="title">maxDog</span><span class="params">(Dog d2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.weightInPounds &gt; d2.weightInPounds) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> d2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Java allows us to define two types of methods:</p>
-<ul>
-<li>Class methods, a.k.a static methods.</li>
-<li>Instance methods, a.k.a non-static methods.</li>
-</ul>
-<p>Instance methods are actions that can be taken only by a specific instance of a class. Static methods are actions that are taken by the class itself</p>
-<h3><span id="static-variables"> Static Variables</span><a href="#static-variables" class="header-anchor"> </a></h3>
-<p>It is occasionally useful for classes to have static variables. These are properties inherent to the class itself, rather than the instance.</p>
-<h3><span id="main-function"> main function</span><a href="#main-function" class="header-anchor"> </a></h3>
-<ul>
-<li>public: So far, all of our methods start with this keyword.</li>
-<li>static: It is a static method, not associated with any particular instance.</li>
-<li>void: It has no return type.</li>
-<li>main: This is the name of the method.</li>
-<li>String[] args: This is the parameter that is passed to the main method.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArgsDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(args[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This program prints out the 0th command line argument.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2650,7 +2636,7 @@ It gives programmer less control which prevents programmer from doing certain ty
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -249,6 +249,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/CS61b-Defining-and-Using-Classes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/20/CS61b-Defining-and-Using-Classes/" itemprop="url">CS61b: Defining and Using Classes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-20T15:19:17+08:00">
+                2020-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="reading"> Reading</span><a href="#reading" class="header-anchor"> </a></h2>
+<h3><span id="static-methods-vs-non-static-methods"> Static methods vs. Non-static methods</span><a href="#static-methods-vs-non-static-methods" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="comment">// instance variable. Can have as many of these as you want.</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weightInPounds; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constructor (similar to a method, but not a method). Determines how to instantiate the class</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        weightInPounds = w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Non-static method(Instance method), Idea: If the method is going to be invoked by an instance of the class, then it should be non-static</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeNoise</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (weightInPounds &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"yip"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (weightInPounds &lt; <span class="number">30</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"bark"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"woof"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DogLauncher</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog d;</span><br><span class="line">        d = <span class="keyword">new</span> Dog();</span><br><span class="line">        d.weightInPounds = <span class="number">20</span>;</span><br><span class="line">        d.makeNoise();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Some key observations and terminology:</p>
+<ul>
+<li>An <em>Object</em> in Java is an instance of any class.</li>
+<li>The <em>Dog</em> class has its own variables, also known as <em>instance variables</em> or <em>non-static</em> variables. These must be declared inside the class, unlike languages like Python or Matlab, where new variables can be added at runtime.</li>
+<li>The method that we created in the <em>Dog</em> class did not hava the <em>static</em> keyword. We call such methods <em>instance</em> methods or <em>non-static</em> methods.</li>
+<li>To call the <em>makeNoise</em> method, we had to first <em>instantiate</em> a <em>Dog</em> using the <em>new</em> keyword, and then make a specific <em>Dog</em> bark. In other words, we called <em>d.makeNoise()</em> instead of <em>Dog.makeNoise()</em>.</li>
+<li>Once an object has been instantiated, it can be <em>assigned</em> to a <em>declared</em> variable of the appropriate type, e.g. <em>d = new Dog();</em></li>
+<li>Variables and methods of a class are also called members of a class.</li>
+<li>Members of a class are accessed using <em>dot</em> notation.</li>
+</ul>
+<h3><span id="class-methods-vs-instance-methods"> Class Methods vs. Instance Methods</span><a href="#class-methods-vs-instance-methods" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weightInPounds; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        weightInPounds = w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeNoise</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (weightInPounds &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"yip"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (weightInPounds &lt; <span class="number">30</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"bark"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"woof"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Dog <span class="title">maxDog</span><span class="params">(Dog d1, Dog d2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d1.weightInPounds &gt; d2.weightInPounds) &#123;</span><br><span class="line">            <span class="keyword">return</span> d1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> d2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dog <span class="title">maxDog</span><span class="params">(Dog d2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.weightInPounds &gt; d2.weightInPounds) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> d2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java allows us to define two types of methods:</p>
+<ul>
+<li>Class methods, a.k.a static methods.</li>
+<li>Instance methods, a.k.a non-static methods.</li>
+</ul>
+<p>Instance methods are actions that can be taken only by a specific instance of a class. Static methods are actions that are taken by the class itself</p>
+<h3><span id="static-variables"> Static Variables</span><a href="#static-variables" class="header-anchor"> </a></h3>
+<p>It is occasionally useful for classes to have static variables. These are properties inherent to the class itself, rather than the instance.</p>
+<h3><span id="main-function"> main function</span><a href="#main-function" class="header-anchor"> </a></h3>
+<ul>
+<li>public: So far, all of our methods start with this keyword.</li>
+<li>static: It is a static method, not associated with any particular instance.</li>
+<li>void: It has no return type.</li>
+<li>main: This is the name of the method.</li>
+<li>String[] args: This is the parameter that is passed to the main method.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArgsDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(args[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This program prints out the 0th command line argument.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/CS61b-Intro-Hello-World-Java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2475,260 +2649,6 @@ To delete the minimum key:</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/" itemprop="url">机器学习基石上——第二讲：Learning to Answer Yes/No</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-08T16:02:46+08:00">
-                2020-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div class="toc">
-<!-- toc -->
-<ul>
-<li><a href="#perceptron-hypothesis-set">Perceptron Hypothesis Set</a></li>
-<li><a href="#perceptrons-learning-algorithm">Perceptrons Learning Algorithm</a></li>
-<li><a href="#guarantee-of-pla">Guarantee of PLA</a></li>
-<li><a href="#non-separable-data">Non-Separable Data</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-<h3><span id="perceptron-hypothesis-set"> Perceptron Hypothesis Set</span><a href="#perceptron-hypothesis-set" class="header-anchor"> </a></h3>
-<h4><span id="a-simple-hypothesis-set-the-perceptron"> A Simple Hypothesis Set: the ‘Perceptron’</span><a href="#a-simple-hypothesis-set-the-perceptron" class="header-anchor"> </a></h4>
-<ul>
-<li>For $ \small{x = (x_1,x_2,…,x_d)} $ ‘feature of customer’, compute a weighted ‘score’ and:<br>
-approve credit if $ \small{\sum\limits_{i = 1}^dw_ix_i} &gt; $ threshold<br>
-deny credit if $ \small{\sum\limits_{i = 1}^dw_ix_i} &lt; $ threshold</li>
-<li>{+1(good), -1(bad)}, 0 ignored - linear formula $ \small{h \in H} $ are<br>
-$ \small{\color{red}{h}(x) = sign((\sum\limits_{i=1}^{d}\color{red}{w_i}x_i) - \color{red}{threshold})} $</li>
-</ul>
-<p>called ‘perceptron’ hypothesis historically</p>
-<h4><span id="vector-form-of-perceptron-hypothesis"> Vector Form of Perceptron Hypothesis</span><a href="#vector-form-of-perceptron-hypothesis" class="header-anchor"> </a></h4>
-<ul>
-<li>$ \small{\color{red}{h}(x) = sign((\sum\limits_{i=1}^{d}\color{red}{w_i}x_i) - \color{blue}{threshold})} $</li>
-</ul>
-<p>$ \small{\qquad= sign((\sum\limits_{i=1}^{d}\color{red}{w_i}x_i) + \color{blue}{(-threshold) * (+1)} )} $</p>
-<p>$ \small{\qquad = sign(\sum\limits_\color{blue}{i=0}^{d}\color{red}{w_i}x_i)} $</p>
-<p>$ \small{\qquad = sign(\color{red}{w^T}x)} $</p>
-<ul>
-<li>each ‘tall’ w represents a hypothesis h &amp; is multiplied with ‘tall’ x(will use tall versions to simplify notation)</li>
-</ul>
-<h4><span id="perceptrons-in-small-r-2"> Perceptrons in $ \small{R^2} $</span><a href="#perceptrons-in-small-r-2" class="header-anchor"> </a></h4>
-<p><img src="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/r2.jpg" alt></p>
-<p>perceptrons $ \Leftrightarrow $ linear(binary) classifiers</p>
-<h3><span id="perceptrons-learning-algorithm"> Perceptrons Learning Algorithm</span><a href="#perceptrons-learning-algorithm" class="header-anchor"> </a></h3>
-<h4><span id="select-g-from-h"> Select g from H</span><a href="#select-g-from-h" class="header-anchor"> </a></h4>
-<p>H = all possible perceptrons, g = ?</p>
-<ul>
-<li>want: $ \small{g \approx f} $ (hard when $ \small{f} $ unknown)</li>
-<li>almost necessary: $ \small{g \approx f} $ on $ \small{D} $ , ideally $ \small{\color{purple}{g(x_n) = f(x_n) = y_n}} $</li>
-<li>difficult: H is of <strong>infinite</strong> size</li>
-<li>idea: start from some $ \small{g_0} $, and <strong>‘correct’ its mistakes on $ \small{D} $</strong></li>
-</ul>
-<p>will represent $ \small{g_0} $ by its weight vector $ w_0 $</p>
-<h4><span id="perceptron-learning-algorithm"> Perceptron Learning Algorithm</span><a href="#perceptron-learning-algorithm" class="header-anchor"> </a></h4>
-<p>start from some $ \small{w_0} $ (say, 0), and correct its mistakes on $ \small{D} $</p>
-<p><img src="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/algorithm.jpg" alt></p>
-<p>next can follow naive cycle $ \small{1,…N} $ or precomputed random cycle</p>
-<h4><span id="some-remaining-issues-of-pla"> Some Remaining Issues of PLA</span><a href="#some-remaining-issues-of-pla" class="header-anchor"> </a></h4>
-<p>‘correct’ mistakes on D <strong>until no mistakes</strong></p>
-<h3><span id="guarantee-of-pla"> Guarantee of PLA</span><a href="#guarantee-of-pla" class="header-anchor"> </a></h3>
-<h4><span id="linear-separability"> Linear Separability</span><a href="#linear-separability" class="header-anchor"> </a></h4>
-<ul>
-<li>if PLA halts (i.e. no more mistakes), $ \small{D} $ allows some $ \small{w} $ to make no mistake</li>
-<li>call such $ \small{D} $ linear separable</li>
-</ul>
-<p><img src="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/linear.jpg" alt></p>
-<h4><span id="pla-fact-small-w-t-gets-more-aligned-with-small-w-f"> PLA fact: $ \small{w_t} $ Gets More Aligned with $ \small{w_f} $</span><a href="#pla-fact-small-w-t-gets-more-aligned-with-small-w-f" class="header-anchor"> </a></h4>
-<p>linear seperable $ \small{D} \Leftrightarrow $ exists perfect $ w_f $ such that<br>
-$ \small{y_n = sign(w_f^Tx_n)} $</p>
-<ul>
-<li>$ \small{w_f} $ perfect hence every $ \small{x_n} $ correctly away from line: $ \small{ y_{n(t)}w_f^Tx_{n(t)} \geq \min\limits_n y_nw_f^Tx_n &gt; 0} $</li>
-<li>$ \small{w_f^Tw_t\uparrow} $ by updating with any $ \small{(x_{n(t)}, y_{n(t)})} $ :<br>
-$ \small{w_f^Tw_{t+1} = w_f^T(w_t + y_{n(t)}x_{n(t)})} $</li>
-</ul>
-<p>$ \qquad\quad \small{\geq w_f^Tw_t + \min\limits_n y_nw_f^Tx_n} $</p>
-<p>$ \qquad\quad \small{&gt; w_f^Tw_t + 0} $</p>
-<h4><span id="pla-fact-small-w-t-does-not-grow-too-fast"> PLA fact: $ \small{w_t} $ Does Not Grow Too Fast</span><a href="#pla-fact-small-w-t-does-not-grow-too-fast" class="header-anchor"> </a></h4>
-<p>$ \small{w_t} $ changed only when mistake<br>
-$ \Leftrightarrow \small{sign(w_t^Tx_{n(t)}) \neq y_{n(t)} \Leftrightarrow y_{n(t)}w_t^Tx_{n(t)} \leq 0} $</p>
-<ul>
-<li>mistake ‘limits’ $ \Vert w_t\Vert^2 $ growth,<br>
-$ \small{\Vert w_{t+1}\Vert^2 = \Vert w_t + y_{n(t)}x_{n(t)}\Vert^2} $</li>
-</ul>
-<p>$ \small{\qquad\quad = \Vert w_t\Vert^2 + 2y_{n(t)}w_t^Tx_{n(t)} + \Vert y_{n(t)}x_{n(t)}\Vert^2} $</p>
-<p>$ \small{\qquad\quad \leq \Vert w_t\Vert^2 + 0 + \Vert y_{n(t)}x_{n(t)}\Vert^2} $</p>
-<p>$ \small{\qquad\quad \leq \Vert w_t\Vert^2 + 0 + \max\limits_n\Vert y_nx_n\Vert^2} $</p>
-<p>start from $ \small{w_0 = 0} $, after $ \small{T} $ mistake corrections,<br>
-$ \frac{w_f^T}{\Vert w_f\Vert}\frac{w_T}{\Vert w_T\Vert} \small{\geq \sqrt{T} \cdot } $ constant</p>
-<p><a href="https://kelvin.ink/2018/06/10/ML2_PerceptronAlgorithm/" target="_blank" rel="noopener">proof see here</a></p>
-<p>Therefore, $ \small{T} $ have upper bound.</p>
-<h4><span id="more-about-pla"> More about PLA</span><a href="#more-about-pla" class="header-anchor"> </a></h4>
-<p><strong>Guarantee</strong><br>
-as long as <strong>linear separable</strong> and <strong>correct by mistake</strong></p>
-<ul>
-<li>inner product of $ \small{w_f} $ and $ \small{w_t} $ grows fast; length of $ \small{w_t} $ grows slowly</li>
-<li>PLA ‘lines’ are more and more aligned with $ \small{w_f} \Rightarrow $ halts</li>
-</ul>
-<p><strong>Pros</strong><br>
-simple to implement, fast, works in any dimension d</p>
-<p><strong>Cons</strong></p>
-<ul>
-<li>‘assumes’ linear separable D to halt<br>
-– properly unknown in advance (no need for PLA if we know $ \small{w_f} $)</li>
-<li>not fully sure <strong>how long halting takes</strong> ($ \rho $ depends on $ \small{w_f} $)<br>
-– though practically fast</li>
-</ul>
-<h3><span id="non-separable-data"> Non-Separable Data</span><a href="#non-separable-data" class="header-anchor"> </a></h3>
-<h4><span id="learning-with-noisy-data"> Learning with Noisy Data</span><a href="#learning-with-noisy-data" class="header-anchor"> </a></h4>
-<p><img src="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/nonlinear.jpg" alt></p>
-<h4><span id="line-with-noise-tolerance"> Line with Noise Tolerance</span><a href="#line-with-noise-tolerance" class="header-anchor"> </a></h4>
-<ul>
-<li>assume ‘little’ noise:<br>
-$ \small{y_n = f(x_n)} $ usually</li>
-<li>if so,<br>
-$ \small{g \approx f }$ on D $ \small{\Leftrightarrow y_n = g(x_n)} $ usually</li>
-<li>how about:<br>
-– <strong>NP-hard</strong> to solve, unfortunately<br>
-$ \small{w_g \leftarrow argmin_w\sum\limits_{n=1}^N [y_n \neq sign(w^Tx_n)]} $</li>
-</ul>
-<h4><span id="pocket-algorithm"> Pocket Algorithm</span><a href="#pocket-algorithm" class="header-anchor"> </a></h4>
-<p>modify PLA algorithm (black lines) by <strong>keeping best weights in pocket</strong></p>
-<p><img src="/2020/02/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9ALearning-to-Answer-Yes-No/pocket.jpg" alt></p>
-<p>Problem in class: if D is actually linear separable, pocket on D is slower than PLA. Because pocket need to check whether $ \small{w_{t+1}} $ is better than $ \small{\hat{w}} $ in each iteration, it is slower than PLA. On linear separable D, $ \small{w_{pocket}} $ is the same as $ \small{w_{PLA}} $, both making no mistakes.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2779,7 +2699,7 @@ $ \small{w_g \leftarrow argmin_w\sum\limits_{n=1}^N [y_n \neq sign(w^Tx_n)]} $</
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

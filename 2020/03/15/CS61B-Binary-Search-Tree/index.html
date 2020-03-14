@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Arrays   Getting Memory Boxes  Arrays are a special kind of object which consists of a numbered sequence of memory boxes:  To get ith item of array A, use A[i]. Unlike class instances which have name">
+<meta name="description" content="Binary Search Tree Tree A tree consists of:  A set of nodes. A set of edges that connect those nodes.— Constraint: There is exactly one path between any two nodes.  Rooted Trees and Rooted Binary Tree">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS61B-Arrays">
-<meta property="og:url" content="http://yoursite.com/2020/02/25/CS61B-Arrays/index.html">
+<meta property="og:title" content="CS61B-Binary Search Tree">
+<meta property="og:url" content="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Arrays   Getting Memory Boxes  Arrays are a special kind of object which consists of a numbered sequence of memory boxes:  To get ith item of array A, use A[i]. Unlike class instances which have name">
+<meta property="og:description" content="Binary Search Tree Tree A tree consists of:  A set of nodes. A set of edges that connect those nodes.— Constraint: There is exactly one path between any two nodes.  Rooted Trees and Rooted Binary Tree">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-25T03:19:26.000Z">
-<meta property="article:modified_time" content="2020-02-25T17:37:13.979Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/delete.jpg">
+<meta property="article:published_time" content="2020-03-14T17:42:33.000Z">
+<meta property="article:modified_time" content="2020-03-14T18:49:13.395Z">
 <meta property="article:author" content="Starfly">
 <meta property="article:tag" content="CS61b">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/delete.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/25/CS61B-Arrays/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/"/>
 
 
 
 
 
-  <title>CS61B-Arrays | Starfly's blog</title>
+  <title>CS61B-Binary Search Tree | Starfly's blog</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/CS61B-Arrays/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Starfly">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CS61B-Arrays</h1>
+          <h1 class="post-title" itemprop="name headline">CS61B-Binary Search Tree</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-25T11:19:26+08:00">
-                2020-02-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T01:42:33+08:00">
+                2020-03-15
               </time>
             
 
@@ -305,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
                   </a>
                 </span>
 
@@ -342,69 +344,68 @@
       
 
       
-        <h2><span id="arrays"> Arrays</span><a href="#arrays" class="header-anchor"> </a></h2>
-<h3><span id="getting-memory-boxes"> Getting Memory Boxes</span><a href="#getting-memory-boxes" class="header-anchor"> </a></h3>
-<p>Arrays are a special kind of object which consists of a <strong>numbered</strong> sequence of memory boxes:</p>
+        <h2><span id="binary-search-tree">Binary Search Tree</span><a href="#binary-search-tree" class="header-anchor"> </a></h2><h3><span id="tree">Tree</span><a href="#tree" class="header-anchor"> </a></h3><p>A tree consists of:</p>
 <ul>
-<li>To get ith item of array A, use A[i].</li>
-<li>Unlike <strong>class</strong> instances which have <strong>named</strong> memory boxes.</li>
+<li>A set of nodes.</li>
+<li>A set of edges that connect those nodes.<br>— Constraint: There is exactly one path between any two nodes.</li>
 </ul>
-<p>Arrays consist of:</p>
+<h3><span id="rooted-trees-and-rooted-binary-trees">Rooted Trees and Rooted Binary Trees</span><a href="#rooted-trees-and-rooted-binary-trees" class="header-anchor"> </a></h3><p>In a rooted tree, we call one node the root.</p>
 <ul>
-<li>A fixed integer <strong>length</strong> (cannot change!)</li>
-<li>A sequence of N memory boxes where <strong>N=length</strong>, such that:<br>
-– All of the boxes hold the same type of value (and have same # of bits).<br>
-– The boxes are numbered 0 through length-1.</li>
+<li>Every node N except the root has exactly one parent, defined as the first node on the path from N to the root.</li>
+<li>The root is usually depicted at the top of the tree.</li>
+<li>A node with no child is called a leaf.</li>
 </ul>
-<p>Like instances of classes:</p>
+<p>In a rooted binary tree, every node has either 0, 1, or 2 children(subtrees).</p>
+<h3><span id="binary-search-trees">Binary Search Trees</span><a href="#binary-search-trees" class="header-anchor"> </a></h3><p>A binary search tree is a rooted binary tree with the BST property.</p>
+<p><strong>BST Property.</strong> For every node X in the tree:</p>
 <ul>
-<li>You get one reference when its created.</li>
-<li>If you reassign all variables containing that reference, you can never get the array back.</li>
+<li>Every key in the left subtree is less than X’s key.</li>
+<li>Every key in the right subtree is greater than X’s key.</li>
 </ul>
-<p>Unlike classes, arrays do not have methods.</p>
-<h3><span id="array-creation"> Array Creation</span><a href="#array-creation" class="header-anchor"> </a></h3>
-<p>Like classes, arrays are (almost always) instantiated with new.</p>
-<p>Three valid notations:</p>
+<p>Ordering must be complete, transitive, and antisymmetric. Given keys p and q:</p>
 <ul>
-<li>y = new int[3];  // creates array containing 3 int boxes (32 * 3 = 96 bits total). Each container gets a default value.</li>
-<li>x = new int[]{1,2,3};</li>
-<li>int[] w = {1,2,3}; // can omit the new if you are also declaring a variable.</li>
+<li>Exactly one of p &lt; q and q &lt; p are true.</li>
+<li>p &lt; q and q &lt; r imply p &lt; r.</li>
 </ul>
-<p>All three notations create an array, which we saw on the last slide comprises:</p>
+<p>One consequence of these rules: No duplicate keys allowed.</p>
 <ul>
-<li>A <strong>length</strong> field.</li>
-<li>A sequence of <strong>N boxes</strong>, where <strong>N = length</strong>.</li>
+<li>Keep things simple. Most real world implementations follow this rule.</li>
 </ul>
-<p><strong>Arraycopy</strong><br>
-Two ways to copy arrays:</p>
+<h3><span id="bst-operations">BST operations</span><a href="#bst-operations" class="header-anchor"> </a></h3><h4><span id="finding-a-searchkey-in-a-bst">Finding a searchKey in a BST</span><a href="#finding-a-searchkey-in-a-bst" class="header-anchor"> </a></h4><p>If searchKey equals label, return.</p>
 <ul>
-<li>Item by item using a loop.</li>
-<li>Using arraycopy.Takes 5 parameters:<br>
-– Source array<br>
-– Start position in source<br>
-– Target array<br>
-– Start position in target<br>
-– Number to copy</li>
+<li>If searchKey &lt; label, search left.</li>
+<li>If searchKey &gt; label, search right.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.arraycopy(b, <span class="number">0</span>, x, <span class="number">3</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<p>arraycopy is (likely to be) faster, particularly for large arrays. More compact code.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> BST <span class="title">find</span><span class="params">(BST T, Key sk)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sk.keyequals(T.label())) &#123;</span><br><span class="line">        <span class="keyword">return</span> T;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sk.compareTo(T.label()) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> find(T.left, sk);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> find(T.right, sk);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="inserting-a-new-key-into-a-bst">Inserting a new key into a BST</span><a href="#inserting-a-new-key-into-a-bst" class="header-anchor"> </a></h4><p>Search for key.</p>
 <ul>
-<li>Code is (arguably) harder to read.</li>
+<li>If found, do nothing.</li>
+<li>If not found:<br>— Create new node.<br>— Set appropriate link.</li>
 </ul>
-<h3><span id="arrays-vs-classes"> Arrays vs. Classes</span><a href="#arrays-vs-classes" class="header-anchor"> </a></h3>
-<p>Arrays and Classes can both used to organize a bunch of memory boxes.</p>
+<p>“me recursion version” better than “arm recursion version”<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> BST <span class="title">insert</span><span class="params">(BST T, Key ik)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BST(ik);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (ik.compareTo(T.label()) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        T.left = insert(T.left, ik);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ik.compareTo(T.label()) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        T.right = insert(T.right, ik);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4><span id="deletion-from-a-bst">Deletion from a BST</span><a href="#deletion-from-a-bst" class="header-anchor"> </a></h4><p>3 Cases:</p>
 <ul>
-<li>Array boxes are accessed using [] notation.</li>
-<li>Class boxes are accessed using dot notation.</li>
-<li>Array boxes must all be of the same type.</li>
-<li>Class boxes may be of different types.</li>
-<li>Both have a fixed number of boxes.</li>
+<li>Deletion key has no children.</li>
+<li>Deletion key has one children.</li>
+<li>Deletion key has two children.</li>
 </ul>
-<p>Array indices can be computed at runtime.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] x = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">100</span>, <span class="number">101</span>, <span class="number">102</span>, <span class="number">103</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> indexOfInterest = askUser();</span><br><span class="line"><span class="keyword">int</span> k = X[indexOfInterest];</span><br><span class="line">System.out.println(k);</span><br></pre></td></tr></table></figure>
-<p>Class member variable names CANNOT be computed and used at runtime.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String fieldOfInterest = <span class="string">"mass"</span>;</span><br><span class="line">Planet earth = <span class="keyword">new</span> Planet(<span class="number">6e24</span>, <span class="string">"earth"</span>);</span><br><span class="line"><span class="keyword">double</span> mass = earth[fieldOfInterest]; <span class="comment">// not work</span></span><br><span class="line"><span class="keyword">double</span> mass = earth.fieldOfInterest; <span class="comment">// not work</span></span><br><span class="line"><span class="keyword">double</span> mass = earth.mass;   <span class="comment">// works fine</span></span><br><span class="line">System.out.println(mass);</span><br></pre></td></tr></table></figure>
-<p>The Java compiler does not treat text on either side of a dot as an expression, and thus it is not evaluated.</p>
+<h5><span id="case1-deletion-key-has-no-children">Case1: Deletion key has no children.</span><a href="#case1-deletion-key-has-no-children" class="header-anchor"> </a></h5><ul>
+<li>Just sever the parent’s link.</li>
+<li>The child will be garbage collected.</li>
+</ul>
+<h5><span id="case2-key-with-one-child">Case2: Key with one child.</span><a href="#case2-key-with-one-child" class="header-anchor"> </a></h5><p>Goal：</p>
+<ul>
+<li>Maintain BST property.</li>
+<li>Safe to just move the child to present node place.</li>
+</ul>
+<h5><span id="case3-key-with-two-child">Case3: Key with two child.</span><a href="#case3-key-with-two-child" class="header-anchor"> </a></h5><p>Choose either predecessor (“cat”) or successor(“elf”).</p>
+<ul>
+<li>Delete “cat” or “elf”, and stick new copy in the root position:<br>— This deletion guaranteed to be either case 1 or 2.</li>
+<li>This strategy is sometimes known as “Hibbard deletion”.</li>
+</ul>
+<p><img src="/2020/03/15/CS61B-Binary-Search-Tree/delete.jpg" alt></p>
+<p>Height varies dramatically between “bushy” and “spindly” trees.</p>
+<p><strong>Surprising Fact.</strong> Trees not balanced! $ \sqrt{N} $ per operation.</p>
 
       
     </div>
@@ -435,8 +436,8 @@ Two ways to copy arrays:</p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/25/CS61B-DLLists/" rel="next" title="CS61B-DLLists">
-                <i class="fa fa-chevron-left"></i> CS61B-DLLists
+              <a href="/2020/03/14/CS61B-Disjoint-Sets/" rel="next" title="CS61B-Disjoint Sets">
+                <i class="fa fa-chevron-left"></i> CS61B-Disjoint Sets
               </a>
             
           </div>
@@ -444,10 +445,6 @@ Two ways to copy arrays:</p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/27/CS61B-ALists/" rel="prev" title="CS61B-ALists">
-                CS61B-ALists <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +576,7 @@ Two ways to copy arrays:</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Arrays </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> Getting Memory Boxes </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Array Creation </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Arrays vs. Classes </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Binary Search Tree </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Tree </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Rooted Trees and Rooted Binary Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Binary Search Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">BST operations </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.1.</span> <span class="nav-text">Finding a searchKey in a BST </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.2.</span> <span class="nav-text">Inserting a new key into a BST </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.3.</span> <span class="nav-text">Deletion from a BST </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">Case1: Deletion key has no children. </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">Case2: Key with one child. </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">Case3: Key with two child. </span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
