@@ -249,6 +249,262 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/CS61B-Abstract-Data-Types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/03/CS61B-Abstract-Data-Types/" itemprop="url">CS61B-Abstract Data Types</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T02:46:58+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="abstract-data-types"> Abstract Data Types</span><a href="#abstract-data-types" class="header-anchor"> </a></h2>
+<p>An <strong>Abstract Data Types(ADT)</strong> is defined only by its operations, not by its implementation.</p>
+<p>Deque ADT:</p>
+<ul>
+<li>addFirst(Item x);</li>
+<li>addLast(Item );</li>
+<li>boolean isEmpty();</li>
+<li>int size();</li>
+<li>printDeque();</li>
+<li>Item removeFirst();</li>
+<li>Item removeLast();</li>
+<li>Item get(int index);</li>
+</ul>
+<p>Stack ADT:<br>
+The Stack ADT supports the following operations:</p>
+<ul>
+<li>push(int x): Puts x on top of the stack.</li>
+<li>int pop(): Removes and returns the top item from the stack.</li>
+</ul>
+<p>Linked List is better!</p>
+<p>GrabBag ADT:</p>
+<ul>
+<li>insert(int x): Inserts x into the grab bag.</li>
+<li>int remove(): Removes a random item from the bag.</li>
+<li>int sample(): Samples a random item from the bag. (without removing!)</li>
+<li>int size(): Number of items in the bag.</li>
+</ul>
+<p>Array is better!</p>
+<h3><span id="collections"> Collections</span><a href="#collections" class="header-anchor"> </a></h3>
+<p>Among the most important interfaces in the Java.util library are those that extend the Collection interface (btw interfaces can extend other interfaces).</p>
+<ul>
+<li>Lists of things.</li>
+<li>Sets of things.</li>
+<li>Mappings between items</li>
+</ul>
+<h3><span id="java-libraries"> Java Libraries</span><a href="#java-libraries" class="header-anchor"> </a></h3>
+<p>The built-in Java.util package provides a number of useful:</p>
+<ul>
+<li>Interfaces: ADTs(lists, sets, maps, priority queues, etc.) and other stuff.</li>
+<li>Implementations: Concrete classes you can see.</li>
+</ul>
+<p><img src="/2020/03/03/CS61B-Abstract-Data-Types/concrete.jpg" alt></p>
+<h3><span id="tasks"> Tasks</span><a href="#tasks" class="header-anchor"> </a></h3>
+<p>3 tasks, given the text of a book:</p>
+<ul>
+<li>Create a list of all words in the book.</li>
+<li>Count the number of unique words.</li>
+<li>Keep track of the number of times that specific words are mentioned.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getWords</span><span class="params">(String inputFileName)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; lst = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    In in = <span class="keyword">new</span> In();</span><br><span class="line">    <span class="keyword">while</span>(!in.isEmpty()) &#123;</span><br><span class="line">        lst.add(in.readString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countUniqueWords</span><span class="params">(List&lt;String&gt; words)</span> </span>&#123;</span><br><span class="line">    Set&lt;String&gt; ss = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String s : words) &#123;</span><br><span class="line">        ss.add(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ss.size();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Integer&gt; <span class="title">collectWordCount</span><span class="params">(List&lt;String&gt; words, List&lt;String&gt; targets)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Integer&gt; counts = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String t : targets) &#123;</span><br><span class="line">        counts.put(t, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (String s : words) &#123;</span><br><span class="line">        <span class="keyword">if</span> (counts.containsKey(s)) &#123;</span><br><span class="line">            <span class="keyword">int</span> oldCount = counts.get(s);</span><br><span class="line">            counts.put(s, oldCount + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> counts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="abstract-classes"> Abstract classes</span><a href="#abstract-classes" class="header-anchor"> </a></h3>
+<h4><span id="more-about-interfaces"> More about Interfaces</span><a href="#more-about-interfaces" class="header-anchor"> </a></h4>
+<p><strong>A closer look at interfaces</strong><br>
+Interfaces may combine a mix of <strong>abstract</strong> and <strong>default</strong> methods.</p>
+<ul>
+<li>Abstract methods are <strong>what</strong>. And must be overridden by subclass.</li>
+<li>Default methods are <strong>how</strong>.</li>
+</ul>
+<p><strong>Remark:</strong></p>
+<ul>
+<li>Every method in an interface must be public, so <strong>public</strong> is redundant.</li>
+<li>Unless you use the keyword <strong>default</strong>, a method will be <strong>abstract</strong>.</li>
+</ul>
+<p>More interface details:</p>
+<ul>
+<li>Can provide variables, but they are <strong>public static final</strong>.<br>
+– final means the value can never change.</li>
+<li>A class can implement multiple interfaces.</li>
+</ul>
+<h4><span id="interfaces-summary"> Interfaces Summary</span><a href="#interfaces-summary" class="header-anchor"> </a></h4>
+<ul>
+<li>Cannot be instantiated.</li>
+<li>Can provide either <strong>abstract</strong> or <strong>concrete</strong> methods.<br>
+– Use no keyword for abstract methods.<br>
+– Use <strong>default</strong> keyword for concrete methods.</li>
+<li>Can provide only public static final variables.</li>
+<li>Can provide only public methods.</li>
+</ul>
+<h4><span id="introducing-abstract-classes"> Introducing: Abstract Classes</span><a href="#introducing-abstract-classes" class="header-anchor"> </a></h4>
+<p>Abstract classes are an intermediate level between interfaces and classes.</p>
+<ul>
+<li>Cannot be instantiated.</li>
+<li>Can provide either <strong>abstract</strong> or <strong>concrete</strong> methods.<br>
+– Use <strong>abstract</strong> keyword for abstract methods.<br>
+– Use no keyword for concrete methods.</li>
+<li>Can provide variables (any kind).</li>
+<li>Can provide methods (any kind).</li>
+</ul>
+<h4><span id="summary-abstract-classes-vs-interfaces"> Summary: Abstract Classes vs. Interfaces</span><a href="#summary-abstract-classes-vs-interfaces" class="header-anchor"> </a></h4>
+<p>Interfaces:</p>
+<ul>
+<li>Primarily for interface inheritance. Limited implementation inheritance.</li>
+<li>Classes can implement multiple interfaces.</li>
+</ul>
+<p>Abstract classes:</p>
+<ul>
+<li>Can do anything an interface can do, and more.</li>
+<li>Subclasses only extend one abstract class.</li>
+</ul>
+<h3><span id="packages"> Packages</span><a href="#packages" class="header-anchor"> </a></h3>
+<p>Package names <strong>give a canonical name for everything.</strong> Canonical means a unique representation for a thing.</p>
+<p>To address the fact that classes might share names:</p>
+<ul>
+<li>A package is a <strong>namespace</strong> that organizes classes and interfaces.</li>
+<li>Naming convention: Package name starts with website address(backwards)</li>
+</ul>
+<p>Typing out the entire name can be annoying.</p>
+<ul>
+<li>Can use import statement to provide shorthand notation for usage of a single class in a package.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.Dog;</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Wildcard import: Also possible to import multiple classes, but this is often a bad idea.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.*;</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/CS61B-Subtype-Polymorphism/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2344,205 +2600,6 @@ It gives programmer less control which prevents programmer from doing certain ty
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/CS61b-Intro-Hello-World-Java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/20/CS61b-Intro-Hello-World-Java/" itemprop="url">CS61b: Intro, Hello World Java</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-20T11:32:19+08:00">
-                2020-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="reading"> Reading</span><a href="#reading" class="header-anchor"> </a></h2>
-<h3><span id="declaring-functions"> Declaring functions</span><a href="#declaring-functions" class="header-anchor"> </a></h3>
-<ul>
-<li>
-<p>Functions must be declared as part of a class in Java. A function that is part of a class is called a “method”. So in Java, all functions are methods.</p>
-</li>
-<li>
-<p>To define a function in Java, we use “public static”, later more ways of defining functions.</p>
-</li>
-<li>
-<p>All parameters of a function must have a declared type, and the return value of the function must have a declared type. Functions in Java return only one value!</p>
-</li>
-</ul>
-<h3><span id="code-style-comments-javadoc"> Code Style, Comments, Javadoc</span><a href="#code-style-comments-javadoc" class="header-anchor"> </a></h3>
-<ul>
-<li>Consistent style (spacing, variable naming, brace style, etc)</li>
-<li>Size (lines that are not too wide, source files that are not too long)</li>
-<li>Descriptive naming (variables, functions, classes), e.g. variables or functions with names like <em>year</em> or <em>getUserName</em> instead of <em>x</em> or <em>f</em>.</li>
-<li>Avoidance of repetitive code: You should almost never have two significant blocks of code that are nearly identical except for a few changes.</li>
-<li>Comments where appropriate. Line comments in Java use the <em>//</em> delimiter. Block (multiline comments) comments use <em>/</em>* and **/*.</li>
-</ul>
-<p>The golden rule is this: Write your code so that it is easy for a stranger to understand.</p>
-<h2><span id="slides"> Slides</span><a href="#slides" class="header-anchor"> </a></h2>
-<h3><span id="reflections-on-static-typing"> Reflections on Static Typing</span><a href="#reflections-on-static-typing" class="header-anchor"> </a></h3>
-<p><strong>Good:</strong></p>
-<ul>
-<li>Debugging is a lot easier, type errors are avoided.</li>
-<li>Production code has no type errors, so that means people’s phones won’t be crash because of type errors.</li>
-<li>Programs run more efficiently in time and memory.</li>
-<li>Self documenting: YOU KNOW WHAT YOU’VE GOT.</li>
-</ul>
-<p><strong>Bad:</strong></p>
-<ul>
-<li>Code is more verbose.</li>
-<li>Code is less general.</li>
-</ul>
-<h2><span id="lab1-setup-setting-up-your-computer"> Lab1 Setup: Setting Up Your Computer</span><a href="#lab1-setup-setting-up-your-computer" class="header-anchor"> </a></h2>
-<h3><span id="learn-to-use-the-terminal"> Learn to Use the Terminal</span><a href="#learn-to-use-the-terminal" class="header-anchor"> </a></h3>
-<ul>
-<li>cd: change your working directory</li>
-<li>pwd: present working directory</li>
-<li>. means your current directory</li>
-<li>… means one parent directory above your current directory</li>
-<li>ls: list files/folders in current directory</li>
-<li>ls -1: list all the files and folders in your current directory with timestamps and file permissions.</li>
-<li>mkdir: make a directory</li>
-<li>rm: remove a file</li>
-<li>cp: copy a file</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp lab1&#x2F;original lab2&#x2F;duplicate</span><br></pre></td></tr></table></figure>
-<p>This command will copy the <em>original</em> file in the <em>lab1</em> directory and create a <em>duplicate</em> copy in the <em>lab2</em> directory.</p>
-<ul>
-<li>mv: move or rename a file</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv lab1&#x2F;original lab2&#x2F;original</span><br></pre></td></tr></table></figure>
-<p>This command moves <em>original</em> from <em>lab1</em> to <em>lab2</em>. Unlike <em>cp</em>, mv does not leave original in the <em>lab1</em> directory.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv lab1&#x2F;original lab1&#x2F;newname</span><br></pre></td></tr></table></figure>
-<p>This command does not move the file but rather renames it from <em>original</em> to <em>newname</em></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2593,7 +2650,7 @@ It gives programmer less control which prevents programmer from doing certain ty
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2604,7 +2661,7 @@ It gives programmer less control which prevents programmer from doing certain ty
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

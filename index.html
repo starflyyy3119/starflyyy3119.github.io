@@ -249,6 +249,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/CS61B-Disjoint-Sets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/14/CS61B-Disjoint-Sets/" itemprop="url">CS61B-Disjoint Sets</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T01:33:01+08:00">
+                2020-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="disjoint-sets">Disjoint Sets</span><a href="#disjoint-sets" class="header-anchor"> </a></h2><h3><span id="the-dynamic-connectivity-problem">The Dynamic Connectivity Problem</span><a href="#the-dynamic-connectivity-problem" class="header-anchor"> </a></h3><p>Goal: Given a series of pairwise integers connectedness declarations, determine if two integers (or items) are connected. Two operations:</p>
+<ul>
+<li>connect(p,q): Connect items p and q.</li>
+<li>isConnected(p,q): Are p and q connected?</li>
+</ul>
+<h3><span id="the-disjoint-sets-adt">The DisJoint Sets ADT</span><a href="#the-disjoint-sets-adt" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** Connect two items P and Q. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Checks to see if two items are connected. */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Goal: Design an efficient DisjointSets implementation.</p>
+<ul>
+<li>Number of elements N can be huge.</li>
+<li>Number of method calls M can be huge.</li>
+<li>Calls to methods may be interspersed (e.g. can’t assume that we stop getting connect calls after some point.)</li>
+</ul>
+<h3><span id="a-better-approach-connected-components">A better Approach: Connected Components</span><a href="#a-better-approach-connected-components" class="header-anchor"> </a></h3><p>Rather than manually writing out every single connecting line, record the sets that something belongs to.</p>
+<p><img src="/2020/03/14/CS61B-Disjoint-Sets/com.jpg" alt></p>
+<p><strong>A connected component</strong> is a maximal set of items that are mutually connected.</p>
+<h3><span id="quick-find">Quick Find</span><a href="#quick-find" class="header-anchor"> </a></h3><h4><span id="using-an-array">Using an Array</span><a href="#using-an-array" class="header-anchor"> </a></h4><p>One natural choice: int[] where ith entry gives set number of items i.</p>
+<ul>
+<li>connect(p, q): Change entries that equal id[p] to id[q].</li>
+</ul>
+<h4><span id="quickfindds">QuickFindDS</span><a href="#quickfindds" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickFindDS</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QuickFindDS</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        id = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            id[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id[p] == id[q];   <span class="comment">// very fast</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;  <span class="comment">// relatively slow</span></span><br><span class="line">        <span class="keyword">int</span> pid = id[p];</span><br><span class="line">        <span class="keyword">int</span> qid = id[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; id.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (id[i] == pid) &#123;</span><br><span class="line">                id[i] = qid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="quick-union">Quick Union</span><a href="#quick-union" class="header-anchor"> </a></h3><p>Idea: Assign each node a parent (instead of an id).</p>
+<p>connect(p, q)</p>
+<ul>
+<li>Make root(p) into a child of root(q).</li>
+</ul>
+<p>Problem:</p>
+<ul>
+<li>Tree can get too tall.</li>
+</ul>
+<h4><span id="quickunionds">QuickUnionDS</span><a href="#quickunionds" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickUnionDS</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] parent;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QuickUnionDS</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="comment">// For N items, this means a worst case runtime Theta(N)</span></span><br><span class="line">        <span class="keyword">while</span> (p != parent[p]) &#123;</span><br><span class="line">            p = parent[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root(p) == root(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = root(p);</span><br><span class="line">        <span class="keyword">int</span> j = root(q);</span><br><span class="line">        parent[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="perfomance-summary">Perfomance Summary</span><a href="#perfomance-summary" class="header-anchor"> </a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Implementation</th>
+<th style="text-align:center">Constructor</th>
+<th style="text-align:center">connect</th>
+<th style="text-align:center">isConnected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QuickFindDS</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+<tr>
+<td style="text-align:center">QuickUnionDS</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ O(N) $</td>
+<td style="text-align:center">$ O(N) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>QuickFindDS defect: QuickFindDS is too slow: Connecting two items takes N times in the worst case.</p>
+<p>QuickUnion defect: Trees can get tall. Results in potentially even worse performance than QuickFind if tree is imbalanced.</p>
+<h3><span id="weighted-quickunion">Weighted QuickUnion</span><a href="#weighted-quickunion" class="header-anchor"> </a></h3><p>Modify quick-union to avoid tall trees.</p>
+<ul>
+<li>Track tree size (number of elements).</li>
+<li>New rule: Always link root of smaller tree to larger tree.</li>
+</ul>
+<h4><span id="implementing-weightedquickunion">Implementing WeightedQuickUnion</span><a href="#implementing-weightedquickunion" class="header-anchor"> </a></h4><p>Minimal changes needed:</p>
+<ul>
+<li>Use parent[] array as before, but also add size[] array.</li>
+<li>isConnected(int p, int q) requires no changes.</li>
+<li>connect(int p, int q) needs two changes:<br>— Link root of smaller tree to larger one.<br>— Update size[] array.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = find(p);</span><br><span class="line">    <span class="keyword">int</span> j = find(q);</span><br><span class="line">    <span class="keyword">if</span> (i == j) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (size[i] &lt; size[j]) &#123;</span><br><span class="line">        parent[i] = j;</span><br><span class="line">        size[j] += size[i];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[j] = i;</span><br><span class="line">        size[i] += size[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="weightedunion-performance">WeightedUnion Performance</span><a href="#weightedunion-performance" class="header-anchor"> </a></h4><p>As before, connect and isConnected require time proportional to depth of the items involved.</p>
+<p>Max depth of any item: logN</p>
+<p>Very brief proof:</p>
+<ul>
+<li>Depth of an element x increases only when tree T1 that contains x is linked below some other tree T2.<br>— The size of the tree at least doubles since weight(T2) &gt;= weight(T1).</li>
+<li>Tree containing x doubles at most logN times.</li>
+</ul>
+<h3><span id="performance-summary">Performance Summary</span><a href="#performance-summary" class="header-anchor"> </a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Implementation</th>
+<th style="text-align:center">Constructor</th>
+<th style="text-align:center">connect</th>
+<th style="text-align:center">isConnected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QuickFindDS</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+<tr>
+<td style="text-align:center">QuickUnionDS</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ O(N) $</td>
+<td style="text-align:center">$ O(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">WeightedQuickUnionDS</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ O(logN) $</td>
+<td style="text-align:center">$ O(logN) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>By tweaking QuickUnionDS we’ve achieved logarithmic time performance.</p>
+<ul>
+<li>Fast enough for most practical problems.</li>
+</ul>
+<h3><span id="path-compression">Path Compression</span><a href="#path-compression" class="header-anchor"> </a></h3><p>Below is the topology of the worst case if we use WeightedQuickUnion.</p>
+<p><img src="/2020/03/14/CS61B-Disjoint-Sets/path.jpg" alt></p>
+<ul>
+<li>Clever idea: When we do isConnected(15, 10), tie all nodes seen to the root.<br>— Additional cost is insignificant.</li>
+</ul>
+<p><img src="/2020/03/14/CS61B-Disjoint-Sets/path2.jpg" alt></p>
+<p>Path compression results in a union/connected operations that are very close to amortized constant time.</p>
+<ul>
+<li>M operations on N nodes is $ O(N + M lg^*N) $.</li>
+<li>$ lg^* $ is less than 5 for any realistic input.</li>
+</ul>
+<p><img src="/2020/03/14/CS61B-Disjoint-Sets/structure.jpg" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == parent[p]) &#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[p] = root(parent[p]);</span><br><span class="line">        <span class="keyword">return</span> parent[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="everything-altogether">Everything Altogether</span><a href="#everything-altogether" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeightedQuickUnionDSWithPathCompression</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] parent;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WeightedQuickUnionDSWithPathCompression</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        size = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">            size[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == parent[p]) &#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[p] = root(parent[p]);</span><br><span class="line">        <span class="keyword">return</span> parent[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root(p) == root(q);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = root(p);</span><br><span class="line">        <span class="keyword">int</span> j = root(q);</span><br><span class="line">        <span class="keyword">if</span> (i == j) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (size[i] &lt; size[j]) &#123;</span><br><span class="line">            parent[i] = j;</span><br><span class="line">            size[j] += size[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent[j] = i;</span><br><span class="line">            size[i] += size[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="performance-summary">Performance Summary</span><a href="#performance-summary" class="header-anchor"> </a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Implementation</th>
+<th style="text-align:center">Runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QuickFindDS</td>
+<td style="text-align:center">$ \Theta(NM) $</td>
+</tr>
+<tr>
+<td style="text-align:center">QuickUnionDS</td>
+<td style="text-align:center">$ O(NM) $</td>
+</tr>
+<tr>
+<td style="text-align:center">WeightedQuickUnionDS</td>
+<td style="text-align:center">$ O(N + MlogN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">WeightedQuickUnionDSWithPathCompression</td>
+<td style="text-align:center">$ O(N + M \alpha(N)) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In practical, $ \alpha(N) $ is less than 5.</p>
+<p>Runtimes are given assuming:</p>
+<ul>
+<li>We have a DisjointSets object of size N.</li>
+<li>We perform M operations, where an operation is defined as either a call to connected or isConnected.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/CS61B-Efficient-Programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,36 +644,22 @@
       
         
           
-            <h2><span id="asymptotics"> Asymptotics</span><a href="#asymptotics" class="header-anchor"> </a></h2>
-<h3><span id="some-terms"> Some terms</span><a href="#some-terms" class="header-anchor"> </a></h3>
-<ul>
+            <h2><span id="asymptotics">Asymptotics</span><a href="#asymptotics" class="header-anchor"> </a></h2><h3><span id="some-terms">Some terms</span><a href="#some-terms" class="header-anchor"> </a></h3><ul>
 <li>Module: A set of methods that work together to perform some task or set of related tasks.</li>
 <li>Encapsulated: A module is said to be encapsulated if its implementation is completely hidden, and it can be accessed only through a documented interface.</li>
 </ul>
-<h4><span id="api-s"> API’s</span><a href="#api-s" class="header-anchor"> </a></h4>
-<p>An API(Application Programming Interface) of an ADT is the list of constructors and the methods and a short description of each.</p>
+<h4><span id="api-s">API’s</span><a href="#api-s" class="header-anchor"> </a></h4><p>An API(Application Programming Interface) of an ADT is the list of constructors and the methods and a short description of each.</p>
 <p>API consists of syntactic and semantic specification.</p>
 <ul>
-<li>Compilers verifies that <strong>syntax</strong> is met.<br>
-– A.K.A, everything specified in the API is present.</li>
-<li>Tests help verify that <strong>semantics</strong> are correct.<br>
-– A.K.A everything actually works they way it should.</li>
+<li>Compilers verifies that <strong>syntax</strong> is met.<br>— A.K.A, everything specified in the API is present.</li>
+<li>Tests help verify that <strong>semantics</strong> are correct.<br>— A.K.A everything actually works they way it should.</li>
 </ul>
-<h4><span id="adt-s"> ADT’s</span><a href="#adt-s" class="header-anchor"> </a></h4>
-<p>ADT’s (Abstract Data Structures) are high-level types that are defined by their behaviors, not their implementations.</p>
+<h4><span id="adt-s">ADT’s</span><a href="#adt-s" class="header-anchor"> </a></h4><p>ADT’s (Abstract Data Structures) are high-level types that are defined by their behaviors, not their implementations.</p>
 <p>i.e. Deuqe in Proj1 was an ADT that had certain behaviors (addFirst, addLast, etc.) But, the data structures we usually used to implement it was ArrayDeque and LinkedListDeque.</p>
 <p>Some ADT’s are actually special cases of other ADT’s. For example, Stacks and Queues are just lists that have even more specific behavior.</p>
-<h4><span id="writing-a-stack-in-different-ways"> Writing a stack in different ways</span><a href="#writing-a-stack-in-different-ways" class="header-anchor"> </a></h4>
-<p>Extension:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionStack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedList</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Delegation:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAdapter</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List L;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StackAdapter</span><span class="params">(List&lt;Item&gt; worker)</span> </span>&#123;</span><br><span class="line">        L = worker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        L.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This approach is similar to the previous one, except it can use any class that implements the List interface (Linked List, ArrayList, etc).</p>
-<p><strong>Delegation vs. Extension</strong><br>
-Extension tends to be used when you know what is going on in the parent class. In other words, you know how the methods are implemented. Additionally, with extension, you are basically saying that the class you are extending from acts similarly to the one that is doing the extending. On the other hand, Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
-<h3><span id="asymptotics-1-an-introduction-to-asymptotic-analysis"> Asymptotics 1: An introduction to Asymptotic Analysis</span><a href="#asymptotics-1-an-introduction-to-asymptotic-analysis" class="header-anchor"> </a></h3>
-<h4><span id="runtime-characterization"> Runtime Characterization</span><a href="#runtime-characterization" class="header-anchor"> </a></h4>
-<p>Technique 1: Measure execution time in seconds using a client program.</p>
+<h4><span id="writing-a-stack-in-different-ways">Writing a stack in different ways</span><a href="#writing-a-stack-in-different-ways" class="header-anchor"> </a></h4><p>Extension:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionStack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedList</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Delegation:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAdapter</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List L;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StackAdapter</span><span class="params">(List&lt;Item&gt; worker)</span> </span>&#123;</span><br><span class="line">        L = worker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        L.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This approach is similar to the previous one, except it can use any class that implements the List interface (Linked List, ArrayList, etc).</p>
+<p><strong>Delegation vs. Extension</strong><br>Extension tends to be used when you know what is going on in the parent class. In other words, you know how the methods are implemented. Additionally, with extension, you are basically saying that the class you are extending from acts similarly to the one that is doing the extending. On the other hand, Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
+<h3><span id="asymptotics-1-an-introduction-to-asymptotic-analysis">Asymptotics 1: An introduction to Asymptotic Analysis</span><a href="#asymptotics-1-an-introduction-to-asymptotic-analysis" class="header-anchor"> </a></h3><h4><span id="runtime-characterization">Runtime Characterization</span><a href="#runtime-characterization" class="header-anchor"> </a></h4><p>Technique 1: Measure execution time in seconds using a client program.</p>
 <ul>
 <li>Good: Easy to measure, meaning is obvious.</li>
 <li>Bad: May require large amounts of computation time. Result varies with machine, compiler, input data, etc.</li>
@@ -386,8 +674,7 @@ Extension tends to be used when you know what is going on in the parent class. I
 <li>Good: Machine independent. Input dependence captured in model. Tells you how algorithm scales.</li>
 <li>Bad: Even more tedious to compute. Doesn’t tell you actual time.</li>
 </ul>
-<h4><span id="asymptotic-behavior"> Asymptotic Behavior</span><a href="#asymptotic-behavior" class="header-anchor"> </a></h4>
-<p>In most cases, we care only about asymptotic behavior, i.e. what happens for very large N.</p>
+<h4><span id="asymptotic-behavior">Asymptotic Behavior</span><a href="#asymptotic-behavior" class="header-anchor"> </a></h4><p>In most cases, we care only about asymptotic behavior, i.e. what happens for very large N.</p>
 <ul>
 <li>Simulation of billions of interacting paricles.</li>
 <li>Social network with billions of users.</li>
@@ -412,20 +699,13 @@ Extension tends to be used when you know what is going on in the parent class. I
 <li>Convert table into a worst case order of growth using 4 simplifications.</li>
 </ul>
 <p>By using our simplifications from the outset, we can avoid building the table at all.</p>
-<h4><span id="simplified-analysis-process"> Simplified Analysis Process</span><a href="#simplified-analysis-process" class="header-anchor"> </a></h4>
-<p>Rather than building the entire table, we can instead:</p>
+<h4><span id="simplified-analysis-process">Simplified Analysis Process</span><a href="#simplified-analysis-process" class="header-anchor"> </a></h4><p>Rather than building the entire table, we can instead:</p>
 <ul>
 <li>Choose a representative operation to count (a.k.a. cost model)</li>
-<li>Figure out the order of growth for the count of the representative operation by either:<br>
-– Making an exact count, then discarding the unnecessary pieces.<br>
-– Using intuition and inspection to determine order of growth</li>
+<li>Figure out the order of growth for the count of the representative operation by either:<br>— Making an exact count, then discarding the unnecessary pieces.<br>— Using intuition and inspection to determine order of growth</li>
 </ul>
-<h4><span id="formalizing-order-of-growth"> Formalizing Order of Growth</span><a href="#formalizing-order-of-growth" class="header-anchor"> </a></h4>
-<p>Big $ \Theta $ Definition: $ R(N) \in \Theta(f(N)) $ means there exist positive constants <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">k_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that:<br>
-$ k_1 \cdot f(N) \leq R(N) \leq k_2 \cdot f(N) $<br>
-for all values of $ N $ greater than some $ N_0 $</p>
-<p>Big $ O $:<br>
-Whereas Big Theta can informally be thought of as something like ‘equals’, Big O can be thought of as “less than or equals”.</p>
+<h4><span id="formalizing-order-of-growth">Formalizing Order of Growth</span><a href="#formalizing-order-of-growth" class="header-anchor"> </a></h4><p>Big $ \Theta $ Definition: $ R(N) \in \Theta(f(N)) $ means there exist positive constants $k_1$ and $k_2$ such that:<br>$ k_1 \cdot f(N) \leq R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
+<p>Big $ O $:<br>Whereas Big Theta can informally be thought of as something like ‘equals’, Big O can be thought of as “less than or equals”.</p>
 <ul>
 <li>$ N^3 + 3 N^4 \in \Theta(N^4) $</li>
 <li>$ N^3 + 3 N^4 \in O(N^4)  $</li>
@@ -433,34 +713,24 @@ Whereas Big Theta can informally be thought of as something like ‘equals’, B
 <li>$ N^3 + 3 N^4 \in O(N!) $</li>
 <li>$ N^3 + 3 N^4 \in O(N^N) $</li>
 </ul>
-<p>Big $ O $ Definition:<br>
-$ R(N) \in O(f(N)) $ means there exist positive constants <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that:<br>
-$ R(N) \leq k_2 \cdot f(N) $<br>
-for all values of $ N $ greater than some $ N_0 $</p>
-<h3><span id="asymptotics-2"> Asymptotics 2</span><a href="#asymptotics-2" class="header-anchor"> </a></h3>
-<h4><span id="binary-search"> Binary Search</span><a href="#binary-search" class="header-anchor"> </a></h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(String[] sorted, String x, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = x.compareTo(sorted[m]);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, lo, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, m + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Big $ O $ Definition:<br> $ R(N) \in O(f(N)) $ means there exist positive constants $k_2$ such that:<br>$ R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
+<h3><span id="asymptotics-2">Asymptotics 2</span><a href="#asymptotics-2" class="header-anchor"> </a></h3><h4><span id="binary-search">Binary Search</span><a href="#binary-search" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(String[] sorted, String x, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = x.compareTo(sorted[m]);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, lo, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, m + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Cost model: $ C(N) = Math.floor( log_2^{N} )  + 1 $</p>
-<h4><span id="handy-big-theta-properties"> Handy Big Theta Properties</span><a href="#handy-big-theta-properties" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="handy-big-theta-properties">Handy Big Theta Properties</span><a href="#handy-big-theta-properties" class="header-anchor"> </a></h4><ul>
 <li>the floor of f has same order of growth as f.</li>
 <li>the ceiling of f has same order of growth as f.</li>
 <li>logarithm base does not affect order of growth.</li>
 </ul>
-<p>Therefore:<br>
-$ C(N) \in \Theta(logN) $</p>
-<h4><span id="log-time-is-really-fast"> Log Time is Really Fast</span><a href="#log-time-is-really-fast" class="header-anchor"> </a></h4>
-<p>In practice, logarithmic time algorithms have almost constant runtimes.</p>
-<h4><span id="using-merge-to-speed-up-the-sorting-process"> Using Merge to Speed Up the Sorting Process</span><a href="#using-merge-to-speed-up-the-sorting-process" class="header-anchor"> </a></h4>
-<p>Merging can give us improvement over vanilla selection sort:</p>
+<p>Therefore:<br>$ C(N) \in \Theta(logN) $</p>
+<h4><span id="log-time-is-really-fast">Log Time is Really Fast</span><a href="#log-time-is-really-fast" class="header-anchor"> </a></h4><p>In practice, logarithmic time algorithms have almost constant runtimes.</p>
+<h4><span id="using-merge-to-speed-up-the-sorting-process">Using Merge to Speed Up the Sorting Process</span><a href="#using-merge-to-speed-up-the-sorting-process" class="header-anchor"> </a></h4><p>Merging can give us improvement over vanilla selection sort:</p>
 <ul>
 <li>Selection sort the left half: $ \Theta(N^2) $.</li>
 <li>Selection sort the right half: $ \Theta(N^2) $.</li>
 <li>Merge the results: $ \Theta(N) $</li>
 </ul>
 <p>Can do it recursively.</p>
-<h4><span id="mergesort"> Mergesort</span><a href="#mergesort" class="header-anchor"> </a></h4>
-<p>Mergesort does merges all the way down (no selection sort):</p>
+<h4><span id="mergesort">Mergesort</span><a href="#mergesort" class="header-anchor"> </a></h4><p>Mergesort does merges all the way down (no selection sort):</p>
 <ul>
 <li>If array is of size 1, return.</li>
 <li>Mergesort the left half.</li>
@@ -468,6 +738,17 @@ $ C(N) \in \Theta(logN) $</p>
 <li>Merge the results.</li>
 </ul>
 <p>Mergesort has worst case time $ \Theta(NlogN) $</p>
+<h3><span id="omega-amortized-analysis">Omega, Amortized Analysis</span><a href="#omega-amortized-analysis" class="header-anchor"> </a></h3><h4><span id="why-big-o-is-useful">Why Big O is useful?</span><a href="#why-big-o-is-useful" class="header-anchor"> </a></h4><p>Big Theta expresses the exact order of as a function of the input size. However, if the runtime depends on more than just the size of the input, then we must qualify our statements into different cases before using Big Theta. Big O does away with this annoyance. Rather than describe both the best and worse case, we can simply describe the worst case using big O.</p>
+<h4><span id="big-o-abuse">Big O Abuse</span><a href="#big-o-abuse" class="header-anchor"> </a></h4><p>Important: Big O does not mean “worst case”! Often abused to mean this.</p>
+<p>Sometimes don’t know the exact runtime, so use O to give an upper bound.</p>
+<h4><span id="big-omega">Big Omega</span><a href="#big-omega" class="header-anchor"> </a></h4><p>Whereas Big Theta can informally be thought of as something like “equals”, Big Omega can be thought of as “greater than or equal”.</p>
+<p>Formal Definition:<br>$ R(N) \in \Omega(f(N)) $ means there exists positive constant $ k_1 $ such that:<br>$ k_1 \cdot f(N) \leq R(N) $ for all values of $ N $ greater than some $ N_0 $.</p>
+<p>Two common use for Big Omega:</p>
+<ul>
+<li>Very careful proofs of Big Theta runtime.</li>
+<li>Providing lower bounds for the hardness of a problem.</li>
+</ul>
+<p>Important：Big Omega does NOT mean best case.</p>
 
           
         
@@ -558,6 +839,28 @@ $ C(N) \in \Theta(logN) $</p>
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -587,7 +890,36 @@ $ C(N) \in \Theta(logN) $</p>
       
         
           
-            
+            <h2><span id="access-control">Access Control</span><a href="#access-control" class="header-anchor"> </a></h2><h3><span id="access-control-with-inheritance-and-packages">Access Control with Inheritance and Packages</span><a href="#access-control-with-inheritance-and-packages" class="header-anchor"> </a></h3><p><strong>Protected</strong> modifier allows package-buddies and subclasses to use a class member (i.e. field/method/constructor).</p>
+<ul>
+<li>Outside cannot access.</li>
+</ul>
+<p><strong>Package private</strong><br>Using no modifier allows classes from the same package, but not subclasses, to access the member.</p>
+<p><img src="/2020/03/08/CS61B-Access-Control/table.jpg" alt></p>
+<h3><span id="the-default-package">The Default Package</span><a href="#the-default-package" class="header-anchor"> </a></h3><ul>
+<li>As mentioned earlier, code without a package label is part of an unnamed package, a.k.a. the “default package”.</li>
+</ul>
+<p>Don’t have any access modifiers or package names?</p>
+<ul>
+<li>Everything is package-private.</li>
+<li>Everthing is part of the same(unnamed) default package.</li>
+</ul>
+<h3><span id="access-is-based-only-on-static-types">Access is Based Only on Static Types</span><a href="#access-is-based-only-on-static-types" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BlackHole</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Object x)</span></span>;  <span class="comment">// add might look package private, actually public, because it is an interface</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It is important that for interfaces, the default access for its method is actually public, and not package-private.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreationUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BlackHole <span class="title">hirsute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HasHair();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HasHair</span> <span class="keyword">implements</span> <span class="title">BlackHole</span> </span>&#123;</span><br><span class="line">    Object[] items;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object o)</span> </span>&#123; ... &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> CreationUtils.hirsute;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">demoAccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BlackHole b = hirsute();</span><br><span class="line">        b.add(<span class="string">"horse"</span>);</span><br><span class="line">        b.get(<span class="number">0</span>);</span><br><span class="line">        HasHair hb = (HasHair) b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>b.get(0): This line errors because b is of static type <em>BlackHole</em>, but the <em>BlackHole</em> interface does not define a <em>get</em> method. Even though you and I both know that b is dynamically a <em>HasHair</em>, and thus has the <em>get</em> method, the compiler bases its checks off the static type.</p>
+</li>
+<li><p>HasHair hb = (HasHair) b; notice that <em>HasHair</em> class is not a public class- it’s package-private. This means that <em>Client</em>, a class outside of the <em>universe</em> package, can’t see that the <em>HasHair</em> class exists.</p>
+</li>
+</ul>
+<h3><span id="summary">Summary</span><a href="#summary" class="header-anchor"> </a></h3><p>Access Levels:</p>
+<ul>
+<li>Private declarations are parts of the implementation of a class that only that class needs.</li>
+<li>Package-private declarations are parts of the implementation of a package that other members of the package will need to complete the implementation.</li>
+<li>Protected declarations are things that subtypes might need, but subtype clients will not.</li>
+<li>Public declarations are declarations of the specification for the package, i.e. what clients of the package can rely on. Once deployed, these should not change.</li>
+</ul>
+
           
         
       
@@ -677,6 +1009,28 @@ $ C(N) \in \Theta(logN) $</p>
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -706,7 +1060,25 @@ $ C(N) \in \Theta(logN) $</p>
       
         
           
-            
+            <h2><span id="packages-and-jar-files">Packages and JAR files</span><a href="#packages-and-jar-files" class="header-anchor"> </a></h2><h3><span id="packages">Packages</span><a href="#packages" class="header-anchor"> </a></h3><p>To address the fact that classes might share names:</p>
+<ul>
+<li>A package is a <strong>namespace</strong> that organizes classes and interfaces.</li>
+<li>Naming convention: Package name starts with website address (backwards).</li>
+</ul>
+<p><strong>Creating a Package</strong><br>Two steps:</p>
+<ul>
+<li>At the top of every file in the package, put the package name.</li>
+<li>Make sure that the file is stored in a folder with the appropriate folder name. For a package with name <em>ug.joshh.animal</em>, use folder <em>ug/joshh/animal</em>.</li>
+</ul>
+<p><strong>Using Packages</strong><br>As we saw in a previous lecture, to use a class from Package A in a class from Package B, we use the <strong>canonical name.</strong></p>
+<p>For example, in the DogLauncher class, which is not part of the ug.joshh.animal package, can create a Dog using the syntax below.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ug.joshh.animal.Dog d = <span class="keyword">new</span> ug.joshh.animal.Dog(...);</span><br></pre></td></tr></table></figure><br>By using an <strong>import</strong> statement, we can use the <strong>simple name</strong> instead.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.Dog;</span><br><span class="line">...</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure><br><strong>The Default Package</strong><br>Any Java class without a package name at the top are part of the “default” package. </p>
+<p>Idea: Ensure that we never have two classes with the same name. And you cannot import code from the default package.</p>
+<h3><span id="jar-files">JAR Files</span><a href="#jar-files" class="header-anchor"> </a></h3><p>JAR files are just zip files.</p>
+<ul>
+<li>They do not keep your code safe.</li>
+<li>Easy to unzip and transform back into .Java files.</li>
+</ul>
+
           
         
       
@@ -1186,12 +1558,38 @@ That is to say, we need Java know that we have iterator() in out <em>ArraySet</e
       
         
           
-            <h2><span id="exceptions"> Exceptions</span><a href="#exceptions" class="header-anchor"> </a></h2>
-<p>Basic idea:</p>
+            <h2><span id="exceptions">Exceptions</span><a href="#exceptions" class="header-anchor"> </a></h2><p>Basic idea:</p>
 <ul>
-<li>When something goes really wrong, break the normal flow of control.</li>
+<li>When something goes really wrong, break the normal flow of control.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You can't add null to an ArraySet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="catching-exceptions">Catching Exceptions</span><a href="#catching-exceptions" class="header-anchor"> </a></h3>So far, thrown exceptions cause code to crash.</li>
+<li>Can ‘catch’ exceptions instead, preventing program from crashing. Use keywords <strong>try</strong> and <strong>catch</strong> to break normal flow.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You can't add null to an ArraySet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Dog d = <span class="keyword">new</span> Dog(<span class="string">"Lucy"</span>, <span class="string">"Retriever"</span>, <span class="number">80</span>);</span><br><span class="line">d.becomeAngry();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    d.receivePat();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Tried ot pat:"</span> + e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(d);</span><br></pre></td></tr></table></figure>
+<p>May include corrective action in the catch.</p>
+<h3><span id="the-philosophy-of-exceptions">The Philosophy Of Exceptions</span><a href="#the-philosophy-of-exceptions" class="header-anchor"> </a></h3><p>Allows you to keep error handling code seperate from ‘real’ code.</p>
+<ul>
+<li>Consider pseudocode that reads a file:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    open the file;             <span class="comment">// what if the file doesn't exist</span></span><br><span class="line">    determine its size;</span><br><span class="line">    allocate that much memory;   <span class="comment">// what if there's not enough memory</span></span><br><span class="line">    read the file into memory;   <span class="comment">// what happens if reading fails?</span></span><br><span class="line">    close the file;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+One naive approach:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    open the file;</span><br><span class="line">    <span class="keyword">if</span> (theFileIsOpen) &#123;</span><br><span class="line">        determine the size;</span><br><span class="line">        <span class="keyword">if</span> (gotTheFileLength) &#123;</span><br><span class="line">            allocate that much memory;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> error(<span class="string">"fileLengthError"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (gotEnoughMemory) &#123;</span><br><span class="line">            read the file into memory;</span><br><span class="line">            <span class="keyword">if</span> (readFailed) &#123;</span><br><span class="line">                <span class="keyword">return</span> error(<span class="string">"readError"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> error(<span class="string">"memeryError"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> error(<span class="string">"fileOpenError"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+Instead, we can do like below:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        open the file;</span><br><span class="line">        determine its size;</span><br><span class="line">        allocate that much memory;</span><br><span class="line">        read the file into memory;</span><br><span class="line">        close the file;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (fileOpenFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (sizeDeterminationFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (memoryAllocationFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (readFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (fileCloseFiled) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+When an exception is thrown, it descends the call stack.</li>
+<li>If exceptions reaches the bottom of the stack, the program crashes and Java provides a message for the user.</li>
+</ul>
+<h3><span id="checked-vs-unchecked-exceptions">Checked vs Unchecked Exceptions</span><a href="#checked-vs-unchecked-exceptions" class="header-anchor"> </a></h3><p>Occasionally, you’ll find that your code won’t even compile, for the mysterious reason that an exception “must be caught or declared to be thrown”.</p>
+<ul>
+<li>The basic idea: Some exceptions are considered so disgusting by the compiler that you MUST handle them somehow.</li>
+<li>We call these “checked” exceptions.</li>
+</ul>
+<p>By contrast unchecked exceptions have no such restrictions.</p>
+<p><img src="/2020/03/07/CS61B-Exceptions/pic.jpg" alt></p>
+<h4><span id="checking-exceptions">Checking Exceptions</span><a href="#checking-exceptions" class="header-anchor"> </a></h4><p>Compiler requires that all checked exceptions be <strong>caught</strong> or <strong>specified</strong>.<br>Two ways to satisfy compiler:</p>
+<ul>
+<li>Catch: Use a catch block after potential exception.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gulgate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (today == <span class="string">"Thursday"</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"hi"</span>);</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(<span class="string">"psych!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Specify method as dangerous with <strong>throws</strong> keyword.<br>— Defers to someone else to handle exception.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gulgate</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ... <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"hi"</span>); ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If a method uses a ‘dangerous’ method (i.e. might throw a checked exception), it becomes dangerous itself.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Eagle.gulgate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>So we have to:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">"Averted!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Also we can:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1756,262 +2154,6 @@ Suppose we want to add a <strong>default method</strong> purge(Item x) <strong>t
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/CS61B-Abstract-Data-Types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/03/CS61B-Abstract-Data-Types/" itemprop="url">CS61B-Abstract Data Types</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T02:46:58+08:00">
-                2020-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="abstract-data-types"> Abstract Data Types</span><a href="#abstract-data-types" class="header-anchor"> </a></h2>
-<p>An <strong>Abstract Data Types(ADT)</strong> is defined only by its operations, not by its implementation.</p>
-<p>Deque ADT:</p>
-<ul>
-<li>addFirst(Item x);</li>
-<li>addLast(Item );</li>
-<li>boolean isEmpty();</li>
-<li>int size();</li>
-<li>printDeque();</li>
-<li>Item removeFirst();</li>
-<li>Item removeLast();</li>
-<li>Item get(int index);</li>
-</ul>
-<p>Stack ADT:<br>
-The Stack ADT supports the following operations:</p>
-<ul>
-<li>push(int x): Puts x on top of the stack.</li>
-<li>int pop(): Removes and returns the top item from the stack.</li>
-</ul>
-<p>Linked List is better!</p>
-<p>GrabBag ADT:</p>
-<ul>
-<li>insert(int x): Inserts x into the grab bag.</li>
-<li>int remove(): Removes a random item from the bag.</li>
-<li>int sample(): Samples a random item from the bag. (without removing!)</li>
-<li>int size(): Number of items in the bag.</li>
-</ul>
-<p>Array is better!</p>
-<h3><span id="collections"> Collections</span><a href="#collections" class="header-anchor"> </a></h3>
-<p>Among the most important interfaces in the Java.util library are those that extend the Collection interface (btw interfaces can extend other interfaces).</p>
-<ul>
-<li>Lists of things.</li>
-<li>Sets of things.</li>
-<li>Mappings between items</li>
-</ul>
-<h3><span id="java-libraries"> Java Libraries</span><a href="#java-libraries" class="header-anchor"> </a></h3>
-<p>The built-in Java.util package provides a number of useful:</p>
-<ul>
-<li>Interfaces: ADTs(lists, sets, maps, priority queues, etc.) and other stuff.</li>
-<li>Implementations: Concrete classes you can see.</li>
-</ul>
-<p><img src="/2020/03/03/CS61B-Abstract-Data-Types/concrete.jpg" alt></p>
-<h3><span id="tasks"> Tasks</span><a href="#tasks" class="header-anchor"> </a></h3>
-<p>3 tasks, given the text of a book:</p>
-<ul>
-<li>Create a list of all words in the book.</li>
-<li>Count the number of unique words.</li>
-<li>Keep track of the number of times that specific words are mentioned.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getWords</span><span class="params">(String inputFileName)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; lst = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    In in = <span class="keyword">new</span> In();</span><br><span class="line">    <span class="keyword">while</span>(!in.isEmpty()) &#123;</span><br><span class="line">        lst.add(in.readString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countUniqueWords</span><span class="params">(List&lt;String&gt; words)</span> </span>&#123;</span><br><span class="line">    Set&lt;String&gt; ss = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String s : words) &#123;</span><br><span class="line">        ss.add(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ss.size();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Integer&gt; <span class="title">collectWordCount</span><span class="params">(List&lt;String&gt; words, List&lt;String&gt; targets)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Integer&gt; counts = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String t : targets) &#123;</span><br><span class="line">        counts.put(t, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (String s : words) &#123;</span><br><span class="line">        <span class="keyword">if</span> (counts.containsKey(s)) &#123;</span><br><span class="line">            <span class="keyword">int</span> oldCount = counts.get(s);</span><br><span class="line">            counts.put(s, oldCount + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> counts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="abstract-classes"> Abstract classes</span><a href="#abstract-classes" class="header-anchor"> </a></h3>
-<h4><span id="more-about-interfaces"> More about Interfaces</span><a href="#more-about-interfaces" class="header-anchor"> </a></h4>
-<p><strong>A closer look at interfaces</strong><br>
-Interfaces may combine a mix of <strong>abstract</strong> and <strong>default</strong> methods.</p>
-<ul>
-<li>Abstract methods are <strong>what</strong>. And must be overridden by subclass.</li>
-<li>Default methods are <strong>how</strong>.</li>
-</ul>
-<p><strong>Remark:</strong></p>
-<ul>
-<li>Every method in an interface must be public, so <strong>public</strong> is redundant.</li>
-<li>Unless you use the keyword <strong>default</strong>, a method will be <strong>abstract</strong>.</li>
-</ul>
-<p>More interface details:</p>
-<ul>
-<li>Can provide variables, but they are <strong>public static final</strong>.<br>
-– final means the value can never change.</li>
-<li>A class can implement multiple interfaces.</li>
-</ul>
-<h4><span id="interfaces-summary"> Interfaces Summary</span><a href="#interfaces-summary" class="header-anchor"> </a></h4>
-<ul>
-<li>Cannot be instantiated.</li>
-<li>Can provide either <strong>abstract</strong> or <strong>concrete</strong> methods.<br>
-– Use no keyword for abstract methods.<br>
-– Use <strong>default</strong> keyword for concrete methods.</li>
-<li>Can provide only public static final variables.</li>
-<li>Can provide only public methods.</li>
-</ul>
-<h4><span id="introducing-abstract-classes"> Introducing: Abstract Classes</span><a href="#introducing-abstract-classes" class="header-anchor"> </a></h4>
-<p>Abstract classes are an intermediate level between interfaces and classes.</p>
-<ul>
-<li>Cannot be instantiated.</li>
-<li>Can provide either <strong>abstract</strong> or <strong>concrete</strong> methods.<br>
-– Use <strong>abstract</strong> keyword for abstract methods.<br>
-– Use no keyword for concrete methods.</li>
-<li>Can provide variables (any kind).</li>
-<li>Can provide methods (any kind).</li>
-</ul>
-<h4><span id="summary-abstract-classes-vs-interfaces"> Summary: Abstract Classes vs. Interfaces</span><a href="#summary-abstract-classes-vs-interfaces" class="header-anchor"> </a></h4>
-<p>Interfaces:</p>
-<ul>
-<li>Primarily for interface inheritance. Limited implementation inheritance.</li>
-<li>Classes can implement multiple interfaces.</li>
-</ul>
-<p>Abstract classes:</p>
-<ul>
-<li>Can do anything an interface can do, and more.</li>
-<li>Subclasses only extend one abstract class.</li>
-</ul>
-<h3><span id="packages"> Packages</span><a href="#packages" class="header-anchor"> </a></h3>
-<p>Package names <strong>give a canonical name for everything.</strong> Canonical means a unique representation for a thing.</p>
-<p>To address the fact that classes might share names:</p>
-<ul>
-<li>A package is a <strong>namespace</strong> that organizes classes and interfaces.</li>
-<li>Naming convention: Package name starts with website address(backwards)</li>
-</ul>
-<p>Typing out the entire name can be annoying.</p>
-<ul>
-<li>Can use import statement to provide shorthand notation for usage of a single class in a package.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.Dog;</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Wildcard import: Also possible to import multiple classes, but this is often a bad idea.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.*;</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2062,7 +2204,7 @@ Interfaces may combine a mix of <strong>abstract</strong> and <strong>default</s
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2073,7 +2215,7 @@ Interfaces may combine a mix of <strong>abstract</strong> and <strong>default</s
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

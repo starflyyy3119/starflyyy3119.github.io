@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Asymptotics   Some terms   Module: A set of methods that work together to perform some task or set of related tasks. Encapsulated: A module is said to be encapsulated if its implementation is complet">
+<meta name="description" content="Asymptotics Some terms  Module: A set of methods that work together to perform some task or set of related tasks. Encapsulated: A module is said to be encapsulated if its implementation is completely">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B-Efficient Programming">
 <meta property="og:url" content="http://yoursite.com/2020/03/10/CS61B-Efficient-Programming/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Asymptotics   Some terms   Module: A set of methods that work together to perform some task or set of related tasks. Encapsulated: A module is said to be encapsulated if its implementation is complet">
+<meta property="og:description" content="Asymptotics Some terms  Module: A set of methods that work together to perform some task or set of related tasks. Encapsulated: A module is said to be encapsulated if its implementation is completely">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-10T06:40:27.000Z">
-<meta property="article:modified_time" content="2020-03-12T04:02:52.301Z">
+<meta property="article:modified_time" content="2020-03-12T18:01:11.464Z">
 <meta property="article:author" content="Starfly">
 <meta property="article:tag" content="CS61B">
 <meta name="twitter:card" content="summary">
@@ -342,36 +342,22 @@
       
 
       
-        <h2><span id="asymptotics"> Asymptotics</span><a href="#asymptotics" class="header-anchor"> </a></h2>
-<h3><span id="some-terms"> Some terms</span><a href="#some-terms" class="header-anchor"> </a></h3>
-<ul>
+        <h2><span id="asymptotics">Asymptotics</span><a href="#asymptotics" class="header-anchor"> </a></h2><h3><span id="some-terms">Some terms</span><a href="#some-terms" class="header-anchor"> </a></h3><ul>
 <li>Module: A set of methods that work together to perform some task or set of related tasks.</li>
 <li>Encapsulated: A module is said to be encapsulated if its implementation is completely hidden, and it can be accessed only through a documented interface.</li>
 </ul>
-<h4><span id="api-s"> API’s</span><a href="#api-s" class="header-anchor"> </a></h4>
-<p>An API(Application Programming Interface) of an ADT is the list of constructors and the methods and a short description of each.</p>
+<h4><span id="api-s">API’s</span><a href="#api-s" class="header-anchor"> </a></h4><p>An API(Application Programming Interface) of an ADT is the list of constructors and the methods and a short description of each.</p>
 <p>API consists of syntactic and semantic specification.</p>
 <ul>
-<li>Compilers verifies that <strong>syntax</strong> is met.<br>
-– A.K.A, everything specified in the API is present.</li>
-<li>Tests help verify that <strong>semantics</strong> are correct.<br>
-– A.K.A everything actually works they way it should.</li>
+<li>Compilers verifies that <strong>syntax</strong> is met.<br>— A.K.A, everything specified in the API is present.</li>
+<li>Tests help verify that <strong>semantics</strong> are correct.<br>— A.K.A everything actually works they way it should.</li>
 </ul>
-<h4><span id="adt-s"> ADT’s</span><a href="#adt-s" class="header-anchor"> </a></h4>
-<p>ADT’s (Abstract Data Structures) are high-level types that are defined by their behaviors, not their implementations.</p>
+<h4><span id="adt-s">ADT’s</span><a href="#adt-s" class="header-anchor"> </a></h4><p>ADT’s (Abstract Data Structures) are high-level types that are defined by their behaviors, not their implementations.</p>
 <p>i.e. Deuqe in Proj1 was an ADT that had certain behaviors (addFirst, addLast, etc.) But, the data structures we usually used to implement it was ArrayDeque and LinkedListDeque.</p>
 <p>Some ADT’s are actually special cases of other ADT’s. For example, Stacks and Queues are just lists that have even more specific behavior.</p>
-<h4><span id="writing-a-stack-in-different-ways"> Writing a stack in different ways</span><a href="#writing-a-stack-in-different-ways" class="header-anchor"> </a></h4>
-<p>Extension:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionStack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedList</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Delegation:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAdapter</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List L;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StackAdapter</span><span class="params">(List&lt;Item&gt; worker)</span> </span>&#123;</span><br><span class="line">        L = worker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        L.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This approach is similar to the previous one, except it can use any class that implements the List interface (Linked List, ArrayList, etc).</p>
-<p><strong>Delegation vs. Extension</strong><br>
-Extension tends to be used when you know what is going on in the parent class. In other words, you know how the methods are implemented. Additionally, with extension, you are basically saying that the class you are extending from acts similarly to the one that is doing the extending. On the other hand, Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
-<h3><span id="asymptotics-1-an-introduction-to-asymptotic-analysis"> Asymptotics 1: An introduction to Asymptotic Analysis</span><a href="#asymptotics-1-an-introduction-to-asymptotic-analysis" class="header-anchor"> </a></h3>
-<h4><span id="runtime-characterization"> Runtime Characterization</span><a href="#runtime-characterization" class="header-anchor"> </a></h4>
-<p>Technique 1: Measure execution time in seconds using a client program.</p>
+<h4><span id="writing-a-stack-in-different-ways">Writing a stack in different ways</span><a href="#writing-a-stack-in-different-ways" class="header-anchor"> </a></h4><p>Extension:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionStack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedList</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Delegation:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAdapter</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List L;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StackAdapter</span><span class="params">(List&lt;Item&gt; worker)</span> </span>&#123;</span><br><span class="line">        L = worker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        L.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This approach is similar to the previous one, except it can use any class that implements the List interface (Linked List, ArrayList, etc).</p>
+<p><strong>Delegation vs. Extension</strong><br>Extension tends to be used when you know what is going on in the parent class. In other words, you know how the methods are implemented. Additionally, with extension, you are basically saying that the class you are extending from acts similarly to the one that is doing the extending. On the other hand, Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
+<h3><span id="asymptotics-1-an-introduction-to-asymptotic-analysis">Asymptotics 1: An introduction to Asymptotic Analysis</span><a href="#asymptotics-1-an-introduction-to-asymptotic-analysis" class="header-anchor"> </a></h3><h4><span id="runtime-characterization">Runtime Characterization</span><a href="#runtime-characterization" class="header-anchor"> </a></h4><p>Technique 1: Measure execution time in seconds using a client program.</p>
 <ul>
 <li>Good: Easy to measure, meaning is obvious.</li>
 <li>Bad: May require large amounts of computation time. Result varies with machine, compiler, input data, etc.</li>
@@ -386,8 +372,7 @@ Extension tends to be used when you know what is going on in the parent class. I
 <li>Good: Machine independent. Input dependence captured in model. Tells you how algorithm scales.</li>
 <li>Bad: Even more tedious to compute. Doesn’t tell you actual time.</li>
 </ul>
-<h4><span id="asymptotic-behavior"> Asymptotic Behavior</span><a href="#asymptotic-behavior" class="header-anchor"> </a></h4>
-<p>In most cases, we care only about asymptotic behavior, i.e. what happens for very large N.</p>
+<h4><span id="asymptotic-behavior">Asymptotic Behavior</span><a href="#asymptotic-behavior" class="header-anchor"> </a></h4><p>In most cases, we care only about asymptotic behavior, i.e. what happens for very large N.</p>
 <ul>
 <li>Simulation of billions of interacting paricles.</li>
 <li>Social network with billions of users.</li>
@@ -412,20 +397,13 @@ Extension tends to be used when you know what is going on in the parent class. I
 <li>Convert table into a worst case order of growth using 4 simplifications.</li>
 </ul>
 <p>By using our simplifications from the outset, we can avoid building the table at all.</p>
-<h4><span id="simplified-analysis-process"> Simplified Analysis Process</span><a href="#simplified-analysis-process" class="header-anchor"> </a></h4>
-<p>Rather than building the entire table, we can instead:</p>
+<h4><span id="simplified-analysis-process">Simplified Analysis Process</span><a href="#simplified-analysis-process" class="header-anchor"> </a></h4><p>Rather than building the entire table, we can instead:</p>
 <ul>
 <li>Choose a representative operation to count (a.k.a. cost model)</li>
-<li>Figure out the order of growth for the count of the representative operation by either:<br>
-– Making an exact count, then discarding the unnecessary pieces.<br>
-– Using intuition and inspection to determine order of growth</li>
+<li>Figure out the order of growth for the count of the representative operation by either:<br>— Making an exact count, then discarding the unnecessary pieces.<br>— Using intuition and inspection to determine order of growth</li>
 </ul>
-<h4><span id="formalizing-order-of-growth"> Formalizing Order of Growth</span><a href="#formalizing-order-of-growth" class="header-anchor"> </a></h4>
-<p>Big $ \Theta $ Definition: $ R(N) \in \Theta(f(N)) $ means there exist positive constants <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">k_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that:<br>
-$ k_1 \cdot f(N) \leq R(N) \leq k_2 \cdot f(N) $<br>
-for all values of $ N $ greater than some $ N_0 $</p>
-<p>Big $ O $:<br>
-Whereas Big Theta can informally be thought of as something like ‘equals’, Big O can be thought of as “less than or equals”.</p>
+<h4><span id="formalizing-order-of-growth">Formalizing Order of Growth</span><a href="#formalizing-order-of-growth" class="header-anchor"> </a></h4><p>Big $ \Theta $ Definition: $ R(N) \in \Theta(f(N)) $ means there exist positive constants $k_1$ and $k_2$ such that:<br>$ k_1 \cdot f(N) \leq R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
+<p>Big $ O $:<br>Whereas Big Theta can informally be thought of as something like ‘equals’, Big O can be thought of as “less than or equals”.</p>
 <ul>
 <li>$ N^3 + 3 N^4 \in \Theta(N^4) $</li>
 <li>$ N^3 + 3 N^4 \in O(N^4)  $</li>
@@ -433,34 +411,24 @@ Whereas Big Theta can informally be thought of as something like ‘equals’, B
 <li>$ N^3 + 3 N^4 \in O(N!) $</li>
 <li>$ N^3 + 3 N^4 \in O(N^N) $</li>
 </ul>
-<p>Big $ O $ Definition:<br>
-$ R(N) \in O(f(N)) $ means there exist positive constants <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that:<br>
-$ R(N) \leq k_2 \cdot f(N) $<br>
-for all values of $ N $ greater than some $ N_0 $</p>
-<h3><span id="asymptotics-2"> Asymptotics 2</span><a href="#asymptotics-2" class="header-anchor"> </a></h3>
-<h4><span id="binary-search"> Binary Search</span><a href="#binary-search" class="header-anchor"> </a></h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(String[] sorted, String x, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = x.compareTo(sorted[m]);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, lo, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, m + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Big $ O $ Definition:<br> $ R(N) \in O(f(N)) $ means there exist positive constants $k_2$ such that:<br>$ R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
+<h3><span id="asymptotics-2">Asymptotics 2</span><a href="#asymptotics-2" class="header-anchor"> </a></h3><h4><span id="binary-search">Binary Search</span><a href="#binary-search" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(String[] sorted, String x, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = x.compareTo(sorted[m]);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, lo, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, m + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Cost model: $ C(N) = Math.floor( log_2^{N} )  + 1 $</p>
-<h4><span id="handy-big-theta-properties"> Handy Big Theta Properties</span><a href="#handy-big-theta-properties" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="handy-big-theta-properties">Handy Big Theta Properties</span><a href="#handy-big-theta-properties" class="header-anchor"> </a></h4><ul>
 <li>the floor of f has same order of growth as f.</li>
 <li>the ceiling of f has same order of growth as f.</li>
 <li>logarithm base does not affect order of growth.</li>
 </ul>
-<p>Therefore:<br>
-$ C(N) \in \Theta(logN) $</p>
-<h4><span id="log-time-is-really-fast"> Log Time is Really Fast</span><a href="#log-time-is-really-fast" class="header-anchor"> </a></h4>
-<p>In practice, logarithmic time algorithms have almost constant runtimes.</p>
-<h4><span id="using-merge-to-speed-up-the-sorting-process"> Using Merge to Speed Up the Sorting Process</span><a href="#using-merge-to-speed-up-the-sorting-process" class="header-anchor"> </a></h4>
-<p>Merging can give us improvement over vanilla selection sort:</p>
+<p>Therefore:<br>$ C(N) \in \Theta(logN) $</p>
+<h4><span id="log-time-is-really-fast">Log Time is Really Fast</span><a href="#log-time-is-really-fast" class="header-anchor"> </a></h4><p>In practice, logarithmic time algorithms have almost constant runtimes.</p>
+<h4><span id="using-merge-to-speed-up-the-sorting-process">Using Merge to Speed Up the Sorting Process</span><a href="#using-merge-to-speed-up-the-sorting-process" class="header-anchor"> </a></h4><p>Merging can give us improvement over vanilla selection sort:</p>
 <ul>
 <li>Selection sort the left half: $ \Theta(N^2) $.</li>
 <li>Selection sort the right half: $ \Theta(N^2) $.</li>
 <li>Merge the results: $ \Theta(N) $</li>
 </ul>
 <p>Can do it recursively.</p>
-<h4><span id="mergesort"> Mergesort</span><a href="#mergesort" class="header-anchor"> </a></h4>
-<p>Mergesort does merges all the way down (no selection sort):</p>
+<h4><span id="mergesort">Mergesort</span><a href="#mergesort" class="header-anchor"> </a></h4><p>Mergesort does merges all the way down (no selection sort):</p>
 <ul>
 <li>If array is of size 1, return.</li>
 <li>Mergesort the left half.</li>
@@ -468,6 +436,17 @@ $ C(N) \in \Theta(logN) $</p>
 <li>Merge the results.</li>
 </ul>
 <p>Mergesort has worst case time $ \Theta(NlogN) $</p>
+<h3><span id="omega-amortized-analysis">Omega, Amortized Analysis</span><a href="#omega-amortized-analysis" class="header-anchor"> </a></h3><h4><span id="why-big-o-is-useful">Why Big O is useful?</span><a href="#why-big-o-is-useful" class="header-anchor"> </a></h4><p>Big Theta expresses the exact order of as a function of the input size. However, if the runtime depends on more than just the size of the input, then we must qualify our statements into different cases before using Big Theta. Big O does away with this annoyance. Rather than describe both the best and worse case, we can simply describe the worst case using big O.</p>
+<h4><span id="big-o-abuse">Big O Abuse</span><a href="#big-o-abuse" class="header-anchor"> </a></h4><p>Important: Big O does not mean “worst case”! Often abused to mean this.</p>
+<p>Sometimes don’t know the exact runtime, so use O to give an upper bound.</p>
+<h4><span id="big-omega">Big Omega</span><a href="#big-omega" class="header-anchor"> </a></h4><p>Whereas Big Theta can informally be thought of as something like “equals”, Big Omega can be thought of as “greater than or equal”.</p>
+<p>Formal Definition:<br>$ R(N) \in \Omega(f(N)) $ means there exists positive constant $ k_1 $ such that:<br>$ k_1 \cdot f(N) \leq R(N) $ for all values of $ N $ greater than some $ N_0 $.</p>
+<p>Two common use for Big Omega:</p>
+<ul>
+<li>Very careful proofs of Big Theta runtime.</li>
+<li>Providing lower bounds for the hardness of a problem.</li>
+</ul>
+<p>Important：Big Omega does NOT mean best case.</p>
 
       
     </div>
@@ -507,6 +486,10 @@ $ C(N) \in \Theta(logN) $</p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/CS61B-Disjoint-Sets/" rel="prev" title="CS61B-Disjoint Sets">
+                CS61B-Disjoint Sets <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -583,7 +566,7 @@ $ C(N) \in \Theta(logN) $</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -594,7 +577,7 @@ $ C(N) \in \Theta(logN) $</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -638,7 +621,7 @@ $ C(N) \in \Theta(logN) $</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Asymptotics </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> Some terms </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text"> API’s </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.2.</span> <span class="nav-text"> ADT’s </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.3.</span> <span class="nav-text"> Writing a stack in different ways </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Asymptotics 1: An introduction to Asymptotic Analysis </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.</span> <span class="nav-text"> Runtime Characterization </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.2.</span> <span class="nav-text"> Asymptotic Behavior </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.3.</span> <span class="nav-text"> Simplified Analysis Process </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.4.</span> <span class="nav-text"> Formalizing Order of Growth </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Asymptotics 2 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Binary Search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Handy Big Theta Properties </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Log Time is Really Fast </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text"> Using Merge to Speed Up the Sorting Process </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Mergesort </span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Asymptotics </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Some terms </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text">API’s </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.2.</span> <span class="nav-text">ADT’s </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.3.</span> <span class="nav-text">Writing a stack in different ways </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Asymptotics 1: An introduction to Asymptotic Analysis </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.</span> <span class="nav-text">Runtime Characterization </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.2.</span> <span class="nav-text">Asymptotic Behavior </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.3.</span> <span class="nav-text">Simplified Analysis Process </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.4.</span> <span class="nav-text">Formalizing Order of Growth </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Asymptotics 2 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text">Binary Search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text">Handy Big Theta Properties </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text">Log Time is Really Fast </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text">Using Merge to Speed Up the Sorting Process </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text">Mergesort </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">Omega, Amortized Analysis </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.1.</span> <span class="nav-text">Why Big O is useful? </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.2.</span> <span class="nav-text">Big O Abuse </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.4.3.</span> <span class="nav-text">Big Omega </span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
