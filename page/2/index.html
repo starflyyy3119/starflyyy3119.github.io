@@ -249,6 +249,375 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Lists-Sets-ArraySet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/07/CS61B-Lists-Sets-ArraySet/" itemprop="url">CS61B-Lists,Sets,ArraySet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T10:10:40+08:00">
+                2020-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="list-in-java"> List in Java</span><a href="#list-in-java" class="header-anchor"> </a></h3>
+<p>We built a list from scratch, but Java provides a built-in <em>List</em> interface and several implementations, e.g. <em>ArrayList</em>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List61B&lt;Integer&gt; L = <span class="keyword">new</span> AList&lt;&gt;();</span><br><span class="line">L.addLast(<span class="number">5</span>);</span><br><span class="line">L.addLast(<span class="number">10</span>);</span><br><span class="line">L.addLast(<span class="number">15</span>);</span><br><span class="line">L.print();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.util.List&lt;Integer&gt; L = <span class="keyword">new</span> java.util.ArrayList&lt;&gt;();</span><br><span class="line">L.add(<span class="number">5</span>);</span><br><span class="line">L.add(<span class="number">10</span>);</span><br><span class="line">L.add(<span class="number">15</span>);</span><br><span class="line">System.out.println(L);</span><br></pre></td></tr></table></figure>
+<h3><span id="sets-in-java"> Sets in Java</span><a href="#sets-in-java" class="header-anchor"> </a></h3>
+<p>Stores a set of values with no duplicates. Has no sense of order.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; S = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">S.add(<span class="string">"Tokyo"</span>);</span><br><span class="line">S.add(<span class="string">"Beijing"</span>);</span><br><span class="line">S.add(<span class="string">"Lagos"</span>);</span><br><span class="line">S.add(<span class="string">"Sao Paulo"</span>);</span><br><span class="line">System.out.println(S.contains(<span class="string">"Tokyo"</span>));</span><br></pre></td></tr></table></figure>
+<p><strong>ArraySet Implementation</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySet</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> (T[]) array;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySet</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">        array = (T[]) <span class="keyword">new</span> Object[<span class="number">100</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!contains(value)) &#123;</span><br><span class="line">            array[size++] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value.equals(array[i])) &#123; <span class="keyword">return</span> <span class="keyword">true</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/CS61B-Industrial-Strength-Syntax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/06/CS61B-Industrial-Strength-Syntax/" itemprop="url">CS61B-Industrial Strength Syntax</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T01:32:06+08:00">
+                2020-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="automatic-conversions"> Automatic Conversions</span><a href="#automatic-conversions" class="header-anchor"> </a></h2>
+<h2><span id="autoboxing"> Autoboxing</span><a href="#autoboxing" class="header-anchor"> </a></h2>
+<h4><span id="primitives-cannot-be-used-as-actual-type-arguments"> Primitives Cannot Be Used as Actual Type Arguments</span><a href="#primitives-cannot-be-used-as-actual-type-arguments" class="header-anchor"> </a></h4>
+<p>We cannot use primitive type as actual type arguments.</p>
+<ul>
+<li>Code below causes a compile time error.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;<span class="keyword">int</span>&gt; L = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">int</span>&gt;();</span><br></pre></td></tr></table></figure>
+<h4><span id="reference-types"> Reference Types</span><a href="#reference-types" class="header-anchor"> </a></h4>
+<p>Reminder: Java has 8 primitive types. All other types are reference types.</p>
+<p>For each primitive type, there is a corresponding reference type called a wrapper class.</p>
+<ul>
+<li>For example, boolean’s wrapper class is Boolean.</li>
+</ul>
+<h4><span id="reference-types-as-actual-type-arguments"> Reference Types as Actual Type Arguments</span><a href="#reference-types-as-actual-type-arguments" class="header-anchor"> </a></h4>
+<p>Solution: Use wrapper type as actual type parameter instead of primitive type.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; L = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">L.add(<span class="keyword">new</span> Integer(<span class="number">5</span>));</span><br><span class="line">L.add(<span class="keyword">new</span> Integer(<span class="number">6</span>));</span><br><span class="line"><span class="keyword">int</span> first = L.get(<span class="number">0</span>).valueOf();</span><br></pre></td></tr></table></figure>
+<h4><span id="autoboxing"> Autoboxing</span><a href="#autoboxing" class="header-anchor"> </a></h4>
+<p>Autoboxing (auto-unboxing): Implicit conversions between wrapper/primitives.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; L = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">L.add(<span class="number">5</span>);</span><br><span class="line">L.add(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">int</span> first = L.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>Code above works even though we’re passing an int into an Integer parameter, and assigning a return value of type Integer to an int.</p>
+<p>Wrapper types and primitives can be used almost interchangeably.</p>
+<ul>
+<li>If Java code expects a wrapper type and gets a primitive, it is autoboxed.</li>
+<li>If the code expects a primitive and gets a wrapper, it is unboxed.</li>
+</ul>
+<p>Some notes:</p>
+<ul>
+<li>Arrays are never autoboxed/unboxed, e.g. an Integer[] cannot be used in place of int[] (or vice versa).</li>
+<li>Autoboxing / unboxing incurs a measurable perfomance impact. That is, code that relies on autoboxing and unboxing will be slower than code that eschews such automatic conversions.</li>
+<li>Wrapper types use MUCH more memory than primitive types.</li>
+</ul>
+<p>Some exercise:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bleepblorp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Integer x = <span class="keyword">new</span> Integer(<span class="number">5</span>);</span><br><span class="line">    System.out.println(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Assuming:</p>
+<ul>
+<li>Addresses are 64 bits.</li>
+<li>ints are 32 bits.</li>
+<li>All Java objects take 64 bits + their fields.</li>
+</ul>
+<p>How much total memory is used by bleepblorp to store its local variables?</p>
+<p>64 + 64 + 32 = 160 bits</p>
+<h3><span id="primitive-widening"> Primitive Widening</span><a href="#primitive-widening" class="header-anchor"> </a></h3>
+<p>A similar thing happens when moving from a primitive type with a narrower range to a wider range.</p>
+<ul>
+<li>In this case, we say the value is “widened”.</li>
+<li>Code below is fine since double is wider than int.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">blahDouble</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"double"</span> + x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">20</span>;</span><br><span class="line">blahDouble(x);</span><br></pre></td></tr></table></figure>
+<p>To move from a wider type to a narrower type, must use casting:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">blahInt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"int:"</span> + x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">20</span>;</span><br><span class="line">blahInt((<span class="keyword">int</span>) x);</span><br></pre></td></tr></table></figure>
+<h3><span id="immutability"> Immutability</span><a href="#immutability" class="header-anchor"> </a></h3>
+<p>An immutable data type is one for which an instance cannot change in any obsevable way after instantiation.</p>
+<p>Examples:</p>
+<ul>
+<li>Mutable: ArrayDeque, Planet.</li>
+<li>Immutable: Integer, String, Date.</li>
+</ul>
+<p>The <strong>final</strong> keyword will help the compiler ensure immutability.</p>
+<ul>
+<li>final variable means you will assign a value once (either in constructor of class or in initializer).</li>
+<li>Not necessary to have final to be immutable (e.g. Dog with private variables).</li>
+</ul>
+<p><strong>Immutability</strong><br>
+Advantage: Less to think about: Avoid bugs and makes debugging easier.</p>
+<ul>
+<li>Analogy: Immutable classes have some buttons you can press / windows you can look inside. Results are ALWAYS the same, no matter what.</li>
+</ul>
+<p>Disadvantage: Must create a new object anytime anything changes.</p>
+<p>Warning: Declaring a reference as <strong>final</strong> does not make object immutable.</p>
+<ul>
+<li>Example:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> ArrayDeque&lt;String&gt; d = <span class="keyword">new</span> ArrayDeque&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The d variable can never change, but the referenced deque can.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/CS61B-Midterm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2056,536 +2425,6 @@ If we add a pointer that points at the last node of the list, we have quick <em>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/CS61b-SLLists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/24/CS61b-SLLists/" itemprop="url">CS61b-SLLists</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-24T02:43:29+08:00">
-                2020-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="sllists"> SLLists</span><a href="#sllists" class="header-anchor"> </a></h2>
-<p>In practice, <em>IntList</em> suffers from the fact that it is fairly awkward to use, resulting in code that is hard to read and maintain.</p>
-<p>Fundamentally, the issue is that the <em>IntList</em> a <strong>naked recursive</strong> data structure.</p>
-<p>We now build a new class <em>SLList</em>, which much more closely resembles the list implementations that programmers use in mordern languages. We’ll do so by iteratively adding a sequence of improvements.</p>
-<h3><span id="improvement-1-rebranding"> Improvement 1: Rebranding</span><a href="#improvement-1-rebranding" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> IntList rest;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntList</span><span class="params">(<span class="keyword">int</span> f, IntList r)</span> </span>&#123;</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>While functional, “naked” linked lists like the one above are hard to use.</p>
-<ul>
-<li>Users of this class are probably going to need to know references very well, and be able to think recursively. Let’s make our users’ lives easier.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">    <span class="keyword">public</span> IntNode next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntNode</span><span class="params">(<span class="keyword">int</span> i, IntNode n)</span> </span>&#123;</span><br><span class="line">        item = i;</span><br><span class="line">        next = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="improvement-2-bureaucracy"> Improvement 2: Bureaucracy</span><a href="#improvement-2-bureaucracy" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> IntNode first;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* Creates a list of interger, namely 10*/</span></span><br><span class="line">        SLList L = <span class="keyword">new</span> SLList(<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Already, we can get a vague sense of why a <em>SLList</em> is better. Compare the creation of an <em>IntList</em> of one item to the creation of a <em>SLList</em> of one item.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntList L1 = <span class="keyword">new</span> IntList(<span class="number">5</span>, <span class="keyword">null</span>);</span><br><span class="line">SLList L2 = <span class="keyword">new</span> SLList(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-<p>The <em>SLList</em> hides the detail that there exists a null link from the user. The <em>SLList</em> class isn’t very useful yet, so let’s add an <em>addFirst</em> and <em>getFirst</em> method as simple warmup methods.</p>
-<h3><span id="addfirst-and-getfirst"> addFirst and getFirst</span><a href="#addfirst-and-getfirst" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> IntNode first;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Adds x to the front of this IntList. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns the first item in the list. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* Creates a list of interger, namely 10*/</span></span><br><span class="line">        SLList L = <span class="keyword">new</span> SLList(<span class="number">10</span>);</span><br><span class="line">        L.addFirst(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">int</span> x = L.getFirst();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>IntLists vs. SLLists</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLList L = <span class="keyword">new</span> SLList(<span class="number">15</span>);</span><br><span class="line">L.addFirst(<span class="number">10</span>);</span><br><span class="line">L.addFirst(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">int</span> x = L.getFirst();</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IntList L = <span class="keyword">new</span> IntList(<span class="number">15</span>, <span class="keyword">null</span>);</span><br><span class="line">L = <span class="keyword">new</span> IntList(L, <span class="number">10</span>);</span><br><span class="line">L = <span class="keyword">new</span> IntList(L, <span class="number">5</span>);</span><br><span class="line"><span class="keyword">int</span> x = L.first;</span><br></pre></td></tr></table></figure>
-<p>While functional, “naked” linked lists like the <em>IntList</em> class are hard to use.</p>
-<ul>
-<li>Users of <em>IntList</em> are need to know Java references well, and be able to think recursively.</li>
-<li><em>SLList</em> is much simpler to use. Simply use the provided methods.</li>
-</ul>
-<p>Essentially, the <em>SLList</em> class acts as a middleman between the list user and the naked recursive data structure.</p>
-<h3><span id="improvement-3-public-vs-private"> Improvement 3: Public vs. Private</span><a href="#improvement-3-public-vs-private" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Why Restrict Access?</strong><br>
-Hide implementation details from users of your class.</p>
-<ul>
-<li>Less for user of class to understand.</li>
-<li>Safe for you to change private methods (implementaion).</li>
-</ul>
-<p>Car analogy:</p>
-<ul>
-<li>Public: Pedals, Steering Wheel</li>
-<li>Private: Fuel line, Rotary valve</li>
-</ul>
-<p>In large software engineering projects, the <em>private</em> keyword is an invaluable signal that certain pieces of code should be ignored (and thus need not to be understood) by the end user. Likewise, the <em>public</em> keyword should be thought of as a declaration that a method is available and will work forever exactly as it does now.</p>
-<h3><span id="improvement-4-nested-classes"> Improvement 4: Nested Classes</span><a href="#improvement-4-nested-classes" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">        <span class="keyword">public</span> IntNode next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">IntNode</span><span class="params">(<span class="keyword">int</span> i, IntNode n)</span> </span>&#123;</span><br><span class="line">            item = i;</span><br><span class="line">            next = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Why Nested Classes?</strong><br>
-Nested Classes are useful when a class doesn’t stand on its own and is obviously subordinate to another class.</p>
-<ul>
-<li>Make the nested class private if other classes should never use the nested class.</li>
-</ul>
-<p>In my opinion, probably makes senses to make <em>IntNode</em> a nested private class.</p>
-<ul>
-<li>Hard to imagine other classes having a need to manipulate <em>IntNodes</em>.</li>
-</ul>
-<h3><span id="addlast-and-size"> addLast() and size()</span><a href="#addlast-and-size" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Adds an item to the end of the list*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    IntList p = first;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Move p until it reaches the end of list. */</span></span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    p.next = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Returns the size of the list that starts at IntNode p. */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">(IntNode p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + size(p.next);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> size(first);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="improvement-5-caching"> Improvement 5. Caching</span><a href="#improvement-5-caching" class="header-anchor"> </a></h3>
-<p>Goal: Modify SLList so that the execution time of <em>size()</em> is always fast(i.e. independent of the size of the list).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">        <span class="keyword">public</span> IntNode next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">IntNode</span><span class="params">(<span class="keyword">int</span> i, IntNode n)</span> </span>&#123;</span><br><span class="line">            item = i;</span><br><span class="line">            next = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Adds x to the front of this IntList. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, first);</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns the first item in the list. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Adds an item to the end of the list*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        IntList p = first;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Move p until it reaches the end of list. */</span></span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p.next = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Solution: Maintain a special size variable that <strong>caches</strong> the size of the list.</p>
-<ul>
-<li>Caching: putting aside data to speed up retrieval.</li>
-</ul>
-<p>TANSTAAFL: There aren’t no such thing as a free lunch.</p>
-<ul>
-<li>But spreading the work over each add call is a new win in almost any circumstance.</li>
-</ul>
-<h3><span id="improvement-6a-the-empty-list"> Improvement 6a: The Empty List</span><a href="#improvement-6a-the-empty-list" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">        <span class="keyword">public</span> IntNode next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">IntNode</span><span class="params">(<span class="keyword">int</span> i, IntNode n)</span> </span>&#123;</span><br><span class="line">            item = i;</span><br><span class="line">            next = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/** Adds an item to the end of the list*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        IntList p = first;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Move p until it reaches the end of list. */</span></span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p.next = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>But now, the method <em>addLast()</em> has a nullPointerException bug when first == null.</p>
-<h3><span id="improvement-6b-sentinel-nodes"> Improvement 6b: Sentinel Nodes</span><a href="#improvement-6b-sentinel-nodes" class="header-anchor"> </a></h3>
-<p>We can fix by using <em>if</em> syntax, but that’s a little bit ugly:</p>
-<ul>
-<li>Requires a special case.</li>
-<li>More complex data structures will have many more special cases.</li>
-</ul>
-<p>The fundamental problem:</p>
-<ul>
-<li>The empty list has a null <em>first</em>. Can’t access <em>first.next</em>.<br>
-How can we avoid special cases?</li>
-<li>Make all <em>SLLists</em> (even empty) the ‘same’.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** An SLList is a list of integers, which hides the terrible truth of the nakedness within.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SLList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">        <span class="keyword">public</span> IntNode next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">IntNode</span><span class="params">(<span class="keyword">int</span> i, IntNode n)</span> </span>&#123;</span><br><span class="line">            item = i;</span><br><span class="line">            next = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* The first item (if it exists) is at sentinel.next) */</span></span><br><span class="line">    <span class="keyword">public</span> IntNode sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sentinel = <span class="keyword">new</span> IntNode(<span class="number">63</span>, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SLList</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        SLList();</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Adds x to the front of this IntList. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> IntNode(x, sentinel.next);</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns the first item in the list. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sentinel.next.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Adds an item to the end of the list*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        IntList p = sentinel;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Move p until it reaches the end of list. */</span></span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p.next = <span class="keyword">new</span> IntNode(x, <span class="keyword">null</span>);</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Notes:</p>
-<ul>
-<li>Rename first to be sentinel.</li>
-<li>Sentinel is never null, always points to sentinel node.</li>
-<li>Sentinel node’s item needs to be some integer, but doesn’t matter what value we pick.</li>
-<li>Had to fix constructors and methods to be compatible with sentinel nodes.</li>
-</ul>
-<p>Bottom line: Having a sentinel simplifies our addLast method.</p>
-<ul>
-<li>No need for a special case to check if sentinel is <em>null</em>(since it is never <em>null</em>).</li>
-</ul>
-<h3><span id="invariants"> Invariants</span><a href="#invariants" class="header-anchor"> </a></h3>
-<p>An invariants is a condition that is guaranteed to be true during code execuation (assuming there are no bugs in your code).</p>
-<p>An SLList with a sentinel node has at least the following invariants:</p>
-<ul>
-<li>The sentinel reference always points to a sentinel node.</li>
-<li>The first node(if it exists), is always at sentinel.next.</li>
-<li>The size variable is always the total number of items that have been added.</li>
-</ul>
-<p>Invariants makeit easier to reason about code:</p>
-<ul>
-<li>Can assume they are true to simplify code (e.g. addLast doesn’t need to worry about nulls).</li>
-<li>Must ensure that methods preserve invariants.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/CS61b-Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/22/CS61b-Lists/" itemprop="url">CS61b-Lists</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-22T09:04:19+08:00">
-                2020-02-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="the-mystery-of-the-walrus"> The Mystery of the Walrus</span><a href="#the-mystery-of-the-walrus" class="header-anchor"> </a></h2>
-<h3><span id="two-examples"> Two examples</span><a href="#two-examples" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Walrus a = <span class="keyword">new</span> Walrus(<span class="number">1000</span>, <span class="number">8.3</span>);</span><br><span class="line">Walrus b;</span><br><span class="line">b = a;</span><br><span class="line">b.weight = <span class="number">5</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// 5</span></span><br><span class="line">System.out.println(b); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> y;</span><br><span class="line">y = x;</span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">System.out.println(x); <span class="comment">// 2</span></span><br><span class="line">System.out.println(y); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-<h4><span id="bits"> Bits</span><a href="#bits" class="header-anchor"> </a></h4>
-<p>Your computer stores information in “memory”.</p>
-<ul>
-<li>Information is stored in memory as a sequence of ones and zeros.<br>
-– Example: 72 stored as 01001000<br>
-– Example: The letter H stored as 01001000 (same as the number 72)<br>
-– Example: True stored as 00000001</li>
-</ul>
-<p>Each Java type has a different way to interpret the bits:</p>
-<ul>
-<li>8 primitive types in Java: byte, short, <strong>int</strong>, long, float, <strong>double</strong>, boolean, char</li>
-</ul>
-<h4><span id="declaring-a-variable"> Declaring a Variable</span><a href="#declaring-a-variable" class="header-anchor"> </a></h4>
-<p>When you declare a variable of a certain type in Java:</p>
-<ul>
-<li>Your computer set aside exactly enough bits to hold a thing of that type.</li>
-<li>Java creates an internal table that maps each variable name to the location of the first bit in box.</li>
-<li>Java does NOT write anything into the reserved boxes.<br>
-– For safety, Java will not let access a variable that is uninitialized.</li>
-</ul>
-<p><strong>Remark.</strong></p>
-<ul>
-<li>Java language provides no way for you to know the location of the box. In other words, the exact memory address is below the level of abstraction accessible to us in Java.</li>
-</ul>
-<p><strong>Pros and Cons.</strong><br>
-It gives programmer less control which prevents programmer from doing certain types of optimizations. However, it also provides a large class of very tricky programming errors.</p>
-<h4><span id="simplified-box-notation"> Simplified Box Notation</span><a href="#simplified-box-notation" class="header-anchor"> </a></h4>
-<p>We’ll use simplified box notation from here on out:</p>
-<ul>
-<li>Instead of writing memory box contents in binary, we’ll write them in human readable symbols.</li>
-</ul>
-<h4><span id="the-golden-rule-of-equals-groe"> The Golden Rule of Equals (GRoE)</span><a href="#the-golden-rule-of-equals-groe" class="header-anchor"> </a></h4>
-<p>Given variables y = x:</p>
-<ul>
-<li>y = x copies all the bits from x into y.</li>
-</ul>
-<h3><span id="reference-types"> Reference Types</span><a href="#reference-types" class="header-anchor"> </a></h3>
-<p>Above, we have 8 primitive types. Everything else, including arrays, is not a primitive type but rather a <em>reference type</em>.</p>
-<h4><span id="class-instantiations"> Class Instantiations</span><a href="#class-instantiations" class="header-anchor"> </a></h4>
-<p>When we instantiate an Object (e.g. Dog, Walrus, Planet):</p>
-<ul>
-<li>Java first allocates a box of bits for each instance of the class and fills them with a default value.(e.g. 0, null)</li>
-<li>The constructor then usually fills every such box with some other value.</li>
-</ul>
-<p>Can think of new as returning the address of the newly created object.</p>
-<ul>
-<li>Addresses in Java are 64 bits.</li>
-<li>Example (rough picture): If object is created in memory location 2384723423, then new returns 2384723423.</li>
-</ul>
-<h4><span id="reference-type-variable-declarations"> Reference Type variable Declarations</span><a href="#reference-type-variable-declarations" class="header-anchor"> </a></h4>
-<p>When we declare a variable of any reference type:</p>
-<ul>
-<li>Java allocates exactly a box of size 64 bits, no matter what type of object.</li>
-<li>These bits can be either set to:<br>
-– Null(all zeros)<br>
-– The 64 bit “address” of a specific instance of that class (returned by new)</li>
-</ul>
-<p><img src="/2020/02/22/CS61b-Lists/Walrus.jpg" alt></p>
-<p>The 64-bit addresses are meaningless to us as humans, so we’ll represent:</p>
-<ul>
-<li>All zeros addresses with “null”.</li>
-<li>Non-zero addresses as arrows.</li>
-</ul>
-<p>This is sometimes called “box and pointer” notation.</p>
-<h4><span id="reference-types-obey-the-golden-rule-of-equals"> Reference Types Obey the Golden Rule of Equals</span><a href="#reference-types-obey-the-golden-rule-of-equals" class="header-anchor"> </a></h4>
-<p>Just as with primitive types, the equals sign copies the bits.</p>
-<ul>
-<li>In terms of our visual metaphor, we “copy” the arrow by making the arrow in the b box point as the same instance as a.</li>
-</ul>
-<h3><span id="parameter-passing"> Parameter Passing</span><a href="#parameter-passing" class="header-anchor"> </a></h3>
-<h4><span id="the-golden-rule-of-equals-and-parameter-passing"> The Golden Rule of Equals (and Parameter Passing)</span><a href="#the-golden-rule-of-equals-and-parameter-passing" class="header-anchor"> </a></h4>
-<p>Given variables b and a:</p>
-<ul>
-<li>b = a copies all the bits from a into b.</li>
-</ul>
-<p>Passing parameters obeys the same rule: Simply copy the bits to the new scope.</p>
-<h4><span id="the-golden-rule-summary"> The Golden Rule: Summary</span><a href="#the-golden-rule-summary" class="header-anchor"> </a></h4>
-<p>There are 9 types of variables in Java:</p>
-<ul>
-<li>8 primitive types (byte, short, int, long, float, double, boolean, char).</li>
-<li>The 9th type is references to Objects (an arrow). References may be null.</li>
-</ul>
-<p>In box-and-pointer notation, each variable is drawn as a labeled box and values are shown in the box.</p>
-<ul>
-<li>Addresses are represented by arrows to object instances.</li>
-</ul>
-<p>The golden rule:</p>
-<ul>
-<li>b = a copies the bits from a into b.</li>
-<li>Passing parameters copies the bits.</li>
-</ul>
-<h3><span id="instantiation-of-arrays"> Instantiation of Arrays</span><a href="#instantiation-of-arrays" class="header-anchor"> </a></h3>
-<h4><span id="declaration-and-instantiation-of-arrays"> Declaration and instantiation of Arrays</span><a href="#declaration-and-instantiation-of-arrays" class="header-anchor"> </a></h4>
-<p>Arrays are also Objects. As we’ve seen, objects are (usually) instantiated using the <em>new</em> keyword.</p>
-<p>int[] a;</p>
-<ul>
-<li>Declaration creates a 64 bit box intended only for storing a reference to an int array. <strong>No object is instantiated.</strong></li>
-</ul>
-<p>new int[]{0, 1, 2, 95, 4};</p>
-<ul>
-<li>instantiates a new Object, in this case an int array.</li>
-<li>Object is anonymous!(匿名的)</li>
-</ul>
-<h4><span id="assignment-of-arrays"> Assignment of Arrays</span><a href="#assignment-of-arrays" class="header-anchor"> </a></h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">95</span>, <span class="number">4</span>&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Creates a 64 bit box for storing an int array address. (declaration)</li>
-<li>Creates a new Object, in this case an int array. (instantiation)</li>
-<li>Puts the address of this new Object into the 64 bit box named a. (assignment)</li>
-</ul>
-<p>Note: Instantiated objects can be lost!</p>
-<ul>
-<li>If we were to reassign a to something else, we’d never be able to get the original Object back!</li>
-</ul>
-<h3><span id="intlists"> IntLists</span><a href="#intlists" class="header-anchor"> </a></h3>
-<p>Let’s define an IntList as an object containing two memeber variables:</p>
-<ul>
-<li>int first;</li>
-<li>IntList rest;</li>
-</ul>
-<p>And define two versions of the same method:</p>
-<ul>
-<li>size()</li>
-<li>iterativeSize()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> IntList rest;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(IntList l, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        l = <span class="keyword">new</span> IntList(x, l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntList</span><span class="params">(<span class="keyword">int</span> f, IntList r)</span> </span>&#123;</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Return the size of the list using recursion!</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rest == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="keyword">this</span>.rest.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Return the size of the list using no recursion!</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">iterativeSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        IntList p = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">            totalSize += <span class="number">1</span>;</span><br><span class="line">            p = p.rest;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Returns the ith item of this IntList.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rest.get(i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Question:</strong></p>
-<ul>
-<li>Why we don’t do something like <em>if (this == null) return 0;</em></li>
-</ul>
-<p><strong>Answer:</strong></p>
-<ul>
-<li>If L were null, then you would get a NullPointer error!</li>
-</ul>
-<p>The <em>iterativeSize</em> method is recommanded to use the name <em>p</em> to remind that the variable is holding a pointer. Need this pointer <em>p</em> because we cannot reassign “this” in Java.</p>
-<p><strong>Remark.</strong></p>
-<ul>
-<li>Note that the method we’ve written takes linear time! That is, if you have a list that is 1,000,000 items long, then getting the last item is going to take much longer than it would if we had a small list. We’ll see an alternate way to implement a list that will avoid this problem in a future lecture.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2636,7 +2475,7 @@ It gives programmer less control which prevents programmer from doing certain ty
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

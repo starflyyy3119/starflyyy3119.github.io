@@ -249,6 +249,334 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E7%B1%BB%E3%80%81%E8%B6%85%E7%B1%BB%E4%B8%8E%E5%AD%90%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E7%B1%BB%E3%80%81%E8%B6%85%E7%B1%BB%E4%B8%8E%E5%AD%90%E7%B1%BB/" itemprop="url">Java核心技术之——类、超类与子类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-28T21:52:54+08:00">
+                2020-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="chao-lei-yu-zi-lei"> 超类与子类</span><a href="#chao-lei-yu-zi-lei" class="header-anchor"> </a></h3>
+<p>已经存在的类称为 <strong>超类(superclass)</strong>、<strong>基类(base class)</strong>、<strong>父类(parent class)</strong>; 新类称为 <strong>子类(subclass)</strong>、<strong>派生类(derived class)</strong> 或者 <strong>孩子类(child class)</strong>。</p>
+<h3><span id="zi-lei-fang-wen-fu-lei-de-te-dian"> 子类访问父类的特点</span><a href="#zi-lei-fang-wen-fu-lei-de-te-dian" class="header-anchor"> </a></h3>
+<p>子类能够继承父类 <strong>所有的内容（包括私有变量，私有方法）</strong>，但无法直接访问私有内容（拥有但无法访问），如果一定要访问，需要借助公共的接口。</p>
+<h3><span id="zi-fu-lei-chu-xian-hou-lei-cheng-yuan-de-te-dian"> 子父类出现后，类成员的特点</span><a href="#zi-fu-lei-chu-xian-hou-lei-cheng-yuan-de-te-dian" class="header-anchor"> </a></h3>
+<h4><span id="bian-liang"> 变量</span><a href="#bian-liang" class="header-anchor"> </a></h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.num);</span><br><span class="line">        System.out.println(<span class="keyword">super</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(z.num);</span><br><span class="line">        z.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果: <strong>4 4 5</strong><br>
+分析: 输出 <strong>z.num</strong>，实际上会输出 <strong>this.num</strong>，也就是当前类(子类)中定义的 <strong>num</strong>。想要调用父类中的 <strong>num</strong>，需要加上 <strong>super</strong>。<br>
+<img src="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E7%B1%BB%E3%80%81%E8%B6%85%E7%B1%BB%E4%B8%8E%E5%AD%90%E7%B1%BB/variable.jpg" alt></p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><strong>super</strong> 不是一个对象的引用，不能将 <strong>super</strong> 赋给另一个对象变量，它只是一个指示编译器调用超类方法的的特殊关键字。（<em>Java核心技术卷一P152</em>）</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li>如果子类中出现非私有的同名成员变量时，子类要访问本类中的变量，用 <strong>this</strong>; 子类要访问父类中的同名变量，用 <strong>super</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.num);</span><br><span class="line">        System.out.println(<span class="keyword">super</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>4 4</strong><br>
+分析：<strong>this</strong> 是子类对象的引用，子类继承了父类的所有变量，对于非父类私有的变量，可以直接访问。</p>
+<h4><span id="han-shu"> 函数</span><a href="#han-shu" class="header-anchor"> </a></h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"fu show"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zi show"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi zi = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>zi show</strong><br>
+分析：子类的 <strong>show()</strong> 方法 <a href>覆盖</a> 了父类的 <strong>show()</strong> 方法。</p>
+<p>如果希望调用父类中的方法，而不是当前类的方法，可以使用特定关键字 <strong>super</strong>。</p>
+<h4><span id="gou-zao-han-shu"> 构造函数</span><a href="#gou-zao-han-shu" class="header-anchor"> </a></h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"fu run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Zi()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// super();</span></span><br><span class="line">        System.out.println(<span class="string">"zi run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>fu run</strong> <strong>zi run</strong><br>
+分析：<a href>子类的实例化过程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/" itemprop="url">Java核心技术之——覆盖(重写)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-28T21:04:40+08:00">
+                2020-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="fang-fa-de-qian-ming"> 方法的签名</span><a href="#fang-fa-de-qian-ming" class="header-anchor"> </a></h3>
+<p>方法的 <strong>名字</strong> 和 <strong>参数列表</strong> 称为 <strong>方法的签名</strong>。</p>
+<h3><span id="fang-fa-de-fu-gai-chong-xie"> 方法的覆盖（重写）</span><a href="#fang-fa-de-fu-gai-chong-xie" class="header-anchor"> </a></h3>
+<p>如果在子类中定义了一个与父类 <strong>签名</strong> 相同的方法，那么子类中的这个方法就覆盖了父类中的这个相同签名的方法。</p>
+<p><strong>返回类型</strong> 不是签名的一部分，在覆盖方法时，要保证返回类型的兼容性。（允许子类将覆盖方法的返回类型定义为原返回类型的子类型）</p>
+<p>例子：假设 <strong>Employee</strong> 类有</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Employee <span class="title">getBuddy</span><span class="params">()</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>在子类中，可以覆盖为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Manager <span class="title">getBuddy</span><span class="params">()</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><br>
+1.子类覆盖父类，必须保证子类的权限大于等于父类的权限，才可以覆盖。否则编译失败。（如果父类是 <strong>private</strong> 方法，不叫做覆盖，因为子类不知道父类有这个方法）</p>
+<p><a href>类的权限</a></p>
+<p>2.静态只能覆盖静态</p>
+<h3><span id="yu-chong-zai-de-qu-bie"> 与重载的区别</span><a href="#yu-chong-zai-de-qu-bie" class="header-anchor"> </a></h3>
+<p><strong>重载</strong>：只看同名函数的参数列表。<br>
+<strong>重写</strong>：字符类的签名要一模一样。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -815,7 +1143,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -249,6 +249,425 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/CS61B-Hashing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/CS61B-Hashing/" itemprop="url">CS61B-Hashing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-18T01:34:27+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/16/CS61B-Balanced-Search-Trees/" itemprop="url">CS61B-Balanced Search Trees</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-16T10:12:27+08:00">
+                2020-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="balanced-search-trees"> Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2>
+<h3><span id="the-trouble-with-trees"> The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3>
+<p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
+<ul>
+<li>Worst case: Items inserted in order.</li>
+<li>Fundamental issue: Too lazy about where to store data.</li>
+</ul>
+<p>One solution:</p>
+<ul>
+<li>Insert in random order.<br>
+– Results in $ \Theta (logN) $ height with extremely high probability.</li>
+<li>However, you don’t have all the data front.</li>
+</ul>
+<h3><span id="tree-rotation-example"> Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3>
+<p>Suppose we have a search tree as shown below:</p>
+<ul>
+<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>
+– Promoting P means P is the new parent of G.</li>
+<li>Semantics of the tree are completely unchanged.</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/rotateleft.jpg" alt></p>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/result.jpg" alt></p>
+<p>To reverse the operation: RotateRight§</p>
+<ul>
+<li>RotateRight§: P moves right, promotes its left child in the only natural way.</li>
+</ul>
+<h3><span id="rotation-an-alternate-approach-to-balance"> Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3>
+<p>Rotation:</p>
+<ul>
+<li>Can shorten (or lengthen) a tree.</li>
+<li>Preserves search tree property.</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/illustrate.jpg" alt></p>
+<p>Can use rotation to balance a BST.</p>
+<p>One way ot achieve balance:</p>
+<ul>
+<li>Rotate after each insertion and deletion to maintain balance.</li>
+</ul>
+<h3><span id="search-trees"> Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3>
+<p>There are many types of search trees:</p>
+<ul>
+<li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation (AVL, weight-balancing, <strong>red-black</strong>)</li>
+<li>Treaps.</li>
+<li>Splay trees.</li>
+<li><strong>2-3/2-3-4 trees/B-trees:</strong> No rotations required.</li>
+</ul>
+<h3><span id="a-weirder-solution"> A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3>
+<p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
+<p>Weirder solution: Overstuff the leaf nodes.</p>
+<ul>
+<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>
+– Height is just max(depth).</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>
+This is a logically consistent but very weird data structure.</p>
+<ul>
+<li>contains®:<br>
+– Search for the appropriate leaf.<br>
+– Search the leaf for ‘r’.</li>
+</ul>
+<p>But there exists some new problems:</p>
+<ul>
+<li>Leaf nodes can get too juicy.</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Set a cap on the number of items, say 3.</li>
+<li>If more than cap, give an item to parent.</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/pq.jpg" alt></p>
+<p>Problem now:</p>
+<ul>
+<li>Items between o and q have no home.</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Set a cap on the number of items, say 3.</li>
+<li>If more than cap, give an item to the parent.<br>
+– Pulling item out of juicy nodes splits it into left and right.<br>
+– Parent node now has three children.</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/3node.jpg" alt></p>
+<h3><span id="revising-our-overstuffed-tree-approach-node-splitting"> Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3>
+<p>This is a logically consistent and not so weird data structure.</p>
+<ul>
+<li>contains®:<br>
+– r &lt; m, so go right<br>
+– r &gt; o, so compares vs. q<br>
+– r &gt; q, so go right</li>
+</ul>
+<h3><span id="perfect-balance"> Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3>
+<p>Observation: Splitting-trees have perfect balance.</p>
+<ul>
+<li>If we split the root, every node gets pushed down by exactly one level.</li>
+<li>If we split a leaf node or internal node, the height doesn’t change.</li>
+</ul>
+<p>Bottom line: All operations have guaranteed $ \Theta(logN) $ time.</p>
+<p>M: Max number of children (one more than the item cap).<br>
+Height: Between $ log_M(N) $ and $ log_2(N) $</p>
+<p>Max number of splitting operations per insert: ~H</p>
+<p>Time per insert/contains: $ \Theta(H) $, or equivalently $ \Theta(logN) $</p>
+<h3><span id="the-real-name-of-splitting-trees-is-b-trees"> The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3>
+<ul>
+<li>
+<p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>
+– The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
+</li>
+<li>
+<p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
+</li>
+</ul>
+<p>B-Trees are most popular in two specific contexts:</p>
+<ul>
+<li>Small M (M = 3 or M = 4):<br>
+– Used as a conceptually simple balanced search tree (as today).</li>
+<li>M is very large (say thousands).<br>
+– Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
+</ul>
+<p>Note: Since the small M tree isn’t practically useful, people usually only use the name B-tree to refer to the very large M case.</p>
+<h3><span id="red-black-trees"> Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3>
+<h4><span id="the-bad-news"> The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4>
+<p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
+<ul>
+<li>Maintaining different node types.</li>
+<li>Interconversion of nodes between 2-nodes and 3-nodes.</li>
+<li>Walking up the tree to split nodes.</li>
+</ul>
+<h4><span id="idea"> idea</span><a href="#idea" class="header-anchor"> </a></h4>
+<ul>
+<li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation. Coming up wih a strategy is hard.</li>
+<li><strong>2-3 trees:</strong> No rotations required.</li>
+</ul>
+<p>Clever (and strange idea): Build a BST that is isometric (structurally identical) to a 2-3 tree.</p>
+<ul>
+<li>Use rotations to ensure the isometry.</li>
+<li>Since 2-3 trees are balanced, rotations on BST will ensure balance.</li>
+</ul>
+<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes"> Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4>
+<p>Possibility 1: Create dummy “glue” nodes.</p>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/dummy.jpg" alt></p>
+<p>Result is inelegant. Wasted link. Code will be ugly.</p>
+<p>Possibility 2: Create “glue” links with the smaller item off to the left.</p>
+<p>Idea is commonly used in practice (e.g. java.util.TreeSet)</p>
+<p>For convenience, we’ll mark glue links as “red”.</p>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/red.jpg" alt></p>
+<h4><span id="left-leaning-red-black-binary-search-tree-llrb"> Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4>
+<p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
+<ul>
+<li>No node has two red links (otherwise it’d be like a 4 node).</li>
+<li>Every path from root to a leaf has same number of black links.</li>
+<li>Red links lean left.</li>
+<li>Also called a “left leaning red black binary search tree (LLRB)”.</li>
+</ul>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/example.jpg" alt></p>
+<p>Facts of interest:</p>
+<ul>
+<li>For any 2-3 tree (which is balanced), there exists a corresponding red-black tree that has depth no more than 2 times the depth of the 2-3 tree.</li>
+</ul>
+<p>With a HUGE dose of cleverness can use rotations to maintain isometry after each insertion and deletion.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1820,375 +2239,6 @@ When an exception is thrown, it descends the call stack.</li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Lists-Sets-ArraySet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/CS61B-Lists-Sets-ArraySet/" itemprop="url">CS61B-Lists,Sets,ArraySet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T10:10:40+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="list-in-java"> List in Java</span><a href="#list-in-java" class="header-anchor"> </a></h3>
-<p>We built a list from scratch, but Java provides a built-in <em>List</em> interface and several implementations, e.g. <em>ArrayList</em>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List61B&lt;Integer&gt; L = <span class="keyword">new</span> AList&lt;&gt;();</span><br><span class="line">L.addLast(<span class="number">5</span>);</span><br><span class="line">L.addLast(<span class="number">10</span>);</span><br><span class="line">L.addLast(<span class="number">15</span>);</span><br><span class="line">L.print();</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.util.List&lt;Integer&gt; L = <span class="keyword">new</span> java.util.ArrayList&lt;&gt;();</span><br><span class="line">L.add(<span class="number">5</span>);</span><br><span class="line">L.add(<span class="number">10</span>);</span><br><span class="line">L.add(<span class="number">15</span>);</span><br><span class="line">System.out.println(L);</span><br></pre></td></tr></table></figure>
-<h3><span id="sets-in-java"> Sets in Java</span><a href="#sets-in-java" class="header-anchor"> </a></h3>
-<p>Stores a set of values with no duplicates. Has no sense of order.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; S = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">S.add(<span class="string">"Tokyo"</span>);</span><br><span class="line">S.add(<span class="string">"Beijing"</span>);</span><br><span class="line">S.add(<span class="string">"Lagos"</span>);</span><br><span class="line">S.add(<span class="string">"Sao Paulo"</span>);</span><br><span class="line">System.out.println(S.contains(<span class="string">"Tokyo"</span>));</span><br></pre></td></tr></table></figure>
-<p><strong>ArraySet Implementation</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySet</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> (T[]) array;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySet</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">        array = (T[]) <span class="keyword">new</span> Object[<span class="number">100</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!contains(value)) &#123;</span><br><span class="line">            array[size++] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value.equals(array[i])) &#123; <span class="keyword">return</span> <span class="keyword">true</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/CS61B-Industrial-Strength-Syntax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/06/CS61B-Industrial-Strength-Syntax/" itemprop="url">CS61B-Industrial Strength Syntax</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T01:32:06+08:00">
-                2020-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="automatic-conversions"> Automatic Conversions</span><a href="#automatic-conversions" class="header-anchor"> </a></h2>
-<h2><span id="autoboxing"> Autoboxing</span><a href="#autoboxing" class="header-anchor"> </a></h2>
-<h4><span id="primitives-cannot-be-used-as-actual-type-arguments"> Primitives Cannot Be Used as Actual Type Arguments</span><a href="#primitives-cannot-be-used-as-actual-type-arguments" class="header-anchor"> </a></h4>
-<p>We cannot use primitive type as actual type arguments.</p>
-<ul>
-<li>Code below causes a compile time error.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;<span class="keyword">int</span>&gt; L = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">int</span>&gt;();</span><br></pre></td></tr></table></figure>
-<h4><span id="reference-types"> Reference Types</span><a href="#reference-types" class="header-anchor"> </a></h4>
-<p>Reminder: Java has 8 primitive types. All other types are reference types.</p>
-<p>For each primitive type, there is a corresponding reference type called a wrapper class.</p>
-<ul>
-<li>For example, boolean’s wrapper class is Boolean.</li>
-</ul>
-<h4><span id="reference-types-as-actual-type-arguments"> Reference Types as Actual Type Arguments</span><a href="#reference-types-as-actual-type-arguments" class="header-anchor"> </a></h4>
-<p>Solution: Use wrapper type as actual type parameter instead of primitive type.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; L = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">L.add(<span class="keyword">new</span> Integer(<span class="number">5</span>));</span><br><span class="line">L.add(<span class="keyword">new</span> Integer(<span class="number">6</span>));</span><br><span class="line"><span class="keyword">int</span> first = L.get(<span class="number">0</span>).valueOf();</span><br></pre></td></tr></table></figure>
-<h4><span id="autoboxing"> Autoboxing</span><a href="#autoboxing" class="header-anchor"> </a></h4>
-<p>Autoboxing (auto-unboxing): Implicit conversions between wrapper/primitives.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; L = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">L.add(<span class="number">5</span>);</span><br><span class="line">L.add(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">int</span> first = L.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p>Code above works even though we’re passing an int into an Integer parameter, and assigning a return value of type Integer to an int.</p>
-<p>Wrapper types and primitives can be used almost interchangeably.</p>
-<ul>
-<li>If Java code expects a wrapper type and gets a primitive, it is autoboxed.</li>
-<li>If the code expects a primitive and gets a wrapper, it is unboxed.</li>
-</ul>
-<p>Some notes:</p>
-<ul>
-<li>Arrays are never autoboxed/unboxed, e.g. an Integer[] cannot be used in place of int[] (or vice versa).</li>
-<li>Autoboxing / unboxing incurs a measurable perfomance impact. That is, code that relies on autoboxing and unboxing will be slower than code that eschews such automatic conversions.</li>
-<li>Wrapper types use MUCH more memory than primitive types.</li>
-</ul>
-<p>Some exercise:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bleepblorp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Integer x = <span class="keyword">new</span> Integer(<span class="number">5</span>);</span><br><span class="line">    System.out.println(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Assuming:</p>
-<ul>
-<li>Addresses are 64 bits.</li>
-<li>ints are 32 bits.</li>
-<li>All Java objects take 64 bits + their fields.</li>
-</ul>
-<p>How much total memory is used by bleepblorp to store its local variables?</p>
-<p>64 + 64 + 32 = 160 bits</p>
-<h3><span id="primitive-widening"> Primitive Widening</span><a href="#primitive-widening" class="header-anchor"> </a></h3>
-<p>A similar thing happens when moving from a primitive type with a narrower range to a wider range.</p>
-<ul>
-<li>In this case, we say the value is “widened”.</li>
-<li>Code below is fine since double is wider than int.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">blahDouble</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"double"</span> + x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">20</span>;</span><br><span class="line">blahDouble(x);</span><br></pre></td></tr></table></figure>
-<p>To move from a wider type to a narrower type, must use casting:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">blahInt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"int:"</span> + x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">20</span>;</span><br><span class="line">blahInt((<span class="keyword">int</span>) x);</span><br></pre></td></tr></table></figure>
-<h3><span id="immutability"> Immutability</span><a href="#immutability" class="header-anchor"> </a></h3>
-<p>An immutable data type is one for which an instance cannot change in any obsevable way after instantiation.</p>
-<p>Examples:</p>
-<ul>
-<li>Mutable: ArrayDeque, Planet.</li>
-<li>Immutable: Integer, String, Date.</li>
-</ul>
-<p>The <strong>final</strong> keyword will help the compiler ensure immutability.</p>
-<ul>
-<li>final variable means you will assign a value once (either in constructor of class or in initializer).</li>
-<li>Not necessary to have final to be immutable (e.g. Dog with private variables).</li>
-</ul>
-<p><strong>Immutability</strong><br>
-Advantage: Less to think about: Avoid bugs and makes debugging easier.</p>
-<ul>
-<li>Analogy: Immutable classes have some buttons you can press / windows you can look inside. Results are ALWAYS the same, no matter what.</li>
-</ul>
-<p>Disadvantage: Must create a new object anytime anything changes.</p>
-<p>Warning: Declaring a reference as <strong>final</strong> does not make object immutable.</p>
-<ul>
-<li>Example:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> ArrayDeque&lt;String&gt; d = <span class="keyword">new</span> ArrayDeque&lt;String&gt;();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>The d variable can never change, but the referenced deque can.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2239,7 +2289,7 @@ Advantage: Less to think about: Avoid bugs and makes debugging easier.</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
