@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java basic," />
+  <meta name="keywords" content="Java Basic," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="动态绑定  一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(dynamic binding)  实例  变量x声明为C类的对象，实际类型为D。 12C x &#x3D; new D();x.f(param);  步骤1：  编译器查看对象的声明类型和方法名( 声明类型为C，方法名为f ) 编译器列举所有 C 类中名为 f 和其超类中访问属性为 public 的方法（超类的私有方法不">
+<meta name="description" content="@source: https:&#x2F;&#x2F;www.runoob.com&#x2F;java&#x2F;java-collections.html @source: https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5da41417f265da5ba532b21c @source: https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;63e76826e852 @source: https:&#x2F;&#x2F;howtodoinjava.com&#x2F;j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java核心技术之——对象方法的执行过程 + 动态绑定">
-<meta property="og:url" content="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:title" content="Java核心技术——Collections">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="动态绑定  一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(dynamic binding)  实例  变量x声明为C类的对象，实际类型为D。 12C x &#x3D; new D();x.f(param);  步骤1：  编译器查看对象的声明类型和方法名( 声明类型为C，方法名为f ) 编译器列举所有 C 类中名为 f 和其超类中访问属性为 public 的方法（超类的私有方法不">
+<meta property="og:description" content="@source: https:&#x2F;&#x2F;www.runoob.com&#x2F;java&#x2F;java-collections.html @source: https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5da41417f265da5ba532b21c @source: https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;63e76826e852 @source: https:&#x2F;&#x2F;howtodoinjava.com&#x2F;j">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-28T09:32:11.000Z">
-<meta property="article:modified_time" content="2020-02-11T13:13:50.056Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.png">
+<meta property="article:published_time" content="2020-03-20T04:53:16.000Z">
+<meta property="article:modified_time" content="2020-03-20T07:25:45.167Z">
 <meta property="article:author" content="Starfly">
-<meta property="article:tag" content="Java basic">
+<meta property="article:tag" content="Java Basic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/28/Java核心技术之——对象方法的执行过程/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/20/Java核心技术——Collections/"/>
 
 
 
 
 
-  <title>Java核心技术之——对象方法的执行过程 + 动态绑定 | Starfly's blog</title>
+  <title>Java核心技术——Collections | Starfly's blog</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Starfly">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java核心技术之——对象方法的执行过程 + 动态绑定</h1>
+          <h1 class="post-title" itemprop="name headline">Java核心技术——Collections</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-28T17:32:11+08:00">
-                2020-01-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-20T12:53:16+08:00">
+                2020-03-20
               </time>
             
 
@@ -342,28 +345,139 @@
       
 
       
-        <h3><span id="dong-tai-bang-ding"> 动态绑定</span><a href="#dong-tai-bang-ding" class="header-anchor"> </a></h3>
-<p>一个对象变量在运行时能够自动地选择调用哪个类型方法的现象称为动态绑定。(<em>dynamic binding</em>)</p>
-<h3><span id="shi-li"> 实例</span><a href="#shi-li" class="header-anchor"> </a></h3>
-<p>变量x声明为C类的对象，实际类型为D。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C x = <span class="keyword">new</span> D();</span><br><span class="line">x.f(param);</span><br></pre></td></tr></table></figure>
-<h4><span id="bu-zou-1"> 步骤1：</span><a href="#bu-zou-1" class="header-anchor"> </a></h4>
-<p>编译器查看对象的声明类型和方法名( <strong>声明类型为C，方法名为f</strong> )<br>
-编译器列举所有 <strong>C</strong> 类中名为 <strong>f</strong> 和其超类中访问属性为 <strong>public</strong> 的方法（超类的私有方法不可访问）<br>
-至此，编译器已获得所以可能被调用的候选方法</p>
-<h4><span id="bu-zou-2"> 步骤2：</span><a href="#bu-zou-2" class="header-anchor"> </a></h4>
-<p><strong>重载解析：</strong><br>
-编译器查看调用方法时提供的参数类型，如果在所有名为 <strong>f</strong> 的方法中存在一个与之提供的参数类型完全匹配，就选择这个方法。</p>
-<p>如果编译器没有找到与参数类型匹配的方法，或者发现经过类型转换后有多个方法与之匹配，就会报告一个错误。</p>
-<p>至此，编译器已获得需要调用的方法名字和参数类型。<br>
-<a href>覆盖(重写)</a></p>
-<h4><span id="bu-zou-3"> 步骤3：</span><a href="#bu-zou-3" class="header-anchor"> </a></h4>
-<p>如果是 <strong>private</strong> 方法、<strong>static</strong> 方法、 <strong>final</strong> 方法或者<strong>构造器</strong> ，那么编译器将可以准确地知道应该调用哪个方法，将这种调用方式称为<a href>静态绑定</a>。</p>
-<p>对应的，调用的方法依赖于 <a href>隐式参数</a> 的实际类型,并且在运行时实现 <strong>动态绑定</strong>。</p>
-<h4><span id="bu-zou-4"> 步骤4：</span><a href="#bu-zou-4" class="header-anchor"> </a></h4>
-<p>采用 <strong>动态绑定</strong> 时，虚拟机一定调用与 <strong>x</strong> 所引用对象的 <strong>实际类型（D）</strong> 最适合的那个类的方法。（<strong>D</strong> 有这个方法就直接用，没有在超类找）</p>
-<h4><span id="jian-dan-zong-jie"> 简单总结</span><a href="#jian-dan-zong-jie" class="header-anchor"> </a></h4>
-<p>成员函数在多态调用时，编译看左边，运行看右边。</p>
+        <p>@source: <a href="https://www.runoob.com/java/java-collections.html" target="_blank" rel="noopener">https://www.runoob.com/java/java-collections.html</a><br>
+@source: <a href="https://juejin.im/post/5da41417f265da5ba532b21c" target="_blank" rel="noopener">https://juejin.im/post/5da41417f265da5ba532b21c</a><br>
+@source: <a href="https://www.jianshu.com/p/63e76826e852" target="_blank" rel="noopener">https://www.jianshu.com/p/63e76826e852</a><br>
+@source: <a href="https://howtodoinjava.com/java-collections/" target="_blank" rel="noopener">https://howtodoinjava.com/java-collections/</a></p>
+<h2><span id="ji-he-kuang-jia"> 集合框架</span><a href="#ji-he-kuang-jia" class="header-anchor"> </a></h2>
+<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png" alt></p>
+<ul>
+<li>集合框架是一个用来代表和操纵集合的统一架构。</li>
+<li>整个集合框架围绕一组标准接口设计。这些接口存在标准实现。如：<strong>LinkedList, HashSet, 和 TreeSet</strong> 等。除此，可以通过这些接口实现自己的集合。</li>
+<li>Java 集合框架<strong>主要包括</strong>两种类型的容器，一种是集合 (Collection), 储存一个元素集合; 另一种是图 (Map), 存储键/值对映射。</li>
+<li>所有的集合框架包含以下内容：<br>
+– <strong>接口：</strong> 是代表集合的抽象数据类型。如：<strong>Collection、List、Set、Queue、Map</strong> 等。定义多个接口，是为了以不同的方式操纵集合对象。<br>
+– <strong>实现(类)：</strong> 是集合接口的具体实现。它们可以重复使用的数据结构，如： <strong>ArrayList、LinkedList、HashSet、HashMap.</strong><br>
+– <strong>算法：</strong> 是实现集合接口的对象里的方法执行的一些有用的计算，如：搜索和排序。</li>
+</ul>
+<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.png" alt></p>
+<ul>
+<li>Java 集合框架位于 java.util 包中，使用集合框架时需要导入包。</li>
+</ul>
+<p>Note: 数组和集合的区别</p>
+<ul>
+<li>数组长度不可变化而且无法保存具有映射关系的数据；集合类用于保存数量不确定的数据，以及保存具有映射关系的数据。</li>
+<li>数组元素既可以是基本类型的值，也可以是对象; 集合只能保存对象。</li>
+</ul>
+<h3><span id="ji-he-jie-kou"> 集合接口</span><a href="#ji-he-jie-kou" class="header-anchor"> </a></h3>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>接口描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td>最基本的集合接口，一个 Collection 代表一组 Object。 Java 不提供直接继承自 Collection 的类， 只提供继承于的子接口(如 List 和 Set)。Collection 接口储存一组不唯一、无序的对象。</td>
+</tr>
+<tr>
+<td>List</td>
+<td>List接口是一个有序的 Collection，使用此接口能精确的控制每个元素插入的位置，能够通过索引（元素在 List 中位置，类似于数组的下标）来访问 List 中的元素，第一个元素的索引为 0，而且允许有相同的元素。List 接口存储一组不唯一，有序(插入顺序)的对象。</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>Set接口存储一组唯一，无序的对象。</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>Queue接口是一种先进先出的数据结构，并提供插入、提取、检验等操作。</td>
+</tr>
+<tr>
+<td>Map</td>
+<td>Map 接口存储一组键值对象，提供 key(键) 到 value(值) 的映射</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Set 和 List 的区别</p>
+<ul>
+<li>Set 接口实例存储是<strong>无序</strong>的，<strong>不重复</strong>的数据。List 接口实例存储的是<strong>有序</strong>的，<strong>可以重复</strong>的元素。</li>
+<li>Set 检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变，实现类有 <strong>HashSet， TreeSet</strong>。</li>
+<li>List 和数组类似，但可以动态增长。根据实际存储的数据的长度自动增长 List 的长度。查找元素效率高，插入删除效率低，因为会引起其他元素的位置改变，实现类有 <strong>ArrayList，LinkedList， Vector</strong>。</li>
+</ul>
+<h3><span id="ji-he-shi-xian-lei-ji-he-lei"> 集合实现类（集合类）</span><a href="#ji-he-shi-xian-lei-ji-he-lei" class="header-anchor"> </a></h3>
+<p>Java提供了一套实现了集合接口的标准集合类。其中一些是具体类，这些类可以直接使用，另外一些是抽象类，提供了接口的部分实现。</p>
+<table>
+<thead>
+<tr>
+<th>集合实现类</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>实现了List接口。使用数组存储元素，数组可以动态创建，如果元素个数超过了数组的容量，那么就增长当前长度的50%，并将当前数组中的所有元素都复制到新的数组中。该类非同步，在多线程的情况下不要使用。插入删除效率低。</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>实现了List接口。允许有 null 元素。主要用于创建链表数据结构。该类没有同步方法，如果多个线程同时访问一个 List，必须自己实现访问同步。</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为 null 的元素，但最多只能一个。</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td>实现了Set接口，可以实现排序等功能。</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>实现了Map接口。HashMap是一个散列表，它存储的内容是键值对(key-value) 映射。根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录为null， 不支持线程同步。在 JDK1.8 中， HashMap 采用数组 + 链表 + 红黑树实现，当链表长度超过阈值(8) 时，将链表转化成红黑树。</td>
+</tr>
+<tr>
+<td>LinkedHashMap</td>
+<td>继承HashMap，主要用链表扩展 HashMap 类， HashMap 中条目没有顺序，而在 LinkedHashMap 中元素可以按照它们插入图的顺序排序，也可以按照它们最后一次被访问的顺序排序。</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>继承AbstractMap,基于红黑树实现。同时实现了接口 NavigableMap, 而NavigableMap 继承 SortedMap, 使用 SortedMap 确保排好序。键值可以使用 Comparable 或 Comparator 接口来排序</td>
+</tr>
+</tbody>
+</table>
+<p>Note: 在实际使用中，如果更新图时不需要保持图中元素的顺序，就使用 HashMap，如果需要保持图中元素插入顺序或者访问顺序，就使用 LinkedHashMap, 如果需要按照键值排序，就使用 TreeMap。</p>
+<h3><span id="qi-ta-ji-he-lei"> 其他集合类</span><a href="#qi-ta-ji-he-lei" class="header-anchor"> </a></h3>
+<table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vector</td>
+<td>同步，可以用于多线程，该类允许设置默认的增长长度，默认扩容方式为原来的2倍。</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Vector的子类，用来实现一个标准的后进先出的栈。</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td>抽象类，用来储存键/值对。</td>
+</tr>
+<tr>
+<td>Hashtable</td>
+<td>继承Dictionary。函数都是同步的，线程安全。另外 Hashtable 中的 key 和 value 都不可以为 null。</td>
+</tr>
+<tr>
+<td>Properites</td>
+<td>Hashtable 的子类，相当于一个 key， value 都是 String 类型的 Map，主要用于读取配置文件。</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -381,7 +495,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-basic/" rel="tag"># Java basic</a>
+            <a href="/tags/Java-Basic/" rel="tag"># Java Basic</a>
           
         </div>
       
@@ -394,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E5%AD%90%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" rel="next" title="Java核心技术之——子类的实例化过程">
-                <i class="fa fa-chevron-left"></i> Java核心技术之——子类的实例化过程
+              <a href="/2020/03/18/CS61B-Hashing/" rel="next" title="CS61B-Hashing">
+                <i class="fa fa-chevron-left"></i> CS61B-Hashing
               </a>
             
           </div>
@@ -403,10 +517,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/28/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B9%8B%E2%80%94%E2%80%94%E8%A6%86%E7%9B%96%EF%BC%88%E9%87%8D%E5%86%99%EF%BC%89/" rel="prev" title="Java核心技术之——覆盖(重写)">
-                Java核心技术之——覆盖(重写) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> 动态绑定 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> 实例 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"> 步骤1： </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text"> 步骤2： </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text"> 步骤3： </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text"> 步骤4： </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.5.</span> <span class="nav-text"> 简单总结 </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> 集合框架 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> 集合接口 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> 集合实现类（集合类） </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> 其他集合类 </span></a></li></ol></li></ol></div>
             
 
           </div>

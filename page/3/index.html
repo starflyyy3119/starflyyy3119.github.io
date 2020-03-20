@@ -249,6 +249,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/CS61B-DLLists/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/25/CS61B-DLLists/" itemprop="url">CS61B-DLLists</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-25T10:37:34+08:00">
+                2020-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="dllists-doubly-linked-lists"> DLLists(Doubly Linked Lists)</span><a href="#dllists-doubly-linked-lists" class="header-anchor"> </a></h2>
+<p>The Downside of SLists<br>
+Inserting at the back of an SLList is much slower than the front.</p>
+<h3><span id="improvement-7-looking-back"> Improvement 7: Looking Back</span><a href="#improvement-7-looking-back" class="header-anchor"> </a></h3>
+<p>How could we modify our list data structure so that <em>addLast</em> is also fast?<br>
+If we add a pointer that points at the last node of the list, we have quick <em>addLast</em> and <em>getlast</em>, but not <em>removelast</em>.</p>
+<h3><span id="improvement-8-sentinel-upgrade"> Improvement 8: Sentinel Upgrade</span><a href="#improvement-8-sentinel-upgrade" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> IntNode prev;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> item;</span><br><span class="line">    <span class="keyword">public</span> IntNode next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This approach has an annoying special case: last sometimes points at the sentinel, and sometimes points at a ‘real’ node.</p>
+<p>One possible solution: Have two sentinels.<br>
+<img src="/2020/02/25/CS61B-DLLists/dl.jpg" alt></p>
+<p>Even better topology: Circular Sentinel<br>
+<img src="/2020/02/25/CS61B-DLLists/circular.jpg" alt></p>
+<p>While fast, adding <em>.last</em> and <em>.prev</em> introduces lots of special cases.</p>
+<p>To avoid these, either:</p>
+<ul>
+<li>Add an additional sentBack sentinel at the end of the list.</li>
+<li>Make your linked list circular, with a single sentinel in the middle.</li>
+</ul>
+<h3><span id="generic-dllists"> Generic DLLists</span><a href="#generic-dllists" class="header-anchor"> </a></h3>
+<p>Our DLLists suffer from a major limitation: they can only hold integer values.</p>
+<p><strong>Generics</strong></p>
+<ul>
+<li>In the .java file <strong>implementing</strong> your data structure, specify your “generic type” <strong>only once</strong> at the very top of the file.</li>
+<li>In .java file that <strong>use</strong> your data structure, specify desired type <strong>once</strong>:<br>
+– Write out desired type during <strong>declaration.</strong><br>
+– Use the empty diamond operator &lt;&gt; during <strong>instantiation</strong>.</li>
+<li>When declaring or instantiating your data structure, use the reference type.<br>
+– int: Integer<br>
+– double: Double<br>
+– char: Character<br>
+– boolean: Boolean<br>
+– long: Long</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/CS61b-SLLists/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2734,155 +2909,6 @@ To delete the minimum key:</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9AFeasibility-of-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E4%B8%8A%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9AFeasibility-of-Learning/" itemprop="url">机器学习基石上——第四讲：Feasibility of Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-13T09:59:48+08:00">
-                2020-02-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-	<div class="row">
-    <embed src="./feasibility_of_learning.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2933,7 +2959,7 @@ To delete the minimum key:</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

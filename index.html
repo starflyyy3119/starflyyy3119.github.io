@@ -249,6 +249,280 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/" itemprop="url">Java核心技术——Collections</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-20T12:53:16+08:00">
+                2020-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>@source: <a href="https://www.runoob.com/java/java-collections.html" target="_blank" rel="noopener">https://www.runoob.com/java/java-collections.html</a><br>
+@source: <a href="https://juejin.im/post/5da41417f265da5ba532b21c" target="_blank" rel="noopener">https://juejin.im/post/5da41417f265da5ba532b21c</a><br>
+@source: <a href="https://www.jianshu.com/p/63e76826e852" target="_blank" rel="noopener">https://www.jianshu.com/p/63e76826e852</a><br>
+@source: <a href="https://howtodoinjava.com/java-collections/" target="_blank" rel="noopener">https://howtodoinjava.com/java-collections/</a></p>
+<h2><span id="ji-he-kuang-jia"> 集合框架</span><a href="#ji-he-kuang-jia" class="header-anchor"> </a></h2>
+<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png" alt></p>
+<ul>
+<li>集合框架是一个用来代表和操纵集合的统一架构。</li>
+<li>整个集合框架围绕一组标准接口设计。这些接口存在标准实现。如：<strong>LinkedList, HashSet, 和 TreeSet</strong> 等。除此，可以通过这些接口实现自己的集合。</li>
+<li>Java 集合框架<strong>主要包括</strong>两种类型的容器，一种是集合 (Collection), 储存一个元素集合; 另一种是图 (Map), 存储键/值对映射。</li>
+<li>所有的集合框架包含以下内容：<br>
+– <strong>接口：</strong> 是代表集合的抽象数据类型。如：<strong>Collection、List、Set、Queue、Map</strong> 等。定义多个接口，是为了以不同的方式操纵集合对象。<br>
+– <strong>实现(类)：</strong> 是集合接口的具体实现。它们可以重复使用的数据结构，如： <strong>ArrayList、LinkedList、HashSet、HashMap.</strong><br>
+– <strong>算法：</strong> 是实现集合接口的对象里的方法执行的一些有用的计算，如：搜索和排序。</li>
+</ul>
+<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.png" alt></p>
+<ul>
+<li>Java 集合框架位于 java.util 包中，使用集合框架时需要导入包。</li>
+</ul>
+<p>Note: 数组和集合的区别</p>
+<ul>
+<li>数组长度不可变化而且无法保存具有映射关系的数据；集合类用于保存数量不确定的数据，以及保存具有映射关系的数据。</li>
+<li>数组元素既可以是基本类型的值，也可以是对象; 集合只能保存对象。</li>
+</ul>
+<h3><span id="ji-he-jie-kou"> 集合接口</span><a href="#ji-he-jie-kou" class="header-anchor"> </a></h3>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>接口描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td>最基本的集合接口，一个 Collection 代表一组 Object。 Java 不提供直接继承自 Collection 的类， 只提供继承于的子接口(如 List 和 Set)。Collection 接口储存一组不唯一、无序的对象。</td>
+</tr>
+<tr>
+<td>List</td>
+<td>List接口是一个有序的 Collection，使用此接口能精确的控制每个元素插入的位置，能够通过索引（元素在 List 中位置，类似于数组的下标）来访问 List 中的元素，第一个元素的索引为 0，而且允许有相同的元素。List 接口存储一组不唯一，有序(插入顺序)的对象。</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>Set接口存储一组唯一，无序的对象。</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>Queue接口是一种先进先出的数据结构，并提供插入、提取、检验等操作。</td>
+</tr>
+<tr>
+<td>Map</td>
+<td>Map 接口存储一组键值对象，提供 key(键) 到 value(值) 的映射</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Set 和 List 的区别</p>
+<ul>
+<li>Set 接口实例存储是<strong>无序</strong>的，<strong>不重复</strong>的数据。List 接口实例存储的是<strong>有序</strong>的，<strong>可以重复</strong>的元素。</li>
+<li>Set 检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变，实现类有 <strong>HashSet， TreeSet</strong>。</li>
+<li>List 和数组类似，但可以动态增长。根据实际存储的数据的长度自动增长 List 的长度。查找元素效率高，插入删除效率低，因为会引起其他元素的位置改变，实现类有 <strong>ArrayList，LinkedList， Vector</strong>。</li>
+</ul>
+<h3><span id="ji-he-shi-xian-lei-ji-he-lei"> 集合实现类（集合类）</span><a href="#ji-he-shi-xian-lei-ji-he-lei" class="header-anchor"> </a></h3>
+<p>Java提供了一套实现了集合接口的标准集合类。其中一些是具体类，这些类可以直接使用，另外一些是抽象类，提供了接口的部分实现。</p>
+<table>
+<thead>
+<tr>
+<th>集合实现类</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>实现了List接口。使用数组存储元素，数组可以动态创建，如果元素个数超过了数组的容量，那么就增长当前长度的50%，并将当前数组中的所有元素都复制到新的数组中。该类非同步，在多线程的情况下不要使用。插入删除效率低。</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>实现了List接口。允许有 null 元素。主要用于创建链表数据结构。该类没有同步方法，如果多个线程同时访问一个 List，必须自己实现访问同步。</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为 null 的元素，但最多只能一个。</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td>实现了Set接口，可以实现排序等功能。</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>实现了Map接口。HashMap是一个散列表，它存储的内容是键值对(key-value) 映射。根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录为null， 不支持线程同步。在 JDK1.8 中， HashMap 采用数组 + 链表 + 红黑树实现，当链表长度超过阈值(8) 时，将链表转化成红黑树。</td>
+</tr>
+<tr>
+<td>LinkedHashMap</td>
+<td>继承HashMap，主要用链表扩展 HashMap 类， HashMap 中条目没有顺序，而在 LinkedHashMap 中元素可以按照它们插入图的顺序排序，也可以按照它们最后一次被访问的顺序排序。</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>继承AbstractMap,基于红黑树实现。同时实现了接口 NavigableMap, 而NavigableMap 继承 SortedMap, 使用 SortedMap 确保排好序。键值可以使用 Comparable 或 Comparator 接口来排序</td>
+</tr>
+</tbody>
+</table>
+<p>Note: 在实际使用中，如果更新图时不需要保持图中元素的顺序，就使用 HashMap，如果需要保持图中元素插入顺序或者访问顺序，就使用 LinkedHashMap, 如果需要按照键值排序，就使用 TreeMap。</p>
+<h3><span id="qi-ta-ji-he-lei"> 其他集合类</span><a href="#qi-ta-ji-he-lei" class="header-anchor"> </a></h3>
+<table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vector</td>
+<td>同步，可以用于多线程，该类允许设置默认的增长长度，默认扩容方式为原来的2倍。</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Vector的子类，用来实现一个标准的后进先出的栈。</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td>抽象类，用来储存键/值对。</td>
+</tr>
+<tr>
+<td>Hashtable</td>
+<td>继承Dictionary。函数都是同步的，线程安全。另外 Hashtable 中的 key 和 value 都不可以为 null。</td>
+</tr>
+<tr>
+<td>Properites</td>
+<td>Hashtable 的子类，相当于一个 key， value 都是 String 类型的 Map，主要用于读取配置文件。</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/CS61B-Hashing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -291,6 +565,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -320,7 +616,327 @@
       
         
           
-            
+            <h2><span id="hashing"> Hashing</span><a href="#hashing" class="header-anchor"> </a></h2>
+<p>Limitations for the tree structure.</p>
+<ul>
+<li>Items must be comparable.</li>
+<li>Maintaining bushiness is non-trivial.</li>
+<li>$ \Theta(logN) $, can do better?</li>
+</ul>
+<h3><span id="using-data-as-an-index"> Using data as an index</span><a href="#using-data-as-an-index" class="header-anchor"> </a></h3>
+<p>One extreme approach: All data is really just bits.</p>
+<ul>
+<li>Use data itself as an array index.</li>
+<li>Store true and false in the array.</li>
+</ul>
+<p>Downsides of this approach</p>
+<ul>
+<li>Extremely wasteful of memory. To support checking presence of all positive integers, we need 2 billion booleans.</li>
+<li>Need some way to generalize beyond integers.</li>
+</ul>
+<h3><span id="dataindexedintegerset-implementation"> DataIndexedIntegerSet Implementation</span><a href="#dataindexedintegerset-implementation" class="header-anchor"> </a></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedIntegerSet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] present;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataIndexedIntegerSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        present = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">16</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        present[i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">contains(x)</th>
+<th style="text-align:center">insert(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Linked List</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Bushy BSTs</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Unordered Array</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">DataIndexedArray</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="binary-representation-of-dataindexedintegerset"> Binary Representation of DataIndexedIntegerSet</span><a href="#binary-representation-of-dataindexedintegerset" class="header-anchor"> </a></h3>
+<h4><span id="basic-idea"> Basic idea</span><a href="#basic-idea" class="header-anchor"> </a></h4>
+<p>Suppose we want to insert(“cat”)</p>
+<p>Key question:</p>
+<ul>
+<li>What is the cat-th element of an array?</li>
+<li>One idea: Use the first letter of the word as an index.</li>
+</ul>
+<p>What’s wrong with this approach?</p>
+<ul>
+<li>0 never changes(so a tiny bit of wasted space).</li>
+<li>Other words start with c.<br>
+– contains(“chupacabra”): Yes</li>
+<li>Can’t store “=98yae98fwyawef”</li>
+</ul>
+<h4><span id="refined-approach"> Refined Approach</span><a href="#refined-approach" class="header-anchor"> </a></h4>
+<p>Treat the string as a n-digit base 27 number.</p>
+<ul>
+<li>c: 3rd letter of alphabet, a: 1st letter, t: 20th letter.</li>
+<li>Thus the index of “cat” is $ 3 * 27^2 + 1 * 27 + 20 $</li>
+</ul>
+<p>Base 27: Our approach before: cat -&gt; $ 3 * 27^2 + 1 * 27 + 20 $</p>
+<ul>
+<li>00 00000 00000 00000 00010 00101 11010</li>
+</ul>
+<p>Base 32: $ 3 * 32^2 + 1 * 32 + 20 = 3124 $</p>
+<ul>
+<li>Nice feature: Each letter is exactly 5 bits. Good for lecture.<br>
+00 00000 00000 00000 00011 00001 10100</li>
+</ul>
+<h4><span id="generalizing-to-words"> Generalizing to Words</span><a href="#generalizing-to-words" class="header-anchor"> </a></h4>
+<p>Suppose we’re storing multiple words.</p>
+<ul>
+<li>Convert each word to unique integer representation.</li>
+<li>As on previous slide: Use 5 bits per letter.<br>
+– example: “cat” becomes 3124.<br>
+– c: 3rd letter of alphabet, a 1st, t: 20th</li>
+</ul>
+<p>What about longer strings? Have to tolerate either:</p>
+<ul>
+<li>A maximum string (seems lame).</li>
+<li>Ambiguity: e.g. “hothead” vs. “pothead”.<br>
+– Both represented by 523878693</li>
+</ul>
+<p>Switching to base 27 from 32 won’t save us.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    present[intRep] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    <span class="keyword">return</span> present[intRep];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Converts ith character of String to a letter number.</span></span><br><span class="line"><span class="comment">    e.g. 'a' -&gt; 1, 'b' -&gt; 2, 'z' -&gt; 26 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">letterNum</span><span class="params">(String s, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ithChar = s.charAt(i);</span><br><span class="line">    <span class="keyword">if</span> ((ithChar &lt; <span class="string">'a'</span>) || (ithChar &gt; <span class="string">'z'</span>)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(); &#125;</span><br><span class="line">    <span class="keyword">return</span> ithChar - <span class="string">'a'</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        intRep = intRep &lt;&lt; <span class="number">5</span>; <span class="comment">// same as intRep * 32</span></span><br><span class="line">        intRep = intRep + letterNum(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="dataindexedarray"> DataIndexedArray</span><a href="#dataindexedarray" class="header-anchor"> </a></h4>
+<p>Two fundamental challenges:</p>
+<ul>
+<li>
+<p>How do we resolve ambiguity (“grosspie” vs. “bosspie”)?<br>
+– We’ll call this <strong>collision handling</strong>.</p>
+</li>
+<li>
+<p>How do we convert arbitrary data to an index?<br>
+– We’ll call this <strong>computing a hashCode</strong>.<br>
+– For Strings, this was relatively straightforward (treat as a base 27 or base 32 number).<br>
+– Note: Java requires that EVERY object provide a method that converts itself into an integer: hashCode()</p>
+</li>
+</ul>
+<h4><span id="resolving-ambiguity"> Resolving Ambiguity</span><a href="#resolving-ambiguity" class="header-anchor"> </a></h4>
+<p>Suppose N items have the same hashcode h:</p>
+<ul>
+<li>
+<p>Instead of storing true in position h, store a list of these N items at position h.</p>
+</li>
+<li>
+<p>How to implement list?</p>
+</li>
+<li>
+<p>Easiest way: Linked list.</p>
+</li>
+<li>
+<p>But any list would do (ArrayList, etc.)</p>
+</li>
+<li>
+<p>Could also use a set instead.</p>
+</li>
+</ul>
+<p>External Chaining: Storing all items that map to h in a linked list.</p>
+<p><img src="/2020/03/18/CS61B-Hashing/hashtable.jpg" alt></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">contains(x)</th>
+<th style="text-align:center">insert(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Linked List</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Bushy BSTs</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Unordered Array</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">External Chaining</td>
+<td style="text-align:center">$ \Theta(Q) $</td>
+<td style="text-align:center">$ \Theta(Q) $</td>
+</tr>
+</tbody>
+</table>
+<p>Q: Length of longest list.</p>
+<p>Observation: Can use modulus of hashcode to reduce bucket count.</p>
+<p><img src="/2020/03/18/CS61B-Hashing/mod.jpg" alt></p>
+<h4><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h4>
+<p>Depends on the number of items in the ‘bucket’.</p>
+<ul>
+<li>If N items are distributed across M buckets, average time grows with N/M = L, also known as the <strong>load factor.</strong><br>
+– Average runtime is $ \Theta(L) $.</li>
+</ul>
+<p>Obvious observation: If L is small, our data structure will be very fast.<br>
+Question: As N grows, what can we do to ensure that L stays small?</p>
+<p>Array Resizing:<br>
+Whenever L = N/M exceeds some number, increase M by resizing.</p>
+<ul>
+<li>Question: In which bin will the apple appear after resizing?</li>
+</ul>
+<p><img src="/2020/03/18/CS61B-Hashing/apple.jpg" alt></p>
+<p><img src="/2020/03/18/CS61B-Hashing/apple2.jpg" alt></p>
+<p>Suppose that hashCode() returns -1.</p>
+<ul>
+<li>
+<p>Philosophically, into which bucket is it most natural to place this item.<br>
+– I say 3, since -1 -&gt; 3, 0 -&gt; 0, 1 -&gt; 1 …</p>
+</li>
+<li>
+<p>Unfortunately, -1 % 4 = -1. Will result in index errors!</p>
+</li>
+<li>
+<p>Use Math.floorMod instead.</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(-<span class="number">1</span> % <span class="number">4</span>); <span class="comment">// -1</span></span><br><span class="line">        System.out.println(Math.floorMod(-<span class="number">1</span>, <span class="number">4</span>)); <span class="comment">// 3</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="hash-table-definition-and-key-implementation-details"> Hash Table Definition and Key Implementation Details</span><a href="#hash-table-definition-and-key-implementation-details" class="header-anchor"> </a></h2>
+<p>This data structure we’ve designed is called a <strong>hash table</strong>:</p>
+<ul>
+<li>
+<p>Every item is mapped to a bucket number using a hash function.</p>
+</li>
+<li>
+<p>Typically, computing hash function consists of two steps:<br>
+– Computing a hashCode (integer between $ -2^{31} $ and $ 2^{31} - 1 $).<br>
+– Computing index = hashCode modulo M.</p>
+</li>
+<li>
+<p>If L = N / M gets too large, increase M.</p>
+</li>
+</ul>
+<p>If multiple items map to the same bucket, we have to resolve ambiguity somehow.<br>
+Two common techniques:</p>
+<ul>
+<li>External Chaining (creating a list for each bucket)</li>
+<li>Open Addressing (a little stranger, not necessarily better)</li>
+</ul>
+<h3><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h3>
+<p>Assuming items are spread out (e.g. not all in the same bucket):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Average case time</th>
+<th style="text-align:center">contains(x)</th>
+<th style="text-align:center">insert(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">External Chaining, Fixed Size</td>
+<td style="text-align:center">$ \Theta(L) $</td>
+<td style="text-align:center">$ \Theta(L) $</td>
+</tr>
+<tr>
+<td style="text-align:center">External Chaining with Resizing</td>
+<td style="text-align:center">$ \Theta(L) $</td>
+<td style="text-align:center">$ \Theta(L) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Balanced BST</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Load Factor L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">External Chaining, Fixed Size</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">External Chaining with Resizing</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="hash-function"> hash function</span><a href="#hash-function" class="header-anchor"> </a></h3>
+<p>Example: String hashCode function<br>
+Our convertToInt function:</p>
+<ul>
+<li>$ h(s) = (s_0 - ‘a’ + 1) × 32^{n-1} + (s_1 - ‘a’ + 1) × 32^{n-2} + … + (s_{n-1} - ‘a’ + 1) $</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>Intended for lower case strings only.</li>
+<li>Top bits are totally ignored.</li>
+</ul>
+<p>Improved converToInt function:</p>
+<ul>
+<li>$ h(s) = s_0 × 32^{n-1} + s_1 × 32^{n-2} + … + s_{n-1} $</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>
+<p>Intended for lower case strings only: Fix by removing ‘a’.</p>
+</li>
+<li>
+<p>Top bits are totally ignored.<br>
+– Why? Because multiplying by 32 is equivalent to left shifting by 5 bits.(Result: Top characters get pushed out completely).<br>
+– How can we fix: Multiply by powers of 31!</p>
+</li>
+<li>
+<p>$ h(s) = s_0 × 31^{n-1} + s_1 × 31^{n-2} + … + s_{n-1} $</p>
+</li>
+</ul>
+<h3><span id="hash-objects"> hash Objects</span><a href="#hash-objects" class="header-anchor"> </a></h3>
+<p>Example: Hashing a Collection<br>
+Lists are a lot like strings: Collection of items each with its own hashCode:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function">pubilc <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashCode = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (Object o : <span class="keyword">this</span>) &#123;</span><br><span class="line">        hashCode = hashCode * <span class="number">31</span>;</span><br><span class="line">        hashCode = hashCode + o.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>To save time hashing: Look at only first few items.</p>
+<ul>
+<li>Higher chance of collisions but things will still work.</li>
+</ul>
+<p>Example: Hashing a Recursive Data Structure<br>
+Computation of the hashCode of a recursive data structure involves recursive computation.</p>
+<ul>
+<li>For example, binary tree hashCode:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.value == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value.hashCode() + <span class="number">31</span> * <span class="keyword">this</span>.left.hashCode() + <span class="number">31</span> *<span class="number">31</span> * <span class="keyword">this</span>.right.hashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="default-hashcodes"> Default hashCodes()</span><a href="#default-hashcodes" class="header-anchor"> </a></h3>
+<p>All Objects have hashCode() function.</p>
+<ul>
+<li>Default: return this(i.e. address of object).<br>
+– Can have strange consequences: “hello”.hashCode() is not the same as (“h” + “ello”).hashCode()</li>
+<li>Can override for your type.</li>
+<li>Hash tables (HashSet, HashMap, etc.) are so important that Java requires that all objects implement hashCode().</li>
+</ul>
+<p>Java provides a hash table based implementation of sets and maps.</p>
+<ul>
+<li>Idea is very similar to what we’ve done in lecture.</li>
+<li>Warning: Never store mutable objects in a HashSet or HashMap.</li>
+<li>Warning: Never override equals without also overriding hashCode.</li>
+</ul>
+
           
         
       
@@ -2066,179 +2682,6 @@ That is to say, we need Java know that we have iterator() in out <em>ArraySet</e
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Exceptions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/CS61B-Exceptions/" itemprop="url">CS61B-Exceptions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T10:33:01+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="exceptions">Exceptions</span><a href="#exceptions" class="header-anchor"> </a></h2><p>Basic idea:</p>
-<ul>
-<li>When something goes really wrong, break the normal flow of control.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You can't add null to an ArraySet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="catching-exceptions">Catching Exceptions</span><a href="#catching-exceptions" class="header-anchor"> </a></h3>So far, thrown exceptions cause code to crash.</li>
-<li>Can ‘catch’ exceptions instead, preventing program from crashing. Use keywords <strong>try</strong> and <strong>catch</strong> to break normal flow.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Dog d = <span class="keyword">new</span> Dog(<span class="string">"Lucy"</span>, <span class="string">"Retriever"</span>, <span class="number">80</span>);</span><br><span class="line">d.becomeAngry();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    d.receivePat();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Tried ot pat:"</span> + e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(d);</span><br></pre></td></tr></table></figure>
-<p>May include corrective action in the catch.</p>
-<h3><span id="the-philosophy-of-exceptions">The Philosophy Of Exceptions</span><a href="#the-philosophy-of-exceptions" class="header-anchor"> </a></h3><p>Allows you to keep error handling code seperate from ‘real’ code.</p>
-<ul>
-<li>Consider pseudocode that reads a file:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    open the file;             <span class="comment">// what if the file doesn't exist</span></span><br><span class="line">    determine its size;</span><br><span class="line">    allocate that much memory;   <span class="comment">// what if there's not enough memory</span></span><br><span class="line">    read the file into memory;   <span class="comment">// what happens if reading fails?</span></span><br><span class="line">    close the file;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-One naive approach:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    open the file;</span><br><span class="line">    <span class="keyword">if</span> (theFileIsOpen) &#123;</span><br><span class="line">        determine the size;</span><br><span class="line">        <span class="keyword">if</span> (gotTheFileLength) &#123;</span><br><span class="line">            allocate that much memory;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> error(<span class="string">"fileLengthError"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (gotEnoughMemory) &#123;</span><br><span class="line">            read the file into memory;</span><br><span class="line">            <span class="keyword">if</span> (readFailed) &#123;</span><br><span class="line">                <span class="keyword">return</span> error(<span class="string">"readError"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> error(<span class="string">"memeryError"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> error(<span class="string">"fileOpenError"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-Instead, we can do like below:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">func readFile: &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        open the file;</span><br><span class="line">        determine its size;</span><br><span class="line">        allocate that much memory;</span><br><span class="line">        read the file into memory;</span><br><span class="line">        close the file;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (fileOpenFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (sizeDeterminationFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (memoryAllocationFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (readFailed) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (fileCloseFiled) &#123;</span><br><span class="line">        doSomething;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-When an exception is thrown, it descends the call stack.</li>
-<li>If exceptions reaches the bottom of the stack, the program crashes and Java provides a message for the user.</li>
-</ul>
-<h3><span id="checked-vs-unchecked-exceptions">Checked vs Unchecked Exceptions</span><a href="#checked-vs-unchecked-exceptions" class="header-anchor"> </a></h3><p>Occasionally, you’ll find that your code won’t even compile, for the mysterious reason that an exception “must be caught or declared to be thrown”.</p>
-<ul>
-<li>The basic idea: Some exceptions are considered so disgusting by the compiler that you MUST handle them somehow.</li>
-<li>We call these “checked” exceptions.</li>
-</ul>
-<p>By contrast unchecked exceptions have no such restrictions.</p>
-<p><img src="/2020/03/07/CS61B-Exceptions/pic.jpg" alt></p>
-<h4><span id="checking-exceptions">Checking Exceptions</span><a href="#checking-exceptions" class="header-anchor"> </a></h4><p>Compiler requires that all checked exceptions be <strong>caught</strong> or <strong>specified</strong>.<br>Two ways to satisfy compiler:</p>
-<ul>
-<li>Catch: Use a catch block after potential exception.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gulgate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (today == <span class="string">"Thursday"</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"hi"</span>);</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(<span class="string">"psych!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Specify method as dangerous with <strong>throws</strong> keyword.<br>— Defers to someone else to handle exception.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gulgate</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ... <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"hi"</span>); ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>If a method uses a ‘dangerous’ method (i.e. might throw a checked exception), it becomes dangerous itself.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Eagle.gulgate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>So we have to:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">"Averted!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Also we can:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2289,7 +2732,7 @@ When an exception is thrown, it descends the call stack.</li>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
