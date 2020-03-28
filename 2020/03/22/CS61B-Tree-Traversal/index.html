@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CS61B," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Tree Traversal Level order  Traverse top-to-bottom, left-to-right  We say that the nodes are ‘visited’ in the given order.  Depth First Traversals  Preorder, Inorder, Postorder Basic(rough) idea: Trav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61B-Tree Traversal">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/index.html">
+<meta property="og:site_name" content="Starfly&#39;s blog">
+<meta property="og:description" content="Tree Traversal Level order  Traverse top-to-bottom, left-to-right  We say that the nodes are ‘visited’ in the given order.  Depth First Traversals  Preorder, Inorder, Postorder Basic(rough) idea: Trav">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/post.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/tree.jpg">
+<meta property="article:published_time" content="2020-03-22T02:01:53.000Z">
+<meta property="article:modified_time" content="2020-03-23T08:14:30.948Z">
+<meta property="article:author" content="Starfly">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/post.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/"/>
+
+
+
+
+
+  <title>CS61B-Tree Traversal | Starfly's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Starfly's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CS61B-Tree Traversal</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-22T10:01:53+08:00">
+                2020-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2><span id="tree-traversal">Tree Traversal</span><a href="#tree-traversal" class="header-anchor"> </a></h2><p>Level order</p>
+<ul>
+<li>Traverse top-to-bottom, left-to-right </li>
+<li>We say that the nodes are ‘visited’ in the given order.</li>
+</ul>
+<p>Depth First Traversals</p>
+<ul>
+<li>Preorder, Inorder, Postorder</li>
+<li>Basic(rough) idea: Traverse “deep nodes” before shallow ones.</li>
+</ul>
+<h3><span id="depth-first-traversals">Depth First Traversals</span><a href="#depth-first-traversals" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">preOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    print(x.key);</span><br><span class="line">    preOrder(x.left);</span><br><span class="line">    preOrder(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    inOrder(x.left);</span><br><span class="line">    print(x.key);</span><br><span class="line">    inOrder(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">postOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    postOrder(x.left);</span><br><span class="line">    postOrder(x.right);</span><br><span class="line">    print(x.key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="a-weird-trick">A Weird Trick</span><a href="#a-weird-trick" class="header-anchor"> </a></h3><p>We walk the graph, from top going counter-clockwise.</p>
+<ul>
+<li>Preorder traversal: Shout every time we pass the LEFT of a node.</li>
+<li>Inorder traversal: Shout when you cross the bottom.</li>
+<li>Postorder traversal: Shout when you cross the right.</li>
+</ul>
+<p><img src="/2020/03/22/CS61B-Tree-Traversal/post.jpg" alt></p>
+<h3><span id="visitor-pattern">Visitor Pattern</span><a href="#visitor-pattern" class="header-anchor"> </a></h3><p>When writing general tree traversal code. Avoid rewriting traversal for every task of interest(print, sum filesizes, etc) by using the Visitor pattern.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorderTraverse</span><span class="params">(Tree&lt;Label&gt; T, Action&lt;Label&gt; whatToDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;<span class="keyword">return</span>;&#125;</span><br><span class="line">    whatToDo.visit(T);  <span class="comment">/* before we hard coded a print */</span></span><br><span class="line">    preorderTraverse(T.left, whatToDo);</span><br><span class="line">    preorderTraverse(T.right, whatToDo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Action</span>&lt;<span class="title">Label</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Tree&lt;Label&gt; T)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FindPig</span> <span class="keyword">implements</span> <span class="title">Action</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Tree&lt;String&gt; T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"pig"</span>.equals(T.label)) &#123; found = <span class="keyword">true</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preorderTraverse(someTree, <span class="keyword">new</span> FindPig());</span><br></pre></td></tr></table></figure>
+<h3><span id="level-order-traversal">Level Order Traversal</span><a href="#level-order-traversal" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">leverOrder</span><span class="params">(Tree T, Action toDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.height(); i++) &#123;</span><br><span class="line">        visitLevel(T, i, toDo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitLevel</span><span class="params">(Tree T, <span class="keyword">int</span> level, Action toDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (level == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        toDo.visit(T.key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        visitLevel(T.left(), level - <span class="number">1</span>, toDo);</span><br><span class="line">        visitLevel(T.right(), level - <span class="number">1</span>, toDo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="tree-height">Tree Height</span><a href="#tree-height" class="header-anchor"> </a></h3><p>For algorithms whose runtime depends on height, difference between bushy tree and spindly tree can be huge!</p>
+<p><img src="/2020/03/22/CS61B-Tree-Traversal/tree.jpg" alt></p>
+<p>Iterative deepening runtimes: $\Theta(N) vs. \Theta(N^2)$</p>
+<p><strong>First One</strong>:</p>
+<ul>
+<li>Level 0: 1</li>
+<li>Level 1: 1 + 2 = 3</li>
+<li>Level 2: 1 + 2 + 4 = 7<br>…</li>
+<li>Level H: 1 + 2 + 4 + … + $ 2^H $ = $ 2^{H+1} - 1 $</li>
+</ul>
+<p>Total = $ 2^1 + 2^2 + … + 2^{H+1} - (H + 1) $<br>And we know that $ H = \Theta(logN) $<br>Therefore: The Iterative deepening runtimes = $ \Theta(N) $</p>
+<p><strong>Second One</strong>:</p>
+<ul>
+<li>Level 0: 1</li>
+<li>Level 1: 1 + 1 = 2</li>
+<li>Level 2: 1 + 1 + 1 = 3<br>…</li>
+<li>Level H: 1 + 1 + … + 1 = H</li>
+</ul>
+<p>Total = 1 + 2 + 3 + … H<br>And $ H = \Theta(N) $<br>Therefore: The Iterative deepening runtimes = $ \Theta(N^2) $</p>
+<h3><span id="geometric-search">Geometric Search</span><a href="#geometric-search" class="header-anchor"> </a></h3><p>Suppose we want an operation that returns all items in a range:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;Label&gt; <span class="title">findInRange</span><span class="params">(Tree T, Label min, Label, max)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>Pruning:</strong> Restricting our search to only nodes that might contain the answers we seek.</p>
+<p>Runtime for our search: $ \Theta(logN + R) $</p>
+<ul>
+<li>N: Total number of items in tree.</li>
+<li>R: Number of matches.</li>
+</ul>
+<h3><span id="handling-multidimensional-data-quadtrees">Handling Multidimensional Data: Quadtrees</span><a href="#handling-multidimensional-data-quadtrees" class="header-anchor"> </a></h3><p>Quadtrees:</p>
+<ul>
+<li>Divide and conquer by splitting 2D space into four quadrants.<br>— Store items into appropriate quadrant.<br>— Repeat recursively if more than one item in a quadrant.</li>
+</ul>
+<p>Definition, quadtree is either:</p>
+<ul>
+<li>Empty</li>
+<li>A ‘root’ item at some position (x, y) AND four quadtrees that are northwest, northwest, southwest, southeast of (x, y)</li>
+<li>Use TWO compares to decide which direction to go.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS61B/" rel="tag"># CS61B</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/21/Java-Source-Code-Reading-java-util-PriorityQueue/" rel="next" title="Java Source Code Reading: java.util.PriorityQueue">
+                <i class="fa fa-chevron-left"></i> Java Source Code Reading: java.util.PriorityQueue
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/" rel="prev" title="算法解析——KMP">
+                算法解析——KMP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Starfly</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Tree Traversal </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Depth First Traversals </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">A Weird Trick </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Visitor Pattern </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">Level Order Traversal </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">Tree Height </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.6.</span> <span class="nav-text">Geometric Search </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.7.</span> <span class="nav-text">Handling Multidimensional Data: Quadtrees </span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Starfly</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

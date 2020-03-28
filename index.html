@@ -249,6 +249,1338 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/CS61B-Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/25/CS61B-Graph/" itemprop="url">CS61B-Graph</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-25T10:05:02+08:00">
+                2020-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url">算法解析——动态规划</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-24T10:24:30+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he">动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2><p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 状态定义</span></span><br><span class="line">    <span class="comment">// dp[i] 表示前 i 个元素的最大连续子数组的和</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 状态初始化，数组中第一个元素的最大和就是第一个元素之</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    ans = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 状态转移</span></span><br><span class="line">    <span class="comment">// 转移方程： dp[i] = max(dp[i - 1], 0) + nums[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>], <span class="number">0</span>) + nums[i];</span><br><span class="line">        <span class="comment">// 更新最大和</span></span><br><span class="line">        ans = Math.max(ans, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="dong-tai-gui-hua-kuang-jia">动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2><p>@source: <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems</a></p>
+<h3><span id="leetcode-wen-ti">LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3><ul>
+<li><ol>
+<li>Best Time to Buy and Sell Stock</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock II</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock III</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock IV</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock with Cooldown</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock with Transaction Fee</li>
+</ol>
+</li>
+</ul>
+<h3><span id="kuang-jia">框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3><p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
+<ul>
+<li>显式的因素有<strong>哪一天</strong>、我们可以进行 <strong>几次</strong> 交易。</li>
+<li>隐式的因素是我们当前手上<strong>是否</strong>有股票。</li>
+</ul>
+<p><strong>Notations:</strong></p>
+<ul>
+<li><em>prices</em>: 长度为 n 股票价格数组。</li>
+<li><em>i</em>: 代表第 i 天。其中 $ i \in [0, n-1] $。</li>
+<li><em>k</em>: 代表允许进行的最大交易次数。</li>
+<li><em>dp[i][k][0]</em>: 代表在第 i 天结束时，最多进行 k 次交易，我们手上没有股票，所能获得的最大收益。</li>
+<li><em>dp[i][k][1]</em>: 代表在第 i 天结束时，最多进行 k 次交易， 我们手上有股票，所能获得的最大收益。</li>
+</ul>
+<p><strong>Base cases:</strong></p>
+<ul>
+<li><em>dp[-1][k][0] = 0</em>. 表示没有进入交易日，那么没有收益。</li>
+<li><em>dp[i][0][0] = 0</em>. 表示在第 i 天, 最多进行 0 次交易，也就是说没有交易，那么没有收益。</li>
+<li><em>dp[-1][k][1] = -Inf</em>. 表示没有进入交易日，手上却有股票，这不可能，用 -Inf 表示这种不可能。</li>
+<li><em>dp[i][0][1] = -Inf</em>, 表示没有交易，手上却有股票，这不可能。</li>
+</ul>
+<p><strong>状态转移:</strong></p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices</em></li>
+</ul>
+<p>解释： 第 i 天结束时，手上没有股票， 那么可能是第 i - 1 天也没有股票，然后采取了 <strong>rest</strong> 的策略， 或者是第 i - 1 天有股票然后在第 i 天采取了 <strong>sell</strong> 的策略； 第 i 天结束时， 手上有股票， 那么可能是第 i - 1 天手上就有股票， 然后采取了 <strong>rest</strong> 的策略，也可能是第 i - 1 天手上没有股票，采取了 <strong>buy</strong> 的策略。</p>
+<h3><span id="ying-yong">应用</span><a href="#ying-yong" class="header-anchor"> </a></h3><h4><span id="case-i-k-1">Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4><p>也就是只允许进行一次交易。<br>对于第 i 天，我们有两种状态：</p>
+<ul>
+<li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])</em></li>
+<li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
+</ul>
+<p>我们发现第 i 天的操作只与第 i - 1 天有关，可以优化到 O(1).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i10, dp_i11 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再理解一下 k 的意义，k 是允许进行的最大交易次数，dp[i][k] 表示到第 i 天结束时，最多进行了 k 次交易， 也可以比 k 次少。</p>
+<p>如，在上题中，我们有 prices = [7, 6, 5, 4, 3, 2], 从开始一直到最后 dp_i10 恒等于0，一次交易都没有做。</p>
+<h4><span id="case-ii-k-inf">Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4><p>也就是交易次数不限。<br>这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-iii-k-2">Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4><p>限制最多交易两次。</p>
+<ul>
+<li><em>dp[i][2][0] = max(dp[i-1][2][0], dp[i-1][2][1] + prices[i])</em></li>
+<li><em>dp[i][2][1] = max(dp[i-1][2][1], dp[i-1][1][0] - prices[i]</em></li>
+<li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i]</em></li>
+<li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i20 = dp_i10 = <span class="number">0</span>, dp_i21 = dp_i11 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i20 = Math.max(dp_i20, dp_i21 + price);</span><br><span class="line">        dp_i21 = Math.max(dp_i21, dp_i10 - price);</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF/" itemprop="url">算法解析——二分查找模板</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:46+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="er-fen-cha-zhao-mo-ban">二分查找模板</span><a href="#er-fen-cha-zhao-mo-ban" class="header-anchor"> </a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123; <span class="comment">// 注意</span></span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// nums[mid] == target</span></span><br><span class="line">            <span class="comment">// 相关逻辑</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回相关值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/" itemprop="url">算法解析——KMP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-23T16:22:00+08:00">
+                2020-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CS61B-Tree-Traversal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/22/CS61B-Tree-Traversal/" itemprop="url">CS61B-Tree Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-22T10:01:53+08:00">
+                2020-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="tree-traversal">Tree Traversal</span><a href="#tree-traversal" class="header-anchor"> </a></h2><p>Level order</p>
+<ul>
+<li>Traverse top-to-bottom, left-to-right </li>
+<li>We say that the nodes are ‘visited’ in the given order.</li>
+</ul>
+<p>Depth First Traversals</p>
+<ul>
+<li>Preorder, Inorder, Postorder</li>
+<li>Basic(rough) idea: Traverse “deep nodes” before shallow ones.</li>
+</ul>
+<h3><span id="depth-first-traversals">Depth First Traversals</span><a href="#depth-first-traversals" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">preOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    print(x.key);</span><br><span class="line">    preOrder(x.left);</span><br><span class="line">    preOrder(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    inOrder(x.left);</span><br><span class="line">    print(x.key);</span><br><span class="line">    inOrder(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">postOrder(BSTNode x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    postOrder(x.left);</span><br><span class="line">    postOrder(x.right);</span><br><span class="line">    print(x.key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="a-weird-trick">A Weird Trick</span><a href="#a-weird-trick" class="header-anchor"> </a></h3><p>We walk the graph, from top going counter-clockwise.</p>
+<ul>
+<li>Preorder traversal: Shout every time we pass the LEFT of a node.</li>
+<li>Inorder traversal: Shout when you cross the bottom.</li>
+<li>Postorder traversal: Shout when you cross the right.</li>
+</ul>
+<p><img src="/2020/03/22/CS61B-Tree-Traversal/post.jpg" alt></p>
+<h3><span id="visitor-pattern">Visitor Pattern</span><a href="#visitor-pattern" class="header-anchor"> </a></h3><p>When writing general tree traversal code. Avoid rewriting traversal for every task of interest(print, sum filesizes, etc) by using the Visitor pattern.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorderTraverse</span><span class="params">(Tree&lt;Label&gt; T, Action&lt;Label&gt; whatToDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;<span class="keyword">return</span>;&#125;</span><br><span class="line">    whatToDo.visit(T);  <span class="comment">/* before we hard coded a print */</span></span><br><span class="line">    preorderTraverse(T.left, whatToDo);</span><br><span class="line">    preorderTraverse(T.right, whatToDo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Action</span>&lt;<span class="title">Label</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Tree&lt;Label&gt; T)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FindPig</span> <span class="keyword">implements</span> <span class="title">Action</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Tree&lt;String&gt; T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"pig"</span>.equals(T.label)) &#123; found = <span class="keyword">true</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preorderTraverse(someTree, <span class="keyword">new</span> FindPig());</span><br></pre></td></tr></table></figure>
+<h3><span id="level-order-traversal">Level Order Traversal</span><a href="#level-order-traversal" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">leverOrder</span><span class="params">(Tree T, Action toDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.height(); i++) &#123;</span><br><span class="line">        visitLevel(T, i, toDo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitLevel</span><span class="params">(Tree T, <span class="keyword">int</span> level, Action toDo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (level == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        toDo.visit(T.key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        visitLevel(T.left(), level - <span class="number">1</span>, toDo);</span><br><span class="line">        visitLevel(T.right(), level - <span class="number">1</span>, toDo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="tree-height">Tree Height</span><a href="#tree-height" class="header-anchor"> </a></h3><p>For algorithms whose runtime depends on height, difference between bushy tree and spindly tree can be huge!</p>
+<p><img src="/2020/03/22/CS61B-Tree-Traversal/tree.jpg" alt></p>
+<p>Iterative deepening runtimes: $\Theta(N) vs. \Theta(N^2)$</p>
+<p><strong>First One</strong>:</p>
+<ul>
+<li>Level 0: 1</li>
+<li>Level 1: 1 + 2 = 3</li>
+<li>Level 2: 1 + 2 + 4 = 7<br>…</li>
+<li>Level H: 1 + 2 + 4 + … + $ 2^H $ = $ 2^{H+1} - 1 $</li>
+</ul>
+<p>Total = $ 2^1 + 2^2 + … + 2^{H+1} - (H + 1) $<br>And we know that $ H = \Theta(logN) $<br>Therefore: The Iterative deepening runtimes = $ \Theta(N) $</p>
+<p><strong>Second One</strong>:</p>
+<ul>
+<li>Level 0: 1</li>
+<li>Level 1: 1 + 1 = 2</li>
+<li>Level 2: 1 + 1 + 1 = 3<br>…</li>
+<li>Level H: 1 + 1 + … + 1 = H</li>
+</ul>
+<p>Total = 1 + 2 + 3 + … H<br>And $ H = \Theta(N) $<br>Therefore: The Iterative deepening runtimes = $ \Theta(N^2) $</p>
+<h3><span id="geometric-search">Geometric Search</span><a href="#geometric-search" class="header-anchor"> </a></h3><p>Suppose we want an operation that returns all items in a range:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;Label&gt; <span class="title">findInRange</span><span class="params">(Tree T, Label min, Label, max)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>Pruning:</strong> Restricting our search to only nodes that might contain the answers we seek.</p>
+<p>Runtime for our search: $ \Theta(logN + R) $</p>
+<ul>
+<li>N: Total number of items in tree.</li>
+<li>R: Number of matches.</li>
+</ul>
+<h3><span id="handling-multidimensional-data-quadtrees">Handling Multidimensional Data: Quadtrees</span><a href="#handling-multidimensional-data-quadtrees" class="header-anchor"> </a></h3><p>Quadtrees:</p>
+<ul>
+<li>Divide and conquer by splitting 2D space into four quadrants.<br>— Store items into appropriate quadrant.<br>— Repeat recursively if more than one item in a quadrant.</li>
+</ul>
+<p>Definition, quadtree is either:</p>
+<ul>
+<li>Empty</li>
+<li>A ‘root’ item at some position (x, y) AND four quadtrees that are northwest, northwest, southwest, southeast of (x, y)</li>
+<li>Use TWO compares to decide which direction to go.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/Java-Source-Code-Reading-java-util-PriorityQueue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/21/Java-Source-Code-Reading-java-util-PriorityQueue/" itemprop="url">Java Source Code Reading: java.util.PriorityQueue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-21T11:34:12+08:00">
+                2020-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="note">Note:</span><a href="#note" class="header-anchor"> </a></h2><ul>
+<li>基于 priority heap。</li>
+<li>元素基于 natural ordering 或者传入的 Comparator 排序。</li>
+<li>不允许存在 null elements。</li>
+<li>不允许插入 non-comparable 对象，otherwise 抛出 ClassCastException。</li>
+<li>head 指向在特定顺序下，queue 中的最小的元素。（如果有多个最小，head 指向他们中的某一个） </li>
+<li>检索操作有 <strong>poll</strong>, <strong>remove</strong>, <strong>peek</strong>, <strong>element</strong>, 都可以得到 head 指向的元素。</li>
+<li>无界，但内部的 capacity 控制用来储存元素的 array 的长度, 初始的 capacity = 11。</li>
+<li>线程相关内容。</li>
+<li>Performance:<br>— <strong>offer</strong>, <strong>poll</strong>, <strong>remove</strong>, <strong>add</strong> $O(logN)$;<br>— <strong>remove(Object)</strong>, <strong>contains(Object)</strong> linear time;<br>— <strong>peek</strong>, <strong>element</strong>, <strong>size</strong> constant time.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/CS61B-Data-Structures-Summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/21/CS61B-Data-Structures-Summary/" itemprop="url">CS61B-Data Structures Summary</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-21T11:09:28+08:00">
+                2020-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/CS61B-Priority-Queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/21/CS61B-Priority-Queue/" itemprop="url">CS61B-Priority Queue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-21T09:36:37+08:00">
+                2020-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="priority-queue">Priority Queue</span><a href="#priority-queue" class="header-anchor"> </a></h2><h3><span id="the-priority-queue-interface">The Priority Queue Interface</span><a href="#the-priority-queue-interface" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** (Min) Priority Queue: Allowing tracking and removal of the smallest item in a priority queue. */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MinPQ</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** Adds the item to the priority queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Item x)</span></span>;</span><br><span class="line">    <span class="comment">/** Returns the smallest item in the priority queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">getSmallest</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">/** Removes the smallest item from the priority queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">removeSmallest</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">/** Returns the size of the priority queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Useful if you want to keep track of the “smallest”, “largest”, “best” etc. seen so far.</p>
+<h3><span id="how-would-we-implement-a-minpq">How Would We Implement a MinPQ</span><a href="#how-would-we-implement-a-minpq" class="header-anchor"> </a></h3><p>Some possiblities:</p>
+<ul>
+<li>Ordered Array</li>
+<li>Bushy BST: Maintaining bushiness is annoying. Handling duplicate priorities is awkward.</li>
+<li>HashTable: No good! Items go into random places.</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Ordered Array</th>
+<th style="text-align:center">Bushy BST</th>
+<th style="text-align:center">Hash Table</th>
+<th style="text-align:center">Heap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">add</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getSmallest</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">removeSmallest</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="introducing-the-heap">Introducing the Heap</span><a href="#introducing-the-heap" class="header-anchor"> </a></h3><p>BSTs would work, but need to be kept bushy and duplicates are awkward.</p>
+<p>Binary min-heap: Binary tree that is <strong>complete</strong> and obeys <strong>min-heap property</strong>.</p>
+<ul>
+<li>Min-heap: Every node is less than or equal to both of its children.</li>
+<li>Complete: Missing items only at the bottom level (if any), all nodes are as far left as possible.</li>
+</ul>
+<p><img src="/2020/03/21/CS61B-Priority-Queue/heap.jpg" alt></p>
+<h3><span id="what-good-are-heaps">What Good Are Heaps?</span><a href="#what-good-are-heaps" class="header-anchor"> </a></h3><p>Heaps lend themselves very naturally to implementation of a priority queue.</p>
+<ul>
+<li>getSmallest(): return the item in the root node.</li>
+<li>add(x): place the new employee in the last position, and promote as high as possible.</li>
+<li>removeSmallest(): assassinate the president (of the company), promote the rightmost person in the company to president. The demote repeatedly, always taking the ‘better’ successor.</li>
+</ul>
+<h3><span id="tree-representations">Tree representations</span><a href="#tree-representations" class="header-anchor"> </a></h3><p>General approach: Create mapping from node to children.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree1A</span>&lt;<span class="title">Key</span>&gt; </span>&#123;</span><br><span class="line">    Key k;</span><br><span class="line">    Tree1A left;</span><br><span class="line">    Tree1A middle;</span><br><span class="line">    Tree1A right;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree1B</span>&lt;<span class="title">Key</span>&gt; </span>&#123;</span><br><span class="line">    Key k;</span><br><span class="line">    Tree1B[] children;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Sibling Tree:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree1C</span>&lt;<span class="title">Key</span>&gt; </span>&#123;</span><br><span class="line">    Key k; </span><br><span class="line">    Tree1C favoredChild;</span><br><span class="line">    Tree1C sibling;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Approach 2: Store keys in an array. Store parentID in an array.</p>
+<ul>
+<li>Similar to what we did with disjointSets.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree2</span>&lt;<span class="title">Key</span>&gt; </span>&#123;</span><br><span class="line">    Key[] keys;</span><br><span class="line">    <span class="keyword">int</span>[] parents;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Approach 3: Store keys in an array. Don’t store structure anywhere.</p>
+<ul>
+<li>To interpret array: Simply assume tree is complete.</li>
+<li>Obviously only works for “complete” trees.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree3</span>&lt;<span class="title">Key</span>&gt; </span>&#123;</span><br><span class="line">    Key[] keys;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/21/CS61B-Priority-Queue/rep.jpg" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swim</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (keys[parent(k)].compareTo(keys[k]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        swap(k, parent(k));</span><br><span class="line">        swim(parent(k));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (k - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="real-implementation">Real implementation</span><a href="#real-implementation" class="header-anchor"> </a></h3><p>Store keys in an array. Offset everything by 1 spot.</p>
+<ul>
+<li>Makes computation of children/parents “nicer”.<br>— leftChild(k) = k <em> 2<br>— rightChild(k) = k </em> 2 + 1<br>— parent(k) = k / 2</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Ordered Array</th>
+<th style="text-align:center">Bushy BST</th>
+<th style="text-align:center">Hash Table</th>
+<th style="text-align:center">Heap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">add</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">getSmallest</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+<tr>
+<td style="text-align:center">removeSmallest</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Notes:</p>
+<ul>
+<li>Heap is $ logN $ time AMORTIZED (some resizes, but no big deal).</li>
+<li>BST can have constant getSmallest if you keep a pointer to smallest.</li>
+<li>Heaps handle duplicate priorities much more naturally than BSTs.</li>
+<li>Array based heaps take less memory.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -971,1722 +2303,11 @@ Computation of the hashCode of a recursive data structure involves recursive com
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/16/CS61B-Balanced-Search-Trees/" itemprop="url">CS61B-Balanced Search Trees</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-16T10:12:27+08:00">
-                2020-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structure</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="balanced-search-trees"> Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2>
-<h3><span id="the-trouble-with-trees"> The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3>
-<p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
-<ul>
-<li>Worst case: Items inserted in order.</li>
-<li>Fundamental issue: Too lazy about where to store data.</li>
-</ul>
-<p>One solution:</p>
-<ul>
-<li>Insert in random order.<br>
-– Results in $ \Theta (logN) $ height with extremely high probability.</li>
-<li>However, you don’t have all the data front.</li>
-</ul>
-<h3><span id="tree-rotation-example"> Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3>
-<p>Suppose we have a search tree as shown below:</p>
-<ul>
-<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>
-– Promoting P means P is the new parent of G.</li>
-<li>Semantics of the tree are completely unchanged.</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/rotateleft.jpg" alt></p>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/result.jpg" alt></p>
-<p>To reverse the operation: RotateRight§</p>
-<ul>
-<li>RotateRight§: P moves right, promotes its left child in the only natural way.</li>
-</ul>
-<h3><span id="rotation-an-alternate-approach-to-balance"> Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3>
-<p>Rotation:</p>
-<ul>
-<li>Can shorten (or lengthen) a tree.</li>
-<li>Preserves search tree property.</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/illustrate.jpg" alt></p>
-<p>Can use rotation to balance a BST.</p>
-<p>One way ot achieve balance:</p>
-<ul>
-<li>Rotate after each insertion and deletion to maintain balance.</li>
-</ul>
-<h3><span id="search-trees"> Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3>
-<p>There are many types of search trees:</p>
-<ul>
-<li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation (AVL, weight-balancing, <strong>red-black</strong>)</li>
-<li>Treaps.</li>
-<li>Splay trees.</li>
-<li><strong>2-3/2-3-4 trees/B-trees:</strong> No rotations required.</li>
-</ul>
-<h3><span id="a-weirder-solution"> A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3>
-<p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
-<p>Weirder solution: Overstuff the leaf nodes.</p>
-<ul>
-<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>
-– Height is just max(depth).</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>
-This is a logically consistent but very weird data structure.</p>
-<ul>
-<li>contains®:<br>
-– Search for the appropriate leaf.<br>
-– Search the leaf for ‘r’.</li>
-</ul>
-<p>But there exists some new problems:</p>
-<ul>
-<li>Leaf nodes can get too juicy.</li>
-</ul>
-<p>Solution:</p>
-<ul>
-<li>Set a cap on the number of items, say 3.</li>
-<li>If more than cap, give an item to parent.</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/pq.jpg" alt></p>
-<p>Problem now:</p>
-<ul>
-<li>Items between o and q have no home.</li>
-</ul>
-<p>Solution:</p>
-<ul>
-<li>Set a cap on the number of items, say 3.</li>
-<li>If more than cap, give an item to the parent.<br>
-– Pulling item out of juicy nodes splits it into left and right.<br>
-– Parent node now has three children.</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/3node.jpg" alt></p>
-<h3><span id="revising-our-overstuffed-tree-approach-node-splitting"> Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3>
-<p>This is a logically consistent and not so weird data structure.</p>
-<ul>
-<li>contains®:<br>
-– r &lt; m, so go right<br>
-– r &gt; o, so compares vs. q<br>
-– r &gt; q, so go right</li>
-</ul>
-<h3><span id="perfect-balance"> Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3>
-<p>Observation: Splitting-trees have perfect balance.</p>
-<ul>
-<li>If we split the root, every node gets pushed down by exactly one level.</li>
-<li>If we split a leaf node or internal node, the height doesn’t change.</li>
-</ul>
-<p>Bottom line: All operations have guaranteed $ \Theta(logN) $ time.</p>
-<p>M: Max number of children (one more than the item cap).<br>
-Height: Between $ log_M(N) $ and $ log_2(N) $</p>
-<p>Max number of splitting operations per insert: ~H</p>
-<p>Time per insert/contains: $ \Theta(H) $, or equivalently $ \Theta(logN) $</p>
-<h3><span id="the-real-name-of-splitting-trees-is-b-trees"> The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3>
-<ul>
-<li>
-<p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>
-– The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
-</li>
-<li>
-<p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
-</li>
-</ul>
-<p>B-Trees are most popular in two specific contexts:</p>
-<ul>
-<li>Small M (M = 3 or M = 4):<br>
-– Used as a conceptually simple balanced search tree (as today).</li>
-<li>M is very large (say thousands).<br>
-– Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
-</ul>
-<p>Note: Since the small M tree isn’t practically useful, people usually only use the name B-tree to refer to the very large M case.</p>
-<h3><span id="red-black-trees"> Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3>
-<h4><span id="the-bad-news"> The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4>
-<p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
-<ul>
-<li>Maintaining different node types.</li>
-<li>Interconversion of nodes between 2-nodes and 3-nodes.</li>
-<li>Walking up the tree to split nodes.</li>
-</ul>
-<h4><span id="idea"> idea</span><a href="#idea" class="header-anchor"> </a></h4>
-<ul>
-<li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation. Coming up wih a strategy is hard.</li>
-<li><strong>2-3 trees:</strong> No rotations required.</li>
-</ul>
-<p>Clever (and strange idea): Build a BST that is isometric (structurally identical) to a 2-3 tree.</p>
-<ul>
-<li>Use rotations to ensure the isometry.</li>
-<li>Since 2-3 trees are balanced, rotations on BST will ensure balance.</li>
-</ul>
-<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes"> Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4>
-<p>Possibility 1: Create dummy “glue” nodes.</p>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/dummy.jpg" alt></p>
-<p>Result is inelegant. Wasted link. Code will be ugly.</p>
-<p>Possibility 2: Create “glue” links with the smaller item off to the left.</p>
-<p>Idea is commonly used in practice (e.g. java.util.TreeSet)</p>
-<p>For convenience, we’ll mark glue links as “red”.</p>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/red.jpg" alt></p>
-<h4><span id="left-leaning-red-black-binary-search-tree-llrb"> Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4>
-<p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
-<ul>
-<li>No node has two red links (otherwise it’d be like a 4 node).</li>
-<li>Every path from root to a leaf has same number of black links.</li>
-<li>Red links lean left.</li>
-<li>Also called a “left leaning red black binary search tree (LLRB)”.</li>
-</ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/example.jpg" alt></p>
-<p>Facts of interest:</p>
-<ul>
-<li>For any 2-3 tree (which is balanced), there exists a corresponding red-black tree that has depth no more than 2 times the depth of the 2-3 tree.</li>
-</ul>
-<p>With a HUGE dose of cleverness can use rotations to maintain isometry after each insertion and deletion.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/CS61B-Binary-Search-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/15/CS61B-Binary-Search-Tree/" itemprop="url">CS61B-Binary Search Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T01:42:33+08:00">
-                2020-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structure</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="binary-search-tree">Binary Search Tree</span><a href="#binary-search-tree" class="header-anchor"> </a></h2><h3><span id="tree">Tree</span><a href="#tree" class="header-anchor"> </a></h3><p>A tree consists of:</p>
-<ul>
-<li>A set of nodes.</li>
-<li>A set of edges that connect those nodes.<br>— Constraint: There is exactly one path between any two nodes.</li>
-</ul>
-<h3><span id="rooted-trees-and-rooted-binary-trees">Rooted Trees and Rooted Binary Trees</span><a href="#rooted-trees-and-rooted-binary-trees" class="header-anchor"> </a></h3><p>In a rooted tree, we call one node the root.</p>
-<ul>
-<li>Every node N except the root has exactly one parent, defined as the first node on the path from N to the root.</li>
-<li>The root is usually depicted at the top of the tree.</li>
-<li>A node with no child is called a leaf.</li>
-</ul>
-<p>In a rooted binary tree, every node has either 0, 1, or 2 children(subtrees).</p>
-<h3><span id="binary-search-trees">Binary Search Trees</span><a href="#binary-search-trees" class="header-anchor"> </a></h3><p>A binary search tree is a rooted binary tree with the BST property.</p>
-<p><strong>BST Property.</strong> For every node X in the tree:</p>
-<ul>
-<li>Every key in the left subtree is less than X’s key.</li>
-<li>Every key in the right subtree is greater than X’s key.</li>
-</ul>
-<p>Ordering must be complete, transitive, and antisymmetric. Given keys p and q:</p>
-<ul>
-<li>Exactly one of p &lt; q and q &lt; p are true.</li>
-<li>p &lt; q and q &lt; r imply p &lt; r.</li>
-</ul>
-<p>One consequence of these rules: No duplicate keys allowed.</p>
-<ul>
-<li>Keep things simple. Most real world implementations follow this rule.</li>
-</ul>
-<h3><span id="bst-operations">BST operations</span><a href="#bst-operations" class="header-anchor"> </a></h3><h4><span id="finding-a-searchkey-in-a-bst">Finding a searchKey in a BST</span><a href="#finding-a-searchkey-in-a-bst" class="header-anchor"> </a></h4><p>If searchKey equals label, return.</p>
-<ul>
-<li>If searchKey &lt; label, search left.</li>
-<li>If searchKey &gt; label, search right.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> BST <span class="title">find</span><span class="params">(BST T, Key sk)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sk.keyequals(T.label())) &#123;</span><br><span class="line">        <span class="keyword">return</span> T;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sk.compareTo(T.label()) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> find(T.left, sk);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> find(T.right, sk);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="inserting-a-new-key-into-a-bst">Inserting a new key into a BST</span><a href="#inserting-a-new-key-into-a-bst" class="header-anchor"> </a></h4><p>Search for key.</p>
-<ul>
-<li>If found, do nothing.</li>
-<li>If not found:<br>— Create new node.<br>— Set appropriate link.</li>
-</ul>
-<p>“me recursion version” better than “arm recursion version”<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> BST <span class="title">insert</span><span class="params">(BST T, Key ik)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BST(ik);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (ik.compareTo(T.label()) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        T.left = insert(T.left, ik);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ik.compareTo(T.label()) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        T.right = insert(T.right, ik);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4><span id="deletion-from-a-bst">Deletion from a BST</span><a href="#deletion-from-a-bst" class="header-anchor"> </a></h4><p>3 Cases:</p>
-<ul>
-<li>Deletion key has no children.</li>
-<li>Deletion key has one children.</li>
-<li>Deletion key has two children.</li>
-</ul>
-<h5><span id="case1-deletion-key-has-no-children">Case1: Deletion key has no children.</span><a href="#case1-deletion-key-has-no-children" class="header-anchor"> </a></h5><ul>
-<li>Just sever the parent’s link.</li>
-<li>The child will be garbage collected.</li>
-</ul>
-<h5><span id="case2-key-with-one-child">Case2: Key with one child.</span><a href="#case2-key-with-one-child" class="header-anchor"> </a></h5><p>Goal：</p>
-<ul>
-<li>Maintain BST property.</li>
-<li>Safe to just move the child to present node place.</li>
-</ul>
-<h5><span id="case3-key-with-two-child">Case3: Key with two child.</span><a href="#case3-key-with-two-child" class="header-anchor"> </a></h5><p>Choose either predecessor (“cat”) or successor(“elf”).</p>
-<ul>
-<li>Delete “cat” or “elf”, and stick new copy in the root position:<br>— This deletion guaranteed to be either case 1 or 2.</li>
-<li>This strategy is sometimes known as “Hibbard deletion”.</li>
-</ul>
-<p><img src="/2020/03/15/CS61B-Binary-Search-Tree/delete.jpg" alt></p>
-<p>Height varies dramatically between “bushy” and “spindly” trees.</p>
-<p><strong>Surprising Fact.</strong> Trees not balanced! $ \sqrt{N} $ per operation.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/CS61B-Disjoint-Sets/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/14/CS61B-Disjoint-Sets/" itemprop="url">CS61B-Disjoint Sets</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T01:33:01+08:00">
-                2020-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structure</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="disjoint-sets">Disjoint Sets</span><a href="#disjoint-sets" class="header-anchor"> </a></h2><h3><span id="the-dynamic-connectivity-problem">The Dynamic Connectivity Problem</span><a href="#the-dynamic-connectivity-problem" class="header-anchor"> </a></h3><p>Goal: Given a series of pairwise integers connectedness declarations, determine if two integers (or items) are connected. Two operations:</p>
-<ul>
-<li>connect(p,q): Connect items p and q.</li>
-<li>isConnected(p,q): Are p and q connected?</li>
-</ul>
-<h3><span id="the-disjoint-sets-adt">The DisJoint Sets ADT</span><a href="#the-disjoint-sets-adt" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** Connect two items P and Q. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Checks to see if two items are connected. */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Goal: Design an efficient DisjointSets implementation.</p>
-<ul>
-<li>Number of elements N can be huge.</li>
-<li>Number of method calls M can be huge.</li>
-<li>Calls to methods may be interspersed (e.g. can’t assume that we stop getting connect calls after some point.)</li>
-</ul>
-<h3><span id="a-better-approach-connected-components">A better Approach: Connected Components</span><a href="#a-better-approach-connected-components" class="header-anchor"> </a></h3><p>Rather than manually writing out every single connecting line, record the sets that something belongs to.</p>
-<p><img src="/2020/03/14/CS61B-Disjoint-Sets/com.jpg" alt></p>
-<p><strong>A connected component</strong> is a maximal set of items that are mutually connected.</p>
-<h3><span id="quick-find">Quick Find</span><a href="#quick-find" class="header-anchor"> </a></h3><h4><span id="using-an-array">Using an Array</span><a href="#using-an-array" class="header-anchor"> </a></h4><p>One natural choice: int[] where ith entry gives set number of items i.</p>
-<ul>
-<li>connect(p, q): Change entries that equal id[p] to id[q].</li>
-</ul>
-<h4><span id="quickfindds">QuickFindDS</span><a href="#quickfindds" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickFindDS</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QuickFindDS</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        id = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            id[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id[p] == id[q];   <span class="comment">// very fast</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;  <span class="comment">// relatively slow</span></span><br><span class="line">        <span class="keyword">int</span> pid = id[p];</span><br><span class="line">        <span class="keyword">int</span> qid = id[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; id.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (id[i] == pid) &#123;</span><br><span class="line">                id[i] = qid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="quick-union">Quick Union</span><a href="#quick-union" class="header-anchor"> </a></h3><p>Idea: Assign each node a parent (instead of an id).</p>
-<p>connect(p, q)</p>
-<ul>
-<li>Make root(p) into a child of root(q).</li>
-</ul>
-<p>Problem:</p>
-<ul>
-<li>Tree can get too tall.</li>
-</ul>
-<h4><span id="quickunionds">QuickUnionDS</span><a href="#quickunionds" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickUnionDS</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] parent;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QuickUnionDS</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="comment">// For N items, this means a worst case runtime Theta(N)</span></span><br><span class="line">        <span class="keyword">while</span> (p != parent[p]) &#123;</span><br><span class="line">            p = parent[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root(p) == root(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = root(p);</span><br><span class="line">        <span class="keyword">int</span> j = root(q);</span><br><span class="line">        parent[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="perfomance-summary">Perfomance Summary</span><a href="#perfomance-summary" class="header-anchor"> </a></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Implementation</th>
-<th style="text-align:center">Constructor</th>
-<th style="text-align:center">connect</th>
-<th style="text-align:center">isConnected</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">QuickFindDS</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(1) $</td>
-</tr>
-<tr>
-<td style="text-align:center">QuickUnionDS</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ O(N) $</td>
-<td style="text-align:center">$ O(N) $</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>QuickFindDS defect: QuickFindDS is too slow: Connecting two items takes N times in the worst case.</p>
-<p>QuickUnion defect: Trees can get tall. Results in potentially even worse performance than QuickFind if tree is imbalanced.</p>
-<h3><span id="weighted-quickunion">Weighted QuickUnion</span><a href="#weighted-quickunion" class="header-anchor"> </a></h3><p>Modify quick-union to avoid tall trees.</p>
-<ul>
-<li>Track tree size (number of elements).</li>
-<li>New rule: Always link root of smaller tree to larger tree.</li>
-</ul>
-<h4><span id="implementing-weightedquickunion">Implementing WeightedQuickUnion</span><a href="#implementing-weightedquickunion" class="header-anchor"> </a></h4><p>Minimal changes needed:</p>
-<ul>
-<li>Use parent[] array as before, but also add size[] array.</li>
-<li>isConnected(int p, int q) requires no changes.</li>
-<li>connect(int p, int q) needs two changes:<br>— Link root of smaller tree to larger one.<br>— Update size[] array.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = find(p);</span><br><span class="line">    <span class="keyword">int</span> j = find(q);</span><br><span class="line">    <span class="keyword">if</span> (i == j) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (size[i] &lt; size[j]) &#123;</span><br><span class="line">        parent[i] = j;</span><br><span class="line">        size[j] += size[i];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[j] = i;</span><br><span class="line">        size[i] += size[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="weightedunion-performance">WeightedUnion Performance</span><a href="#weightedunion-performance" class="header-anchor"> </a></h4><p>As before, connect and isConnected require time proportional to depth of the items involved.</p>
-<p>Max depth of any item: logN</p>
-<p>Very brief proof:</p>
-<ul>
-<li>Depth of an element x increases only when tree T1 that contains x is linked below some other tree T2.<br>— The size of the tree at least doubles since weight(T2) &gt;= weight(T1).</li>
-<li>Tree containing x doubles at most logN times.</li>
-</ul>
-<h3><span id="performance-summary">Performance Summary</span><a href="#performance-summary" class="header-anchor"> </a></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Implementation</th>
-<th style="text-align:center">Constructor</th>
-<th style="text-align:center">connect</th>
-<th style="text-align:center">isConnected</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">QuickFindDS</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(1) $</td>
-</tr>
-<tr>
-<td style="text-align:center">QuickUnionDS</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ O(N) $</td>
-<td style="text-align:center">$ O(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">WeightedQuickUnionDS</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ O(logN) $</td>
-<td style="text-align:center">$ O(logN) $</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>By tweaking QuickUnionDS we’ve achieved logarithmic time performance.</p>
-<ul>
-<li>Fast enough for most practical problems.</li>
-</ul>
-<h3><span id="path-compression">Path Compression</span><a href="#path-compression" class="header-anchor"> </a></h3><p>Below is the topology of the worst case if we use WeightedQuickUnion.</p>
-<p><img src="/2020/03/14/CS61B-Disjoint-Sets/path.jpg" alt></p>
-<ul>
-<li>Clever idea: When we do isConnected(15, 10), tie all nodes seen to the root.<br>— Additional cost is insignificant.</li>
-</ul>
-<p><img src="/2020/03/14/CS61B-Disjoint-Sets/path2.jpg" alt></p>
-<p>Path compression results in a union/connected operations that are very close to amortized constant time.</p>
-<ul>
-<li>M operations on N nodes is $ O(N + M lg^*N) $.</li>
-<li>$ lg^* $ is less than 5 for any realistic input.</li>
-</ul>
-<p><img src="/2020/03/14/CS61B-Disjoint-Sets/structure.jpg" alt></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == parent[p]) &#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[p] = root(parent[p]);</span><br><span class="line">        <span class="keyword">return</span> parent[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="everything-altogether">Everything Altogether</span><a href="#everything-altogether" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeightedQuickUnionDSWithPathCompression</span> <span class="keyword">implements</span> <span class="title">DisjointSets</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] parent;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WeightedQuickUnionDSWithPathCompression</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        size = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">            size[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == parent[p]) &#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        parent[p] = root(parent[p]);</span><br><span class="line">        <span class="keyword">return</span> parent[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root(p) == root(q);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = root(p);</span><br><span class="line">        <span class="keyword">int</span> j = root(q);</span><br><span class="line">        <span class="keyword">if</span> (i == j) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (size[i] &lt; size[j]) &#123;</span><br><span class="line">            parent[i] = j;</span><br><span class="line">            size[j] += size[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent[j] = i;</span><br><span class="line">            size[i] += size[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="performance-summary">Performance Summary</span><a href="#performance-summary" class="header-anchor"> </a></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Implementation</th>
-<th style="text-align:center">Runtime</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">QuickFindDS</td>
-<td style="text-align:center">$ \Theta(NM) $</td>
-</tr>
-<tr>
-<td style="text-align:center">QuickUnionDS</td>
-<td style="text-align:center">$ O(NM) $</td>
-</tr>
-<tr>
-<td style="text-align:center">WeightedQuickUnionDS</td>
-<td style="text-align:center">$ O(N + MlogN) $</td>
-</tr>
-<tr>
-<td style="text-align:center">WeightedQuickUnionDSWithPathCompression</td>
-<td style="text-align:center">$ O(N + M \alpha(N)) $</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>In practical, $ \alpha(N) $ is less than 5.</p>
-<p>Runtimes are given assuming:</p>
-<ul>
-<li>We have a DisjointSets object of size N.</li>
-<li>We perform M operations, where an operation is defined as either a call to connected or isConnected.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/CS61B-Efficient-Programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/10/CS61B-Efficient-Programming/" itemprop="url">CS61B-Efficient Programming</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-10T14:40:27+08:00">
-                2020-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="asymptotics">Asymptotics</span><a href="#asymptotics" class="header-anchor"> </a></h2><h3><span id="some-terms">Some terms</span><a href="#some-terms" class="header-anchor"> </a></h3><ul>
-<li>Module: A set of methods that work together to perform some task or set of related tasks.</li>
-<li>Encapsulated: A module is said to be encapsulated if its implementation is completely hidden, and it can be accessed only through a documented interface.</li>
-</ul>
-<h4><span id="api-s">API’s</span><a href="#api-s" class="header-anchor"> </a></h4><p>An API(Application Programming Interface) of an ADT is the list of constructors and the methods and a short description of each.</p>
-<p>API consists of syntactic and semantic specification.</p>
-<ul>
-<li>Compilers verifies that <strong>syntax</strong> is met.<br>— A.K.A, everything specified in the API is present.</li>
-<li>Tests help verify that <strong>semantics</strong> are correct.<br>— A.K.A everything actually works they way it should.</li>
-</ul>
-<h4><span id="adt-s">ADT’s</span><a href="#adt-s" class="header-anchor"> </a></h4><p>ADT’s (Abstract Data Structures) are high-level types that are defined by their behaviors, not their implementations.</p>
-<p>i.e. Deuqe in Proj1 was an ADT that had certain behaviors (addFirst, addLast, etc.) But, the data structures we usually used to implement it was ArrayDeque and LinkedListDeque.</p>
-<p>Some ADT’s are actually special cases of other ADT’s. For example, Stacks and Queues are just lists that have even more specific behavior.</p>
-<h4><span id="writing-a-stack-in-different-ways">Writing a stack in different ways</span><a href="#writing-a-stack-in-different-ways" class="header-anchor"> </a></h4><p>Extension:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionStack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedList</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Delegation:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAdapter</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List L;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StackAdapter</span><span class="params">(List&lt;Item&gt; worker)</span> </span>&#123;</span><br><span class="line">        L = worker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        L.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This approach is similar to the previous one, except it can use any class that implements the List interface (Linked List, ArrayList, etc).</p>
-<p><strong>Delegation vs. Extension</strong><br>Extension tends to be used when you know what is going on in the parent class. In other words, you know how the methods are implemented. Additionally, with extension, you are basically saying that the class you are extending from acts similarly to the one that is doing the extending. On the other hand, Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
-<h3><span id="asymptotics-1-an-introduction-to-asymptotic-analysis">Asymptotics 1: An introduction to Asymptotic Analysis</span><a href="#asymptotics-1-an-introduction-to-asymptotic-analysis" class="header-anchor"> </a></h3><h4><span id="runtime-characterization">Runtime Characterization</span><a href="#runtime-characterization" class="header-anchor"> </a></h4><p>Technique 1: Measure execution time in seconds using a client program.</p>
-<ul>
-<li>Good: Easy to measure, meaning is obvious.</li>
-<li>Bad: May require large amounts of computation time. Result varies with machine, compiler, input data, etc.</li>
-</ul>
-<p>Technique 2A: Count possible operations for an array of size N = 10000.</p>
-<ul>
-<li>Good: Machine independent. Input dependence captured in model.</li>
-<li>Bad: Tedious to compute. Array size was arbitrary. Doesn’t tell you actual time.</li>
-</ul>
-<p>Technique 2B: Count possible operations in terms of input array size N.</p>
-<ul>
-<li>Good: Machine independent. Input dependence captured in model. Tells you how algorithm scales.</li>
-<li>Bad: Even more tedious to compute. Doesn’t tell you actual time.</li>
-</ul>
-<h4><span id="asymptotic-behavior">Asymptotic Behavior</span><a href="#asymptotic-behavior" class="header-anchor"> </a></h4><p>In most cases, we care only about asymptotic behavior, i.e. what happens for very large N.</p>
-<ul>
-<li>Simulation of billions of interacting paricles.</li>
-<li>Social network with billions of users.</li>
-<li>Logging of billions of transactions.</li>
-<li>Encoding of billions of bytes of video data.</li>
-</ul>
-<p>Algorithms which scale well (e.g. look like lines) have better asymptotic runtime behavior than algorithms that scale relatively poorly. (e.g. look like parabolas)</p>
-<p><strong>Intuitive Simplification 1. Consider Only the Worst Case</strong></p>
-<ul>
-<li>Justification: When comparing algorithms, we often care only about the worst case.</li>
-</ul>
-<p><strong>Intuitive Simplification 2.</strong> Restrict Attention to One Operation</p>
-<ul>
-<li>Pick some representative operation to act as a proxy for the overall runtime.</li>
-</ul>
-<p>We call our choice the “cost model”.</p>
-<p><strong>Intuitive Simplification 3.</strong> Ignore lower order terms.</p>
-<p><strong>Intuitive Simplification 4.</strong> Ignore multiplicative constants.</p>
-<p>Our process:</p>
-<ul>
-<li>Construct a table of exact counts of all possible operations.</li>
-<li>Convert table into a worst case order of growth using 4 simplifications.</li>
-</ul>
-<p>By using our simplifications from the outset, we can avoid building the table at all.</p>
-<h4><span id="simplified-analysis-process">Simplified Analysis Process</span><a href="#simplified-analysis-process" class="header-anchor"> </a></h4><p>Rather than building the entire table, we can instead:</p>
-<ul>
-<li>Choose a representative operation to count (a.k.a. cost model)</li>
-<li>Figure out the order of growth for the count of the representative operation by either:<br>— Making an exact count, then discarding the unnecessary pieces.<br>— Using intuition and inspection to determine order of growth</li>
-</ul>
-<h4><span id="formalizing-order-of-growth">Formalizing Order of Growth</span><a href="#formalizing-order-of-growth" class="header-anchor"> </a></h4><p>Big $ \Theta $ Definition: $ R(N) \in \Theta(f(N)) $ means there exist positive constants $k_1$ and $k_2$ such that:<br>$ k_1 \cdot f(N) \leq R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
-<p>Big $ O $:<br>Whereas Big Theta can informally be thought of as something like ‘equals’, Big O can be thought of as “less than or equals”.</p>
-<ul>
-<li>$ N^3 + 3 N^4 \in \Theta(N^4) $</li>
-<li>$ N^3 + 3 N^4 \in O(N^4)  $</li>
-<li>$ N^3 + 3 N^4 \in O(N^6) $</li>
-<li>$ N^3 + 3 N^4 \in O(N!) $</li>
-<li>$ N^3 + 3 N^4 \in O(N^N) $</li>
-</ul>
-<p>Big $ O $ Definition:<br> $ R(N) \in O(f(N)) $ means there exist positive constants $k_2$ such that:<br>$ R(N) \leq k_2 \cdot f(N) $<br>for all values of $ N $ greater than some $ N_0 $</p>
-<h3><span id="asymptotics-2">Asymptotics 2</span><a href="#asymptotics-2" class="header-anchor"> </a></h3><h4><span id="binary-search">Binary Search</span><a href="#binary-search" class="header-anchor"> </a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(String[] sorted, String x, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = x.compareTo(sorted[m]);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, lo, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> binarySearch(sorted, x, m + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Cost model: $ C(N) = Math.floor( log_2^{N} )  + 1 $</p>
-<h4><span id="handy-big-theta-properties">Handy Big Theta Properties</span><a href="#handy-big-theta-properties" class="header-anchor"> </a></h4><ul>
-<li>the floor of f has same order of growth as f.</li>
-<li>the ceiling of f has same order of growth as f.</li>
-<li>logarithm base does not affect order of growth.</li>
-</ul>
-<p>Therefore:<br>$ C(N) \in \Theta(logN) $</p>
-<h4><span id="log-time-is-really-fast">Log Time is Really Fast</span><a href="#log-time-is-really-fast" class="header-anchor"> </a></h4><p>In practice, logarithmic time algorithms have almost constant runtimes.</p>
-<h4><span id="using-merge-to-speed-up-the-sorting-process">Using Merge to Speed Up the Sorting Process</span><a href="#using-merge-to-speed-up-the-sorting-process" class="header-anchor"> </a></h4><p>Merging can give us improvement over vanilla selection sort:</p>
-<ul>
-<li>Selection sort the left half: $ \Theta(N^2) $.</li>
-<li>Selection sort the right half: $ \Theta(N^2) $.</li>
-<li>Merge the results: $ \Theta(N) $</li>
-</ul>
-<p>Can do it recursively.</p>
-<h4><span id="mergesort">Mergesort</span><a href="#mergesort" class="header-anchor"> </a></h4><p>Mergesort does merges all the way down (no selection sort):</p>
-<ul>
-<li>If array is of size 1, return.</li>
-<li>Mergesort the left half.</li>
-<li>Mergesort the right half.</li>
-<li>Merge the results.</li>
-</ul>
-<p>Mergesort has worst case time $ \Theta(NlogN) $</p>
-<h3><span id="omega-amortized-analysis">Omega, Amortized Analysis</span><a href="#omega-amortized-analysis" class="header-anchor"> </a></h3><h4><span id="why-big-o-is-useful">Why Big O is useful?</span><a href="#why-big-o-is-useful" class="header-anchor"> </a></h4><p>Big Theta expresses the exact order of as a function of the input size. However, if the runtime depends on more than just the size of the input, then we must qualify our statements into different cases before using Big Theta. Big O does away with this annoyance. Rather than describe both the best and worse case, we can simply describe the worst case using big O.</p>
-<h4><span id="big-o-abuse">Big O Abuse</span><a href="#big-o-abuse" class="header-anchor"> </a></h4><p>Important: Big O does not mean “worst case”! Often abused to mean this.</p>
-<p>Sometimes don’t know the exact runtime, so use O to give an upper bound.</p>
-<h4><span id="big-omega">Big Omega</span><a href="#big-omega" class="header-anchor"> </a></h4><p>Whereas Big Theta can informally be thought of as something like “equals”, Big Omega can be thought of as “greater than or equal”.</p>
-<p>Formal Definition:<br>$ R(N) \in \Omega(f(N)) $ means there exists positive constant $ k_1 $ such that:<br>$ k_1 \cdot f(N) \leq R(N) $ for all values of $ N $ greater than some $ N_0 $.</p>
-<p>Two common use for Big Omega:</p>
-<ul>
-<li>Very careful proofs of Big Theta runtime.</li>
-<li>Providing lower bounds for the hardness of a problem.</li>
-</ul>
-<p>Important：Big Omega does NOT mean best case.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/CS61B-Access-Control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/CS61B-Access-Control/" itemprop="url">CS61B-Access Control</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-08T11:04:23+08:00">
-                2020-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="access-control">Access Control</span><a href="#access-control" class="header-anchor"> </a></h2><h3><span id="access-control-with-inheritance-and-packages">Access Control with Inheritance and Packages</span><a href="#access-control-with-inheritance-and-packages" class="header-anchor"> </a></h3><p><strong>Protected</strong> modifier allows package-buddies and subclasses to use a class member (i.e. field/method/constructor).</p>
-<ul>
-<li>Outside cannot access.</li>
-</ul>
-<p><strong>Package private</strong><br>Using no modifier allows classes from the same package, but not subclasses, to access the member.</p>
-<p><img src="/2020/03/08/CS61B-Access-Control/table.jpg" alt></p>
-<h3><span id="the-default-package">The Default Package</span><a href="#the-default-package" class="header-anchor"> </a></h3><ul>
-<li>As mentioned earlier, code without a package label is part of an unnamed package, a.k.a. the “default package”.</li>
-</ul>
-<p>Don’t have any access modifiers or package names?</p>
-<ul>
-<li>Everything is package-private.</li>
-<li>Everthing is part of the same(unnamed) default package.</li>
-</ul>
-<h3><span id="access-is-based-only-on-static-types">Access is Based Only on Static Types</span><a href="#access-is-based-only-on-static-types" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BlackHole</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Object x)</span></span>;  <span class="comment">// add might look package private, actually public, because it is an interface</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It is important that for interfaces, the default access for its method is actually public, and not package-private.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreationUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BlackHole <span class="title">hirsute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HasHair();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> universe;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HasHair</span> <span class="keyword">implements</span> <span class="title">BlackHole</span> </span>&#123;</span><br><span class="line">    Object[] items;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object o)</span> </span>&#123; ... &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> CreationUtils.hirsute;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">demoAccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BlackHole b = hirsute();</span><br><span class="line">        b.add(<span class="string">"horse"</span>);</span><br><span class="line">        b.get(<span class="number">0</span>);</span><br><span class="line">        HasHair hb = (HasHair) b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>b.get(0): This line errors because b is of static type <em>BlackHole</em>, but the <em>BlackHole</em> interface does not define a <em>get</em> method. Even though you and I both know that b is dynamically a <em>HasHair</em>, and thus has the <em>get</em> method, the compiler bases its checks off the static type.</p>
-</li>
-<li><p>HasHair hb = (HasHair) b; notice that <em>HasHair</em> class is not a public class- it’s package-private. This means that <em>Client</em>, a class outside of the <em>universe</em> package, can’t see that the <em>HasHair</em> class exists.</p>
-</li>
-</ul>
-<h3><span id="summary">Summary</span><a href="#summary" class="header-anchor"> </a></h3><p>Access Levels:</p>
-<ul>
-<li>Private declarations are parts of the implementation of a class that only that class needs.</li>
-<li>Package-private declarations are parts of the implementation of a package that other members of the package will need to complete the implementation.</li>
-<li>Protected declarations are things that subtypes might need, but subtype clients will not.</li>
-<li>Public declarations are declarations of the specification for the package, i.e. what clients of the package can rely on. Once deployed, these should not change.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/CS61B-Packages/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/CS61B-Packages/" itemprop="url">CS61B-Packages</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-08T10:33:44+08:00">
-                2020-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="packages-and-jar-files">Packages and JAR files</span><a href="#packages-and-jar-files" class="header-anchor"> </a></h2><h3><span id="packages">Packages</span><a href="#packages" class="header-anchor"> </a></h3><p>To address the fact that classes might share names:</p>
-<ul>
-<li>A package is a <strong>namespace</strong> that organizes classes and interfaces.</li>
-<li>Naming convention: Package name starts with website address (backwards).</li>
-</ul>
-<p><strong>Creating a Package</strong><br>Two steps:</p>
-<ul>
-<li>At the top of every file in the package, put the package name.</li>
-<li>Make sure that the file is stored in a folder with the appropriate folder name. For a package with name <em>ug.joshh.animal</em>, use folder <em>ug/joshh/animal</em>.</li>
-</ul>
-<p><strong>Using Packages</strong><br>As we saw in a previous lecture, to use a class from Package A in a class from Package B, we use the <strong>canonical name.</strong></p>
-<p>For example, in the DogLauncher class, which is not part of the ug.joshh.animal package, can create a Dog using the syntax below.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ug.joshh.animal.Dog d = <span class="keyword">new</span> ug.joshh.animal.Dog(...);</span><br></pre></td></tr></table></figure><br>By using an <strong>import</strong> statement, we can use the <strong>simple name</strong> instead.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.Dog;</span><br><span class="line">...</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure><br><strong>The Default Package</strong><br>Any Java class without a package name at the top are part of the “default” package. </p>
-<p>Idea: Ensure that we never have two classes with the same name. And you cannot import code from the default package.</p>
-<h3><span id="jar-files">JAR Files</span><a href="#jar-files" class="header-anchor"> </a></h3><p>JAR files are just zip files.</p>
-<ul>
-<li>They do not keep your code safe.</li>
-<li>Easy to unzip and transform back into .Java files.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Object-Methods/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/CS61B-Object-Methods/" itemprop="url">CS61B-Object Methods</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T11:41:40+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="object-methods">Object Methods</span><a href="#object-methods" class="header-anchor"> </a></h2><p>All classes inherit from the overarching Object class. The methods that are inherited are as follows:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">toString</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">Class &lt;?&gt; <span class="title">getClass</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="title">Objectclone</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">notifyAll</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span></span></span><br></pre></td></tr></table></figure></p>
-<h3><span id="tostring">toString()</span><a href="#tostring" class="header-anchor"> </a></h3><p>The <em>toString()</em> method provides a string representation of an object.</p>
-<ul>
-<li><em>System.out.println(Object x)</em> calls <em>x.toString()</em><br>— <em>println</em> calls <em>String.valueOf</em> which calls <em>toString</em></li>
-<li>The implementation of <em>toString()</em> in <em>Object</em> is the name of the class, then an @ sign, then the memory location of the object.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String returnSB = <span class="keyword">new</span> StringBuilder(<span class="string">"&#123;"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        returnSB.append(items[i].toString()); <span class="comment">// returnSB.append(items[i]) also works because this implicitly happens</span></span><br><span class="line">        returnSB.append(<span class="string">", "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    returnSB.append(array[size - <span class="number">1</span>]);</span><br><span class="line">    returnSB.append(<span class="string">"&#125;"</span>);</span><br><span class="line">    <span class="keyword">return</span> returnSB.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Why not use String:</p>
-<ul>
-<li><em>String</em> is immutable. Adding even a single character to a string creates an entirely new string.</li>
-</ul>
-<h3><span id="equals">equals()</span><a href="#equals" class="header-anchor"> </a></h3><p>As mentioned in an offhand manner previosly, <em>==</em> and <em>.equals()</em> behave differently.</p>
-<ul>
-<li>== compares the bits. For references, <em>==</em> means “referencing the same object”.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = Set.of(<span class="number">5</span>, <span class="number">23</span>, <span class="number">42</span>);</span><br><span class="line">Set&lt;Integer&gt; javaset2 = Set.of(<span class="number">5</span>, <span class="number">23</span>, <span class="number">42</span>);</span><br><span class="line">System.out.println(javaset == javaset2);</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">To test equality in the sense we usually mean it, use:</span><br><span class="line">- *.equals* <span class="keyword">for</span> classes. Requires writing a *.equals* method <span class="keyword">for</span> your classes.</span><br><span class="line">- Default implementation of *.equals* use == (probably not what you want)</span><br><span class="line">- BTW: Use *Arrays.equal* or *Arrays.deepEquals* <span class="keyword">for</span> arrays.</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object other)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == other) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (other == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (other.getClass() != <span class="keyword">this</span>.getClass()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ArraySet&lt;T&gt; o = (ArraySet&lt;T&gt;) other;</span><br><span class="line">        <span class="keyword">if</span> (o.size() != <span class="keyword">this</span>.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (T item : <span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!o.contains(item)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="rules-for-equals-in-java">Rules for Equals in Java</span><a href="#rules-for-equals-in-java" class="header-anchor"> </a></h4><ol>
-<li><em>equals</em> must be an equivlence relation</li>
-</ol>
-<ul>
-<li>reflexive: <em>x.equals(x)</em> is true.</li>
-<li>symmetric: <em>x.equals(y)</em> if and only if <em>y.equals(x)</em>.</li>
-<li>transitive: <em>x.equals(y)</em> and <em>y.equals(z)</em> implies <em>x.equals(z)</em>.</li>
-</ul>
-<ol>
-<li><p>It must take an Object argument, in order to override the <em>.equals</em> method.</p>
-</li>
-<li><p>It must be consistent if <em>x.equals(y)</em>, then as long as <em>x</em> and <em>y</em> remain unchanged: <em>x</em> must continue to equal <em>y</em>.</p>
-</li>
-<li><p>It is never true for null <em>x.equals(null)</em> must be false.</p>
-</li>
-</ol>
-<h3><span id="nicer-implementation-of-tostring-and-of">Nicer Implementation of toString() and of</span><a href="#nicer-implementation-of-tostring-and-of" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; listOfItems = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (T x : <span class="keyword">this</span>) &#123;</span><br><span class="line">        listOfItems.add(x.toString());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"&#123;"</span> + String.join(<span class="string">", "</span>, listOfItems) + <span class="string">"&#125;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Method is generic.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;Glerp&gt; <span class="function">ArraySet&lt;Glerp&gt; <span class="title">of</span><span class="params">(Glerp... stuff)</span> </span>&#123;</span><br><span class="line">    ArraySet&lt;Glerp&gt; returnSet = <span class="keyword">new</span> ArraySet&lt;Glerp&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Glerp x : stuff) &#123;</span><br><span class="line">        returnSet.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> returnSet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Iteration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/CS61B-Iteration/" itemprop="url">CS61B-Iteration</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T10:41:13+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h2><span id="title-cs61b-iteration-date-2020-03-07t10-41-13-000z-tags-cs61b-categories-java"> title: CS61B-Iteration<br>
-date: 2020-03-07T10:41:13.000Z<br>
-tags: CS61b<br>
-categories: Java</span><a href="#title-cs61b-iteration-date-2020-03-07t10-41-13-000z-tags-cs61b-categories-java" class="header-anchor"> </a></h2>
-<h2><span id="iteration"> Iteration</span><a href="#iteration" class="header-anchor"> </a></h2>
-<h3><span id="the-enhanced-for-loop"> The Enhanced For Loop</span><a href="#the-enhanced-for-loop" class="header-anchor"> </a></h3>
-<p>Java allows us to iterate through Lists and Sets using a convenient shorthand syntax sometimes called the “foreach” or “enhanced for” loop.</p>
-<h3><span id="how-iteration-really-works"> How iteration Really Works</span><a href="#how-iteration-really-works" class="header-anchor"> </a></h3>
-<p>An alternate, uglier way to iterate through a List is to use the iterator() method.</p>
-<p>Set.java:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>Ugly iteration:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line">Iterator&lt;Integer&gt; seer = javaset.iterator();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (seer.hasNext()) &#123;</span><br><span class="line">    System.out.println(seer.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Nice iteration:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x : javaset) &#123;</span><br><span class="line">    System.out.println(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="the-secret-of-the-enhanced-for-loop"> The secret of the Enhanced For Loop</span><a href="#the-secret-of-the-enhanced-for-loop" class="header-anchor"> </a></h3>
-<p>The secret: The code in nice form is just shorthand for the code in ugly form. For ugly form to compile, the compilers checks:</p>
-<ul>
-<li>Does the Set interface have an iterator() method?</li>
-<li>Does the Iterator interface have next/hasNext() methods?</li>
-</ul>
-<h3><span id="supporting-ugly-iteration-in-arraysets"> Supporting Ugly Iteration in ArraySets</span><a href="#supporting-ugly-iteration-in-arraysets" class="header-anchor"> </a></h3>
-<p>To support ugly iteration:</p>
-<ul>
-<li>Add an <em>iterator()</em> method to <em>ArraySet</em> that returns an <em>Iterator<t></t></em>.</li>
-<li>The <em>Iterator<t></t></em> that we return should have a useful <em>hasNext()</em> and <em>next()</em> method.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns an iterator</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;Integer&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArraySetIterator();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySetIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> wisPos;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySetIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        wizPos = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> wizPos &lt; size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T returnItem = array[wizPos++];</span><br><span class="line">        <span class="keyword">return</span> returnItem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="for-each-iteration-and-arraysets"> For each iteration and Arraysets</span><a href="#for-each-iteration-and-arraysets" class="header-anchor"> </a></h3>
-<p>To support the enhanced for loop, we need to make <em>ArraySet</em> implement the <em>Iterable</em> interface.<br>
-That is to say, we need Java know that we have iterator() in out <em>ArraySet</em> class.</p>
-<ul>
-<li>There are also some default methods in <em>Iterable</em>, not shown.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySet</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2732,7 +2353,7 @@ That is to say, we need Java know that we have iterator() in out <em>ArraySet</e
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2754,7 +2375,7 @@ That is to say, we need Java know that we have iterator() in out <em>ArraySet</e
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

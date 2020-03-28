@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="动态规划初探 LeetCode 53. 最大子序和 给定一个整数数组 nums， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。示例:12输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],输出: 6 123456789101112131415161718192021public int maxSubArray(int[] nums) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法解析——动态规划">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+<meta property="og:site_name" content="Starfly&#39;s blog">
+<meta property="og:description" content="动态规划初探 LeetCode 53. 最大子序和 给定一个整数数组 nums， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。示例:12输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],输出: 6 123456789101112131415161718192021public int maxSubArray(int[] nums) &amp;#123;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-24T02:24:30.000Z">
+<meta property="article:modified_time" content="2020-03-28T01:38:40.251Z">
+<meta property="article:author" content="Starfly">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/24/算法解析——动态规划/"/>
+
+
+
+
+
+  <title>算法解析——动态规划 | Starfly's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Starfly's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法解析——动态规划</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-24T10:24:30+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he">动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2><p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 状态定义</span></span><br><span class="line">    <span class="comment">// dp[i] 表示前 i 个元素的最大连续子数组的和</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 状态初始化，数组中第一个元素的最大和就是第一个元素之</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    ans = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 状态转移</span></span><br><span class="line">    <span class="comment">// 转移方程： dp[i] = max(dp[i - 1], 0) + nums[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>], <span class="number">0</span>) + nums[i];</span><br><span class="line">        <span class="comment">// 更新最大和</span></span><br><span class="line">        ans = Math.max(ans, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="dong-tai-gui-hua-kuang-jia">动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2><p>@source: <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems</a></p>
+<h3><span id="leetcode-wen-ti">LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3><ul>
+<li><ol>
+<li>Best Time to Buy and Sell Stock</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock II</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock III</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock IV</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock with Cooldown</li>
+</ol>
+</li>
+<li><ol>
+<li>Best Time to Buy and Sell Stock with Transaction Fee</li>
+</ol>
+</li>
+</ul>
+<h3><span id="kuang-jia">框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3><p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
+<ul>
+<li>显式的因素有<strong>哪一天</strong>、我们可以进行 <strong>几次</strong> 交易。</li>
+<li>隐式的因素是我们当前手上<strong>是否</strong>有股票。</li>
+</ul>
+<p><strong>Notations:</strong></p>
+<ul>
+<li><em>prices</em>: 长度为 n 股票价格数组。</li>
+<li><em>i</em>: 代表第 i 天。其中 $ i \in [0, n-1] $。</li>
+<li><em>k</em>: 代表允许进行的最大交易次数。</li>
+<li><em>dp[i][k][0]</em>: 代表在第 i 天结束时，最多进行 k 次交易，我们手上没有股票，所能获得的最大收益。</li>
+<li><em>dp[i][k][1]</em>: 代表在第 i 天结束时，最多进行 k 次交易， 我们手上有股票，所能获得的最大收益。</li>
+</ul>
+<p><strong>Base cases:</strong></p>
+<ul>
+<li><em>dp[-1][k][0] = 0</em>. 表示没有进入交易日，那么没有收益。</li>
+<li><em>dp[i][0][0] = 0</em>. 表示在第 i 天, 最多进行 0 次交易，也就是说没有交易，那么没有收益。</li>
+<li><em>dp[-1][k][1] = -Inf</em>. 表示没有进入交易日，手上却有股票，这不可能，用 -Inf 表示这种不可能。</li>
+<li><em>dp[i][0][1] = -Inf</em>, 表示没有交易，手上却有股票，这不可能。</li>
+</ul>
+<p><strong>状态转移:</strong></p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices</em></li>
+</ul>
+<p>解释： 第 i 天结束时，手上没有股票， 那么可能是第 i - 1 天也没有股票，然后采取了 <strong>rest</strong> 的策略， 或者是第 i - 1 天有股票然后在第 i 天采取了 <strong>sell</strong> 的策略； 第 i 天结束时， 手上有股票， 那么可能是第 i - 1 天手上就有股票， 然后采取了 <strong>rest</strong> 的策略，也可能是第 i - 1 天手上没有股票，采取了 <strong>buy</strong> 的策略。</p>
+<h3><span id="ying-yong">应用</span><a href="#ying-yong" class="header-anchor"> </a></h3><h4><span id="case-i-k-1">Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4><p>也就是只允许进行一次交易。<br>对于第 i 天，我们有两种状态：</p>
+<ul>
+<li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])</em></li>
+<li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
+</ul>
+<p>我们发现第 i 天的操作只与第 i - 1 天有关，可以优化到 O(1).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i10, dp_i11 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再理解一下 k 的意义，k 是允许进行的最大交易次数，dp[i][k] 表示到第 i 天结束时，最多进行了 k 次交易， 也可以比 k 次少。</p>
+<p>如，在上题中，我们有 prices = [7, 6, 5, 4, 3, 2], 从开始一直到最后 dp_i10 恒等于0，一次交易都没有做。</p>
+<h4><span id="case-ii-k-inf">Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4><p>也就是交易次数不限。<br>这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-iii-k-2">Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4><p>限制最多交易两次。</p>
+<ul>
+<li><em>dp[i][2][0] = max(dp[i-1][2][0], dp[i-1][2][1] + prices[i])</em></li>
+<li><em>dp[i][2][1] = max(dp[i-1][2][1], dp[i-1][1][0] - prices[i]</em></li>
+<li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i]</em></li>
+<li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i20 = dp_i10 = <span class="number">0</span>, dp_i21 = dp_i11 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i20 = Math.max(dp_i20, dp_i21 + price);</span><br><span class="line">        dp_i21 = Math.max(dp_i21, dp_i10 - price);</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/24/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF/" rel="next" title="算法解析——二分查找模板">
+                <i class="fa fa-chevron-left"></i> 算法解析——二分查找模板
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/25/CS61B-Graph/" rel="prev" title="CS61B-Graph">
+                CS61B-Graph <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Starfly</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">动态规划初探 LeetCode 53. 最大子序和 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">动态规划框架 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">LeetCode 问题 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">框架 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">应用 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.1.</span> <span class="nav-text">Case I: k &#x3D; 1 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.2.</span> <span class="nav-text">Case II: k &#x3D; +Inf </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.3.</span> <span class="nav-text">Case III: k &#x3D; 2 </span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Starfly</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
