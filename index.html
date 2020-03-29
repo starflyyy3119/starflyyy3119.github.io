@@ -461,36 +461,24 @@
       
         
           
-            <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he">动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2><p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure></p>
+            <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he"> 动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2>
+<p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>
+示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 状态定义</span></span><br><span class="line">    <span class="comment">// dp[i] 表示前 i 个元素的最大连续子数组的和</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 状态初始化，数组中第一个元素的最大和就是第一个元素之</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    ans = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 状态转移</span></span><br><span class="line">    <span class="comment">// 转移方程： dp[i] = max(dp[i - 1], 0) + nums[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>], <span class="number">0</span>) + nums[i];</span><br><span class="line">        <span class="comment">// 更新最大和</span></span><br><span class="line">        ans = Math.max(ans, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="dong-tai-gui-hua-kuang-jia">动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2><p>@source: <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems</a></p>
-<h3><span id="leetcode-wen-ti">LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3><ul>
-<li><ol>
-<li>Best Time to Buy and Sell Stock</li>
-</ol>
-</li>
-<li><ol>
-<li>Best Time to Buy and Sell Stock II</li>
-</ol>
-</li>
-<li><ol>
-<li>Best Time to Buy and Sell Stock III</li>
-</ol>
-</li>
-<li><ol>
-<li>Best Time to Buy and Sell Stock IV</li>
-</ol>
-</li>
-<li><ol>
-<li>Best Time to Buy and Sell Stock with Cooldown</li>
-</ol>
-</li>
-<li><ol>
-<li>Best Time to Buy and Sell Stock with Transaction Fee</li>
-</ol>
-</li>
+<h2><span id="dong-tai-gui-hua-kuang-jia"> 动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2>
+<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">原文来源</a></p>
+<h3><span id="leetcode-wen-ti"> LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3>
+<ul>
+<li>121 Best Time to Buy and Sell Stock</li>
+<li>122 Best Time to Buy and Sell Stock II</li>
+<li>123 Best Time to Buy and Sell Stock III</li>
+<li>188 Best Time to Buy and Sell Stock IV</li>
+<li>309 Best Time to Buy and Sell Stock with Cooldown</li>
+<li>714 Best Time to Buy and Sell Stock with Transaction Fee</li>
 </ul>
-<h3><span id="kuang-jia">框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3><p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
+<h3><span id="kuang-jia"> 框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3>
+<p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
 <ul>
 <li>显式的因素有<strong>哪一天</strong>、我们可以进行 <strong>几次</strong> 交易。</li>
 <li>隐式的因素是我们当前手上<strong>是否</strong>有股票。</li>
@@ -516,7 +504,10 @@
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices</em></li>
 </ul>
 <p>解释： 第 i 天结束时，手上没有股票， 那么可能是第 i - 1 天也没有股票，然后采取了 <strong>rest</strong> 的策略， 或者是第 i - 1 天有股票然后在第 i 天采取了 <strong>sell</strong> 的策略； 第 i 天结束时， 手上有股票， 那么可能是第 i - 1 天手上就有股票， 然后采取了 <strong>rest</strong> 的策略，也可能是第 i - 1 天手上没有股票，采取了 <strong>buy</strong> 的策略。</p>
-<h3><span id="ying-yong">应用</span><a href="#ying-yong" class="header-anchor"> </a></h3><h4><span id="case-i-k-1">Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4><p>也就是只允许进行一次交易。<br>对于第 i 天，我们有两种状态：</p>
+<h3><span id="ying-yong"> 应用</span><a href="#ying-yong" class="header-anchor"> </a></h3>
+<h4><span id="case-i-k-1"> Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4>
+<p>也就是只允许进行一次交易。<br>
+对于第 i 天，我们有两种状态：</p>
 <ul>
 <li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])</em></li>
 <li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
@@ -525,13 +516,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i10, dp_i11 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再理解一下 k 的意义，k 是允许进行的最大交易次数，dp[i][k] 表示到第 i 天结束时，最多进行了 k 次交易， 也可以比 k 次少。</p>
 <p>如，在上题中，我们有 prices = [7, 6, 5, 4, 3, 2], 从开始一直到最后 dp_i10 恒等于0，一次交易都没有做。</p>
-<h4><span id="case-ii-k-inf">Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4><p>也就是交易次数不限。<br>这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
+<h4><span id="case-ii-k-inf"> Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4>
+<p>也就是交易次数不限。<br>
+这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
 <ul>
 <li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="case-iii-k-2">Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4><p>限制最多交易两次。</p>
+<h4><span id="case-iii-k-2"> Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4>
+<p>限制最多交易两次。</p>
 <ul>
 <li><em>dp[i][2][0] = max(dp[i-1][2][0], dp[i-1][2][1] + prices[i])</em></li>
 <li><em>dp[i][2][1] = max(dp[i-1][2][1], dp[i-1][1][0] - prices[i]</em></li>
@@ -539,6 +533,28 @@
 <li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i20 = dp_i10 = <span class="number">0</span>, dp_i21 = dp_i11 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i20 = Math.max(dp_i20, dp_i21 + price);</span><br><span class="line">        dp_i21 = Math.max(dp_i21, dp_i10 - price);</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-iv-k-is-arbitrary"> Case IV: k is arbitrary</span><a href="#case-iv-k-is-arbitrary" class="header-anchor"> </a></h4>
+<p>限制最多交易 k 次。<br>
+注意到进行一次交易需要2天来完成，所以当 k &gt; prices.length &gt;&gt;&gt; 1 时，k 就没有了限制，相当于 caseII.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k &gt; prices.length &gt;&gt;&gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">            <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">            dp_ik0 = Math.max(dp_ik0, dp_ik1 + price);</span><br><span class="line">            dp_ik1 = Math.max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp_ik0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] dp_ik0 = <span class="keyword">new</span> <span class="keyword">int</span>[k + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span>[] dp_ik1 = <span class="keyword">new</span> <span class="keyword">int</span>[k + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(dp_ik1, Integer.MIN_VALUE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = k; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            dp_ik0[j] = Math.max(dp_ik0[j], dp_ik1[j] + price);</span><br><span class="line">            dp_ik1[j] = Math.max(dp_ik1[j], dp_ik0[j - <span class="number">1</span>] - price);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-v-k-inf-but-with-cooldown"> Case V: k = +Inf but with cooldown</span><a href="#case-v-k-inf-but-with-cooldown" class="header-anchor"> </a></h4>
+<p>冷冻期为一天，也就是说卖出股票后，无法在第二天买入。<br>
+需要将 Case II 稍作改动。</p>
+<p><strong>Case II</strong>:</p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
+</ul>
+<p>如果想在第 i 天买入，那么第 i - 2 天需要保证没有股票，否则将会违反规则。<br>
+所以，修改后的状态转移方程为：</p>
+<ul>
+<li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
+<li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-2][k][0] - prices[i])</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik0_pre = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = Math.min(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = Math.min(dp_ik1, dp_ik0_pre - price);</span><br><span class="line">        dp_ik0_pre = dp_ik0_old;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-vi-k-inf-but-with-transaction-fee"> Case VI: k = +Inf but with transaction fee</span><a href="#case-vi-k-inf-but-with-transaction-fee" class="header-anchor"> </a></h4>
+<p>选择在买入的时候减去手续费(也可以选择在卖出的时候减去)，大体上与 Case II 如出一辙。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = Math.max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = Math.max(dp_ik1, dp_ik0 - price - fee);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
