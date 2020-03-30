@@ -476,6 +476,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -505,7 +527,177 @@
       
         
           
-            
+            <h2><span id="graph">Graph</span><a href="#graph" class="header-anchor"> </a></h2><p>Graph: A set of nodes (a.k.a vertices) connected pairwise by edges.</p>
+<h3><span id="graph-types">Graph Types</span><a href="#graph-types" class="header-anchor"> </a></h3><p><img src="/2020/03/25/CS61B-Graph/Graph.jpg" alt></p>
+<h3><span id="graph-terminology">Graph Terminology</span><a href="#graph-terminology" class="header-anchor"> </a></h3><ul>
+<li>Graph:<br>— Set of <strong>vertices</strong>, a.k.a <strong>nodes.</strong><br>— Set of edges: Pair of vertices.<br>— Vertices with an edge between are <strong>adjacent</strong>.<br>— Optional: Vertices or edges may have <strong>labels</strong> (or <strong>weights</strong>).</li>
+<li>A <strong>path</strong> is a sequence of vertices connected by edges.</li>
+<li>A <strong>cycle</strong> is a path whose first and last vertices are the same.</li>
+<li>Two vertices are <strong>connected</strong> if there is a path between them. If all vertices are connected, we say the graph is connected.</li>
+</ul>
+<p><img src="/2020/03/25/CS61B-Graph/ter.jpg" alt></p>
+<h3><span id="some-graph-processing-problems">Some Graph-Processing Problems</span><a href="#some-graph-processing-problems" class="header-anchor"> </a></h3><p><strong>s-t Path</strong>. Is there a path between vertices s and t?<br><strong>Shortest s-t path.</strong> What is the shortest path between vertices s and t?<br><strong>Cycle.</strong> Does the graph contains any cycles?<br><strong>Euler Tour</strong>. Is there a cycle that uses every edge exactly once?<br><strong>Hamilton Tour.</strong> Is there a cycle that uses every vertex exactly once?<br><strong>Connectivity.</strong> Is the graph connected, i.e. is there a path between all vertex pairs?<br><strong>Biconnectivity.</strong> Is there a vertex whose removal disconnects the graph?<br><strong>Planarity.</strong> Can you draw the graph on a piece of paper with no crossing edges?<br><strong>Isomorphism.</strong> Are two graphs isomorphic(同构的) (the same graph in disguise)?</p>
+<p>Graph problems: Unobvious which are easy, hard or computationally intractable.</p>
+<h3><span id="graph-representation">Graph representation</span><a href="#graph-representation" class="header-anchor"> </a></h3><p>Common Convention: Number nodes irrespective of label, and use number throughout the graph implementation. To look up a vertex by label, use a Map<label, integer>.</label,></p>
+<p><img src="/2020/03/25/CS61B-Graph/rep.jpg" alt></p>
+<h3><span id="graph-api">Graph API</span><a href="#graph-api" class="header-anchor"> </a></h3><p>Using a graph in Java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> V)</span>:       <span class="comment">// create empty graph with v vertices</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span>: <span class="comment">// add an edge v-w</span></span></span><br><span class="line"><span class="function">    Iterable&lt;Integer&gt; <span class="title">adj</span><span class="params">(<span class="keyword">int</span> v)</span>:  <span class="comment">// vertices adjacent to v</span></span></span><br><span class="line"><span class="function">    <span class="keyword">int</span> <span class="title">V</span><span class="params">()</span>:     <span class="comment">// number of vertices</span></span></span><br><span class="line"><span class="function">    <span class="keyword">int</span> <span class="title">E</span><span class="params">()</span>:     <span class="comment">// number of edges</span></span></span><br><span class="line"><span class="function">    ...</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>Example client:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** degree of vetex v in graph G */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">degree</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> degree = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">        degree += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> degree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="graph-representations">Graph Representations</span><a href="#graph-representations" class="header-anchor"> </a></h3><p>Representation 1: Adjacent Matrix<br><img src="/2020/03/25/CS61B-Graph/adj.jpg" alt><br>For undirected graph: Each edge is represented twice in the matrix. Simplicity at the expense of space.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; G.V(); v++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">        System.out.println(v + <span class="string">"-"</span> + w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Runtime: $ \Theta(V^2) $<br>Because for every vertice, we need to see all the other vertices in the adjacent matrix.<br>Representation 2: Edge Sets: Collection of all edges.</p>
+<p><img src="/2020/03/25/CS61B-Graph/hash.jpg" alt></p>
+<p>Representation 3: Adjacency lists.</p>
+<p><img src="/2020/03/25/CS61B-Graph/3.jpg" alt><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; G.V(); v++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">        System.out.println(v + <span class="string">"-"</span> + w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Runtime: $ \Theta(V + E) $</p>
+<ul>
+<li>Example shape1: very sparse graph where E grows very slowly, e.g. every vertex is connected to its square: 2-4, 3-9, 4-16, 5-25, etc.<br>— E is $ \Theta(\sqrt{V}) $. Runtime is $ \Theta(V + \sqrt{V}) $,which is just $ \Theta(V). $</li>
+<li>Example shape2: Very dense graph where E grows very quickly, e.g. every vertex connected to every other.<br>— E is $ \Theta(V^2) $. Runtime is $ \Theta(V + V^2) $, which is just $ \Theta(V^2) $.</li>
+</ul>
+<h3><span id="summary-of-different-representations">Summary of different representations</span><a href="#summary-of-different-representations" class="header-anchor"> </a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idea</th>
+<th style="text-align:center">addEdge(s, t)</th>
+<th style="text-align:center">for(w:adj(v))</th>
+<th style="text-align:center">printgraph()</th>
+<th style="text-align:center">hasEdge(s, t)</th>
+<th style="text-align:left">space used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adjacency matrix</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(V) $</td>
+<td style="text-align:center">$ \Theta(V^2) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:left">$ \Theta(V^2) $</td>
+</tr>
+<tr>
+<td style="text-align:center">list of edges</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(E) $</td>
+<td style="text-align:center">$ \Theta(E) $</td>
+<td style="text-align:center">$ \Theta(E) $</td>
+<td style="text-align:left">$ \Theta(E) $</td>
+</tr>
+<tr>
+<td style="text-align:center">adjacency list</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(1) $ to $ \Theta(V) $</td>
+<td style="text-align:center">$ \Theta(V + E) $</td>
+<td style="text-align:center">$ \Theta(degree(v)) $</td>
+<td style="text-align:left">$ \Theta(V + E) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In practice, adjacency lists are most common.</p>
+<ul>
+<li>Many graph algorithms rely heavily on adj(s).</li>
+<li>Most graphs are sparse (not many edges in each bucket).</li>
+</ul>
+<h3><span id="bare-bones-undirected-graph-implementation">Bare-Bones Undirected Graph Implementation</span><a href="#bare-bones-undirected-graph-implementation" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> V; <span class="keyword">private</span> List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> V)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.V = V;</span><br><span class="line">        adj = (List&lt;Integer&gt;[]) <span class="keyword">new</span> ArrayList[V];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++) &#123;</span><br><span class="line">            adj[v] = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        adj[v].add(w);</span><br><span class="line">        adj[w].add(v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">adj</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> adj[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="maze-traversal-s-t-path">Maze Traversal/ s-t Path</span><a href="#maze-traversal-s-t-path" class="header-anchor"> </a></h3><p>Goal: Search for a path from s to t, but visit each vertex at most once. To do this, we can mark each vertex as we search. Resulting algorithm for connected(s, t) is as follows:</p>
+<ul>
+<li>Mark s.</li>
+<li>Does s == t? If so, return true.</li>
+<li>Check all of s’s unmarked neighbors for connectivity to t.</li>
+</ul>
+<h4><span id="depth-first-traversal">Depth First Traversal</span><a href="#depth-first-traversal" class="header-anchor"> </a></h4><p>This idea of exploring the entire subgraph for each child is known as Depth First Traversal.</p>
+<p>Common design pattern in graph algorithms: Decouple type from processing algorithm.</p>
+<ul>
+<li>Create a graph object.</li>
+<li>Pass the graph to a graph-processing method (or constructor) in a client class.</li>
+<li>Query the client class for information.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paths</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Paths</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span>:  <span class="comment">// Find all paths from G</span></span></span><br><span class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">hasPathTo</span><span class="params">(<span class="keyword">int</span> v)</span>: <span class="comment">// is there a path from s to v?</span></span></span><br><span class="line"><span class="function">    Iterable&lt;Integer&gt; <span class="title">pathTo</span><span class="params">(<span class="keyword">int</span> v)</span>:  <span class="comment">// path from s to v (if any)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Example usage:</p>
+<ul>
+<li>Paths P = new Paths(G, 0);</li>
+<li>P.hasPathTo(3)l  // returns true</li>
+<li>P.pathTo(3);  // returns {0 ,1, 4, 3}</li>
+</ul>
+<p>Data Structures:</p>
+<ul>
+<li>boolean[] marked</li>
+<li>int[] edgeTo<br>— edgeTo[4] = 1, means we went from 1 to 4.</li>
+</ul>
+<h3><span id="dfs-implementation">DFS implementation</span><a href="#dfs-implementation" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepthFirstPaths</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] marked;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] edgeTo;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> s;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DepthFirstPaths</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">        ...       <span class="comment">// data structure initialization</span></span><br><span class="line">        dfs(G, s); <span class="comment">// find vertices connected to s.</span></span><br><span class="line">    &#125; </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        marked[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!marked[w]) &#123;</span><br><span class="line">                edgeTo[w] = v;</span><br><span class="line">                dfs(G, w);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DepthFirstPaths Summary:<br>Properties of Depth First Search:</p>
+<ul>
+<li>Guaranteed to reach every node.</li>
+<li>Runs in $ O(V + E) $ time.<br>— every edge is used at most once, and total number of vertex considerations is equal to number of edges.<br>— Runtime may be faster than $ \Theta(V + E) $ for problems which quit early on some stopping condition (for example connectivity).</li>
+</ul>
+<h2><span id="topological-sort">Topological Sort</span><a href="#topological-sort" class="header-anchor"> </a></h2><p><img src="/2020/03/25/CS61B-Graph/topo.jpg" alt></p>
+<p>Suppose we have tasks 0 through 7, where an arrow from v to w indicates that v must happen before w.</p>
+<ul>
+<li>What algorithm do we use to find a valid ordering for these tasks.</li>
+<li>Valid orderings include: [0, 2, 1, 3, 5, 4, 7, 6], [2, 0, 3, 5, 1, 4, 6, 7], …</li>
+</ul>
+<h3><span id="solution-spoiler-alert">Solution (Spoiler Alert)</span><a href="#solution-spoiler-alert" class="header-anchor"> </a></h3><p>Perform a DFS traversal from every vertex with indegree 0, NOT clearing markings in between traversals.</p>
+<ul>
+<li>Record DFS post order in a list.</li>
+<li>Topological ordering is given by the reverse of that list (reverse postorder).<br><img src="/2020/03/25/CS61B-Graph/demo1.jpg" alt><br><img src="/2020/03/25/CS61B-Graph/demo2.jpg" alt></li>
+</ul>
+<p>Then reverse the List, we have [2, 5, 6, 0, 3, 1, 4, 7].</p>
+<p>The reason it’s called topological sort: Can think of this process as sorting our nodes so they appear in an order consistent with edges.</p>
+<ul>
+<li>When nodes are sorted in diagram, arrows all point rightwards.</li>
+</ul>
+<p><img src="/2020/03/25/CS61B-Graph/sort.jpg" alt></p>
+<h3><span id="topological-sort-implementation">Topological Sort Implementation</span><a href="#topological-sort-implementation" class="header-anchor"> </a></h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepthFirstOrder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] marked;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; reversePostorder;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DepthFirstOrder</span><span class="params">(Digraph G)</span> </span>&#123;</span><br><span class="line">        reversePostorder = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        marked = <span class="keyword">new</span> <span class="keyword">boolean</span>[G.V()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; G.V(); v++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!marked[v]) &#123; dfs(G, v); &#125;  <span class="comment">// perform DFS of all unmarked vertices.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Digraph G, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        marked[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!marked[w]) &#123; dfs(G, w); &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reversePostorder.push(v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">reversePostorder</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> reversePostorder; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="small-summary">Small Summary</span><a href="#small-summary" class="header-anchor"> </a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Problem</th>
+<th style="text-align:center">Problem Description</th>
+<th style="text-align:center">Solution</th>
+<th style="text-align:center">Efficiency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s-t paths</td>
+<td style="text-align:center">Find a path from s to every reachable vertex.</td>
+<td style="text-align:center">DepthFirstPaths.java</td>
+<td style="text-align:center">$ \Theta(V + E) $ time, $ \Theta(V) $ space</td>
+</tr>
+<tr>
+<td style="text-align:center">topological sort</td>
+<td style="text-align:center">Find an ordering of vertices consistent with directed edges.</td>
+<td style="text-align:center">DepthFirstOrder.java</td>
+<td style="text-align:center">$ \Theta(V + E) $ time, $ \Theta(V) $ space</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="breadth-first-search">Breadth First Search</span><a href="#breadth-first-search" class="header-anchor"> </a></h2><p><img src="/2020/03/25/CS61B-Graph/topo.jpg" alt></p>
+<p>Goal: Given the graph above, find the shortest path from 0 to every other vertex.</p>
+<ul>
+<li>Level-order provides the shortest paths from 0 to every reachable vertex from 0(by definition.)</li>
+</ul>
+<h3><span id="finding-the-level-order">Finding the “Level-Order”</span><a href="#finding-the-level-order" class="header-anchor"> </a></h3><p>For trees (a special type of graph), we used iterative deepening.</p>
+<ul>
+<li>Bad for spindly trees, $ \Theta(N^2) $</li>
+</ul>
+<p><strong>Breadth First Search.</strong></p>
+<ul>
+<li>Initialize a queue with a starting vertex s and mark that vertex.<br>— Let’s call this the <strong>fringe</strong>.</li>
+<li>Repeat until queue is empty:<br>— Remove vertex v from queue.<br>— Add to the queue any unmarked vertices adjacent to v and mark them.</li>
+</ul>
+<h3><span id="breadthfirstpaths-implementation">BreadthFirstPaths Implementation</span><a href="#breadthfirstpaths-implementation" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BreathFirstPaths</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] marked;   <span class="comment">// marked[v] is true iff v connected to s</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] edgeTo;  <span class="comment">// edgeTo[v] is previous vertex on path from s to v</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">        Queue&lt;Integer&gt; fringe = <span class="keyword">new</span> Queue&lt;Integer&gt;();</span><br><span class="line">        fringe.enqueue(s);   <span class="comment">// set up starting vertex</span></span><br><span class="line">        marked[s] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span> (!fringe.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = fringe.dequeue();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> w : G.adj(v)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!marked[w]) &#123;</span><br><span class="line">                    fringe.enqueue(w);</span><br><span class="line">                    marked[w] = <span class="keyword">true</span>;</span><br><span class="line">                    edgeTo[w] = v;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Note:<br>Our code for BFS examines vertices in increasing order from source.</p>
+<ul>
+<li>Handy for finding shortest paths.</li>
+</ul>
+<p>Runs in V + E time and uses V space:</p>
+<ul>
+<li>Each vertex and each edge processed a constant number of times.</li>
+<li>No vertex may be enqueued more than once.</li>
+</ul>
+
           
         
       
@@ -953,6 +1145,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -982,7 +1196,71 @@
       
         
           
-            
+            <p>@source: <a href="https://medium.com/@girl_sh/string-matching-kmp-algorithm-27c182efa387" target="_blank" rel="noopener">https://medium.com/@girl_sh/string-matching-kmp-algorithm-27c182efa387</a><br>@source: <a href="https://www.zhihu.com/question/21923021/answer/281346746" target="_blank" rel="noopener">https://www.zhihu.com/question/21923021/answer/281346746</a><br>@source: <a href="https://www.cnblogs.com/yjiyjige/p3263858.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjiyjige/p3263858.html</a></p>
+<h3><span id="bu-fen-pi-pei-biao-partial-match-table">部分匹配表(Partial Match Table)</span><a href="#bu-fen-pi-pei-biao-partial-match-table" class="header-anchor"> </a></h3><p>对于字符串 “abababca”,它的 PMT 如下：<br>|char|a|b|a|b|a|b|c|a|<br>|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|<br>|index|0|1|2|3|4|5|6|7|<br>|value|0|0|1|2|3|4|0|1|</p>
+<p><strong>PMT</strong> 中的值是字符串的 <strong>前缀集合</strong> 和 <strong>后缀集合</strong> 的交集中最长元素的长度。</p>
+<p><strong>字符串的前缀：</strong> 如果字符串 A 和 B, 存在 A = BS, 其中 S 是任意非空字符串，那么称 B 为 A 的前缀。</p>
+<p>如：”Harry” 的前缀集合 {“H”, “Ha”, “Har”, “Harr”}</p>
+<p><strong>字符串的后缀：</strong> 如果字符串 A 和 B, 存在 A = SB, 其中 S 是任意非空字符串，那么称 B 为 A 的后缀。</p>
+<p>如: “Potter” 的后缀集合 {“otter”, “tter”, “ter”, “er”, r}</p>
+<p><img src="/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/pic.png" alt></p>
+<p>如图，如果在 Text 的第 i 处， Pattern 的第 j 处发生错配，我们需要保持 i 不动， 将 j 移到 PMT[j - 1]。</p>
+<p>原因：模式字符串第 0 位到第 j - 1 为既然与 Text 已经匹配，那么必然相同。而我们又知道 0 位到 j - 1 位组成的字符串的 PMT 值为 4，也就是这个字符串的前四位和后四位可以匹配，所以将 j 直接放到 PMT[j - 1] 即可。</p>
+<h3><span id="next-shu-zu">next 数组</span><a href="#next-shu-zu" class="header-anchor"> </a></h3><p>为了编程的方便，我们将 PMT 数组整体向后偏移一位。 令 PMT[0] = -1，无特殊意义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">char</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">index</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">value</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">next</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] hay = haystack.toCharArray();</span><br><span class="line">    <span class="keyword">char</span>[] p = needle.toCharArray();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; hay.length &amp;&amp; j &lt; nee.length) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == -<span class="number">1</span> || p[i] == p[j]) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (j == p.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> i - j;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="kuai-su-qiu-next">快速求 next</span><a href="#kuai-su-qiu-next" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getNext(String needle) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] p = needle.toCharArray();</span><br><span class="line">    <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[p.length];</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (j &lt; p.length - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == -<span class="number">1</span> || p[i] == p[j]) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1428,6 +1706,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1457,7 +1757,52 @@
       
         
           
-            
+            <h2><span id="search-data-structures">Search Data Structures</span><a href="#search-data-structures" class="header-anchor"> </a></h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Storage Operation(s)</th>
+<th style="text-align:center">Primary Retrieval Operation</th>
+<th style="text-align:center">Retrieve By:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">List</td>
+<td style="text-align:center">add(key), insert(key, index)</td>
+<td style="text-align:center">get(index)</td>
+<td style="text-align:center">index</td>
+</tr>
+<tr>
+<td style="text-align:center">Map</td>
+<td style="text-align:center">put(key, value)</td>
+<td style="text-align:center">get(key)</td>
+<td style="text-align:center">key identity</td>
+</tr>
+<tr>
+<td style="text-align:center">Set</td>
+<td style="text-align:center">add(key)</td>
+<td style="text-align:center">containsKey(key)</td>
+<td style="text-align:center">key identity</td>
+</tr>
+<tr>
+<td style="text-align:center">PQ</td>
+<td style="text-align:center">add(key)</td>
+<td style="text-align:center">getSmallest()</td>
+<td style="text-align:center">key order(a.k.a key size)</td>
+</tr>
+<tr>
+<td style="text-align:center">Disjoint Sets</td>
+<td style="text-align:center">connect(int1, int2)</td>
+<td style="text-align:center">isConnected(int1, int2)</td>
+<td style="text-align:center">two int values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2020/03/21/CS61B-Data-Structures-Summary/structure.jpg" alt></p>
+
           
         
       

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Starfly" />
+  <meta name="keywords" content="LeetCode," />
 
 
 
@@ -79,15 +79,20 @@
 
 
 
+<meta name="description" content="@source: https:&#x2F;&#x2F;medium.com&#x2F;@girl_sh&#x2F;string-matching-kmp-algorithm-27c182efa387@source: https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;21923021&#x2F;answer&#x2F;281346746@source: https:&#x2F;&#x2F;www.cnblogs.com&#x2F;yjiyjige&#x2F;p3263858.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法解析——KMP">
 <meta property="og:url" content="http://yoursite.com/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
+<meta property="og:description" content="@source: https:&#x2F;&#x2F;medium.com&#x2F;@girl_sh&#x2F;string-matching-kmp-algorithm-27c182efa387@source: https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;21923021&#x2F;answer&#x2F;281346746@source: https:&#x2F;&#x2F;www.cnblogs.com&#x2F;yjiyjige&#x2F;p3263858.html">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/pic.png">
 <meta property="article:published_time" content="2020-03-23T08:22:00.000Z">
-<meta property="article:modified_time" content="2020-03-23T08:22:00.255Z">
+<meta property="article:modified_time" content="2020-03-30T03:17:53.687Z">
 <meta property="article:author" content="Starfly">
+<meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/pic.png">
 
 
 
@@ -290,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -317,7 +344,71 @@
       
 
       
-        
+        <p>@source: <a href="https://medium.com/@girl_sh/string-matching-kmp-algorithm-27c182efa387" target="_blank" rel="noopener">https://medium.com/@girl_sh/string-matching-kmp-algorithm-27c182efa387</a><br>@source: <a href="https://www.zhihu.com/question/21923021/answer/281346746" target="_blank" rel="noopener">https://www.zhihu.com/question/21923021/answer/281346746</a><br>@source: <a href="https://www.cnblogs.com/yjiyjige/p3263858.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjiyjige/p3263858.html</a></p>
+<h3><span id="bu-fen-pi-pei-biao-partial-match-table">部分匹配表(Partial Match Table)</span><a href="#bu-fen-pi-pei-biao-partial-match-table" class="header-anchor"> </a></h3><p>对于字符串 “abababca”,它的 PMT 如下：<br>|char|a|b|a|b|a|b|c|a|<br>|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|<br>|index|0|1|2|3|4|5|6|7|<br>|value|0|0|1|2|3|4|0|1|</p>
+<p><strong>PMT</strong> 中的值是字符串的 <strong>前缀集合</strong> 和 <strong>后缀集合</strong> 的交集中最长元素的长度。</p>
+<p><strong>字符串的前缀：</strong> 如果字符串 A 和 B, 存在 A = BS, 其中 S 是任意非空字符串，那么称 B 为 A 的前缀。</p>
+<p>如：”Harry” 的前缀集合 {“H”, “Ha”, “Har”, “Harr”}</p>
+<p><strong>字符串的后缀：</strong> 如果字符串 A 和 B, 存在 A = SB, 其中 S 是任意非空字符串，那么称 B 为 A 的后缀。</p>
+<p>如: “Potter” 的后缀集合 {“otter”, “tter”, “ter”, “er”, r}</p>
+<p><img src="/2020/03/23/%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90%E2%80%94%E2%80%94KMP/pic.png" alt></p>
+<p>如图，如果在 Text 的第 i 处， Pattern 的第 j 处发生错配，我们需要保持 i 不动， 将 j 移到 PMT[j - 1]。</p>
+<p>原因：模式字符串第 0 位到第 j - 1 为既然与 Text 已经匹配，那么必然相同。而我们又知道 0 位到 j - 1 位组成的字符串的 PMT 值为 4，也就是这个字符串的前四位和后四位可以匹配，所以将 j 直接放到 PMT[j - 1] 即可。</p>
+<h3><span id="next-shu-zu">next 数组</span><a href="#next-shu-zu" class="header-anchor"> </a></h3><p>为了编程的方便，我们将 PMT 数组整体向后偏移一位。 令 PMT[0] = -1，无特殊意义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">char</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">index</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">value</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">next</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] hay = haystack.toCharArray();</span><br><span class="line">    <span class="keyword">char</span>[] p = needle.toCharArray();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; hay.length &amp;&amp; j &lt; nee.length) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == -<span class="number">1</span> || p[i] == p[j]) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (j == p.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> i - j;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="kuai-su-qiu-next">快速求 next</span><a href="#kuai-su-qiu-next" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getNext(String needle) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] p = needle.toCharArray();</span><br><span class="line">    <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[p.length];</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (j &lt; p.length - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == -<span class="number">1</span> || p[i] == p[j]) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -331,6 +422,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+        </div>
       
 
       
@@ -405,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -466,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">部分匹配表(Partial Match Table) </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">next 数组 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">快速求 next </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

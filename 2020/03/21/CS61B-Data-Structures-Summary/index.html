@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Starfly" />
+  <meta name="keywords" content="CS61B," />
 
 
 
@@ -79,15 +79,20 @@
 
 
 
+<meta name="description" content="Search Data Structures     Name Storage Operation(s) Primary Retrieval Operation Retrieve By:     List add(key), insert(key, index) get(index) index   Map put(key, value) get(key) key identity   Set a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B-Data Structures Summary">
 <meta property="og:url" content="http://yoursite.com/2020/03/21/CS61B-Data-Structures-Summary/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
+<meta property="og:description" content="Search Data Structures     Name Storage Operation(s) Primary Retrieval Operation Retrieve By:     List add(key), insert(key, index) get(index) index   Map put(key, value) get(key) key identity   Set a">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/21/CS61B-Data-Structures-Summary/structure.jpg">
 <meta property="article:published_time" content="2020-03-21T03:09:28.000Z">
-<meta property="article:modified_time" content="2020-03-21T03:09:28.412Z">
+<meta property="article:modified_time" content="2020-03-30T03:17:45.086Z">
 <meta property="article:author" content="Starfly">
+<meta property="article:tag" content="CS61B">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/21/CS61B-Data-Structures-Summary/structure.jpg">
 
 
 
@@ -290,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -317,7 +344,52 @@
       
 
       
-        
+        <h2><span id="search-data-structures">Search Data Structures</span><a href="#search-data-structures" class="header-anchor"> </a></h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Storage Operation(s)</th>
+<th style="text-align:center">Primary Retrieval Operation</th>
+<th style="text-align:center">Retrieve By:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">List</td>
+<td style="text-align:center">add(key), insert(key, index)</td>
+<td style="text-align:center">get(index)</td>
+<td style="text-align:center">index</td>
+</tr>
+<tr>
+<td style="text-align:center">Map</td>
+<td style="text-align:center">put(key, value)</td>
+<td style="text-align:center">get(key)</td>
+<td style="text-align:center">key identity</td>
+</tr>
+<tr>
+<td style="text-align:center">Set</td>
+<td style="text-align:center">add(key)</td>
+<td style="text-align:center">containsKey(key)</td>
+<td style="text-align:center">key identity</td>
+</tr>
+<tr>
+<td style="text-align:center">PQ</td>
+<td style="text-align:center">add(key)</td>
+<td style="text-align:center">getSmallest()</td>
+<td style="text-align:center">key order(a.k.a key size)</td>
+</tr>
+<tr>
+<td style="text-align:center">Disjoint Sets</td>
+<td style="text-align:center">connect(int1, int2)</td>
+<td style="text-align:center">isConnected(int1, int2)</td>
+<td style="text-align:center">two int values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2020/03/21/CS61B-Data-Structures-Summary/structure.jpg" alt></p>
+
       
     </div>
     
@@ -331,6 +403,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS61B/" rel="tag"># CS61B</a>
+          
+        </div>
       
 
       
@@ -405,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -466,6 +553,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Search Data Structures </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
