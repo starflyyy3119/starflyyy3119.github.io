@@ -249,6 +249,385 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/CS61B-Hashing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/CS61B-Hashing/" itemprop="url">CS61B-Hashing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-18T01:34:27+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="hashing">Hashing</span><a href="#hashing" class="header-anchor"> </a></h2><p>Limitations for the tree structure.</p>
+<ul>
+<li>Items must be comparable.</li>
+<li>Maintaining bushiness is non-trivial.</li>
+<li>$ \Theta(logN) $, can do better?</li>
+</ul>
+<h3><span id="using-data-as-an-index">Using data as an index</span><a href="#using-data-as-an-index" class="header-anchor"> </a></h3><p>One extreme approach: All data is really just bits.</p>
+<ul>
+<li>Use data itself as an array index.</li>
+<li>Store true and false in the array.</li>
+</ul>
+<p>Downsides of this approach</p>
+<ul>
+<li>Extremely wasteful of memory. To support checking presence of all positive integers, we need 2 billion booleans.</li>
+<li>Need some way to generalize beyond integers.</li>
+</ul>
+<h3><span id="dataindexedintegerset-implementation">DataIndexedIntegerSet Implementation</span><a href="#dataindexedintegerset-implementation" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedIntegerSet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] present;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataIndexedIntegerSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        present = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">16</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        present[i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">contains(x)</th>
+<th style="text-align:center">insert(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Linked List</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Bushy BSTs</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Unordered Array</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">DataIndexedArray</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="binary-representation-of-dataindexedintegerset">Binary Representation of DataIndexedIntegerSet</span><a href="#binary-representation-of-dataindexedintegerset" class="header-anchor"> </a></h3><h4><span id="basic-idea">Basic idea</span><a href="#basic-idea" class="header-anchor"> </a></h4><p>Suppose we want to insert(“cat”)</p>
+<p>Key question:</p>
+<ul>
+<li>What is the cat-th element of an array?</li>
+<li>One idea: Use the first letter of the word as an index.</li>
+</ul>
+<p>What’s wrong with this approach?</p>
+<ul>
+<li>0 never changes(so a tiny bit of wasted space).</li>
+<li>Other words start with c.<br>— contains(“chupacabra”): Yes</li>
+<li>Can’t store “=98yae98fwyawef”</li>
+</ul>
+<h4><span id="refined-approach">Refined Approach</span><a href="#refined-approach" class="header-anchor"> </a></h4><p>Treat the string as a n-digit base 27 number.</p>
+<ul>
+<li>c: 3rd letter of alphabet, a: 1st letter, t: 20th letter.</li>
+<li>Thus the index of “cat” is $ 3 <em> 27^2 + 1 </em> 27 + 20 $</li>
+</ul>
+<p>Base 27: Our approach before: cat -&gt; $ 3 <em> 27^2 + 1 </em> 27 + 20 $</p>
+<ul>
+<li>00 00000 00000 00000 00010 00101 11010</li>
+</ul>
+<p>Base 32: $ 3 <em> 32^2 + 1 </em> 32 + 20 = 3124 $</p>
+<ul>
+<li>Nice feature: Each letter is exactly 5 bits. Good for lecture.<br>00 00000 00000 00000 00011 00001 10100</li>
+</ul>
+<h4><span id="generalizing-to-words">Generalizing to Words</span><a href="#generalizing-to-words" class="header-anchor"> </a></h4><p>Suppose we’re storing multiple words.</p>
+<ul>
+<li>Convert each word to unique integer representation.</li>
+<li>As on previous slide: Use 5 bits per letter.<br>— example: “cat” becomes 3124.<br>— c: 3rd letter of alphabet, a 1st, t: 20th</li>
+</ul>
+<p>What about longer strings? Have to tolerate either:</p>
+<ul>
+<li>A maximum string (seems lame).</li>
+<li>Ambiguity: e.g. “hothead” vs. “pothead”.<br>— Both represented by 523878693</li>
+</ul>
+<p>Switching to base 27 from 32 won’t save us.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    present[intRep] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    <span class="keyword">return</span> present[intRep];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Converts ith character of String to a letter number.</span></span><br><span class="line"><span class="comment">    e.g. 'a' -&gt; 1, 'b' -&gt; 2, 'z' -&gt; 26 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">letterNum</span><span class="params">(String s, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ithChar = s.charAt(i);</span><br><span class="line">    <span class="keyword">if</span> ((ithChar &lt; <span class="string">'a'</span>) || (ithChar &gt; <span class="string">'z'</span>)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(); &#125;</span><br><span class="line">    <span class="keyword">return</span> ithChar - <span class="string">'a'</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        intRep = intRep &lt;&lt; <span class="number">5</span>; <span class="comment">// same as intRep * 32</span></span><br><span class="line">        intRep = intRep + letterNum(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="dataindexedarray">DataIndexedArray</span><a href="#dataindexedarray" class="header-anchor"> </a></h4><p>Two fundamental challenges:</p>
+<ul>
+<li><p>How do we resolve ambiguity (“grosspie” vs. “bosspie”)?<br>— We’ll call this <strong>collision handling</strong>.</p>
+</li>
+<li><p>How do we convert arbitrary data to an index?<br>— We’ll call this <strong>computing a hashCode</strong>.<br>— For Strings, this was relatively straightforward (treat as a base 27 or base 32 number).<br>— Note: Java requires that EVERY object provide a method that converts itself into an integer: hashCode()</p>
+</li>
+</ul>
+<h4><span id="resolving-ambiguity">Resolving Ambiguity</span><a href="#resolving-ambiguity" class="header-anchor"> </a></h4><p>Suppose N items have the same hashcode h:</p>
+<ul>
+<li><p>Instead of storing true in position h, store a list of these N items at position h.</p>
+</li>
+<li><p>How to implement list?</p>
+</li>
+<li>Easiest way: Linked list.</li>
+<li>But any list would do (ArrayList, etc.)</li>
+<li>Could also use a set instead.</li>
+</ul>
+<p>External Chaining: Storing all items that map to h in a linked list.</p>
+<p><img src="/2020/03/18/CS61B-Hashing/hashtable.jpg" alt></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">contains(x)</th>
+<th style="text-align:center">insert(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Linked List</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Bushy BSTs</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+<td style="text-align:center">$ \Theta(logN) $</td>
+</tr>
+<tr>
+<td style="text-align:center">Unordered Array</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">External Chaining</td>
+<td style="text-align:center">$ \Theta(Q) $</td>
+<td style="text-align:center">$ \Theta(Q) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Q: Length of longest list.</p>
+<p>Observation: Can use modulus of hashcode to reduce bucket count.</p>
+<p><img src="/2020/03/18/CS61B-Hashing/mod.jpg" alt></p>
+<h4><span id="external-chaining-performance">External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h4><p>Depends on the number of items in the ‘bucket’.</p>
+<ul>
+<li>If N items are distributed across M buckets, average time grows with N/M = L, also known as the <strong>load factor.</strong><br>— Average runtime is $ \Theta(L) $.</li>
+</ul>
+<p>Obvious observation: If L is small, our data structure will be very fast.<br>Question: As N grows, what can we do to ensure that L stays small?</p>
+<p>Array Resizing:<br>Whenever L = N/M exceeds some number, increase M by resizing.</p>
+<ul>
+<li>Question: In which bin will the apple appear after resizing?</li>
+</ul>
+<p><img src="/2020/03/18/CS61B-Hashing/apple.jpg" alt></p>
+<p><img src="/2020/03/18/CS61B-Hashing/apple2.jpg" alt></p>
+<p>Suppose that hashCode() returns -1.</p>
+<ul>
+<li><p>Philosophically, into which bucket is it most natural to place this item.<br>— I say 3, since -1 -&gt; 3, 0 -&gt; 0, 1 -&gt; 1 …</p>
+</li>
+<li><p>Unfortunately, -1 % 4 = -1. Will result in index errors!</p>
+</li>
+<li>Use Math.floorMod instead.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(-<span class="number">1</span> % <span class="number">4</span>); <span class="comment">// -1</span></span><br><span class="line">        System.out.println(Math.floorMod(-<span class="number">1</span>, <span class="number">4</span>)); <span class="comment">// 3</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="hash-table-definition-and-key-implementation-details">Hash Table Definition and Key Implementation Details</span><a href="#hash-table-definition-and-key-implementation-details" class="header-anchor"> </a></h2><p>This data structure we’ve designed is called a <strong>hash table</strong>:</p>
+<ul>
+<li>Every item is mapped to a bucket number using a hash function.</li>
+<li><p>Typically, computing hash function consists of two steps:<br>— Computing a hashCode (integer between $ -2^{31} $ and $ 2^{31} - 1 $).<br>— Computing index = hashCode modulo M.</p>
+</li>
+<li><p>If L = N / M gets too large, increase M.</p>
+</li>
+</ul>
+<p>If multiple items map to the same bucket, we have to resolve ambiguity somehow.<br>Two common techniques:</p>
+<ul>
+<li>External Chaining (creating a list for each bucket)</li>
+<li>Open Addressing (a little stranger, not necessarily better)</li>
+</ul>
+<h3><span id="external-chaining-performance">External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h3><p>Assuming items are spread out (e.g. not all in the same bucket):<br>|Average case time|contains(x)|insert(x)|<br>|:-:|:-:|:-:|<br>|External Chaining, Fixed Size|$ \Theta(L) $|$ \Theta(L) $|<br>|External Chaining with Resizing|$ \Theta(L) $|$ \Theta(L) $|<br>|Balanced BST|$ \Theta(logN) $|$ \Theta(logN) $|</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Load Factor L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">External Chaining, Fixed Size</td>
+<td style="text-align:center">$ \Theta(N) $</td>
+</tr>
+<tr>
+<td style="text-align:center">External Chaining with Resizing</td>
+<td style="text-align:center">$ \Theta(1) $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="hash-function">hash function</span><a href="#hash-function" class="header-anchor"> </a></h3><p>Example: String hashCode function<br>Our convertToInt function:</p>
+<ul>
+<li>$ h(s) = (s_0 - ‘a’ + 1) × 32^{n-1} + (s_1 - ‘a’ + 1) × 32^{n-2} + … + (s_{n-1} - ‘a’ + 1) $</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>Intended for lower case strings only.</li>
+<li>Top bits are totally ignored.</li>
+</ul>
+<p>Improved converToInt function:</p>
+<ul>
+<li>$ h(s) = s_0 × 32^{n-1} + s_1 × 32^{n-2} + … + s_{n-1} $</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>Intended for lower case strings only: Fix by removing ‘a’.</li>
+<li><p>Top bits are totally ignored.<br>— Why? Because multiplying by 32 is equivalent to left shifting by 5 bits.(Result: Top characters get pushed out completely).<br>— How can we fix: Multiply by powers of 31!</p>
+</li>
+<li><p>$ h(s) = s_0 × 31^{n-1} + s_1 × 31^{n-2} + … + s_{n-1} $</p>
+</li>
+</ul>
+<h3><span id="hash-objects">hash Objects</span><a href="#hash-objects" class="header-anchor"> </a></h3><p>Example: Hashing a Collection<br>Lists are a lot like strings: Collection of items each with its own hashCode:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function">pubilc <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashCode = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (Object o : <span class="keyword">this</span>) &#123;</span><br><span class="line">        hashCode = hashCode * <span class="number">31</span>;</span><br><span class="line">        hashCode = hashCode + o.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>To save time hashing: Look at only first few items.</p>
+<ul>
+<li>Higher chance of collisions but things will still work.</li>
+</ul>
+<p>Example: Hashing a Recursive Data Structure<br>Computation of the hashCode of a recursive data structure involves recursive computation.</p>
+<ul>
+<li>For example, binary tree hashCode:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.value == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value.hashCode() + <span class="number">31</span> * <span class="keyword">this</span>.left.hashCode() + <span class="number">31</span> *<span class="number">31</span> * <span class="keyword">this</span>.right.hashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="default-hashcodes">Default hashCodes()</span><a href="#default-hashcodes" class="header-anchor"> </a></h3>All Objects have hashCode() function.</li>
+<li>Default: return this(i.e. address of object).<br>— Can have strange consequences: “hello”.hashCode() is not the same as (“h” + “ello”).hashCode()</li>
+<li>Can override for your type.</li>
+<li>Hash tables (HashSet, HashMap, etc.) are so important that Java requires that all objects implement hashCode().</li>
+</ul>
+<p>Java provides a hash table based implementation of sets and maps.</p>
+<ul>
+<li>Idea is very similar to what we’ve done in lecture.</li>
+<li>Warning: Never store mutable objects in a HashSet or HashMap.</li>
+<li>Warning: Never override equals without also overriding hashCode.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,34 +721,28 @@
       
         
           
-            <h2><span id="balanced-search-trees"> Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2>
-<h3><span id="the-trouble-with-trees"> The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3>
-<p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
+            <h2><span id="balanced-search-trees">Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2><h3><span id="the-trouble-with-trees">The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3><p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
 <ul>
 <li>Worst case: Items inserted in order.</li>
 <li>Fundamental issue: Too lazy about where to store data.</li>
 </ul>
 <p>One solution:</p>
 <ul>
-<li>Insert in random order.<br>
-– Results in $ \Theta (logN) $ height with extremely high probability.</li>
+<li>Insert in random order.<br>— Results in $ \Theta (logN) $ height with extremely high probability.</li>
 <li>However, you don’t have all the data front.</li>
 </ul>
-<h3><span id="tree-rotation-example"> Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3>
-<p>Suppose we have a search tree as shown below:</p>
+<h3><span id="tree-rotation-example">Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3><p>Suppose we have a search tree as shown below:</p>
 <ul>
-<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>
-– Promoting P means P is the new parent of G.</li>
+<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>— Promoting P means P is the new parent of G.</li>
 <li>Semantics of the tree are completely unchanged.</li>
 </ul>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/rotateleft.jpg" alt></p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/result.jpg" alt></p>
-<p>To reverse the operation: RotateRight§</p>
+<p>To reverse the operation: RotateRight(P)</p>
 <ul>
-<li>RotateRight§: P moves right, promotes its left child in the only natural way.</li>
+<li>RotateRight(P): P moves right, promotes its left child in the only natural way.</li>
 </ul>
-<h3><span id="rotation-an-alternate-approach-to-balance"> Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3>
-<p>Rotation:</p>
+<h3><span id="rotation-an-alternate-approach-to-balance">Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3><p>Rotation:</p>
 <ul>
 <li>Can shorten (or lengthen) a tree.</li>
 <li>Preserves search tree property.</li>
@@ -380,27 +753,21 @@
 <ul>
 <li>Rotate after each insertion and deletion to maintain balance.</li>
 </ul>
-<h3><span id="search-trees"> Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3>
-<p>There are many types of search trees:</p>
+<h3><span id="search-trees">Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3><p>There are many types of search trees:</p>
 <ul>
 <li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation (AVL, weight-balancing, <strong>red-black</strong>)</li>
 <li>Treaps.</li>
 <li>Splay trees.</li>
 <li><strong>2-3/2-3-4 trees/B-trees:</strong> No rotations required.</li>
 </ul>
-<h3><span id="a-weirder-solution"> A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3>
-<p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
+<h3><span id="a-weirder-solution">A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3><p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
 <p>Weirder solution: Overstuff the leaf nodes.</p>
 <ul>
-<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>
-– Height is just max(depth).</li>
+<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>— Height is just max(depth).</li>
 </ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>
-This is a logically consistent but very weird data structure.</p>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>This is a logically consistent but very weird data structure.</p>
 <ul>
-<li>contains®:<br>
-– Search for the appropriate leaf.<br>
-– Search the leaf for ‘r’.</li>
+<li>contains(r):<br>— Search for the appropriate leaf.<br>— Search the leaf for ‘r’.</li>
 </ul>
 <p>But there exists some new problems:</p>
 <ul>
@@ -419,58 +786,41 @@ This is a logically consistent but very weird data structure.</p>
 <p>Solution:</p>
 <ul>
 <li>Set a cap on the number of items, say 3.</li>
-<li>If more than cap, give an item to the parent.<br>
-– Pulling item out of juicy nodes splits it into left and right.<br>
-– Parent node now has three children.</li>
+<li>If more than cap, give an item to the parent.<br>— Pulling item out of juicy nodes splits it into left and right.<br>— Parent node now has three children.</li>
 </ul>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/3node.jpg" alt></p>
-<h3><span id="revising-our-overstuffed-tree-approach-node-splitting"> Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3>
-<p>This is a logically consistent and not so weird data structure.</p>
+<h3><span id="revising-our-overstuffed-tree-approach-node-splitting">Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3><p>This is a logically consistent and not so weird data structure.</p>
 <ul>
-<li>contains®:<br>
-– r &lt; m, so go right<br>
-– r &gt; o, so compares vs. q<br>
-– r &gt; q, so go right</li>
+<li>contains(r):<br>— r &lt; m, so go right<br>— r &gt; o, so compares vs. q<br>— r &gt; q, so go right</li>
 </ul>
-<h3><span id="perfect-balance"> Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3>
-<p>Observation: Splitting-trees have perfect balance.</p>
+<h3><span id="perfect-balance">Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3><p>Observation: Splitting-trees have perfect balance.</p>
 <ul>
 <li>If we split the root, every node gets pushed down by exactly one level.</li>
 <li>If we split a leaf node or internal node, the height doesn’t change.</li>
 </ul>
 <p>Bottom line: All operations have guaranteed $ \Theta(logN) $ time.</p>
-<p>M: Max number of children (one more than the item cap).<br>
-Height: Between $ log_M(N) $ and $ log_2(N) $</p>
+<p>M: Max number of children (one more than the item cap).<br>Height: Between $ log_M(N) $ and $ log_2(N) $</p>
 <p>Max number of splitting operations per insert: ~H</p>
 <p>Time per insert/contains: $ \Theta(H) $, or equivalently $ \Theta(logN) $</p>
-<h3><span id="the-real-name-of-splitting-trees-is-b-trees"> The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3>
-<ul>
-<li>
-<p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>
-– The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
+<h3><span id="the-real-name-of-splitting-trees-is-b-trees">The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3><ul>
+<li><p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>— The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
 </li>
-<li>
-<p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
+<li><p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
 </li>
 </ul>
 <p>B-Trees are most popular in two specific contexts:</p>
 <ul>
-<li>Small M (M = 3 or M = 4):<br>
-– Used as a conceptually simple balanced search tree (as today).</li>
-<li>M is very large (say thousands).<br>
-– Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
+<li>Small M (M = 3 or M = 4):<br>— Used as a conceptually simple balanced search tree (as today).</li>
+<li>M is very large (say thousands).<br>— Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
 </ul>
 <p>Note: Since the small M tree isn’t practically useful, people usually only use the name B-tree to refer to the very large M case.</p>
-<h3><span id="red-black-trees"> Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3>
-<h4><span id="the-bad-news"> The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4>
-<p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
+<h3><span id="red-black-trees">Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3><h4><span id="the-bad-news">The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4><p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
 <ul>
 <li>Maintaining different node types.</li>
 <li>Interconversion of nodes between 2-nodes and 3-nodes.</li>
 <li>Walking up the tree to split nodes.</li>
 </ul>
-<h4><span id="idea"> idea</span><a href="#idea" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="idea">idea</span><a href="#idea" class="header-anchor"> </a></h4><ul>
 <li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation. Coming up wih a strategy is hard.</li>
 <li><strong>2-3 trees:</strong> No rotations required.</li>
 </ul>
@@ -479,16 +829,14 @@ Height: Between $ log_M(N) $ and $ log_2(N) $</p>
 <li>Use rotations to ensure the isometry.</li>
 <li>Since 2-3 trees are balanced, rotations on BST will ensure balance.</li>
 </ul>
-<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes"> Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4>
-<p>Possibility 1: Create dummy “glue” nodes.</p>
+<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes">Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4><p>Possibility 1: Create dummy “glue” nodes.</p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/dummy.jpg" alt></p>
 <p>Result is inelegant. Wasted link. Code will be ugly.</p>
 <p>Possibility 2: Create “glue” links with the smaller item off to the left.</p>
 <p>Idea is commonly used in practice (e.g. java.util.TreeSet)</p>
 <p>For convenience, we’ll mark glue links as “red”.</p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/red.jpg" alt></p>
-<h4><span id="left-leaning-red-black-binary-search-tree-llrb"> Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4>
-<p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
+<h4><span id="left-leaning-red-black-binary-search-tree-llrb">Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4><p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
 <ul>
 <li>No node has two red links (otherwise it’d be like a 4 node).</li>
 <li>Every path from root to a leaf has same number of black links.</li>
@@ -1876,41 +2224,25 @@ Height: Between $ log_M(N) $ and $ log_2(N) $</p>
         
           
             <hr>
-<h2><span id="title-cs61b-iteration-date-2020-03-07t10-41-13-000z-tags-cs61b-categories-java"> title: CS61B-Iteration<br>
-date: 2020-03-07T10:41:13.000Z<br>
-tags: CS61b<br>
-categories: Java</span><a href="#title-cs61b-iteration-date-2020-03-07t10-41-13-000z-tags-cs61b-categories-java" class="header-anchor"> </a></h2>
-<h2><span id="iteration"> Iteration</span><a href="#iteration" class="header-anchor"> </a></h2>
-<h3><span id="the-enhanced-for-loop"> The Enhanced For Loop</span><a href="#the-enhanced-for-loop" class="header-anchor"> </a></h3>
-<p>Java allows us to iterate through Lists and Sets using a convenient shorthand syntax sometimes called the “foreach” or “enhanced for” loop.</p>
-<h3><span id="how-iteration-really-works"> How iteration Really Works</span><a href="#how-iteration-really-works" class="header-anchor"> </a></h3>
-<p>An alternate, uglier way to iterate through a List is to use the iterator() method.</p>
-<p>Set.java:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>Ugly iteration:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line">Iterator&lt;Integer&gt; seer = javaset.iterator();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (seer.hasNext()) &#123;</span><br><span class="line">    System.out.println(seer.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Nice iteration:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x : javaset) &#123;</span><br><span class="line">    System.out.println(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="the-secret-of-the-enhanced-for-loop"> The secret of the Enhanced For Loop</span><a href="#the-secret-of-the-enhanced-for-loop" class="header-anchor"> </a></h3>
-<p>The secret: The code in nice form is just shorthand for the code in ugly form. For ugly form to compile, the compilers checks:</p>
+<p>title: CS61B-Iteration<br>date: 2020-03-07T10:41:13.000Z<br>tags: CS61b</p>
+<h2><span id="categories-java">categories: Java</span><a href="#categories-java" class="header-anchor"> </a></h2><h2><span id="iteration">Iteration</span><a href="#iteration" class="header-anchor"> </a></h2><h3><span id="the-enhanced-for-loop">The Enhanced For Loop</span><a href="#the-enhanced-for-loop" class="header-anchor"> </a></h3><p>Java allows us to iterate through Lists and Sets using a convenient shorthand syntax sometimes called the “foreach” or “enhanced for” loop.</p>
+<h3><span id="how-iteration-really-works">How iteration Really Works</span><a href="#how-iteration-really-works" class="header-anchor"> </a></h3><p>An alternate, uglier way to iterate through a List is to use the iterator() method.</p>
+<p>Set.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>Ugly iteration:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line">Iterator&lt;Integer&gt; seer = javaset.iterator();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (seer.hasNext()) &#123;</span><br><span class="line">    System.out.println(seer.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Nice iteration:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; javaset = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x : javaset) &#123;</span><br><span class="line">    System.out.println(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="the-secret-of-the-enhanced-for-loop">The secret of the Enhanced For Loop</span><a href="#the-secret-of-the-enhanced-for-loop" class="header-anchor"> </a></h3><p>The secret: The code in nice form is just shorthand for the code in ugly form. For ugly form to compile, the compilers checks:</p>
 <ul>
 <li>Does the Set interface have an iterator() method?</li>
 <li>Does the Iterator interface have next/hasNext() methods?</li>
 </ul>
-<h3><span id="supporting-ugly-iteration-in-arraysets"> Supporting Ugly Iteration in ArraySets</span><a href="#supporting-ugly-iteration-in-arraysets" class="header-anchor"> </a></h3>
-<p>To support ugly iteration:</p>
+<h3><span id="supporting-ugly-iteration-in-arraysets">Supporting Ugly Iteration in ArraySets</span><a href="#supporting-ugly-iteration-in-arraysets" class="header-anchor"> </a></h3><p>To support ugly iteration:</p>
 <ul>
 <li>Add an <em>iterator()</em> method to <em>ArraySet</em> that returns an <em>Iterator<t></t></em>.</li>
-<li>The <em>Iterator<t></t></em> that we return should have a useful <em>hasNext()</em> and <em>next()</em> method.</li>
+<li>The <em>Iterator<t></t></em> that we return should have a useful <em>hasNext()</em> and <em>next()</em> method.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns an iterator</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;Integer&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArraySetIterator();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySetIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> wisPos;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySetIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        wizPos = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> wizPos &lt; size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T returnItem = array[wizPos++];</span><br><span class="line">        <span class="keyword">return</span> returnItem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="for-each-iteration-and-arraysets">For each iteration and Arraysets</span><a href="#for-each-iteration-and-arraysets" class="header-anchor"> </a></h3>To support the enhanced for loop, we need to make <em>ArraySet</em> implement the <em>Iterable</em> interface.<br>That is to say, we need Java know that we have iterator() in out <em>ArraySet</em> class.</li>
+<li>There are also some default methods in <em>Iterable</em>, not shown.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns an iterator</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;Integer&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArraySetIterator();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySetIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> wisPos;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySetIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        wizPos = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> wizPos &lt; size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T returnItem = array[wizPos++];</span><br><span class="line">        <span class="keyword">return</span> returnItem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="for-each-iteration-and-arraysets"> For each iteration and Arraysets</span><a href="#for-each-iteration-and-arraysets" class="header-anchor"> </a></h3>
-<p>To support the enhanced for loop, we need to make <em>ArraySet</em> implement the <em>Iterable</em> interface.<br>
-That is to say, we need Java know that we have iterator() in out <em>ArraySet</em> class.</p>
-<ul>
-<li>There are also some default methods in <em>Iterable</em>, not shown.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySet</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
@@ -2120,155 +2452,6 @@ When an exception is thrown, it descends the call stack.</li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/CS61B-Lists-Sets-ArraySet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/CS61B-Lists-Sets-ArraySet/" itemprop="url">CS61B-Lists,Sets,ArraySet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T10:10:40+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="list-in-java"> List in Java</span><a href="#list-in-java" class="header-anchor"> </a></h3>
-<p>We built a list from scratch, but Java provides a built-in <em>List</em> interface and several implementations, e.g. <em>ArrayList</em>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List61B&lt;Integer&gt; L = <span class="keyword">new</span> AList&lt;&gt;();</span><br><span class="line">L.addLast(<span class="number">5</span>);</span><br><span class="line">L.addLast(<span class="number">10</span>);</span><br><span class="line">L.addLast(<span class="number">15</span>);</span><br><span class="line">L.print();</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.util.List&lt;Integer&gt; L = <span class="keyword">new</span> java.util.ArrayList&lt;&gt;();</span><br><span class="line">L.add(<span class="number">5</span>);</span><br><span class="line">L.add(<span class="number">10</span>);</span><br><span class="line">L.add(<span class="number">15</span>);</span><br><span class="line">System.out.println(L);</span><br></pre></td></tr></table></figure>
-<h3><span id="sets-in-java"> Sets in Java</span><a href="#sets-in-java" class="header-anchor"> </a></h3>
-<p>Stores a set of values with no duplicates. Has no sense of order.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; S = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">S.add(<span class="string">"Tokyo"</span>);</span><br><span class="line">S.add(<span class="string">"Beijing"</span>);</span><br><span class="line">S.add(<span class="string">"Lagos"</span>);</span><br><span class="line">S.add(<span class="string">"Sao Paulo"</span>);</span><br><span class="line">System.out.println(S.contains(<span class="string">"Tokyo"</span>));</span><br></pre></td></tr></table></figure>
-<p><strong>ArraySet Implementation</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySet</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> (T[]) array;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySet</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">        array = (T[]) <span class="keyword">new</span> Object[<span class="number">100</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!contains(value)) &#123;</span><br><span class="line">            array[size++] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value.equals(array[i])) &#123; <span class="keyword">return</span> <span class="keyword">true</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2319,7 +2502,7 @@ When an exception is thrown, it descends the call stack.</li>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

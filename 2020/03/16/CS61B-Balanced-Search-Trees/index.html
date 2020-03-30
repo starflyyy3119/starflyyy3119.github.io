@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="Balanced Search Trees   The Trouble with Trees  Last time:BSTs have potential performance issue if they get “spindly”(too tall).  Worst case: Items inserted in order. Fundamental issue: Too lazy abou">
+<meta name="description" content="Balanced Search Trees The Trouble with Trees Last time:BSTs have potential performance issue if they get “spindly”(too tall).  Worst case: Items inserted in order. Fundamental issue: Too lazy about wh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B-Balanced Search Trees">
 <meta property="og:url" content="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Balanced Search Trees   The Trouble with Trees  Last time:BSTs have potential performance issue if they get “spindly”(too tall).  Worst case: Items inserted in order. Fundamental issue: Too lazy abou">
+<meta property="og:description" content="Balanced Search Trees The Trouble with Trees Last time:BSTs have potential performance issue if they get “spindly”(too tall).  Worst case: Items inserted in order. Fundamental issue: Too lazy about wh">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/rotateleft.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/16/CS61B-Balanced-Search-Trees/result.jpg">
@@ -352,34 +352,28 @@
       
 
       
-        <h2><span id="balanced-search-trees"> Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2>
-<h3><span id="the-trouble-with-trees"> The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3>
-<p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
+        <h2><span id="balanced-search-trees">Balanced Search Trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2><h3><span id="the-trouble-with-trees">The Trouble with Trees</span><a href="#the-trouble-with-trees" class="header-anchor"> </a></h3><p>Last time:BSTs have potential performance issue if they get “spindly”(too tall).</p>
 <ul>
 <li>Worst case: Items inserted in order.</li>
 <li>Fundamental issue: Too lazy about where to store data.</li>
 </ul>
 <p>One solution:</p>
 <ul>
-<li>Insert in random order.<br>
-– Results in $ \Theta (logN) $ height with extremely high probability.</li>
+<li>Insert in random order.<br>— Results in $ \Theta (logN) $ height with extremely high probability.</li>
 <li>However, you don’t have all the data front.</li>
 </ul>
-<h3><span id="tree-rotation-example"> Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3>
-<p>Suppose we have a search tree as shown below:</p>
+<h3><span id="tree-rotation-example">Tree Rotation Example</span><a href="#tree-rotation-example" class="header-anchor"> </a></h3><p>Suppose we have a search tree as shown below:</p>
 <ul>
-<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>
-– Promoting P means P is the new parent of G.</li>
+<li>RotateLeft(G): G moves left, <strong>promote its right child in the only natural way.</strong><br>— Promoting P means P is the new parent of G.</li>
 <li>Semantics of the tree are completely unchanged.</li>
 </ul>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/rotateleft.jpg" alt></p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/result.jpg" alt></p>
-<p>To reverse the operation: RotateRight§</p>
+<p>To reverse the operation: RotateRight(P)</p>
 <ul>
-<li>RotateRight§: P moves right, promotes its left child in the only natural way.</li>
+<li>RotateRight(P): P moves right, promotes its left child in the only natural way.</li>
 </ul>
-<h3><span id="rotation-an-alternate-approach-to-balance"> Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3>
-<p>Rotation:</p>
+<h3><span id="rotation-an-alternate-approach-to-balance">Rotation: An Alternate Approach to Balance</span><a href="#rotation-an-alternate-approach-to-balance" class="header-anchor"> </a></h3><p>Rotation:</p>
 <ul>
 <li>Can shorten (or lengthen) a tree.</li>
 <li>Preserves search tree property.</li>
@@ -390,27 +384,21 @@
 <ul>
 <li>Rotate after each insertion and deletion to maintain balance.</li>
 </ul>
-<h3><span id="search-trees"> Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3>
-<p>There are many types of search trees:</p>
+<h3><span id="search-trees">Search Trees</span><a href="#search-trees" class="header-anchor"> </a></h3><p>There are many types of search trees:</p>
 <ul>
 <li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation (AVL, weight-balancing, <strong>red-black</strong>)</li>
 <li>Treaps.</li>
 <li>Splay trees.</li>
 <li><strong>2-3/2-3-4 trees/B-trees:</strong> No rotations required.</li>
 </ul>
-<h3><span id="a-weirder-solution"> A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3>
-<p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
+<h3><span id="a-weirder-solution">A Weirder Solution</span><a href="#a-weirder-solution" class="header-anchor"> </a></h3><p>The problem is adding new leaves. Could balance with rotation but it’s not obvious which rotations to perform.</p>
 <p>Weirder solution: Overstuff the leaf nodes.</p>
 <ul>
-<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>
-– Height is just max(depth).</li>
+<li>“Overstuffed tree” always has balanced height, because leaf depths never change.<br>— Height is just max(depth).</li>
 </ul>
-<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>
-This is a logically consistent but very weird data structure.</p>
+<p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/overstuffed.jpg" alt><br>This is a logically consistent but very weird data structure.</p>
 <ul>
-<li>contains®:<br>
-– Search for the appropriate leaf.<br>
-– Search the leaf for ‘r’.</li>
+<li>contains(r):<br>— Search for the appropriate leaf.<br>— Search the leaf for ‘r’.</li>
 </ul>
 <p>But there exists some new problems:</p>
 <ul>
@@ -429,58 +417,41 @@ This is a logically consistent but very weird data structure.</p>
 <p>Solution:</p>
 <ul>
 <li>Set a cap on the number of items, say 3.</li>
-<li>If more than cap, give an item to the parent.<br>
-– Pulling item out of juicy nodes splits it into left and right.<br>
-– Parent node now has three children.</li>
+<li>If more than cap, give an item to the parent.<br>— Pulling item out of juicy nodes splits it into left and right.<br>— Parent node now has three children.</li>
 </ul>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/3node.jpg" alt></p>
-<h3><span id="revising-our-overstuffed-tree-approach-node-splitting"> Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3>
-<p>This is a logically consistent and not so weird data structure.</p>
+<h3><span id="revising-our-overstuffed-tree-approach-node-splitting">Revising Our Overstuffed Tree Approach: Node Splitting</span><a href="#revising-our-overstuffed-tree-approach-node-splitting" class="header-anchor"> </a></h3><p>This is a logically consistent and not so weird data structure.</p>
 <ul>
-<li>contains®:<br>
-– r &lt; m, so go right<br>
-– r &gt; o, so compares vs. q<br>
-– r &gt; q, so go right</li>
+<li>contains(r):<br>— r &lt; m, so go right<br>— r &gt; o, so compares vs. q<br>— r &gt; q, so go right</li>
 </ul>
-<h3><span id="perfect-balance"> Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3>
-<p>Observation: Splitting-trees have perfect balance.</p>
+<h3><span id="perfect-balance">Perfect Balance</span><a href="#perfect-balance" class="header-anchor"> </a></h3><p>Observation: Splitting-trees have perfect balance.</p>
 <ul>
 <li>If we split the root, every node gets pushed down by exactly one level.</li>
 <li>If we split a leaf node or internal node, the height doesn’t change.</li>
 </ul>
 <p>Bottom line: All operations have guaranteed $ \Theta(logN) $ time.</p>
-<p>M: Max number of children (one more than the item cap).<br>
-Height: Between $ log_M(N) $ and $ log_2(N) $</p>
+<p>M: Max number of children (one more than the item cap).<br>Height: Between $ log_M(N) $ and $ log_2(N) $</p>
 <p>Max number of splitting operations per insert: ~H</p>
 <p>Time per insert/contains: $ \Theta(H) $, or equivalently $ \Theta(logN) $</p>
-<h3><span id="the-real-name-of-splitting-trees-is-b-trees"> The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3>
-<ul>
-<li>
-<p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>
-– The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
+<h3><span id="the-real-name-of-splitting-trees-is-b-trees">The Real name of Splitting Trees is “B Trees”</span><a href="#the-real-name-of-splitting-trees-is-b-trees" class="header-anchor"> </a></h3><ul>
+<li><p>A B-tree of order M = 4 (like above) is also called a 2-3-4  tree or a 2-4 tree.<br>— The name refers to the number of children that a node can have, e.g. a 2-3-4  tree node may have 2,3 or 4 children.</p>
 </li>
-<li>
-<p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
+<li><p>A B-tree of order M = 3 is also called a 2-3 tree.</p>
 </li>
 </ul>
 <p>B-Trees are most popular in two specific contexts:</p>
 <ul>
-<li>Small M (M = 3 or M = 4):<br>
-– Used as a conceptually simple balanced search tree (as today).</li>
-<li>M is very large (say thousands).<br>
-– Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
+<li>Small M (M = 3 or M = 4):<br>— Used as a conceptually simple balanced search tree (as today).</li>
+<li>M is very large (say thousands).<br>— Used in practice for databases and filesystems (i.e. systems with very large records.)</li>
 </ul>
 <p>Note: Since the small M tree isn’t practically useful, people usually only use the name B-tree to refer to the very large M case.</p>
-<h3><span id="red-black-trees"> Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3>
-<h4><span id="the-bad-news"> The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4>
-<p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
+<h3><span id="red-black-trees">Red-Black Trees</span><a href="#red-black-trees" class="header-anchor"> </a></h3><h4><span id="the-bad-news">The Bad News</span><a href="#the-bad-news" class="header-anchor"> </a></h4><p>2-3 trees (and 2-3-4 trees) are a real pain to implement, and suffer from performance problems:</p>
 <ul>
 <li>Maintaining different node types.</li>
 <li>Interconversion of nodes between 2-nodes and 3-nodes.</li>
 <li>Walking up the tree to split nodes.</li>
 </ul>
-<h4><span id="idea"> idea</span><a href="#idea" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="idea">idea</span><a href="#idea" class="header-anchor"> </a></h4><ul>
 <li><strong>Binary search trees:</strong> Require rotations to maintain balance. There are many strategies for rotation. Coming up wih a strategy is hard.</li>
 <li><strong>2-3 trees:</strong> No rotations required.</li>
 </ul>
@@ -489,16 +460,14 @@ Height: Between $ log_M(N) $ and $ log_2(N) $</p>
 <li>Use rotations to ensure the isometry.</li>
 <li>Since 2-3 trees are balanced, rotations on BST will ensure balance.</li>
 </ul>
-<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes"> Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4>
-<p>Possibility 1: Create dummy “glue” nodes.</p>
+<h4><span id="representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes">Representing a 2-3 Tree as a BST: Dealing with 3-Nodes</span><a href="#representing-a-2-3-tree-as-a-bst-dealing-with-3-nodes" class="header-anchor"> </a></h4><p>Possibility 1: Create dummy “glue” nodes.</p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/dummy.jpg" alt></p>
 <p>Result is inelegant. Wasted link. Code will be ugly.</p>
 <p>Possibility 2: Create “glue” links with the smaller item off to the left.</p>
 <p>Idea is commonly used in practice (e.g. java.util.TreeSet)</p>
 <p>For convenience, we’ll mark glue links as “red”.</p>
 <p><img src="/2020/03/16/CS61B-Balanced-Search-Trees/red.jpg" alt></p>
-<h4><span id="left-leaning-red-black-binary-search-tree-llrb"> Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4>
-<p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
+<h4><span id="left-leaning-red-black-binary-search-tree-llrb">Left-leaning Red Black Binary Search Tree (LLRB)</span><a href="#left-leaning-red-black-binary-search-tree-llrb" class="header-anchor"> </a></h4><p>Any BST that maintains an isometry with a 2-3 tree has these properties:</p>
 <ul>
 <li>No node has two red links (otherwise it’d be like a 4 node).</li>
 <li>Every path from root to a leaf has same number of black links.</li>
@@ -630,7 +599,7 @@ Height: Between $ log_M(N) $ and $ log_2(N) $</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -685,7 +654,7 @@ Height: Between $ log_M(N) $ and $ log_2(N) $</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Balanced Search Trees </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> The Trouble with Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Tree Rotation Example </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Rotation: An Alternate Approach to Balance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text"> Search Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text"> A Weirder Solution </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.6.</span> <span class="nav-text"> Revising Our Overstuffed Tree Approach: Node Splitting </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.7.</span> <span class="nav-text"> Perfect Balance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.8.</span> <span class="nav-text"> The Real name of Splitting Trees is “B Trees” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.9.</span> <span class="nav-text"> Red-Black Trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.1.</span> <span class="nav-text"> The Bad News </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.2.</span> <span class="nav-text"> idea </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.3.</span> <span class="nav-text"> Representing a 2-3 Tree as a BST: Dealing with 3-Nodes </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.4.</span> <span class="nav-text"> Left-leaning Red Black Binary Search Tree (LLRB) </span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Balanced Search Trees </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">The Trouble with Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Tree Rotation Example </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Rotation: An Alternate Approach to Balance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">Search Trees </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">A Weirder Solution </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.6.</span> <span class="nav-text">Revising Our Overstuffed Tree Approach: Node Splitting </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.7.</span> <span class="nav-text">Perfect Balance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.8.</span> <span class="nav-text">The Real name of Splitting Trees is “B Trees” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.9.</span> <span class="nav-text">Red-Black Trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.1.</span> <span class="nav-text">The Bad News </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.2.</span> <span class="nav-text">idea </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.3.</span> <span class="nav-text">Representing a 2-3 Tree as a BST: Dealing with 3-Nodes </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.9.4.</span> <span class="nav-text">Left-leaning Red Black Binary Search Tree (LLRB) </span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

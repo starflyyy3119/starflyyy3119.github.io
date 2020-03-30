@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="Balanced search trees  2-3 trees Red-black BSTs B-trees   Geometric Applications of BSTs  Overview 1d range search Line Segment Intersection Kd-trees       Balanced search trees   2-3 trees   Basic">
+<meta name="description" content="Balanced search trees 2-3 trees Red-black BSTs B-trees   Geometric Applications of BSTs Overview 1d range search Line Segment Intersection Kd-trees       Balanced search trees 2-3 trees Basic know">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithms-Part1-Balanced Search Trees">
 <meta property="og:url" content="http://yoursite.com/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Balanced search trees  2-3 trees Red-black BSTs B-trees   Geometric Applications of BSTs  Overview 1d range search Line Segment Intersection Kd-trees       Balanced search trees   2-3 trees   Basic">
+<meta property="og:description" content="Balanced search trees 2-3 trees Red-black BSTs B-trees   Geometric Applications of BSTs Overview 1d range search Line Segment Intersection Kd-trees       Balanced search trees 2-3 trees Basic know">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/2-3trees.png">
 <meta property="og:image" content="http://yoursite.com/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/local_trans.png">
@@ -380,17 +380,16 @@
 
       
         <div class="toc">
+
 <!-- toc -->
 <ul>
-<li><a href="#balanced-search-trees">Balanced search trees</a>
-<ul>
+<li><a href="#balanced-search-trees">Balanced search trees</a><ul>
 <li><a href="#2-3-trees">2-3 trees</a></li>
 <li><a href="#red-black-bsts">Red-black BSTs</a></li>
 <li><a href="#b-trees">B-trees</a></li>
 </ul>
 </li>
-<li><a href="#geometric-applications-of-bsts">Geometric Applications of BSTs</a>
-<ul>
+<li><a href="#geometric-applications-of-bsts">Geometric Applications of BSTs</a><ul>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#1d-range-search">1d range search</a></li>
 <li><a href="#line-segment-intersection">Line Segment Intersection</a></li>
@@ -400,11 +399,8 @@
 </ul>
 <!-- tocstop -->
 </div>
-<h2><span id="balanced-search-trees"> Balanced search trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2>
-<h3><span id="2-3-trees"> 2-3 trees</span><a href="#2-3-trees" class="header-anchor"> </a></h3>
-<h4><span id="basic-knowledge"> Basic knowledge</span><a href="#basic-knowledge" class="header-anchor"> </a></h4>
-<p>A generalization of Binary search trees.<br>
-<strong>Allow 1 or 2 keys per node.</strong></p>
+
+<h2><span id="balanced-search-trees">Balanced search trees</span><a href="#balanced-search-trees" class="header-anchor"> </a></h2><h3><span id="2-3-trees">2-3 trees</span><a href="#2-3-trees" class="header-anchor"> </a></h3><h4><span id="basic-knowledge">Basic knowledge</span><a href="#basic-knowledge" class="header-anchor"> </a></h4><p>A generalization of Binary search trees.<br><strong>Allow 1 or 2 keys per node.</strong></p>
 <ul>
 <li>2-node: one key, two children.</li>
 <li>3-node: two keys, three children.</li>
@@ -418,14 +414,12 @@
 <li>Inorder traversal yields keys in ascending order.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/2-3trees.png" alt></p>
-<h4><span id="search"> Search</span><a href="#search" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="search">Search</span><a href="#search" class="header-anchor"> </a></h4><ul>
 <li>Compare search key against keys in node.</li>
 <li>Find interval containing search key.</li>
 <li>Follow associated link(recursively).</li>
 </ul>
-<h4><span id="insert"> Insert</span><a href="#insert" class="header-anchor"> </a></h4>
-<p><strong>Insert into a 2-node at bottom.</strong></p>
+<h4><span id="insert">Insert</span><a href="#insert" class="header-anchor"> </a></h4><p><strong>Insert into a 2-node at bottom.</strong></p>
 <ul>
 <li>Search for key, as usual.</li>
 <li>Replace 2-node with 3-node.</li>
@@ -437,11 +431,9 @@
 <li>Repeat up the tree, as necessary.</li>
 <li>If you reach the root and it’s a 4-node, split it into three 2-nodes.(at this time height of tree increases by one)</li>
 </ul>
-<h4><span id="local-tansformation-in-a-2-3-tree"> Local tansformation in a 2-3 tree</span><a href="#local-tansformation-in-a-2-3-tree" class="header-anchor"> </a></h4>
-<p>Splitting a 4-node is a local tansformation: constant number of operations.</p>
+<h4><span id="local-tansformation-in-a-2-3-tree">Local tansformation in a 2-3 tree</span><a href="#local-tansformation-in-a-2-3-tree" class="header-anchor"> </a></h4><p>Splitting a 4-node is a local tansformation: constant number of operations.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/local_trans.png" alt></p>
-<h4><span id="global-properties-in-a-2-3-tree"> Global properties in a 2-3 tree</span><a href="#global-properties-in-a-2-3-tree" class="header-anchor"> </a></h4>
-<p><strong>Invariants.</strong></p>
+<h4><span id="global-properties-in-a-2-3-tree">Global properties in a 2-3 tree</span><a href="#global-properties-in-a-2-3-tree" class="header-anchor"> </a></h4><p><strong>Invariants.</strong></p>
 <ul>
 <li>Maintain symmetric order and perfect balance.</li>
 </ul>
@@ -450,8 +442,7 @@
 <li>Each tansformation maintains symmetric order and perfect balance.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/balance.png" alt></p>
-<h4><span id="2-3-tree-performance"> 2-3 tree: performance</span><a href="#2-3-tree-performance" class="header-anchor"> </a></h4>
-<p><strong>Tree height.</strong></p>
+<h4><span id="2-3-tree-performance">2-3 tree: performance</span><a href="#2-3-tree-performance" class="header-anchor"> </a></h4><p><strong>Tree height.</strong></p>
 <ul>
 <li>Worst case: $ log_2^N $ [all 2-nodes]</li>
 <li>Best case: $ log_3^N $ [all 3-nodes]</li>
@@ -460,37 +451,28 @@
 </ul>
 <p>Guaranteed logarithmic performance for search and insert.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/summary1.png" alt></p>
-<h4><span id="2-3-tree-implementation"> 2-3 tree: implementation?</span><a href="#2-3-tree-implementation" class="header-anchor"> </a></h4>
-<p><strong>Direct implementation is complicated, because:</strong></p>
+<h4><span id="2-3-tree-implementation">2-3 tree: implementation?</span><a href="#2-3-tree-implementation" class="header-anchor"> </a></h4><p><strong>Direct implementation is complicated, because:</strong></p>
 <ul>
 <li>Maintaining multiple node types is cumbersome.</li>
 <li>Need multiple compares to move down tree.</li>
 <li>Need to move back up the tree to split 4-nodes.</li>
 <li>Large number of cases for splitting.</li>
 </ul>
-<p><strong>Bottom line.</strong><br>
-Could do it, but there’s a better way.</p>
-<h3><span id="red-black-bsts"> Red-black BSTs</span><a href="#red-black-bsts" class="header-anchor"> </a></h3>
-<p>Red-black trees is a much easier way to implement 2-3 trees.<br>
-And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-Sedgewick 1979 and Sedgewick 2007)</p>
-<h4><span id="left-leaning-red-black-bsts"> Left-leaning red-black BSTs</span><a href="#left-leaning-red-black-bsts" class="header-anchor"> </a></h4>
-<ul>
+<p><strong>Bottom line.</strong><br>Could do it, but there’s a better way.</p>
+<h3><span id="red-black-bsts">Red-black BSTs</span><a href="#red-black-bsts" class="header-anchor"> </a></h3><p>Red-black trees is a much easier way to implement 2-3 trees.<br>And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-Sedgewick 1979 and Sedgewick 2007)</p>
+<h4><span id="left-leaning-red-black-bsts">Left-leaning red-black BSTs</span><a href="#left-leaning-red-black-bsts" class="header-anchor"> </a></h4><ul>
 <li>Represent 2-3 tree as a BST.</li>
 <li>Use “internal” left-leaning links as “glue” for 3-nodes.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/lrbt.png" alt></p>
-<h4><span id="an-equivalent-definition"> An equivalent definition</span><a href="#an-equivalent-definition" class="header-anchor"> </a></h4>
-<p><strong>A BST such that:</strong></p>
+<h4><span id="an-equivalent-definition">An equivalent definition</span><a href="#an-equivalent-definition" class="header-anchor"> </a></h4><p><strong>A BST such that:</strong></p>
 <ul>
 <li>No node has two red links connected to it.</li>
 <li>Every path from root to null link has the same number of black links.</li>
 <li>Red links lean left.</li>
 </ul>
-<p><strong>Key property:</strong><br>
-1-1 correspondence between 2-3 and LLRB.<br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/llrb.png" alt></p>
-<h4><span id="search-implementation-for-red-black-bsts"> Search implementation for red-black BSTs</span><a href="#search-implementation-for-red-black-bsts" class="header-anchor"> </a></h4>
-<p><strong>Observation.</strong></p>
+<p><strong>Key property:</strong><br>1-1 correspondence between 2-3 and LLRB.<br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/llrb.png" alt></p>
+<h4><span id="search-implementation-for-red-black-bsts">Search implementation for red-black BSTs</span><a href="#search-implementation-for-red-black-bsts" class="header-anchor"> </a></h4><p><strong>Observation.</strong></p>
 <ul>
 <li>Search is the same as for elementary BST (ignore color). (but runs faster because of better balance)</li>
 </ul>
@@ -499,87 +481,60 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <ul>
 <li>Most other ops(e.g., ceiling, selection) are also identical.</li>
 </ul>
-<h4><span id="red-black-bst-representation"> Red-black BST representation</span><a href="#red-black-bst-representation" class="header-anchor"> </a></h4>
-<p>Each node is pointed to by precisely one link (from its parent), so we can encode color of links in nodes.</p>
+<h4><span id="red-black-bst-representation">Red-black BST representation</span><a href="#red-black-bst-representation" class="header-anchor"> </a></h4><p>Each node is pointed to by precisely one link (from its parent), so we can encode color of links in nodes.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> RED = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> BLACK = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Key key;</span><br><span class="line">    Value val;</span><br><span class="line">    Node left, right;</span><br><span class="line">    <span class="keyword">boolean</span> color;          <span class="comment">// color of parent link</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isRed</span><span class="params">(Node x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// null links are black</span></span><br><span class="line">    <span class="keyword">return</span> x.color == RED;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/color.png" alt></p>
-<h4><span id="elementary-red-black-bst-operations"> Elementary red-black BST operations</span><a href="#elementary-red-black-bst-operations" class="header-anchor"> </a></h4>
-<p><strong>Left rotation.</strong></p>
+<h4><span id="elementary-red-black-bst-operations">Elementary red-black BST operations</span><a href="#elementary-red-black-bst-operations" class="header-anchor"> </a></h4><p><strong>Left rotation.</strong></p>
 <ul>
-<li>Orient a (temporarily) right-leaning red link to lean left.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateLeft</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line">    Node x = h.right;</span><br><span class="line">    h.right = x.left;</span><br><span class="line">    x.left = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Invariants.</strong></p>
-<ul>
+<li>Orient a (temporarily) right-leaning red link to lean left.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateLeft</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line">    Node x = h.right;</span><br><span class="line">    h.right = x.left;</span><br><span class="line">    x.left = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<strong>Invariants.</strong></li>
 <li>Maintains symmetric order and perfect black balance.</li>
 </ul>
-<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate1.png" alt><br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate2.png" alt></p>
+<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate1.png" alt><br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate2.png" alt></p>
 <p><strong>Right rotation.</strong></p>
 <ul>
-<li>Orient a left-leaning red link to (temporarily) lean right.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateRight</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    Node x = h.left;</span><br><span class="line">    h.left = x.right;</span><br><span class="line">    x.right = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Invariants.</strong></p>
-<ul>
+<li>Orient a left-leaning red link to (temporarily) lean right.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateRight</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    Node x = h.left;</span><br><span class="line">    h.left = x.right;</span><br><span class="line">    x.right = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<strong>Invariants.</strong></li>
 <li>Maintains symmetric order and perfect black balance.</li>
 </ul>
-<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate3.png" alt><br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate4.png" alt></p>
+<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate3.png" alt><br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rotate4.png" alt></p>
 <p><strong>Color flip.</strong></p>
 <ul>
-<li>Recolor tot split a (temporary) 4-node.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">flipColors</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">assert</span> !isRed(h);</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line"></span><br><span class="line">    h.color = RED;</span><br><span class="line">    h.left.color = BLACK;</span><br><span class="line">    h.right.color = BLACK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Invariants.</strong></p>
-<ul>
+<li>Recolor tot split a (temporary) 4-node.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">flipColors</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">assert</span> !isRed(h);</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line"></span><br><span class="line">    h.color = RED;</span><br><span class="line">    h.left.color = BLACK;</span><br><span class="line">    h.right.color = BLACK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<strong>Invariants.</strong></li>
 <li>Maintains symmetric order and perfect black balance.</li>
 </ul>
-<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/flipb.png" alt><br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/flipa.png" alt></p>
-<h4><span id="insert-in-a-llrb-tree"> Insert in a LLRB tree:</span><a href="#insert-in-a-llrb-tree" class="header-anchor"> </a></h4>
-<p><strong>Basic strategy.</strong></p>
+<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/flipb.png" alt><br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/flipa.png" alt></p>
+<h4><span id="insert-in-a-llrb-tree">Insert in a LLRB tree:</span><a href="#insert-in-a-llrb-tree" class="header-anchor"> </a></h4><p><strong>Basic strategy.</strong></p>
 <ul>
 <li>Maintain 1-1 correspondence with 2-3 trees by applying elementary red-black BST operations.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/insert1.png" alt></p>
 <p><strong>Warmup 1.</strong></p>
 <ul>
-<li>Insert into a tree with exactly 1 node.<br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/onenode.png" alt></li>
+<li>Insert into a tree with exactly 1 node.<br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/onenode.png" alt></li>
 </ul>
 <p><strong>Case 1.</strong></p>
 <ul>
-<li>Insert into a 2-node at the bottom.<br>
-– Do standard BST insert; color new link red.<br>
-– If new red link is a right link, rotate left.<br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/case1.png" alt></li>
+<li>Insert into a 2-node at the bottom.<br>— Do standard BST insert; color new link red.<br>— If new red link is a right link, rotate left.<br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/case1.png" alt></li>
 </ul>
 <p><strong>Warmup 2.</strong></p>
 <ul>
-<li>Insert into a tree with exactly 2 nodes.<br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/warmup2.png" alt></li>
+<li>Insert into a tree with exactly 2 nodes.<br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/warmup2.png" alt></li>
 </ul>
 <p><strong>Case 2.</strong></p>
 <ul>
-<li>Insert into a 3-node at the bottom.<br>
-– Do standard BST insert; color new link red.<br>
-– Rotate to balance the 4-node(if needed).<br>
-– Flip colors to pass red link up one level.<br>
-– Rotate to make lean left(if needed).<br>
-– Repeat case 1 and case 2 up the tree(if needed).</li>
+<li>Insert into a 3-node at the bottom.<br>— Do standard BST insert; color new link red.<br>— Rotate to balance the 4-node(if needed).<br>— Flip colors to pass red link up one level.<br>— Rotate to make lean left(if needed).<br>— Repeat case 1 and case 2 up the tree(if needed).</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/case2.png" alt></p>
-<h4><span id="insert-in-a-llrb-tree-java-implementation"> Insert in a LLRB tree: Java implementation</span><a href="#insert-in-a-llrb-tree-java-implementation" class="header-anchor"> </a></h4>
-<p><strong>Same code handles all cases.</strong></p>
+<h4><span id="insert-in-a-llrb-tree-java-implementation">Insert in a LLRB tree: Java implementation</span><a href="#insert-in-a-llrb-tree-java-implementation" class="header-anchor"> </a></h4><p><strong>Same code handles all cases.</strong></p>
 <ul>
 <li>Right child red, left child black: rotate left.</li>
 <li>Left child, left-left grandchild red: rotate right;</li>
 <li>Both children red: flip colors.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node h, Key key, Value val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (h == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);  <span class="comment">// insert at bottom and color red</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>)  h.left = put(h.left, key, val);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)  h.right = put(h.right, key, val);</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">/* (cmp ==0)*/</span>h.val = val;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.right) &amp;&amp; !isRed(h.left))     h = rotateLeft(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left)  &amp;&amp; isRed(h.left.left)) h = rotateRight(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left)  &amp;&amp; isRed(h.right))     flipColors(h);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> h; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="balance-in-llrb-trees"> Balance in LLRB trees</span><a href="#balance-in-llrb-trees" class="header-anchor"> </a></h4>
-<p><strong>Proposition.</strong></p>
+<h4><span id="balance-in-llrb-trees">Balance in LLRB trees</span><a href="#balance-in-llrb-trees" class="header-anchor"> </a></h4><p><strong>Proposition.</strong></p>
 <ul>
 <li>Height of tree is $ \leq 2log_2^N $ in the worst case.</li>
 </ul>
@@ -593,17 +548,10 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <li>Height of tree is ~$ 1.00log_2^N $ in typical applications.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/visual.png" alt></p>
-<h4><span id="st-implementations-summary"> ST implementations: summary</span><a href="#st-implementations-summary" class="header-anchor"> </a></h4>
-<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/summary2.png" alt></p>
-<h4><span id="database-implementation"> Database implementation</span><a href="#database-implementation" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="st-implementations-summary">ST implementations: summary</span><a href="#st-implementations-summary" class="header-anchor"> </a></h4><p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/summary2.png" alt></p>
+<h4><span id="database-implementation">Database implementation</span><a href="#database-implementation" class="header-anchor"> </a></h4><ul>
 <li>Red-black BST search and insert; Hibbard deletion.</li>
-<li>Exceeding height limit of 80 triggered error-recovery process.</li>
-</ul>
-<h3><span id="b-trees"> B-trees</span><a href="#b-trees" class="header-anchor"> </a></h3>
-<h4><span id="file-system-model"> File system model</span><a href="#file-system-model" class="header-anchor"> </a></h4>
-<p><strong>Page.</strong></p>
-<ul>
+<li>Exceeding height limit of 80 triggered error-recovery process.<h3><span id="b-trees">B-trees</span><a href="#b-trees" class="header-anchor"> </a></h3><h4><span id="file-system-model">File system model</span><a href="#file-system-model" class="header-anchor"> </a></h4><strong>Page.</strong></li>
 <li>Contiguous block of data (e.g., a file or 4,096-byte chunk).</li>
 </ul>
 <p><strong>Probe.</strong></p>
@@ -622,41 +570,36 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <ul>
 <li>Access data using minimum number of probes.</li>
 </ul>
-<h4><span id="b-trees-bayer-mccreight-1972"> B-trees (Bayer-McCreight, 1972)</span><a href="#b-trees-bayer-mccreight-1972" class="header-anchor"> </a></h4>
-<p><strong>B-tree:</strong> Generalize 2-3 trees by allowing up to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">M-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> key-link pairs per node.</p>
+<h4><span id="b-trees-bayer-mccreight-1972">B-trees (Bayer-McCreight, 1972)</span><a href="#b-trees-bayer-mccreight-1972" class="header-anchor"> </a></h4><p><strong>B-tree:</strong> Generalize 2-3 trees by allowing up to $M-1$ key-link pairs per node.</p>
 <ul>
 <li>At least 2 key-link pairs at root.</li>
-<li>At least <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">M/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span></span></span></span> key-link pairs in other nodes.</li>
+<li>At least $M/2$ key-link pairs in other nodes.</li>
 <li>External nodes contain client keys.</li>
 <li>Internal nodes contain copies of keys to guide search.</li>
 </ul>
 <p><strong>Remark.</strong></p>
 <ul>
-<li>Choose <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> as large as possible so that <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> links fit in a page, e.g., M = 1024</li>
+<li>Choose $M$ as large as possible so that $M$ links fit in a page, e.g., M = 1024</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/btree.png" alt></p>
-<h4><span id="searching-in-a-b-tree"> Searching in a B-tree</span><a href="#searching-in-a-b-tree" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="searching-in-a-b-tree">Searching in a B-tree</span><a href="#searching-in-a-b-tree" class="header-anchor"> </a></h4><ul>
 <li>Start at root.</li>
 <li>Find interval for search key and take corresponding link.</li>
 <li>Search terminates in external node.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/searchbtree.png" alt></p>
-<h4><span id="insertion-in-a-b-tree"> Insertion in a B-tree</span><a href="#insertion-in-a-b-tree" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="insertion-in-a-b-tree">Insertion in a B-tree</span><a href="#insertion-in-a-b-tree" class="header-anchor"> </a></h4><ul>
 <li>Search for new key.</li>
 <li>Insert at bottom.</li>
-<li>Split nodes with <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> key-link pairs on the way up the tree.<br>
-<img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/insertbtree.png" alt></li>
+<li>Split nodes with $M$ key-link pairs on the way up the tree.<br><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/insertbtree.png" alt></li>
 </ul>
-<h4><span id="balance-in-b-tree"> Balance in B-tree</span><a href="#balance-in-b-tree" class="header-anchor"> </a></h4>
-<p><strong>Proposition.</strong></p>
+<h4><span id="balance-in-b-tree">Balance in B-tree</span><a href="#balance-in-b-tree" class="header-anchor"> </a></h4><p><strong>Proposition.</strong></p>
 <ul>
-<li>A search or an insertion in a B-tree of order <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> with <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> keys requires between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></msub><mi>N</mi></mrow><annotation encoding="application/x-tex">log_{M-1}N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.902771em;vertical-align:-0.208331em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mrow><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mi>N</mi></mrow><annotation encoding="application/x-tex">log_{M/2}N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04964em;vertical-align:-0.3551999999999999em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> probes.</li>
+<li>A search or an insertion in a B-tree of order $M$ with $N$ keys requires between $log_{M-1}N$ and $log_{M/2}N$ probes.</li>
 </ul>
 <p><strong>Pf.</strong></p>
 <ul>
-<li>All internal nodes (besides root) have between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">M/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">M-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> links.</li>
+<li>All internal nodes (besides root) have between $M/2$ and $M-1$ links.</li>
 </ul>
 <p><strong>In practice.</strong></p>
 <ul>
@@ -666,8 +609,7 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <ul>
 <li>Always keep root page in memory.</li>
 </ul>
-<h4><span id="balanced-trees-in-the-wild"> Balanced trees in the wild</span><a href="#balanced-trees-in-the-wild" class="header-anchor"> </a></h4>
-<p><strong>Red-black trees are widely used as system symbol tables.</strong></p>
+<h4><span id="balanced-trees-in-the-wild">Balanced trees in the wild</span><a href="#balanced-trees-in-the-wild" class="header-anchor"> </a></h4><p><strong>Red-black trees are widely used as system symbol tables.</strong></p>
 <ul>
 <li>Java: java.util.TreeMap, java.util.TreeSet.</li>
 <li>C++ STL: map, multimap, multiset.</li>
@@ -685,9 +627,7 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <li>Linux: ReiserFS, XFS, Ext3FS, JFS.</li>
 <li>Databases: ORACLE, DB2, INGRES, SQL, PostgreSQL.</li>
 </ul>
-<h2><span id="geometric-applications-of-bsts"> Geometric Applications of BSTs</span><a href="#geometric-applications-of-bsts" class="header-anchor"> </a></h2>
-<h3><span id="overview"> Overview</span><a href="#overview" class="header-anchor"> </a></h3>
-<p><strong>This lecture.</strong></p>
+<h2><span id="geometric-applications-of-bsts">Geometric Applications of BSTs</span><a href="#geometric-applications-of-bsts" class="header-anchor"> </a></h2><h3><span id="overview">Overview</span><a href="#overview" class="header-anchor"> </a></h3><p><strong>This lecture.</strong></p>
 <ul>
 <li>Intersections among geometric objects.</li>
 </ul>
@@ -700,14 +640,13 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <ul>
 <li>Binary search trees (and extensions).</li>
 </ul>
-<h3><span id="1d-range-search"> 1d range search</span><a href="#1d-range-search" class="header-anchor"> </a></h3>
-<p><strong>Extension of ordered symbol table.</strong></p>
+<h3><span id="1d-range-search">1d range search</span><a href="#1d-range-search" class="header-anchor"> </a></h3><p><strong>Extension of ordered symbol table.</strong></p>
 <ul>
 <li>Insert key-value pair.</li>
 <li>Search for key k.</li>
 <li>Delete key k.</li>
-<li>Range search: find all keys between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">k_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
-<li>Range count: number of keys between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">k_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Range search: find all keys between $k_1$ and $k_2$.</li>
+<li>Range count: number of keys between $k_1$ and $k_2$.</li>
 </ul>
 <p><strong>Application.</strong> Database queries.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/demo.png" alt></p>
@@ -716,30 +655,26 @@ And we are going to focus on the version of Left-leaning red-black BSTs(Guibas-S
 <li>Keys are point on a line.</li>
 <li>Find/count points in a given 1d interval.</li>
 </ul>
-<h4><span id="1d-range-count"> 1d range count</span><a href="#1d-range-count" class="header-anchor"> </a></h4>
-<p><strong>Unordered array.</strong></p>
+<h4><span id="1d-range-count">1d range count</span><a href="#1d-range-count" class="header-anchor"> </a></h4><p><strong>Unordered array.</strong></p>
 <ul>
 <li>Fast insert, slow range search.</li>
 </ul>
 <p><strong>Ordered array.</strong></p>
 <ul>
-<li>Slow insert, binary search for <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">k_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>k</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">k_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> to do range search.</li>
+<li>Slow insert, binary search for $k_1$ and $k_2$ to do range search.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/goal.png" alt></p>
-<p><strong>BST implementation.</strong><br>
-How many keys between <em>lo</em> and <em>high</em> ?</p>
-<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rank.png" alt></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">(Key lo, Key hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (contains(hi)) <span class="keyword">return</span> rank(hi) - rank(lo) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span>              <span class="keyword">return</span> rank(hi) - rank(lo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>BST implementation.</strong><br>How many keys between <em>lo</em> and <em>high</em> ?</p>
+<p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/rank.png" alt><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">(Key lo, Key hi)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (contains(hi)) <span class="keyword">return</span> rank(hi) - rank(lo) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span>              <span class="keyword">return</span> rank(hi) - rank(lo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>Proposition.</strong></p>
 <ul>
-<li>Running time proportional to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">logN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
+<li>Running time proportional to $logN$</li>
 </ul>
 <p><strong>Pf.</strong></p>
 <ul>
 <li>Nodes examined = search path to <em>lo</em> + search path to <em>hi</em>.</li>
 </ul>
-<h4><span id="1d-range-search"> 1d range search</span><a href="#1d-range-search" class="header-anchor"> </a></h4>
-<p><strong>Find all keys between lo and hi.</strong></p>
+<h4><span id="1d-range-search">1d range search</span><a href="#1d-range-search" class="header-anchor"> </a></h4><p><strong>Find all keys between lo and hi.</strong></p>
 <ul>
 <li>Recursively find all keys in the left subtree (if any could fall in range).</li>
 <li>Check key in current node.</li>
@@ -748,11 +683,9 @@ How many keys between <em>lo</em> and <em>high</em> ?</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/1dsearch.png" alt></p>
 <p><strong>Proposition.</strong></p>
 <ul>
-<li>Running time proportional to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>+</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">R + log N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>.</li>
+<li>Running time proportional to $R + log N$.</li>
 </ul>
-<h3><span id="line-segment-intersection"> Line Segment Intersection</span><a href="#line-segment-intersection" class="header-anchor"> </a></h3>
-<h4><span id="orthogonal-line-segment-intersection-search"> Orthogonal line segment intersection search</span><a href="#orthogonal-line-segment-intersection-search" class="header-anchor"> </a></h4>
-<p>Given <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> horizontal and vertical line segments, find all intersections.</p>
+<h3><span id="line-segment-intersection">Line Segment Intersection</span><a href="#line-segment-intersection" class="header-anchor"> </a></h3><h4><span id="orthogonal-line-segment-intersection-search">Orthogonal line segment intersection search</span><a href="#orthogonal-line-segment-intersection-search" class="header-anchor"> </a></h4><p>Given $N$ horizontal and vertical line segments, find all intersections.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/ortho.png" alt></p>
 <p><strong>Quadratic algorithm.</strong></p>
 <ul>
@@ -762,31 +695,26 @@ How many keys between <em>lo</em> and <em>high</em> ?</p>
 <ul>
 <li>All x-and y-coordinates are distinct.</li>
 </ul>
-<h4><span id="sweep-line-algorithm"> Sweep-line algorithm</span><a href="#sweep-line-algorithm" class="header-anchor"> </a></h4>
-<p><strong>Sweep vertical line from left to right.</strong></p>
+<h4><span id="sweep-line-algorithm">Sweep-line algorithm</span><a href="#sweep-line-algorithm" class="header-anchor"> </a></h4><p><strong>Sweep vertical line from left to right.</strong></p>
 <ul>
 <li>x-coordinates define events.</li>
 <li>h-segment (left point): insert y-coordinate into BST.</li>
 <li>h-segment (right point): remove y-coordinate from BST.</li>
 <li>v-segment: range search for interval of y-endpoints.</li>
 </ul>
-<h4><span id="sweep-line-analysis"> Sweep-line analysis</span><a href="#sweep-line-analysis" class="header-anchor"> </a></h4>
-<p><strong>Proposition.</strong><br>
-The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> intersections among <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> orthogonal line segments.</p>
+<h4><span id="sweep-line-analysis">Sweep-line analysis</span><a href="#sweep-line-analysis" class="header-anchor"> </a></h4><p><strong>Proposition.</strong><br>The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all $R$ intersections among $N$ orthogonal line segments.</p>
 <p><strong>Pf.</strong></p>
 <ul>
-<li>Put x-coordinates on a PQ (or sort). -&gt; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">NlogN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
-<li>Insert y-coordinates into BST. -&gt; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">NlogN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
-<li>Delete y-coordinates from BSt. -&gt; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">NlogN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
-<li>Range searches in BST. -&gt; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo>+</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">NlogN + R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span></li>
+<li>Put x-coordinates on a PQ (or sort). -&gt; $NlogN$</li>
+<li>Insert y-coordinates into BST. -&gt; $NlogN$</li>
+<li>Delete y-coordinates from BSt. -&gt; $NlogN$</li>
+<li>Range searches in BST. -&gt; $NlogN + R$</li>
 </ul>
-<p><strong>Bottom line.</strong></p>
+<p><strong>Bottom line.</strong> </p>
 <ul>
 <li>Sweep line reduces 2d orthogonal line segment intersection search to 1d range search.</li>
 </ul>
-<h3><span id="kd-trees"> Kd-trees</span><a href="#kd-trees" class="header-anchor"> </a></h3>
-<h4><span id="2-d-orthogonal-range-search"> 2-d orthogonal range search</span><a href="#2-d-orthogonal-range-search" class="header-anchor"> </a></h4>
-<p><strong>Extension of ordered symbol-table to 2d keys</strong></p>
+<h3><span id="kd-trees">Kd-trees</span><a href="#kd-trees" class="header-anchor"> </a></h3><h4><span id="2-d-orthogonal-range-search">2-d orthogonal range search</span><a href="#2-d-orthogonal-range-search" class="header-anchor"> </a></h4><p><strong>Extension of ordered symbol-table to 2d keys</strong></p>
 <ul>
 <li>Insert a 2d key.</li>
 <li>Delete a 2d key.</li>
@@ -804,16 +732,14 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Networking, circuit design, databases.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/kd.png" alt></p>
-<h4><span id="grid-implementation"> Grid implementation</span><a href="#grid-implementation" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="grid-implementation">Grid implementation</span><a href="#grid-implementation" class="header-anchor"> </a></h4><ul>
 <li>Divide space into M-by-M grid of squares.</li>
 <li>Create list of points contained in each square.</li>
 <li>Use 2d array to directly index relevant square.</li>
 <li>Insert: add (x,y) to list for corresponding square.</li>
 <li>Range search: examine only squares that intersect 2d range query.</li>
 </ul>
-<h4><span id="grid-implementation-analysis"> Grid implementation analysis</span><a href="#grid-implementation-analysis" class="header-anchor"> </a></h4>
-<p><strong>Space-time tradeoff.</strong></p>
+<h4><span id="grid-implementation-analysis">Grid implementation analysis</span><a href="#grid-implementation-analysis" class="header-anchor"> </a></h4><p><strong>Space-time tradeoff.</strong></p>
 <ul>
 <li>Space: $ M^2 + N $.</li>
 <li>Time: $ 1 + N/M^2 $ per square examined, on average.</li>
@@ -830,8 +756,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Insert point: 1.</li>
 <li>Range search: 1 per point in range.</li>
 </ul>
-<h4><span id="clustering"> Clustering</span><a href="#clustering" class="header-anchor"> </a></h4>
-<p><strong>Grid implementation.</strong></p>
+<h4><span id="clustering">Clustering</span><a href="#clustering" class="header-anchor"> </a></h4><p><strong>Grid implementation.</strong></p>
 <ul>
 <li>Fast, simple solution for evenly-distributed points.</li>
 </ul>
@@ -841,8 +766,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Need data structure that adapts gracefully to data.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/cluster.png" alt></p>
-<h4><span id="space-patitioning-trees"> Space-patitioning trees</span><a href="#space-patitioning-trees" class="header-anchor"> </a></h4>
-<p>Use a tree to represent a recursive subdivision of 2d space.</p>
+<h4><span id="space-patitioning-trees">Space-patitioning trees</span><a href="#space-patitioning-trees" class="header-anchor"> </a></h4><p>Use a tree to represent a recursive subdivision of 2d space.</p>
 <p><strong>Grid.</strong></p>
 <ul>
 <li>Divide space uniformly into squares.</li>
@@ -860,8 +784,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Recursively divide space into two regions.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/trees.png" alt></p>
-<h4><span id="space-partitioning-trees-applications"> Space-partitioning trees: applications</span><a href="#space-partitioning-trees-applications" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="space-partitioning-trees-applications">Space-partitioning trees: applications</span><a href="#space-partitioning-trees-applications" class="header-anchor"> </a></h4><ul>
 <li>Ray tracing.</li>
 <li>2d range search.</li>
 <li>Flight simulators.</li>
@@ -873,26 +796,22 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Acceleraete rendering in Doom.</li>
 <li>Hidden surface removal and shadow casting.</li>
 </ul>
-<h4><span id="2d-tree-construction"> 2d tree construction</span><a href="#2d-tree-construction" class="header-anchor"> </a></h4>
-<p>Recursively partition plane into two halfplanes.</p>
+<h4><span id="2d-tree-construction">2d tree construction</span><a href="#2d-tree-construction" class="header-anchor"> </a></h4><p>Recursively partition plane into two halfplanes.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/graph.png" alt></p>
-<h4><span id="2d-tree-implementation"> 2d tree implementation</span><a href="#2d-tree-implementation" class="header-anchor"> </a></h4>
-<p><strong>Data structure.</strong> BST, but alternate using x- and y- coordinates as key.</p>
+<h4><span id="2d-tree-implementation">2d tree implementation</span><a href="#2d-tree-implementation" class="header-anchor"> </a></h4><p><strong>Data structure.</strong> BST, but alternate using x- and y- coordinates as key.</p>
 <ul>
 <li>Search gives rectangle containing point.</li>
 <li>Insert further subdivides the plane.</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/how.png" alt></p>
-<h4><span id="range-search-in-a-2d-tree"> Range search in a 2d tree</span><a href="#range-search-in-a-2d-tree" class="header-anchor"> </a></h4>
-<p><strong>Goal.</strong> Find all points in a query axis-aligned rectangle.</p>
+<h4><span id="range-search-in-a-2d-tree">Range search in a 2d tree</span><a href="#range-search-in-a-2d-tree" class="header-anchor"> </a></h4><p><strong>Goal.</strong> Find all points in a query axis-aligned rectangle.</p>
 <ul>
 <li>Check if point in nodes lies in given rectangle.</li>
 <li>Recursively search left/bottom (if any could fall in rectangle).</li>
 <li>Recursively search right/top (if any could fall in rectangle).</li>
 </ul>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/demokd.png" alt></p>
-<h4><span id="range-search-in-a-2d-tree-analysis"> Range search in a 2d tree analysis</span><a href="#range-search-in-a-2d-tree-analysis" class="header-anchor"> </a></h4>
-<p><strong>Typical case.</strong></p>
+<h4><span id="range-search-in-a-2d-tree-analysis">Range search in a 2d tree analysis</span><a href="#range-search-in-a-2d-tree-analysis" class="header-anchor"> </a></h4><p><strong>Typical case.</strong></p>
 <ul>
 <li>$ R + logN $</li>
 </ul>
@@ -900,15 +819,13 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <ul>
 <li>$ R + \sqrt{N} $</li>
 </ul>
-<h4><span id="nearest-neighbor-search-in-a-2d-tree-demo"> Nearest neighbor search in a 2d tree demo</span><a href="#nearest-neighbor-search-in-a-2d-tree-demo" class="header-anchor"> </a></h4>
-<ul>
+<h4><span id="nearest-neighbor-search-in-a-2d-tree-demo">Nearest neighbor search in a 2d tree demo</span><a href="#nearest-neighbor-search-in-a-2d-tree-demo" class="header-anchor"> </a></h4><ul>
 <li>Check distance from point in node to query point/</li>
 <li>Recursively search left/bottom (if it could contain a closer point).</li>
 <li>Recursively search right/top (if it could contain a closert point).</li>
 <li>Organize method so that it begins by searching for query point.</li>
 </ul>
-<h4><span id="nearest-neighbor-search-in-a-2d-tree-analysis"> Nearest neighbor search in a 2d tree analysis</span><a href="#nearest-neighbor-search-in-a-2d-tree-analysis" class="header-anchor"> </a></h4>
-<p><strong>Typical case.</strong></p>
+<h4><span id="nearest-neighbor-search-in-a-2d-tree-analysis">Nearest neighbor search in a 2d tree analysis</span><a href="#nearest-neighbor-search-in-a-2d-tree-analysis" class="header-anchor"> </a></h4><p><strong>Typical case.</strong></p>
 <ul>
 <li>$ logN $</li>
 </ul>
@@ -916,8 +833,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <ul>
 <li>$ N $</li>
 </ul>
-<h4><span id="kd-tree"> Kd tree</span><a href="#kd-tree" class="header-anchor"> </a></h4>
-<p>Recursively partition k-dimensional space into 2 halfspaces.</p>
+<h4><span id="kd-tree">Kd tree</span><a href="#kd-tree" class="header-anchor"> </a></h4><p>Recursively partition k-dimensional space into 2 halfspaces.</p>
 <p><img src="/2020/02/19/Algorithms-Part1-Balanced-Search-Trees/kdtree.png" alt></p>
 <p><strong>Efficient, simple data structure for processing k-dimensional data.</strong></p>
 <ul>
@@ -925,10 +841,9 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
 <li>Adapts well to high-dimensional and clustered data.</li>
 <li>Discovered by an undergrad in an algorithms class!</li>
 </ul>
-<h4><span id="n-body-simulation"> N-body simulation</span><a href="#n-body-simulation" class="header-anchor"> </a></h4>
-<p><strong>Goal.</strong></p>
+<h4><span id="n-body-simulation">N-body simulation</span><a href="#n-body-simulation" class="header-anchor"> </a></h4><p><strong>Goal.</strong></p>
 <ul>
-<li>Simulate the motion of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> particles, mutually affected by gravity.</li>
+<li>Simulate the motion of $N$ particles, mutually affected by gravity.</li>
 </ul>
 <p><strong>Brute force.</strong></p>
 <ul>
@@ -1068,7 +983,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1123,7 +1038,7 @@ The sweep-line algorithm takes time proportional to $ NlogN + R $ to find all <s
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Balanced search trees </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> 2-3 trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text"> Basic knowledge </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.2.</span> <span class="nav-text"> Search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.3.</span> <span class="nav-text"> Insert </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.4.</span> <span class="nav-text"> Local tansformation in a 2-3 tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.5.</span> <span class="nav-text"> Global properties in a 2-3 tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.6.</span> <span class="nav-text"> 2-3 tree: performance </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.7.</span> <span class="nav-text"> 2-3 tree: implementation? </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> Red-black BSTs </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.</span> <span class="nav-text"> Left-leaning red-black BSTs </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.2.</span> <span class="nav-text"> An equivalent definition </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.3.</span> <span class="nav-text"> Search implementation for red-black BSTs </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.4.</span> <span class="nav-text"> Red-black BST representation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.5.</span> <span class="nav-text"> Elementary red-black BST operations </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.6.</span> <span class="nav-text"> Insert in a LLRB tree: </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.7.</span> <span class="nav-text"> Insert in a LLRB tree: Java implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.8.</span> <span class="nav-text"> Balance in LLRB trees </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.9.</span> <span class="nav-text"> ST implementations: summary </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.10.</span> <span class="nav-text"> Database implementation </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> B-trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text"> File system model </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text"> B-trees (Bayer-McCreight, 1972) </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Searching in a B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text"> Insertion in a B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Balance in B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.6.</span> <span class="nav-text"> Balanced trees in the wild </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Geometric Applications of BSTs </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"> Overview </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text"> 1d range search </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 1d range count </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 1d range search </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text"> Line Segment Intersection </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Orthogonal line segment intersection search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Sweep-line algorithm </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Sweep-line analysis </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text"> Kd-trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.1.</span> <span class="nav-text"> 2-d orthogonal range search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Grid implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Grid implementation analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.4.</span> <span class="nav-text"> Clustering </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.5.</span> <span class="nav-text"> Space-patitioning trees </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.6.</span> <span class="nav-text"> Space-partitioning trees: applications </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.7.</span> <span class="nav-text"> 2d tree construction </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.8.</span> <span class="nav-text"> 2d tree implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.9.</span> <span class="nav-text"> Range search in a 2d tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.10.</span> <span class="nav-text"> Range search in a 2d tree analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.11.</span> <span class="nav-text"> Nearest neighbor search in a 2d tree demo </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.12.</span> <span class="nav-text"> Nearest neighbor search in a 2d tree analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.13.</span> <span class="nav-text"> Kd tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.14.</span> <span class="nav-text"> N-body simulation </span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Balanced search trees </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">2-3 trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text">Basic knowledge </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.2.</span> <span class="nav-text">Search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.3.</span> <span class="nav-text">Insert </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.4.</span> <span class="nav-text">Local tansformation in a 2-3 tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.5.</span> <span class="nav-text">Global properties in a 2-3 tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.6.</span> <span class="nav-text">2-3 tree: performance </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.1.7.</span> <span class="nav-text">2-3 tree: implementation? </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">Red-black BSTs </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.</span> <span class="nav-text">Left-leaning red-black BSTs </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.2.</span> <span class="nav-text">An equivalent definition </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.3.</span> <span class="nav-text">Search implementation for red-black BSTs </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.4.</span> <span class="nav-text">Red-black BST representation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.5.</span> <span class="nav-text">Elementary red-black BST operations </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.6.</span> <span class="nav-text">Insert in a LLRB tree: </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.7.</span> <span class="nav-text">Insert in a LLRB tree: Java implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.8.</span> <span class="nav-text">Balance in LLRB trees </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.9.</span> <span class="nav-text">ST implementations: summary </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.10.</span> <span class="nav-text">Database implementation </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">B-trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text">File system model </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text">B-trees (Bayer-McCreight, 1972) </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text">Searching in a B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text">Insertion in a B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text">Balance in B-tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.6.</span> <span class="nav-text">Balanced trees in the wild </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Geometric Applications of BSTs </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">Overview </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">1d range search </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.1.</span> <span class="nav-text">1d range count </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.2.</span> <span class="nav-text">1d range search </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">Line Segment Intersection </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.1.</span> <span class="nav-text">Orthogonal line segment intersection search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.2.</span> <span class="nav-text">Sweep-line algorithm </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.3.</span> <span class="nav-text">Sweep-line analysis </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text">Kd-trees </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.1.</span> <span class="nav-text">2-d orthogonal range search </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.2.</span> <span class="nav-text">Grid implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.3.</span> <span class="nav-text">Grid implementation analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.4.</span> <span class="nav-text">Clustering </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.5.</span> <span class="nav-text">Space-patitioning trees </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.6.</span> <span class="nav-text">Space-partitioning trees: applications </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.7.</span> <span class="nav-text">2d tree construction </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.8.</span> <span class="nav-text">2d tree implementation </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.9.</span> <span class="nav-text">Range search in a 2d tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.10.</span> <span class="nav-text">Range search in a 2d tree analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.11.</span> <span class="nav-text">Nearest neighbor search in a 2d tree demo </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.12.</span> <span class="nav-text">Nearest neighbor search in a 2d tree analysis </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.13.</span> <span class="nav-text">Kd tree </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.4.14.</span> <span class="nav-text">N-body simulation </span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -249,6 +249,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Starfly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Starfly's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/30/CS61B-Shortest-Path/" itemprop="url">CS61B-Shortest Path</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-30T01:53:10+08:00">
+                2020-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="shortest-path">Shortest Path</span><a href="#shortest-path" class="header-anchor"> </a></h2><h3><span id="problem-single-source-single-target-shortest-paths">Problem: Single Source Single Target Shortest Paths</span><a href="#problem-single-source-single-target-shortest-paths" class="header-anchor"> </a></h3><p>Goal: Find the shortest paths from source vertex s to some target vertex t.</p>
+<p><img src="/2020/03/30/CS61B-Shortest-Path/ex.jpg" alt></p>
+<p>Observation: Solution will always be a path with no cycles (assuming non-negative weights).</p>
+<p>Goal: Find the shortest paths from source vertex s to every other vertex.</p>
+<p>Trickier observation: Solution will always be a tree.</p>
+<ul>
+<li>Can think of as the union of the shortest paths to all vertices.</li>
+</ul>
+<p>Why is the solution a tree:</p>
+<ul>
+<li>Can’t include cycles (no reason to go in a loop)</li>
+<li>Every node has one parent.</li>
+</ul>
+<p>If a graph has no cycles and no nodes has two parents, it’s a tree.</p>
+<ul>
+<li>If one path is longer, it shouldn’t be part of the solution.</li>
+<li>If they’re the same, it’s ok to pick one arbitrarily.</li>
+</ul>
+<h3><span id="spt-edge-count">SPT Edge Count</span><a href="#spt-edge-count" class="header-anchor"> </a></h3><p>If G is a connected edge-weighted graph with V vertices and E edges, how many edges are in the Shortest Paths Tree (SPT) of G?(assume every vertex is reachable)</p>
+<ul>
+<li>ans: V - 1, because for each vertex, there is exactly one input edge.</li>
+</ul>
+<p><img src="/2020/03/30/CS61B-Shortest-Path/pa.jpg" alt></p>
+<h3><span id="finding-a-shortest-path-tree-algorithmically">Finding a Shortest Path Tree Algorithmically</span><a href="#finding-a-shortest-path-tree-algorithmically" class="header-anchor"> </a></h3><p>Dijkstra’s Algorithm.</p>
+<ul>
+<li>Visit vertices <strong>in order of best-known distance</strong> from source, <strong>relaxing</strong> each edge from the visited vertex (relax an edge: Add to SPT if better distance)</li>
+</ul>
+<p>Why is Dijkstra’s correct for non-negative edges? Path to X is optimal after X has been dequeued. Inductive argument (proof sketch):</p>
+<ul>
+<li>Suppose path to just-dequeued vertex v is optimal. Then after relaxation of v’s edges, path to vertex X at top of PQ will be optimal.</li>
+</ul>
+<h3><span id="dijkstra-s-implementation-pseudocode">Dijkstra’s Implementation (Pseudocode)</span><a href="#dijkstra-s-implementation-pseudocode" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">DijkstraSP</span><span class="params">(EdgeWeightedDigraph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">    distTo = <span class="keyword">new</span> <span class="keyword">double</span>[G.V()];</span><br><span class="line">    DirectedEdge[] edgeTo = <span class="keyword">new</span> DirectedEdge[G.V()];</span><br><span class="line">    distTo[s] = <span class="number">0</span>;</span><br><span class="line">    setDistancesToInfinityExceptS(s);</span><br><span class="line"></span><br><span class="line">    fringe = <span class="keyword">new</span> SpecialPQ&lt;Integer&gt;();</span><br><span class="line">    insertAllVertices(fringe); <span class="comment">// fringe is ordered by distTo</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* relax vertices in order of distance from s */</span></span><br><span class="line">    <span class="keyword">while</span> (!fringe.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = fringe.delMin(); <span class="comment">// Get vertex closest to source that is unvisited</span></span><br><span class="line">        <span class="keyword">for</span> (DirectedEdge e : G.adj(v)) &#123;</span><br><span class="line">            relax(e); <span class="comment">// relax means if better, add to SPT and update priorities</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">relax</span><span class="params">(DirectedEdge e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v = e.from();</span><br><span class="line">    <span class="keyword">int</span> w = e.to();</span><br><span class="line">    <span class="keyword">if</span> (distTo[w] &gt; distTo[v] + e.weight()) &#123; <span class="comment">// If edge is better, then:</span></span><br><span class="line">        distTo[w] = distTo[v] + e.weight();  <span class="comment">// add to shortest paths tree</span></span><br><span class="line">        edgeTo[w] = e;</span><br><span class="line">        <span class="keyword">if</span> (pq.contains(w)) &#123;   <span class="comment">// if still active (green)</span></span><br><span class="line">            pq.decreasePriority(w, distTo[w]);  <span class="comment">// update priority (not a standard PQ operation, requires a special PQ)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="dijkstra-s-algorithm-runtime">Dijkstra’s Algorithm Runtime</span><a href="#dijkstra-s-algorithm-runtime" class="header-anchor"> </a></h3><p>Priority Queue operation count, assuming binary heap based PQ:</p>
+<ul>
+<li>Insertion: V, each costing O(log V) time.</li>
+<li>Delete-min: V, each costing O(log V) time.</li>
+<li>decreasePriority: E, each costing O(logV) time.</li>
+</ul>
+<p>Overall runtime: O(Vlog(V) + Vlog(V) + ElogV).</p>
+<ul>
+<li>Assuming E &gt; V, this is just O(ElogV).</li>
+</ul>
+<h3><span id="the-problem-with-dijkstra-s">The Problem with Dijkstra’s</span><a href="#the-problem-with-dijkstra-s" class="header-anchor"> </a></h3><p>Dijkstra’s will explore every vertices.<br>In some situation, we have only a single target in mind, so we need a different algorithm.<br>So we use some heuristic methods, like A*.</p>
+<p><a href="https://qiao.github.io/PathFinding.js/visual/" target="_blank" rel="noopener">A pretty cool demo of several algorithms</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/CS61B-Graph/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -461,15 +646,10 @@
       
         
           
-            <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he"> 动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2>
-<p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>
-示例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
+            <h2><span id="dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he">动态规划初探 LeetCode 53. 最大子序和</span><a href="#dong-tai-gui-hua-chu-tan-leetcode-53-zui-da-zi-xu-he" class="header-anchor"> </a></h2><p>给定一个整数数组 <em>nums</em>， 找到一个具有最大和的连续子数组(子数组最少包含一个元素), 返回其最大和。<br>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2, 1, -3, 4, -1, 2, 1, -5, 4],</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 状态定义</span></span><br><span class="line">    <span class="comment">// dp[i] 表示前 i 个元素的最大连续子数组的和</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 状态初始化，数组中第一个元素的最大和就是第一个元素之</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    ans = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 状态转移</span></span><br><span class="line">    <span class="comment">// 转移方程： dp[i] = max(dp[i - 1], 0) + nums[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>], <span class="number">0</span>) + nums[i];</span><br><span class="line">        <span class="comment">// 更新最大和</span></span><br><span class="line">        ans = Math.max(ans, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="dong-tai-gui-hua-kuang-jia"> 动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2>
-<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">原文来源</a></p>
-<h3><span id="leetcode-wen-ti"> LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3>
-<ul>
+<h2><span id="dong-tai-gui-hua-kuang-jia">动态规划框架</span><a href="#dong-tai-gui-hua-kuang-jia" class="header-anchor"> </a></h2><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems" target="_blank" rel="noopener">原文来源</a></p>
+<h3><span id="leetcode-wen-ti">LeetCode 问题</span><a href="#leetcode-wen-ti" class="header-anchor"> </a></h3><ul>
 <li>121 Best Time to Buy and Sell Stock</li>
 <li>122 Best Time to Buy and Sell Stock II</li>
 <li>123 Best Time to Buy and Sell Stock III</li>
@@ -477,8 +657,7 @@
 <li>309 Best Time to Buy and Sell Stock with Cooldown</li>
 <li>714 Best Time to Buy and Sell Stock with Transaction Fee</li>
 </ul>
-<h3><span id="kuang-jia"> 框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3>
-<p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
+<h3><span id="kuang-jia">框架</span><a href="#kuang-jia" class="header-anchor"> </a></h3><p><strong>核心问题</strong>: 给定一个 prices 数组, 什么决定了我们的最大收益？</p>
 <ul>
 <li>显式的因素有<strong>哪一天</strong>、我们可以进行 <strong>几次</strong> 交易。</li>
 <li>隐式的因素是我们当前手上<strong>是否</strong>有股票。</li>
@@ -504,10 +683,7 @@
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices</em></li>
 </ul>
 <p>解释： 第 i 天结束时，手上没有股票， 那么可能是第 i - 1 天也没有股票，然后采取了 <strong>rest</strong> 的策略， 或者是第 i - 1 天有股票然后在第 i 天采取了 <strong>sell</strong> 的策略； 第 i 天结束时， 手上有股票， 那么可能是第 i - 1 天手上就有股票， 然后采取了 <strong>rest</strong> 的策略，也可能是第 i - 1 天手上没有股票，采取了 <strong>buy</strong> 的策略。</p>
-<h3><span id="ying-yong"> 应用</span><a href="#ying-yong" class="header-anchor"> </a></h3>
-<h4><span id="case-i-k-1"> Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4>
-<p>也就是只允许进行一次交易。<br>
-对于第 i 天，我们有两种状态：</p>
+<h3><span id="ying-yong">应用</span><a href="#ying-yong" class="header-anchor"> </a></h3><h4><span id="case-i-k-1">Case I: <em>k = 1</em></span><a href="#case-i-k-1" class="header-anchor"> </a></h4><p>也就是只允许进行一次交易。<br>对于第 i 天，我们有两种状态：</p>
 <ul>
 <li><em>dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])</em></li>
 <li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
@@ -516,16 +692,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i10, dp_i11 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再理解一下 k 的意义，k 是允许进行的最大交易次数，dp[i][k] 表示到第 i 天结束时，最多进行了 k 次交易， 也可以比 k 次少。</p>
 <p>如，在上题中，我们有 prices = [7, 6, 5, 4, 3, 2], 从开始一直到最后 dp_i10 恒等于0，一次交易都没有做。</p>
-<h4><span id="case-ii-k-inf"> Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4>
-<p>也就是交易次数不限。<br>
-这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
+<h4><span id="case-ii-k-inf">Case II: <em>k = +Inf</em></span><a href="#case-ii-k-inf" class="header-anchor"> </a></h4><p>也就是交易次数不限。<br>这时 <em>k + 1</em> 与 <em>k</em> 没有区别(因为 <em>k</em> 是正无穷)</p>
 <ul>
 <li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="case-iii-k-2"> Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4>
-<p>限制最多交易两次。</p>
+<h4><span id="case-iii-k-2">Case III: <em>k = 2</em></span><a href="#case-iii-k-2" class="header-anchor"> </a></h4><p>限制最多交易两次。</p>
 <ul>
 <li><em>dp[i][2][0] = max(dp[i-1][2][0], dp[i-1][2][1] + prices[i])</em></li>
 <li><em>dp[i][2][1] = max(dp[i-1][2][1], dp[i-1][1][0] - prices[i]</em></li>
@@ -533,28 +706,22 @@
 <li><em>dp[i][1][1] = max(dp[i-1][1][1], dp[i-1][0][0] - prices[i]) = max(dp[i-1][1][1], -prices[i])</em></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_i20 = dp_i10 = <span class="number">0</span>, dp_i21 = dp_i11 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        dp_i20 = Math.max(dp_i20, dp_i21 + price);</span><br><span class="line">        dp_i21 = Math.max(dp_i21, dp_i10 - price);</span><br><span class="line">        dp_i10 = Math.max(dp_i10, dp_i11 + price);</span><br><span class="line">        dp_i11 = Math.max(dp_i11, -price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_i20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="case-iv-k-is-arbitrary"> Case IV: k is arbitrary</span><a href="#case-iv-k-is-arbitrary" class="header-anchor"> </a></h4>
-<p>限制最多交易 k 次。<br>
-注意到进行一次交易需要2天来完成，所以当 k &gt; prices.length &gt;&gt;&gt; 1 时，k 就没有了限制，相当于 caseII.</p>
+<h4><span id="case-iv-k-is-arbitrary">Case IV: k is arbitrary</span><a href="#case-iv-k-is-arbitrary" class="header-anchor"> </a></h4><p>限制最多交易 k 次。<br>注意到进行一次交易需要2天来完成，所以当 k &gt; prices.length &gt;&gt;&gt; 1 时，k 就没有了限制，相当于 caseII.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k &gt; prices.length &gt;&gt;&gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">            <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">            dp_ik0 = Math.max(dp_ik0, dp_ik1 + price);</span><br><span class="line">            dp_ik1 = Math.max(dp_ik1, dp_ik0_old - price);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp_ik0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] dp_ik0 = <span class="keyword">new</span> <span class="keyword">int</span>[k + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span>[] dp_ik1 = <span class="keyword">new</span> <span class="keyword">int</span>[k + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(dp_ik1, Integer.MIN_VALUE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = k; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            dp_ik0[j] = Math.max(dp_ik0[j], dp_ik1[j] + price);</span><br><span class="line">            dp_ik1[j] = Math.max(dp_ik1[j], dp_ik0[j - <span class="number">1</span>] - price);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="case-v-k-inf-but-with-cooldown"> Case V: k = +Inf but with cooldown</span><a href="#case-v-k-inf-but-with-cooldown" class="header-anchor"> </a></h4>
-<p>冷冻期为一天，也就是说卖出股票后，无法在第二天买入。<br>
-需要将 Case II 稍作改动。</p>
+<h4><span id="case-v-k-inf-but-with-cooldown">Case V: k = +Inf but with cooldown</span><a href="#case-v-k-inf-but-with-cooldown" class="header-anchor"> </a></h4><p>冷冻期为一天，也就是说卖出股票后，无法在第二天买入。<br>需要将 Case II 稍作改动。</p>
 <p><strong>Case II</strong>:</p>
 <ul>
 <li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]) = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])</em></li>
 </ul>
-<p>如果想在第 i 天买入，那么第 i - 2 天需要保证没有股票，否则将会违反规则。<br>
-所以，修改后的状态转移方程为：</p>
+<p>如果想在第 i 天买入，那么第 i - 2 天需要保证没有股票，否则将会违反规则。<br>所以，修改后的状态转移方程为：</p>
 <ul>
 <li><em>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])</em></li>
 <li><em>dp[i][k][1] = max(dp[i-1][k][1], dp[i-2][k][0] - prices[i])</em></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik0_pre = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = Math.min(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = Math.min(dp_ik1, dp_ik0_pre - price);</span><br><span class="line">        dp_ik0_pre = dp_ik0_old;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="case-vi-k-inf-but-with-transaction-fee"> Case VI: k = +Inf but with transaction fee</span><a href="#case-vi-k-inf-but-with-transaction-fee" class="header-anchor"> </a></h4>
-<p>选择在买入的时候减去手续费(也可以选择在卖出的时候减去)，大体上与 Case II 如出一辙。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = Math.max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = Math.max(dp_ik1, dp_ik0 - price - fee);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="case-vi-k-inf-but-with-transaction-fee">Case VI: k = +Inf but with transaction fee</span><a href="#case-vi-k-inf-but-with-transaction-fee" class="header-anchor"> </a></h4><p>选择在买入的时候减去手续费(也可以选择在卖出的时候减去)，大体上与 Case II 如出一辙。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dp_ik0 = <span class="number">0</span>, dp_ik1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) &#123;</span><br><span class="line">        <span class="keyword">int</span> dp_ik0_old = dp_ik0;</span><br><span class="line">        dp_ik0 = Math.max(dp_ik0, dp_ik1 + price);</span><br><span class="line">        dp_ik1 = Math.max(dp_ik1, dp_ik0 - price - fee);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> dp_ik0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1690,31 +1857,24 @@
       
         
           
-            <p>@source: <a href="https://www.runoob.com/java/java-collections.html" target="_blank" rel="noopener">https://www.runoob.com/java/java-collections.html</a><br>
-@source: <a href="https://juejin.im/post/5da41417f265da5ba532b21c" target="_blank" rel="noopener">https://juejin.im/post/5da41417f265da5ba532b21c</a><br>
-@source: <a href="https://www.jianshu.com/p/63e76826e852" target="_blank" rel="noopener">https://www.jianshu.com/p/63e76826e852</a><br>
-@source: <a href="https://howtodoinjava.com/java-collections/" target="_blank" rel="noopener">https://howtodoinjava.com/java-collections/</a></p>
-<h2><span id="ji-he-kuang-jia"> 集合框架</span><a href="#ji-he-kuang-jia" class="header-anchor"> </a></h2>
-<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png" alt></p>
+            <p>@source: <a href="https://www.runoob.com/java/java-collections.html" target="_blank" rel="noopener">https://www.runoob.com/java/java-collections.html</a><br>@source: <a href="https://juejin.im/post/5da41417f265da5ba532b21c" target="_blank" rel="noopener">https://juejin.im/post/5da41417f265da5ba532b21c</a><br>@source: <a href="https://www.jianshu.com/p/63e76826e852" target="_blank" rel="noopener">https://www.jianshu.com/p/63e76826e852</a><br>@source: <a href="https://howtodoinjava.com/java-collections/" target="_blank" rel="noopener">https://howtodoinjava.com/java-collections/</a></p>
+<h2><span id="ji-he-kuang-jia">集合框架</span><a href="#ji-he-kuang-jia" class="header-anchor"> </a></h2><p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/Collection.png" alt></p>
 <ul>
 <li>集合框架是一个用来代表和操纵集合的统一架构。</li>
 <li>整个集合框架围绕一组标准接口设计。这些接口存在标准实现。如：<strong>LinkedList, HashSet, 和 TreeSet</strong> 等。除此，可以通过这些接口实现自己的集合。</li>
 <li>Java 集合框架<strong>主要包括</strong>两种类型的容器，一种是集合 (Collection), 储存一个元素集合; 另一种是图 (Map), 存储键/值对映射。</li>
-<li>所有的集合框架包含以下内容：<br>
-– <strong>接口：</strong> 是代表集合的抽象数据类型。如：<strong>Collection、List、Set、Queue、Map</strong> 等。定义多个接口，是为了以不同的方式操纵集合对象。<br>
-– <strong>实现(类)：</strong> 是集合接口的具体实现。它们可以重复使用的数据结构，如： <strong>ArrayList、LinkedList、HashSet、HashMap.</strong><br>
-– <strong>算法：</strong> 是实现集合接口的对象里的方法执行的一些有用的计算，如：搜索和排序。</li>
+<li>所有的集合框架包含以下内容：<br>— <strong>接口：</strong> 是代表集合的抽象数据类型。如：<strong>Collection、List、Set、Queue、Map</strong> 等。定义多个接口，是为了以不同的方式操纵集合对象。<br>— <strong>实现(类)：</strong> 是集合接口的具体实现。它们可以重复使用的数据结构，如： <strong>ArrayList、LinkedList、HashSet、HashMap.</strong><br>— <strong>算法：</strong> 是实现集合接口的对象里的方法执行的一些有用的计算，如：搜索和排序。</li>
 </ul>
-<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.png" alt></p>
+<p><img src="/2020/03/20/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Collections/集合框架.png" alt></p>
 <ul>
-<li>Java 集合框架位于 java.util 包中，使用集合框架时需要导入包。</li>
+<li>Java 集合框架位于 java.util 包中，使用集合框架时需要导入包。 </li>
 </ul>
 <p>Note: 数组和集合的区别</p>
 <ul>
 <li>数组长度不可变化而且无法保存具有映射关系的数据；集合类用于保存数量不确定的数据，以及保存具有映射关系的数据。</li>
 <li>数组元素既可以是基本类型的值，也可以是对象; 集合只能保存对象。</li>
 </ul>
-<h3><span id="ji-he-jie-kou"> 集合接口</span><a href="#ji-he-jie-kou" class="header-anchor"> </a></h3>
+<h3><span id="ji-he-jie-kou">集合接口</span><a href="#ji-he-jie-kou" class="header-anchor"> </a></h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1745,54 +1905,16 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Note: Set 和 List 的区别</p>
 <ul>
 <li>Set 接口实例存储是<strong>无序</strong>的，<strong>不重复</strong>的数据。List 接口实例存储的是<strong>有序</strong>的，<strong>可以重复</strong>的元素。</li>
 <li>Set 检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变，实现类有 <strong>HashSet， TreeSet</strong>。</li>
 <li>List 和数组类似，但可以动态增长。根据实际存储的数据的长度自动增长 List 的长度。查找元素效率高，插入删除效率低，因为会引起其他元素的位置改变，实现类有 <strong>ArrayList，LinkedList， Vector</strong>。</li>
 </ul>
-<h3><span id="ji-he-shi-xian-lei-ji-he-lei"> 集合实现类（集合类）</span><a href="#ji-he-shi-xian-lei-ji-he-lei" class="header-anchor"> </a></h3>
-<p>Java提供了一套实现了集合接口的标准集合类。其中一些是具体类，这些类可以直接使用，另外一些是抽象类，提供了接口的部分实现。</p>
-<table>
-<thead>
-<tr>
-<th>集合实现类</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ArrayList</td>
-<td>实现了List接口。使用数组存储元素，数组可以动态创建，如果元素个数超过了数组的容量，那么就增长当前长度的50%，并将当前数组中的所有元素都复制到新的数组中。该类非同步，在多线程的情况下不要使用。插入删除效率低。</td>
-</tr>
-<tr>
-<td>LinkedList</td>
-<td>实现了List接口。允许有 null 元素。主要用于创建链表数据结构。该类没有同步方法，如果多个线程同时访问一个 List，必须自己实现访问同步。</td>
-</tr>
-<tr>
-<td>HashSet</td>
-<td>实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为 null 的元素，但最多只能一个。</td>
-</tr>
-<tr>
-<td>TreeSet</td>
-<td>实现了Set接口，可以实现排序等功能。</td>
-</tr>
-<tr>
-<td>HashMap</td>
-<td>实现了Map接口。HashMap是一个散列表，它存储的内容是键值对(key-value) 映射。根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录为null， 不支持线程同步。在 JDK1.8 中， HashMap 采用数组 + 链表 + 红黑树实现，当链表长度超过阈值(8) 时，将链表转化成红黑树。</td>
-</tr>
-<tr>
-<td>LinkedHashMap</td>
-<td>继承HashMap，主要用链表扩展 HashMap 类， HashMap 中条目没有顺序，而在 LinkedHashMap 中元素可以按照它们插入图的顺序排序，也可以按照它们最后一次被访问的顺序排序。</td>
-</tr>
-<tr>
-<td>TreeMap</td>
-<td>继承AbstractMap,基于红黑树实现。同时实现了接口 NavigableMap, 而NavigableMap 继承 SortedMap, 使用 SortedMap 确保排好序。键值可以使用 Comparable 或 Comparator 接口来排序</td>
-</tr>
-</tbody>
-</table>
+<h3><span id="ji-he-shi-xian-lei-ji-he-lei">集合实现类（集合类）</span><a href="#ji-he-shi-xian-lei-ji-he-lei" class="header-anchor"> </a></h3><p>Java提供了一套实现了集合接口的标准集合类。其中一些是具体类，这些类可以直接使用，另外一些是抽象类，提供了接口的部分实现。<br>|集合实现类|特点|<br>|-|-|<br>|ArrayList|实现了List接口。使用数组存储元素，数组可以动态创建，如果元素个数超过了数组的容量，那么就增长当前长度的50%，并将当前数组中的所有元素都复制到新的数组中。该类非同步，在多线程的情况下不要使用。插入删除效率低。|<br>|LinkedList|实现了List接口。允许有 null 元素。主要用于创建链表数据结构。该类没有同步方法，如果多个线程同时访问一个 List，必须自己实现访问同步。|<br>|HashSet|实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为 null 的元素，但最多只能一个。|LinkedHashSet|继承了 HashSet，支持对规则集内的元素排序。HashSet 中的元素是没有被排序的，而 LinkedHashSet 中的元素可以按照它们插入规则集的顺序提取。|<br>|TreeSet|实现了Set接口，可以实现排序等功能。|<br>|HashMap|实现了Map接口。HashMap是一个散列表，它存储的内容是键值对(key-value) 映射。根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录为null， 不支持线程同步。在 JDK1.8 中， HashMap 采用数组 + 链表 + 红黑树实现，当链表长度超过阈值(8) 时，将链表转化成红黑树。|<br>|LinkedHashMap|继承HashMap，主要用链表扩展 HashMap 类， HashMap 中条目没有顺序，而在 LinkedHashMap 中元素可以按照它们插入图的顺序排序，也可以按照它们最后一次被访问的顺序排序。|<br>|TreeMap|继承AbstractMap,基于红黑树实现。同时实现了接口 NavigableMap, 而NavigableMap 继承 SortedMap, 使用 SortedMap 确保排好序。键值可以使用 Comparable 或 Comparator 接口来排序|</p>
 <p>Note: 在实际使用中，如果更新图时不需要保持图中元素的顺序，就使用 HashMap，如果需要保持图中元素插入顺序或者访问顺序，就使用 LinkedHashMap, 如果需要按照键值排序，就使用 TreeMap。</p>
-<h3><span id="qi-ta-ji-he-lei"> 其他集合类</span><a href="#qi-ta-ji-he-lei" class="header-anchor"> </a></h3>
+<h3><span id="qi-ta-ji-he-lei">其他集合类</span><a href="#qi-ta-ji-he-lei" class="header-anchor"> </a></h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1823,467 +1945,7 @@
 </tr>
 </tbody>
 </table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/CS61B-Hashing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Starfly">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Starfly's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/18/CS61B-Hashing/" itemprop="url">CS61B-Hashing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-18T01:34:27+08:00">
-                2020-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structure</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="hashing"> Hashing</span><a href="#hashing" class="header-anchor"> </a></h2>
-<p>Limitations for the tree structure.</p>
-<ul>
-<li>Items must be comparable.</li>
-<li>Maintaining bushiness is non-trivial.</li>
-<li>$ \Theta(logN) $, can do better?</li>
-</ul>
-<h3><span id="using-data-as-an-index"> Using data as an index</span><a href="#using-data-as-an-index" class="header-anchor"> </a></h3>
-<p>One extreme approach: All data is really just bits.</p>
-<ul>
-<li>Use data itself as an array index.</li>
-<li>Store true and false in the array.</li>
-</ul>
-<p>Downsides of this approach</p>
-<ul>
-<li>Extremely wasteful of memory. To support checking presence of all positive integers, we need 2 billion booleans.</li>
-<li>Need some way to generalize beyond integers.</li>
-</ul>
-<h3><span id="dataindexedintegerset-implementation"> DataIndexedIntegerSet Implementation</span><a href="#dataindexedintegerset-implementation" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedIntegerSet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] present;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataIndexedIntegerSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        present = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">16</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        present[i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">contains(x)</th>
-<th style="text-align:center">insert(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Linked List</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Bushy BSTs</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Unordered Array</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">DataIndexedArray</td>
-<td style="text-align:center">$ \Theta(1) $</td>
-<td style="text-align:center">$ \Theta(1) $</td>
-</tr>
-</tbody>
-</table>
-<h3><span id="binary-representation-of-dataindexedintegerset"> Binary Representation of DataIndexedIntegerSet</span><a href="#binary-representation-of-dataindexedintegerset" class="header-anchor"> </a></h3>
-<h4><span id="basic-idea"> Basic idea</span><a href="#basic-idea" class="header-anchor"> </a></h4>
-<p>Suppose we want to insert(“cat”)</p>
-<p>Key question:</p>
-<ul>
-<li>What is the cat-th element of an array?</li>
-<li>One idea: Use the first letter of the word as an index.</li>
-</ul>
-<p>What’s wrong with this approach?</p>
-<ul>
-<li>0 never changes(so a tiny bit of wasted space).</li>
-<li>Other words start with c.<br>
-– contains(“chupacabra”): Yes</li>
-<li>Can’t store “=98yae98fwyawef”</li>
-</ul>
-<h4><span id="refined-approach"> Refined Approach</span><a href="#refined-approach" class="header-anchor"> </a></h4>
-<p>Treat the string as a n-digit base 27 number.</p>
-<ul>
-<li>c: 3rd letter of alphabet, a: 1st letter, t: 20th letter.</li>
-<li>Thus the index of “cat” is $ 3 * 27^2 + 1 * 27 + 20 $</li>
-</ul>
-<p>Base 27: Our approach before: cat -&gt; $ 3 * 27^2 + 1 * 27 + 20 $</p>
-<ul>
-<li>00 00000 00000 00000 00010 00101 11010</li>
-</ul>
-<p>Base 32: $ 3 * 32^2 + 1 * 32 + 20 = 3124 $</p>
-<ul>
-<li>Nice feature: Each letter is exactly 5 bits. Good for lecture.<br>
-00 00000 00000 00000 00011 00001 10100</li>
-</ul>
-<h4><span id="generalizing-to-words"> Generalizing to Words</span><a href="#generalizing-to-words" class="header-anchor"> </a></h4>
-<p>Suppose we’re storing multiple words.</p>
-<ul>
-<li>Convert each word to unique integer representation.</li>
-<li>As on previous slide: Use 5 bits per letter.<br>
-– example: “cat” becomes 3124.<br>
-– c: 3rd letter of alphabet, a 1st, t: 20th</li>
-</ul>
-<p>What about longer strings? Have to tolerate either:</p>
-<ul>
-<li>A maximum string (seems lame).</li>
-<li>Ambiguity: e.g. “hothead” vs. “pothead”.<br>
-– Both represented by 523878693</li>
-</ul>
-<p>Switching to base 27 from 32 won’t save us.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    present[intRep] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    <span class="keyword">return</span> present[intRep];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Converts ith character of String to a letter number.</span></span><br><span class="line"><span class="comment">    e.g. 'a' -&gt; 1, 'b' -&gt; 2, 'z' -&gt; 26 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">letterNum</span><span class="params">(String s, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ithChar = s.charAt(i);</span><br><span class="line">    <span class="keyword">if</span> ((ithChar &lt; <span class="string">'a'</span>) || (ithChar &gt; <span class="string">'z'</span>)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(); &#125;</span><br><span class="line">    <span class="keyword">return</span> ithChar - <span class="string">'a'</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        intRep = intRep &lt;&lt; <span class="number">5</span>; <span class="comment">// same as intRep * 32</span></span><br><span class="line">        intRep = intRep + letterNum(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="dataindexedarray"> DataIndexedArray</span><a href="#dataindexedarray" class="header-anchor"> </a></h4>
-<p>Two fundamental challenges:</p>
-<ul>
-<li>
-<p>How do we resolve ambiguity (“grosspie” vs. “bosspie”)?<br>
-– We’ll call this <strong>collision handling</strong>.</p>
-</li>
-<li>
-<p>How do we convert arbitrary data to an index?<br>
-– We’ll call this <strong>computing a hashCode</strong>.<br>
-– For Strings, this was relatively straightforward (treat as a base 27 or base 32 number).<br>
-– Note: Java requires that EVERY object provide a method that converts itself into an integer: hashCode()</p>
-</li>
-</ul>
-<h4><span id="resolving-ambiguity"> Resolving Ambiguity</span><a href="#resolving-ambiguity" class="header-anchor"> </a></h4>
-<p>Suppose N items have the same hashcode h:</p>
-<ul>
-<li>
-<p>Instead of storing true in position h, store a list of these N items at position h.</p>
-</li>
-<li>
-<p>How to implement list?</p>
-</li>
-<li>
-<p>Easiest way: Linked list.</p>
-</li>
-<li>
-<p>But any list would do (ArrayList, etc.)</p>
-</li>
-<li>
-<p>Could also use a set instead.</p>
-</li>
-</ul>
-<p>External Chaining: Storing all items that map to h in a linked list.</p>
-<p><img src="/2020/03/18/CS61B-Hashing/hashtable.jpg" alt></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">contains(x)</th>
-<th style="text-align:center">insert(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Linked List</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Bushy BSTs</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Unordered Array</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">External Chaining</td>
-<td style="text-align:center">$ \Theta(Q) $</td>
-<td style="text-align:center">$ \Theta(Q) $</td>
-</tr>
-</tbody>
-</table>
-<p>Q: Length of longest list.</p>
-<p>Observation: Can use modulus of hashcode to reduce bucket count.</p>
-<p><img src="/2020/03/18/CS61B-Hashing/mod.jpg" alt></p>
-<h4><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h4>
-<p>Depends on the number of items in the ‘bucket’.</p>
-<ul>
-<li>If N items are distributed across M buckets, average time grows with N/M = L, also known as the <strong>load factor.</strong><br>
-– Average runtime is $ \Theta(L) $.</li>
-</ul>
-<p>Obvious observation: If L is small, our data structure will be very fast.<br>
-Question: As N grows, what can we do to ensure that L stays small?</p>
-<p>Array Resizing:<br>
-Whenever L = N/M exceeds some number, increase M by resizing.</p>
-<ul>
-<li>Question: In which bin will the apple appear after resizing?</li>
-</ul>
-<p><img src="/2020/03/18/CS61B-Hashing/apple.jpg" alt></p>
-<p><img src="/2020/03/18/CS61B-Hashing/apple2.jpg" alt></p>
-<p>Suppose that hashCode() returns -1.</p>
-<ul>
-<li>
-<p>Philosophically, into which bucket is it most natural to place this item.<br>
-– I say 3, since -1 -&gt; 3, 0 -&gt; 0, 1 -&gt; 1 …</p>
-</li>
-<li>
-<p>Unfortunately, -1 % 4 = -1. Will result in index errors!</p>
-</li>
-<li>
-<p>Use Math.floorMod instead.</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(-<span class="number">1</span> % <span class="number">4</span>); <span class="comment">// -1</span></span><br><span class="line">        System.out.println(Math.floorMod(-<span class="number">1</span>, <span class="number">4</span>)); <span class="comment">// 3</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="hash-table-definition-and-key-implementation-details"> Hash Table Definition and Key Implementation Details</span><a href="#hash-table-definition-and-key-implementation-details" class="header-anchor"> </a></h2>
-<p>This data structure we’ve designed is called a <strong>hash table</strong>:</p>
-<ul>
-<li>
-<p>Every item is mapped to a bucket number using a hash function.</p>
-</li>
-<li>
-<p>Typically, computing hash function consists of two steps:<br>
-– Computing a hashCode (integer between $ -2^{31} $ and $ 2^{31} - 1 $).<br>
-– Computing index = hashCode modulo M.</p>
-</li>
-<li>
-<p>If L = N / M gets too large, increase M.</p>
-</li>
-</ul>
-<p>If multiple items map to the same bucket, we have to resolve ambiguity somehow.<br>
-Two common techniques:</p>
-<ul>
-<li>External Chaining (creating a list for each bucket)</li>
-<li>Open Addressing (a little stranger, not necessarily better)</li>
-</ul>
-<h3><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h3>
-<p>Assuming items are spread out (e.g. not all in the same bucket):</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Average case time</th>
-<th style="text-align:center">contains(x)</th>
-<th style="text-align:center">insert(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">External Chaining, Fixed Size</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-</tr>
-<tr>
-<td style="text-align:center">External Chaining with Resizing</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Balanced BST</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Load Factor L</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">External Chaining, Fixed Size</td>
-<td style="text-align:center">$ \Theta(N) $</td>
-</tr>
-<tr>
-<td style="text-align:center">External Chaining with Resizing</td>
-<td style="text-align:center">$ \Theta(1) $</td>
-</tr>
-</tbody>
-</table>
-<h3><span id="hash-function"> hash function</span><a href="#hash-function" class="header-anchor"> </a></h3>
-<p>Example: String hashCode function<br>
-Our convertToInt function:</p>
-<ul>
-<li>$ h(s) = (s_0 - ‘a’ + 1) × 32^{n-1} + (s_1 - ‘a’ + 1) × 32^{n-2} + … + (s_{n-1} - ‘a’ + 1) $</li>
-</ul>
-<p>Problems:</p>
-<ul>
-<li>Intended for lower case strings only.</li>
-<li>Top bits are totally ignored.</li>
-</ul>
-<p>Improved converToInt function:</p>
-<ul>
-<li>$ h(s) = s_0 × 32^{n-1} + s_1 × 32^{n-2} + … + s_{n-1} $</li>
-</ul>
-<p>Problems:</p>
-<ul>
-<li>
-<p>Intended for lower case strings only: Fix by removing ‘a’.</p>
-</li>
-<li>
-<p>Top bits are totally ignored.<br>
-– Why? Because multiplying by 32 is equivalent to left shifting by 5 bits.(Result: Top characters get pushed out completely).<br>
-– How can we fix: Multiply by powers of 31!</p>
-</li>
-<li>
-<p>$ h(s) = s_0 × 31^{n-1} + s_1 × 31^{n-2} + … + s_{n-1} $</p>
-</li>
-</ul>
-<h3><span id="hash-objects"> hash Objects</span><a href="#hash-objects" class="header-anchor"> </a></h3>
-<p>Example: Hashing a Collection<br>
-Lists are a lot like strings: Collection of items each with its own hashCode:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function">pubilc <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashCode = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (Object o : <span class="keyword">this</span>) &#123;</span><br><span class="line">        hashCode = hashCode * <span class="number">31</span>;</span><br><span class="line">        hashCode = hashCode + o.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>To save time hashing: Look at only first few items.</p>
-<ul>
-<li>Higher chance of collisions but things will still work.</li>
-</ul>
-<p>Example: Hashing a Recursive Data Structure<br>
-Computation of the hashCode of a recursive data structure involves recursive computation.</p>
-<ul>
-<li>For example, binary tree hashCode:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.value == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value.hashCode() + <span class="number">31</span> * <span class="keyword">this</span>.left.hashCode() + <span class="number">31</span> *<span class="number">31</span> * <span class="keyword">this</span>.right.hashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="default-hashcodes"> Default hashCodes()</span><a href="#default-hashcodes" class="header-anchor"> </a></h3>
-<p>All Objects have hashCode() function.</p>
-<ul>
-<li>Default: return this(i.e. address of object).<br>
-– Can have strange consequences: “hello”.hashCode() is not the same as (“h” + “ello”).hashCode()</li>
-<li>Can override for your type.</li>
-<li>Hash tables (HashSet, HashMap, etc.) are so important that Java requires that all objects implement hashCode().</li>
-</ul>
-<p>Java provides a hash table based implementation of sets and maps.</p>
-<ul>
-<li>Idea is very similar to what we’ve done in lecture.</li>
-<li>Warning: Never store mutable objects in a HashSet or HashMap.</li>
-<li>Warning: Never override equals without also overriding hashCode.</li>
-</ul>
+</div>
 
           
         
@@ -2369,7 +2031,7 @@ Computation of the hashCode of a recursive data structure involves recursive com
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

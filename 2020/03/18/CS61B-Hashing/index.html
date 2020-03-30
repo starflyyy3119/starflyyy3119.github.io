@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="Hashing  Limitations for the tree structure.  Items must be comparable. Maintaining bushiness is non-trivial. $ \Theta(logN) $, can do better?   Using data as an index  One extreme approach: All data">
+<meta name="description" content="Hashing Limitations for the tree structure.  Items must be comparable. Maintaining bushiness is non-trivial. $ \Theta(logN) $, can do better?  Using data as an index One extreme approach: All data is">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B-Hashing">
 <meta property="og:url" content="http://yoursite.com/2020/03/18/CS61B-Hashing/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Hashing  Limitations for the tree structure.  Items must be comparable. Maintaining bushiness is non-trivial. $ \Theta(logN) $, can do better?   Using data as an index  One extreme approach: All data">
+<meta property="og:description" content="Hashing Limitations for the tree structure.  Items must be comparable. Maintaining bushiness is non-trivial. $ \Theta(logN) $, can do better?  Using data as an index One extreme approach: All data is">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/03/18/CS61B-Hashing/hashtable.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/18/CS61B-Hashing/mod.jpg">
@@ -347,15 +347,13 @@
       
 
       
-        <h2><span id="hashing"> Hashing</span><a href="#hashing" class="header-anchor"> </a></h2>
-<p>Limitations for the tree structure.</p>
+        <h2><span id="hashing">Hashing</span><a href="#hashing" class="header-anchor"> </a></h2><p>Limitations for the tree structure.</p>
 <ul>
 <li>Items must be comparable.</li>
 <li>Maintaining bushiness is non-trivial.</li>
 <li>$ \Theta(logN) $, can do better?</li>
 </ul>
-<h3><span id="using-data-as-an-index"> Using data as an index</span><a href="#using-data-as-an-index" class="header-anchor"> </a></h3>
-<p>One extreme approach: All data is really just bits.</p>
+<h3><span id="using-data-as-an-index">Using data as an index</span><a href="#using-data-as-an-index" class="header-anchor"> </a></h3><p>One extreme approach: All data is really just bits.</p>
 <ul>
 <li>Use data itself as an array index.</li>
 <li>Store true and false in the array.</li>
@@ -365,8 +363,8 @@
 <li>Extremely wasteful of memory. To support checking presence of all positive integers, we need 2 billion booleans.</li>
 <li>Need some way to generalize beyond integers.</li>
 </ul>
-<h3><span id="dataindexedintegerset-implementation"> DataIndexedIntegerSet Implementation</span><a href="#dataindexedintegerset-implementation" class="header-anchor"> </a></h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedIntegerSet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] present;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataIndexedIntegerSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        present = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">16</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        present[i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="dataindexedintegerset-implementation">DataIndexedIntegerSet Implementation</span><a href="#dataindexedintegerset-implementation" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedIntegerSet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] present;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataIndexedIntegerSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        present = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">16</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        present[i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -398,9 +396,8 @@
 </tr>
 </tbody>
 </table>
-<h3><span id="binary-representation-of-dataindexedintegerset"> Binary Representation of DataIndexedIntegerSet</span><a href="#binary-representation-of-dataindexedintegerset" class="header-anchor"> </a></h3>
-<h4><span id="basic-idea"> Basic idea</span><a href="#basic-idea" class="header-anchor"> </a></h4>
-<p>Suppose we want to insert(“cat”)</p>
+</div>
+<h3><span id="binary-representation-of-dataindexedintegerset">Binary Representation of DataIndexedIntegerSet</span><a href="#binary-representation-of-dataindexedintegerset" class="header-anchor"> </a></h3><h4><span id="basic-idea">Basic idea</span><a href="#basic-idea" class="header-anchor"> </a></h4><p>Suppose we want to insert(“cat”)</p>
 <p>Key question:</p>
 <ul>
 <li>What is the cat-th element of an array?</li>
@@ -409,77 +406,55 @@
 <p>What’s wrong with this approach?</p>
 <ul>
 <li>0 never changes(so a tiny bit of wasted space).</li>
-<li>Other words start with c.<br>
-– contains(“chupacabra”): Yes</li>
+<li>Other words start with c.<br>— contains(“chupacabra”): Yes</li>
 <li>Can’t store “=98yae98fwyawef”</li>
 </ul>
-<h4><span id="refined-approach"> Refined Approach</span><a href="#refined-approach" class="header-anchor"> </a></h4>
-<p>Treat the string as a n-digit base 27 number.</p>
+<h4><span id="refined-approach">Refined Approach</span><a href="#refined-approach" class="header-anchor"> </a></h4><p>Treat the string as a n-digit base 27 number.</p>
 <ul>
 <li>c: 3rd letter of alphabet, a: 1st letter, t: 20th letter.</li>
-<li>Thus the index of “cat” is $ 3 * 27^2 + 1 * 27 + 20 $</li>
+<li>Thus the index of “cat” is $ 3 <em> 27^2 + 1 </em> 27 + 20 $</li>
 </ul>
-<p>Base 27: Our approach before: cat -&gt; $ 3 * 27^2 + 1 * 27 + 20 $</p>
+<p>Base 27: Our approach before: cat -&gt; $ 3 <em> 27^2 + 1 </em> 27 + 20 $</p>
 <ul>
 <li>00 00000 00000 00000 00010 00101 11010</li>
 </ul>
-<p>Base 32: $ 3 * 32^2 + 1 * 32 + 20 = 3124 $</p>
+<p>Base 32: $ 3 <em> 32^2 + 1 </em> 32 + 20 = 3124 $</p>
 <ul>
-<li>Nice feature: Each letter is exactly 5 bits. Good for lecture.<br>
-00 00000 00000 00000 00011 00001 10100</li>
+<li>Nice feature: Each letter is exactly 5 bits. Good for lecture.<br>00 00000 00000 00000 00011 00001 10100</li>
 </ul>
-<h4><span id="generalizing-to-words"> Generalizing to Words</span><a href="#generalizing-to-words" class="header-anchor"> </a></h4>
-<p>Suppose we’re storing multiple words.</p>
+<h4><span id="generalizing-to-words">Generalizing to Words</span><a href="#generalizing-to-words" class="header-anchor"> </a></h4><p>Suppose we’re storing multiple words.</p>
 <ul>
 <li>Convert each word to unique integer representation.</li>
-<li>As on previous slide: Use 5 bits per letter.<br>
-– example: “cat” becomes 3124.<br>
-– c: 3rd letter of alphabet, a 1st, t: 20th</li>
+<li>As on previous slide: Use 5 bits per letter.<br>— example: “cat” becomes 3124.<br>— c: 3rd letter of alphabet, a 1st, t: 20th</li>
 </ul>
 <p>What about longer strings? Have to tolerate either:</p>
 <ul>
 <li>A maximum string (seems lame).</li>
-<li>Ambiguity: e.g. “hothead” vs. “pothead”.<br>
-– Both represented by 523878693</li>
+<li>Ambiguity: e.g. “hothead” vs. “pothead”.<br>— Both represented by 523878693</li>
 </ul>
 <p>Switching to base 27 from 32 won’t save us.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    present[intRep] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = convertToInt(s);</span><br><span class="line">    <span class="keyword">return</span> present[intRep];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Converts ith character of String to a letter number.</span></span><br><span class="line"><span class="comment">    e.g. 'a' -&gt; 1, 'b' -&gt; 2, 'z' -&gt; 26 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">letterNum</span><span class="params">(String s, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ithChar = s.charAt(i);</span><br><span class="line">    <span class="keyword">if</span> ((ithChar &lt; <span class="string">'a'</span>) || (ithChar &gt; <span class="string">'z'</span>)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(); &#125;</span><br><span class="line">    <span class="keyword">return</span> ithChar - <span class="string">'a'</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">convertToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intRep = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        intRep = intRep &lt;&lt; <span class="number">5</span>; <span class="comment">// same as intRep * 32</span></span><br><span class="line">        intRep = intRep + letterNum(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="dataindexedarray"> DataIndexedArray</span><a href="#dataindexedarray" class="header-anchor"> </a></h4>
-<p>Two fundamental challenges:</p>
+<h4><span id="dataindexedarray">DataIndexedArray</span><a href="#dataindexedarray" class="header-anchor"> </a></h4><p>Two fundamental challenges:</p>
 <ul>
-<li>
-<p>How do we resolve ambiguity (“grosspie” vs. “bosspie”)?<br>
-– We’ll call this <strong>collision handling</strong>.</p>
+<li><p>How do we resolve ambiguity (“grosspie” vs. “bosspie”)?<br>— We’ll call this <strong>collision handling</strong>.</p>
 </li>
-<li>
-<p>How do we convert arbitrary data to an index?<br>
-– We’ll call this <strong>computing a hashCode</strong>.<br>
-– For Strings, this was relatively straightforward (treat as a base 27 or base 32 number).<br>
-– Note: Java requires that EVERY object provide a method that converts itself into an integer: hashCode()</p>
+<li><p>How do we convert arbitrary data to an index?<br>— We’ll call this <strong>computing a hashCode</strong>.<br>— For Strings, this was relatively straightforward (treat as a base 27 or base 32 number).<br>— Note: Java requires that EVERY object provide a method that converts itself into an integer: hashCode()</p>
 </li>
 </ul>
-<h4><span id="resolving-ambiguity"> Resolving Ambiguity</span><a href="#resolving-ambiguity" class="header-anchor"> </a></h4>
-<p>Suppose N items have the same hashcode h:</p>
+<h4><span id="resolving-ambiguity">Resolving Ambiguity</span><a href="#resolving-ambiguity" class="header-anchor"> </a></h4><p>Suppose N items have the same hashcode h:</p>
 <ul>
-<li>
-<p>Instead of storing true in position h, store a list of these N items at position h.</p>
+<li><p>Instead of storing true in position h, store a list of these N items at position h.</p>
 </li>
-<li>
-<p>How to implement list?</p>
+<li><p>How to implement list?</p>
 </li>
-<li>
-<p>Easiest way: Linked list.</p>
-</li>
-<li>
-<p>But any list would do (ArrayList, etc.)</p>
-</li>
-<li>
-<p>Could also use a set instead.</p>
-</li>
+<li>Easiest way: Linked list.</li>
+<li>But any list would do (ArrayList, etc.)</li>
+<li>Could also use a set instead.</li>
 </ul>
 <p>External Chaining: Storing all items that map to h in a linked list.</p>
 <p><img src="/2020/03/18/CS61B-Hashing/hashtable.jpg" alt></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -511,19 +486,16 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Q: Length of longest list.</p>
 <p>Observation: Can use modulus of hashcode to reduce bucket count.</p>
 <p><img src="/2020/03/18/CS61B-Hashing/mod.jpg" alt></p>
-<h4><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h4>
-<p>Depends on the number of items in the ‘bucket’.</p>
+<h4><span id="external-chaining-performance">External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h4><p>Depends on the number of items in the ‘bucket’.</p>
 <ul>
-<li>If N items are distributed across M buckets, average time grows with N/M = L, also known as the <strong>load factor.</strong><br>
-– Average runtime is $ \Theta(L) $.</li>
+<li>If N items are distributed across M buckets, average time grows with N/M = L, also known as the <strong>load factor.</strong><br>— Average runtime is $ \Theta(L) $.</li>
 </ul>
-<p>Obvious observation: If L is small, our data structure will be very fast.<br>
-Question: As N grows, what can we do to ensure that L stays small?</p>
-<p>Array Resizing:<br>
-Whenever L = N/M exceeds some number, increase M by resizing.</p>
+<p>Obvious observation: If L is small, our data structure will be very fast.<br>Question: As N grows, what can we do to ensure that L stays small?</p>
+<p>Array Resizing:<br>Whenever L = N/M exceeds some number, increase M by resizing.</p>
 <ul>
 <li>Question: In which bin will the apple appear after resizing?</li>
 </ul>
@@ -531,67 +503,28 @@ Whenever L = N/M exceeds some number, increase M by resizing.</p>
 <p><img src="/2020/03/18/CS61B-Hashing/apple2.jpg" alt></p>
 <p>Suppose that hashCode() returns -1.</p>
 <ul>
-<li>
-<p>Philosophically, into which bucket is it most natural to place this item.<br>
-– I say 3, since -1 -&gt; 3, 0 -&gt; 0, 1 -&gt; 1 …</p>
+<li><p>Philosophically, into which bucket is it most natural to place this item.<br>— I say 3, since -1 -&gt; 3, 0 -&gt; 0, 1 -&gt; 1 …</p>
 </li>
-<li>
-<p>Unfortunately, -1 % 4 = -1. Will result in index errors!</p>
+<li><p>Unfortunately, -1 % 4 = -1. Will result in index errors!</p>
 </li>
-<li>
-<p>Use Math.floorMod instead.</p>
-</li>
+<li>Use Math.floorMod instead.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(-<span class="number">1</span> % <span class="number">4</span>); <span class="comment">// -1</span></span><br><span class="line">        System.out.println(Math.floorMod(-<span class="number">1</span>, <span class="number">4</span>)); <span class="comment">// 3</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="hash-table-definition-and-key-implementation-details"> Hash Table Definition and Key Implementation Details</span><a href="#hash-table-definition-and-key-implementation-details" class="header-anchor"> </a></h2>
-<p>This data structure we’ve designed is called a <strong>hash table</strong>:</p>
+<h2><span id="hash-table-definition-and-key-implementation-details">Hash Table Definition and Key Implementation Details</span><a href="#hash-table-definition-and-key-implementation-details" class="header-anchor"> </a></h2><p>This data structure we’ve designed is called a <strong>hash table</strong>:</p>
 <ul>
-<li>
-<p>Every item is mapped to a bucket number using a hash function.</p>
+<li>Every item is mapped to a bucket number using a hash function.</li>
+<li><p>Typically, computing hash function consists of two steps:<br>— Computing a hashCode (integer between $ -2^{31} $ and $ 2^{31} - 1 $).<br>— Computing index = hashCode modulo M.</p>
 </li>
-<li>
-<p>Typically, computing hash function consists of two steps:<br>
-– Computing a hashCode (integer between $ -2^{31} $ and $ 2^{31} - 1 $).<br>
-– Computing index = hashCode modulo M.</p>
-</li>
-<li>
-<p>If L = N / M gets too large, increase M.</p>
+<li><p>If L = N / M gets too large, increase M.</p>
 </li>
 </ul>
-<p>If multiple items map to the same bucket, we have to resolve ambiguity somehow.<br>
-Two common techniques:</p>
+<p>If multiple items map to the same bucket, we have to resolve ambiguity somehow.<br>Two common techniques:</p>
 <ul>
 <li>External Chaining (creating a list for each bucket)</li>
 <li>Open Addressing (a little stranger, not necessarily better)</li>
 </ul>
-<h3><span id="external-chaining-performance"> External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h3>
-<p>Assuming items are spread out (e.g. not all in the same bucket):</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Average case time</th>
-<th style="text-align:center">contains(x)</th>
-<th style="text-align:center">insert(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">External Chaining, Fixed Size</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-</tr>
-<tr>
-<td style="text-align:center">External Chaining with Resizing</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-<td style="text-align:center">$ \Theta(L) $</td>
-</tr>
-<tr>
-<td style="text-align:center">Balanced BST</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-<td style="text-align:center">$ \Theta(logN) $</td>
-</tr>
-</tbody>
-</table>
+<h3><span id="external-chaining-performance">External Chaining Performance</span><a href="#external-chaining-performance" class="header-anchor"> </a></h3><p>Assuming items are spread out (e.g. not all in the same bucket):<br>|Average case time|contains(x)|insert(x)|<br>|:-:|:-:|:-:|<br>|External Chaining, Fixed Size|$ \Theta(L) $|$ \Theta(L) $|<br>|External Chaining with Resizing|$ \Theta(L) $|$ \Theta(L) $|<br>|Balanced BST|$ \Theta(logN) $|$ \Theta(logN) $|</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -610,9 +543,8 @@ Two common techniques:</p>
 </tr>
 </tbody>
 </table>
-<h3><span id="hash-function"> hash function</span><a href="#hash-function" class="header-anchor"> </a></h3>
-<p>Example: String hashCode function<br>
-Our convertToInt function:</p>
+</div>
+<h3><span id="hash-function">hash function</span><a href="#hash-function" class="header-anchor"> </a></h3><p>Example: String hashCode function<br>Our convertToInt function:</p>
 <ul>
 <li>$ h(s) = (s_0 - ‘a’ + 1) × 32^{n-1} + (s_1 - ‘a’ + 1) × 32^{n-2} + … + (s_{n-1} - ‘a’ + 1) $</li>
 </ul>
@@ -627,37 +559,23 @@ Our convertToInt function:</p>
 </ul>
 <p>Problems:</p>
 <ul>
-<li>
-<p>Intended for lower case strings only: Fix by removing ‘a’.</p>
+<li>Intended for lower case strings only: Fix by removing ‘a’.</li>
+<li><p>Top bits are totally ignored.<br>— Why? Because multiplying by 32 is equivalent to left shifting by 5 bits.(Result: Top characters get pushed out completely).<br>— How can we fix: Multiply by powers of 31!</p>
 </li>
-<li>
-<p>Top bits are totally ignored.<br>
-– Why? Because multiplying by 32 is equivalent to left shifting by 5 bits.(Result: Top characters get pushed out completely).<br>
-– How can we fix: Multiply by powers of 31!</p>
-</li>
-<li>
-<p>$ h(s) = s_0 × 31^{n-1} + s_1 × 31^{n-2} + … + s_{n-1} $</p>
+<li><p>$ h(s) = s_0 × 31^{n-1} + s_1 × 31^{n-2} + … + s_{n-1} $</p>
 </li>
 </ul>
-<h3><span id="hash-objects"> hash Objects</span><a href="#hash-objects" class="header-anchor"> </a></h3>
-<p>Example: Hashing a Collection<br>
-Lists are a lot like strings: Collection of items each with its own hashCode:</p>
+<h3><span id="hash-objects">hash Objects</span><a href="#hash-objects" class="header-anchor"> </a></h3><p>Example: Hashing a Collection<br>Lists are a lot like strings: Collection of items each with its own hashCode:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function">pubilc <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashCode = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (Object o : <span class="keyword">this</span>) &#123;</span><br><span class="line">        hashCode = hashCode * <span class="number">31</span>;</span><br><span class="line">        hashCode = hashCode + o.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>To save time hashing: Look at only first few items.</p>
 <ul>
 <li>Higher chance of collisions but things will still work.</li>
 </ul>
-<p>Example: Hashing a Recursive Data Structure<br>
-Computation of the hashCode of a recursive data structure involves recursive computation.</p>
+<p>Example: Hashing a Recursive Data Structure<br>Computation of the hashCode of a recursive data structure involves recursive computation.</p>
 <ul>
-<li>For example, binary tree hashCode:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.value == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value.hashCode() + <span class="number">31</span> * <span class="keyword">this</span>.left.hashCode() + <span class="number">31</span> *<span class="number">31</span> * <span class="keyword">this</span>.right.hashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="default-hashcodes"> Default hashCodes()</span><a href="#default-hashcodes" class="header-anchor"> </a></h3>
-<p>All Objects have hashCode() function.</p>
-<ul>
-<li>Default: return this(i.e. address of object).<br>
-– Can have strange consequences: “hello”.hashCode() is not the same as (“h” + “ello”).hashCode()</li>
+<li>For example, binary tree hashCode:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.value == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value.hashCode() + <span class="number">31</span> * <span class="keyword">this</span>.left.hashCode() + <span class="number">31</span> *<span class="number">31</span> * <span class="keyword">this</span>.right.hashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="default-hashcodes">Default hashCodes()</span><a href="#default-hashcodes" class="header-anchor"> </a></h3>All Objects have hashCode() function.</li>
+<li>Default: return this(i.e. address of object).<br>— Can have strange consequences: “hello”.hashCode() is not the same as (“h” + “ello”).hashCode()</li>
 <li>Can override for your type.</li>
 <li>Hash tables (HashSet, HashMap, etc.) are so important that Java requires that all objects implement hashCode().</li>
 </ul>
@@ -786,7 +704,7 @@ Computation of the hashCode of a recursive data structure involves recursive com
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -841,7 +759,7 @@ Computation of the hashCode of a recursive data structure involves recursive com
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text"> Hashing </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"> Using data as an index </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text"> DataIndexedIntegerSet Implementation </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text"> Binary Representation of DataIndexedIntegerSet </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Basic idea </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Refined Approach </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Generalizing to Words </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text"> DataIndexedArray </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Resolving Ambiguity </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.6.</span> <span class="nav-text"> External Chaining Performance </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text"> Hash Table Definition and Key Implementation Details </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"> External Chaining Performance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text"> hash function </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text"> hash Objects </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text"> Default hashCodes() </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Hashing </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Using data as an index </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">DataIndexedIntegerSet Implementation </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Binary Representation of DataIndexedIntegerSet </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.1.</span> <span class="nav-text">Basic idea </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.2.</span> <span class="nav-text">Refined Approach </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text">Generalizing to Words </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.4.</span> <span class="nav-text">DataIndexedArray </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.5.</span> <span class="nav-text">Resolving Ambiguity </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.3.6.</span> <span class="nav-text">External Chaining Performance </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Hash Table Definition and Key Implementation Details </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">External Chaining Performance </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">hash function </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">hash Objects </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text">Default hashCodes() </span></a></li></ol></li></ol></div>
             
 
           </div>

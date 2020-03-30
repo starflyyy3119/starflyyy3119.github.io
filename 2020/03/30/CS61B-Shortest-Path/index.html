@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="CS61b," />
+  <meta name="keywords" content="CS61B," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="Packages and JAR files Packages To address the fact that classes might share names:  A package is a namespace that organizes classes and interfaces. Naming convention: Package name starts with website">
+<meta name="description" content="Shortest Path Problem: Single Source Single Target Shortest Paths Goal: Find the shortest paths from source vertex s to some target vertex t.  Observation: Solution will always be a path with no cycle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS61B-Packages">
-<meta property="og:url" content="http://yoursite.com/2020/03/08/CS61B-Packages/index.html">
+<meta property="og:title" content="CS61B-Shortest Path">
+<meta property="og:url" content="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/index.html">
 <meta property="og:site_name" content="Starfly&#39;s blog">
-<meta property="og:description" content="Packages and JAR files Packages To address the fact that classes might share names:  A package is a namespace that organizes classes and interfaces. Naming convention: Package name starts with website">
+<meta property="og:description" content="Shortest Path Problem: Single Source Single Target Shortest Paths Goal: Find the shortest paths from source vertex s to some target vertex t.  Observation: Solution will always be a path with no cycle">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-08T02:33:44.000Z">
-<meta property="article:modified_time" content="2020-03-13T17:29:10.346Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/ex.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/pa.jpg">
+<meta property="article:published_time" content="2020-03-29T17:53:10.000Z">
+<meta property="article:modified_time" content="2020-03-30T03:13:07.543Z">
 <meta property="article:author" content="Starfly">
-<meta property="article:tag" content="CS61b">
+<meta property="article:tag" content="CS61B">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/ex.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/08/CS61B-Packages/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/"/>
 
 
 
 
 
-  <title>CS61B-Packages | Starfly's blog</title>
+  <title>CS61B-Shortest Path | Starfly's blog</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/CS61B-Packages/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/30/CS61B-Shortest-Path/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Starfly">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CS61B-Packages</h1>
+          <h1 class="post-title" itemprop="name headline">CS61B-Shortest Path</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-08T10:33:44+08:00">
-                2020-03-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-30T01:53:10+08:00">
+                2020-03-30
               </time>
             
 
@@ -305,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
                   </a>
                 </span>
 
@@ -342,24 +345,50 @@
       
 
       
-        <h2><span id="packages-and-jar-files">Packages and JAR files</span><a href="#packages-and-jar-files" class="header-anchor"> </a></h2><h3><span id="packages">Packages</span><a href="#packages" class="header-anchor"> </a></h3><p>To address the fact that classes might share names:</p>
+        <h2><span id="shortest-path">Shortest Path</span><a href="#shortest-path" class="header-anchor"> </a></h2><h3><span id="problem-single-source-single-target-shortest-paths">Problem: Single Source Single Target Shortest Paths</span><a href="#problem-single-source-single-target-shortest-paths" class="header-anchor"> </a></h3><p>Goal: Find the shortest paths from source vertex s to some target vertex t.</p>
+<p><img src="/2020/03/30/CS61B-Shortest-Path/ex.jpg" alt></p>
+<p>Observation: Solution will always be a path with no cycles (assuming non-negative weights).</p>
+<p>Goal: Find the shortest paths from source vertex s to every other vertex.</p>
+<p>Trickier observation: Solution will always be a tree.</p>
 <ul>
-<li>A package is a <strong>namespace</strong> that organizes classes and interfaces.</li>
-<li>Naming convention: Package name starts with website address (backwards).</li>
+<li>Can think of as the union of the shortest paths to all vertices.</li>
 </ul>
-<p><strong>Creating a Package</strong><br>Two steps:</p>
+<p>Why is the solution a tree:</p>
 <ul>
-<li>At the top of every file in the package, put the package name.</li>
-<li>Make sure that the file is stored in a folder with the appropriate folder name. For a package with name <em>ug.joshh.animal</em>, use folder <em>ug/joshh/animal</em>.</li>
+<li>Can’t include cycles (no reason to go in a loop)</li>
+<li>Every node has one parent.</li>
 </ul>
-<p><strong>Using Packages</strong><br>As we saw in a previous lecture, to use a class from Package A in a class from Package B, we use the <strong>canonical name.</strong></p>
-<p>For example, in the DogLauncher class, which is not part of the ug.joshh.animal package, can create a Dog using the syntax below.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ug.joshh.animal.Dog d = <span class="keyword">new</span> ug.joshh.animal.Dog(...);</span><br></pre></td></tr></table></figure><br>By using an <strong>import</strong> statement, we can use the <strong>simple name</strong> instead.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ug.joshh.animal.Dog;</span><br><span class="line">...</span><br><span class="line">Dog d = <span class="keyword">new</span> Dog(...);</span><br></pre></td></tr></table></figure><br><strong>The Default Package</strong><br>Any Java class without a package name at the top are part of the “default” package. </p>
-<p>Idea: Ensure that we never have two classes with the same name. And you cannot import code from the default package.</p>
-<h3><span id="jar-files">JAR Files</span><a href="#jar-files" class="header-anchor"> </a></h3><p>JAR files are just zip files.</p>
+<p>If a graph has no cycles and no nodes has two parents, it’s a tree.</p>
 <ul>
-<li>They do not keep your code safe.</li>
-<li>Easy to unzip and transform back into .Java files.</li>
+<li>If one path is longer, it shouldn’t be part of the solution.</li>
+<li>If they’re the same, it’s ok to pick one arbitrarily.</li>
 </ul>
+<h3><span id="spt-edge-count">SPT Edge Count</span><a href="#spt-edge-count" class="header-anchor"> </a></h3><p>If G is a connected edge-weighted graph with V vertices and E edges, how many edges are in the Shortest Paths Tree (SPT) of G?(assume every vertex is reachable)</p>
+<ul>
+<li>ans: V - 1, because for each vertex, there is exactly one input edge.</li>
+</ul>
+<p><img src="/2020/03/30/CS61B-Shortest-Path/pa.jpg" alt></p>
+<h3><span id="finding-a-shortest-path-tree-algorithmically">Finding a Shortest Path Tree Algorithmically</span><a href="#finding-a-shortest-path-tree-algorithmically" class="header-anchor"> </a></h3><p>Dijkstra’s Algorithm.</p>
+<ul>
+<li>Visit vertices <strong>in order of best-known distance</strong> from source, <strong>relaxing</strong> each edge from the visited vertex (relax an edge: Add to SPT if better distance)</li>
+</ul>
+<p>Why is Dijkstra’s correct for non-negative edges? Path to X is optimal after X has been dequeued. Inductive argument (proof sketch):</p>
+<ul>
+<li>Suppose path to just-dequeued vertex v is optimal. Then after relaxation of v’s edges, path to vertex X at top of PQ will be optimal.</li>
+</ul>
+<h3><span id="dijkstra-s-implementation-pseudocode">Dijkstra’s Implementation (Pseudocode)</span><a href="#dijkstra-s-implementation-pseudocode" class="header-anchor"> </a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">DijkstraSP</span><span class="params">(EdgeWeightedDigraph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">    distTo = <span class="keyword">new</span> <span class="keyword">double</span>[G.V()];</span><br><span class="line">    DirectedEdge[] edgeTo = <span class="keyword">new</span> DirectedEdge[G.V()];</span><br><span class="line">    distTo[s] = <span class="number">0</span>;</span><br><span class="line">    setDistancesToInfinityExceptS(s);</span><br><span class="line"></span><br><span class="line">    fringe = <span class="keyword">new</span> SpecialPQ&lt;Integer&gt;();</span><br><span class="line">    insertAllVertices(fringe); <span class="comment">// fringe is ordered by distTo</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* relax vertices in order of distance from s */</span></span><br><span class="line">    <span class="keyword">while</span> (!fringe.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = fringe.delMin(); <span class="comment">// Get vertex closest to source that is unvisited</span></span><br><span class="line">        <span class="keyword">for</span> (DirectedEdge e : G.adj(v)) &#123;</span><br><span class="line">            relax(e); <span class="comment">// relax means if better, add to SPT and update priorities</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">relax</span><span class="params">(DirectedEdge e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v = e.from();</span><br><span class="line">    <span class="keyword">int</span> w = e.to();</span><br><span class="line">    <span class="keyword">if</span> (distTo[w] &gt; distTo[v] + e.weight()) &#123; <span class="comment">// If edge is better, then:</span></span><br><span class="line">        distTo[w] = distTo[v] + e.weight();  <span class="comment">// add to shortest paths tree</span></span><br><span class="line">        edgeTo[w] = e;</span><br><span class="line">        <span class="keyword">if</span> (pq.contains(w)) &#123;   <span class="comment">// if still active (green)</span></span><br><span class="line">            pq.decreasePriority(w, distTo[w]);  <span class="comment">// update priority (not a standard PQ operation, requires a special PQ)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="dijkstra-s-algorithm-runtime">Dijkstra’s Algorithm Runtime</span><a href="#dijkstra-s-algorithm-runtime" class="header-anchor"> </a></h3><p>Priority Queue operation count, assuming binary heap based PQ:</p>
+<ul>
+<li>Insertion: V, each costing O(log V) time.</li>
+<li>Delete-min: V, each costing O(log V) time.</li>
+<li>decreasePriority: E, each costing O(logV) time.</li>
+</ul>
+<p>Overall runtime: O(Vlog(V) + Vlog(V) + ElogV).</p>
+<ul>
+<li>Assuming E &gt; V, this is just O(ElogV).</li>
+</ul>
+<h3><span id="the-problem-with-dijkstra-s">The Problem with Dijkstra’s</span><a href="#the-problem-with-dijkstra-s" class="header-anchor"> </a></h3><p>Dijkstra’s will explore every vertices.<br>In some situation, we have only a single target in mind, so we need a different algorithm.<br>So we use some heuristic methods, like A*.</p>
+<p><a href="https://qiao.github.io/PathFinding.js/visual/" target="_blank" rel="noopener">A pretty cool demo of several algorithms</a></p>
 
       
     </div>
@@ -377,7 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CS61b/" rel="tag"># CS61b</a>
+            <a href="/tags/CS61B/" rel="tag"># CS61B</a>
           
         </div>
       
@@ -390,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/07/CS61B-Object-Methods/" rel="next" title="CS61B-Object Methods">
-                <i class="fa fa-chevron-left"></i> CS61B-Object Methods
+              <a href="/2020/03/25/CS61B-Graph/" rel="next" title="CS61B-Graph">
+                <i class="fa fa-chevron-left"></i> CS61B-Graph
               </a>
             
           </div>
@@ -399,10 +428,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/08/CS61B-Access-Control/" rel="prev" title="CS61B-Access Control">
-                CS61B-Access Control <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Packages and JAR files </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Packages </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">JAR Files </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Shortest Path </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Problem: Single Source Single Target Shortest Paths </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">SPT Edge Count </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">Finding a Shortest Path Tree Algorithmically </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">Dijkstra’s Implementation (Pseudocode) </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">Dijkstra’s Algorithm Runtime </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.6.</span> <span class="nav-text">The Problem with Dijkstra’s </span></a></li></ol></li></ol></div>
             
 
           </div>
